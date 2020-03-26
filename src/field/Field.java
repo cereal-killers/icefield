@@ -101,6 +101,12 @@ public class Field {
 		}
 		return false;
 	}
+	
+	public ArrayList<Player> GetPlayers()
+	{
+		System.out.println("GetPlayers()");	
+		return players;
+	}
 
 	public int GetMaxWeight() {
 		System.out.println("GetMaxWeight()");
