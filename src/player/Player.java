@@ -3,6 +3,7 @@ package player;
 import java.util.ArrayList;
 import item.Item;
 import field.Field;
+import icefield.Controller;
 import field.Direction;
 
 //játékos osztály
@@ -13,13 +14,13 @@ public class Player {
 	protected boolean wears_suit; //a játékoson van-e búvárruha vagy sem
 	protected ArrayList<Item> inventory; //eszköztár
 	protected Field currentField; //a jégtábla, amin jelenleg a játékos áll
+	protected Controller controller;
 	
-	public Player(Field current) {
+	public Player(Controller c) {
 		this.energy = 4;
 		this.wears_suit = false;
-		this.currentField = current;
 		inventory = new ArrayList<Item>(5);
-		
+		controller = c;
 	}
 	
 	//A játékos felvesz egy eszközt az eszköztárába arról a jégtábláról amin éppen áll.
@@ -46,7 +47,7 @@ public class Player {
 			this.SetHealth(health-1);
 		}
 		if (health == 0) {
-			Finish(); //controllert nem tudom honnan ismeri a Player
+			controller.Finish(); 
 		}
 	}
 	

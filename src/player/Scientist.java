@@ -4,8 +4,8 @@ import field.Field;
 
 public class Scientist extends Player{
 	
-	public Scientist(Field current) {
-		super(current);
+	public Scientist(Controller c) {
+		super(c);
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
 	}
