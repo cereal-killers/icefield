@@ -16,11 +16,12 @@ public class Player {
 	protected Field currentField; //a jégtábla, amin jelenleg a játékos áll
 	protected Controller controller;
 	
-	public Player(Controller c) {
+	public Player(Controller c, Field startField) {
 		this.energy = 4;
 		this.wears_suit = false;
-		inventory = new ArrayList<Item>(5);
-		controller = c;
+		this.inventory = new ArrayList<Item>(5);
+		this.controller = c;
+		this.currentField = startField;
 	}
 	
 	//A játékos felvesz egy eszközt az eszköztárába arról a jégtábláról amin éppen áll.

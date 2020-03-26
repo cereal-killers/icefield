@@ -5,8 +5,8 @@ import icefield.Controller;
 
 public class Eskimo extends Player {
 
-	public Eskimo(Controller c){ 
-		super(c);
+	public Eskimo(Controller c, Field startField){ 
+		super(c, startField);
 		this.maxHealth = 5;
 		this.health = this.maxHealth;
 	}

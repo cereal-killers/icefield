@@ -5,8 +5,8 @@ import icefield.Controller;
 
 public class Scientist extends Player{
 	
-	public Scientist(Controller c) {
-		super(c);
+	public Scientist(Controller c, Field startField) {
+		super(c, startField);
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
 	}
