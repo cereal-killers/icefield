@@ -150,10 +150,22 @@ public class Field {
 	}
 	
 	//A mezőn levő hóegységek számát egyel növeli
-	public IncrementSnow()
+	public void IncrementSnow()
 	{
 		System.out.println("IncrementSnow()");
 		snowCount++;
 	}
+	
+	//Beállítja hogy az adott mezőn van-e iglu
+	public void SetHasIgloo(boolean value)
+	{
+		hasIgloo = value;
+	}
+	
+	//Visszaadja hogy az adott mező átfordult állapotban van-e
+	 public boolean GetUpsideDown()
+	 {
+		 return isUpsideDown;
+	 }
 	
 }
