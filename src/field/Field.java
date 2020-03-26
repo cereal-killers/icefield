@@ -1,4 +1,6 @@
 package field;
+import java.util.EnumMap;
+
 import item.Item;
 import player.Player;
 
@@ -8,20 +10,37 @@ public class Field {
 	private int snowCount;
 	private boolean hasIgloo;
 	private boolean isUpsideDown;
+	private EnumMap<Direction,Field> neighbor = new EnumMap<Direction,Field>(Direction.class);
+	
+	public Field(Field Up,Field Right,Field Down, Field Left)
+	{
+		neighbor.put(Direction.Up, Up);
+		neighbor.put(Direction.Right, Right);
+		neighbor.put(Direction.Down, Down);
+		neighbor.put(Direction.Left, Left);
+	}
+	
+	public Field GetNeighbor(Direction dir) {
+		return neighbor.get(dir);
+		
+	}
 	
 	public boolean PassPlayer(Direction dir,Player player)
 	{
-		//TODO
-		return true;
+		if(neighbor.get(dir).Accept(player))
+		{
+			player.GetCurrentField().Remove(player);
+			return true;
+		}
 	}
 	
-	public boolean Accept()
+	public boolean Accept(Player player)
 	{
 		//TODO
 		return true;
 	}
 	
-	public void Remove()
+	public void Remove(Player player)
 	{
 		//TODO
 	}
