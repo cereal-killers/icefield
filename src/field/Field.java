@@ -15,11 +15,12 @@ public class Field {
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private EnumMap<Direction,Field> neighbor = new EnumMap<Direction,Field>(Direction.class);
 	
-	public Field(int maxWeight, int snowCount, boolean hasIgloo)
+	public Field(int maxWeight, int snowCount,Item item)
 	{
 		this.maxWeight = maxWeight;
 		this.snowCount = snowCount;
-		this.hasIgloo = hasIgloo;
+		if(item != null)
+			items.add(item);
 	}
 	
 	public Field(Field Up,Field Right,Field Down, Field Left)
@@ -38,6 +39,7 @@ public class Field {
 		neighbor.put(Direction.Down, Down);
 		neighbor.put(Direction.Left, Left);
 	}
+	
 	public Field GetNeighbor(Direction dir) {
 		System.out.println("GetNeighbor()");
 		return neighbor.get(dir);
@@ -58,9 +60,9 @@ public class Field {
 	public boolean Accept(Player player)
 	{
 		System.out.println("Accept()");
-		//TODO
-		if()
-		return true;
+		if(player != null)
+			return true;
+		return false;
 	}
 	
 	public void Remove(Player player)
