@@ -20,7 +20,43 @@ public class Controller {                           //Kontroller osztaly inicial
 
     public void Start()
     {
-        //ToDo
+        //Map letrehozasa
+        Field field1 = new Field();
+        Field field2 = new Field();
+        Field field3 = new Field();
+        Field field4 = new Field();
+        Field field5 = new Field();
+        Field field6 = new Field();
+        Field field7 = new Field();
+        Field field8 = new Field();
+        Field field9 = new Field();
+        Field field10 = new Field();
+        Field field11 = new Field();
+        Field field12 = new Field();
+        Field field13 = new Field();
+        Field field14 = new Field();
+        Field field15 = new Field();
+        Field field16 = new Field();
+
+        //fieldek maphoz valo hozzaadasa
+        Fields.add(field1);
+        Fields.add(field2);
+        Fields.add(field3);
+        Fields.add(field4);
+        Fields.add(field5);
+        Fields.add(field6);
+        Fields.add(field7);
+        Fields.add(field8);
+        Fields.add(field9);
+        Fields.add(field10);
+        Fields.add(field11);
+        Fields.add(field12);
+        Fields.add(field13);
+        Fields.add(field14);
+        Fields.add(field15);
+        Fields.add(field16);
+
+
 
         //raketa letrehozasa
         Rocket rocket = new Rocket(this);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
