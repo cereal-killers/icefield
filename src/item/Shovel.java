@@ -1,5 +1,6 @@
 package item;
 
+import field.Field;
 import player.Player;
 
 /* Ásó osztály, az Item leszármazottja. */
@@ -7,6 +8,7 @@ public class Shovel extends Item {
 	
 	public Shovel() {
 		// igazából itt nem kell csinálni semmit, kell ez ide?
+		// nem hiszem - Levi
 	}
 	
 	/* Átadjuk, hogy melyik szereplő használja. Ez a függvény egy munkával a szereplő mezőjéről 2 egység havat takarít el.*/
