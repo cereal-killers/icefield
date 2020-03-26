@@ -14,7 +14,10 @@ public class Controller implements EndOfGame{                           //Kontro
     Vector<Player> players = new Vector<>();
     boolean ended = false;
 
-
+    public boolean GetEnded()
+    {
+        return ended;
+    }
 
     public void SnowStorm()                         //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
