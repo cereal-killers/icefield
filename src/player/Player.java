@@ -49,7 +49,7 @@ public class Player {
 		}
 		if (health == 0) {
 			controller.Finish(); 
-		}a
+		}
 	}
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
