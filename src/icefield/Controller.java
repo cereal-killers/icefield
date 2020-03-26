@@ -1,7 +1,7 @@
 package icefield;
 
 import field.Field;
-import item.Rocket;
+import item.*;
 import player.Eskimo;
 import player.Scientist;
 
@@ -20,8 +20,20 @@ public class Controller {                           //Kontroller osztaly inicial
 
     public void Start()
     {
+        //raketa letrehozasa
+        Rocket rocket = new Rocket(this);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
+
+        //Itemek letrehozasa
+        Charge charge= new Charge();
+        DivingSuit divingSuit = new DivingSuit();
+        Flare flare = new Flare();
+        Food food = new Food();
+        Gun gun= new Gun();
+        Rope rope = new Rope();
+        Shovel shovel = new Shovel();
+
         //Map letrehozasa
-        Field field1 = new Field();
+        Field field1 = new Field();     //Tulajdonsagok ToDo
         Field field2 = new Field();
         Field field3 = new Field();
         Field field4 = new Field();
@@ -37,6 +49,10 @@ public class Controller {                           //Kontroller osztaly inicial
         Field field14 = new Field();
         Field field15 = new Field();
         Field field16 = new Field();
+
+        //szomszedok beallitasa
+        //ToDo
+
 
         //fieldek maphoz valo hozzaadasa
         Fields.add(field1);
@@ -58,8 +74,6 @@ public class Controller {                           //Kontroller osztaly inicial
 
 
 
-        //raketa letrehozasa
-        Rocket rocket = new Rocket(this);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
 
         //Jatekosok letrehozasa
         Eskimo eskimo1 = new Eskimo(this);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
