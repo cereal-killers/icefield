@@ -12,14 +12,14 @@ public class Player {
 	protected int maxHealth; //játékos maximális életpontjai
 	protected int energy; //játékos energiapontjai
 	protected boolean wears_suit; //a játékoson van-e búvárruha vagy sem
-	protected ArrayList<Item> inventory; //eszköztár
+	protected ArrayList<Item> items; //eszköztár
 	protected Field currentField; //a jégtábla, amin jelenleg a játékos áll
 	protected Controller controller;
 	
 	public Player(Controller c, Field startField) {
 		this.energy = 4;
 		this.wears_suit = false;
-		this.inventory = new ArrayList<Item>(5);
+		this.items = new ArrayList<Item>(5);
 		this.controller = c;
 		this.currentField = startField;
 	}
@@ -29,7 +29,8 @@ public class Player {
 		System.out.println("PickItemUp()");
 		Item item = currentField.GetItem();
 		currentField.PopItem();
-		this.AddItem(item);
+		this.AddItem(item); //berakja az eszköztárba
+		this.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 		
 	}
 	//A játékos lerak egy eszközt az eszköztárából a currentFieldre.
@@ -40,15 +41,15 @@ public class Player {
 		if(topitem == item) { //megnézi, hogy a lerakott Item megegyezik-e a currentField-en található legfelső item-el
 			RemoveItem(item); //ha igen, akkor kiveszi az eszköztárból is
 		}
+		this.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 	}
 	
+	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
+	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
 		System.out.println("EndTurn()");
 		if (currentField.GetUpsideDown()) {
-			this.SetHealth(health-1);
-		}
-		if (health == 0) {
-			controller.Finish(); 
+			this.decrementHealth();
 		}
 	}
 	
@@ -57,19 +58,21 @@ public class Player {
 		System.out.println("Move(dir)");
 		//System.out.println("PassPlayer(dir,player)");
 		currentField.PassPlayer(dir, this);
+		this.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 	}
 	
 	//Használ egy Item-et a Player
 	public void UseItem(Item item) {
 		System.out.println("UseItem(item)");
 		item.Use(this);
+		this.decrementEnergy();
 	}
 	
 	//hozzáadja a paraméterben átadott Item-et az inventory tömbbe (eszköztár)
 	public void AddItem(Item item) {
 		System.out.println("AddItem(item)");
 		try {
-			this.inventory.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et
+			this.items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et
 									  //kivételt dob, ha nincs elég hely
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
 			System.out.println("No more space in inventory"); 
@@ -80,7 +83,7 @@ public class Player {
 	//Eltávolít egy paraméterben megadott Item-et az eszköztárból
 	public void RemoveItem(Item item) {
 		System.out.println("RemoveItem(item)");
-		if (this.inventory.remove(item)) { //az ArrayList remove függvénye true-t térít vissza, ha paraméterben megadott
+		if (this.items.remove(item)) { //az ArrayList remove függvénye true-t térít vissza, ha paraméterben megadott
 										   //objektum benne van a listában és ezt eltávolította
 			System.out.println("Item removed from inventory");
 		}else { //ellenkező esetben false-t
@@ -118,6 +121,20 @@ public class Player {
 		this.health = value;
 	}
 	
+	public void decrementHealth() {
+		System.out.println("decrementHealth()");
+		if (this.health > 0)
+			this.health--;
+		if (health == 0) {
+			controller.Finish(); 
+		}
+	}
+	public void incrementHealth() {
+		System.out.println("incrementHealth()");
+		if (this.health < maxHealth)
+			this.health++;
+	}
+	
 	public int GetMaxHealth() {
 		System.out.println("GetMaxHealth()");
 		return maxHealth;
@@ -132,4 +149,12 @@ public class Player {
 		System.out.println("SetEnergy(value)");
 		this.energy = value;
 	}
+	
+	public void decrementEnergy() {
+		System.out.println("decrementEnergy()");
+		this.energy--;
+		if (this.energy == 0)
+			this.EndTurn();
+	}
+	
 }

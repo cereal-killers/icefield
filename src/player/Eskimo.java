@@ -15,6 +15,7 @@ public class Eskimo extends Player {
 	public void BuildIgloo() {
 		System.out.println("BuildIgloo()");
 		currentField.SetHasIgloo(true);
+		this.decrementEnergy();
 	}
 	
 	
