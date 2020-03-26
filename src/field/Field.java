@@ -150,7 +150,7 @@ public class Field {
 	}
 	
 	//A mezőn levő hóegységek számát egyel növeli
-	public IncrementSnow()
+	public void IncrementSnow()
 	{
 		System.out.println("IncrementSnow()");
 		snowCount++;
