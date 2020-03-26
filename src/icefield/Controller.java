@@ -31,12 +31,12 @@ public class Controller implements EndOfGame{                           //Kontro
 
 
         //Erintett mezokon horeteg novelese
-        fields.get(5).IncrementSnow;
-        fields.get(8).IncrementSnow;
-        fields.get(10).IncrementSnow;
-        fields.get(11).IncrementSnow;
-        fields.get(16).IncrementSnow;
-        fields.get(2).IncrementSnow;
+        fields.get(5).IncrementSnow();
+        fields.get(8).IncrementSnow();
+        fields.get(10).IncrementSnow();
+        fields.get(11).IncrementSnow();
+        fields.get(16).IncrementSnow();
+        fields.get(2).IncrementSnow();
         System.out.println("IncrementSnow();");
 
 
