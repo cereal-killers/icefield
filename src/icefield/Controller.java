@@ -34,7 +34,7 @@ public class Controller {                           //Kontroller osztaly inicial
 
         //Map letrehozasa
         Field field1 = new Field();     //Tulajdonsagok ToDo
-        Field field2 = new Field();
+        Field field2 = new Field();     //Itemek mezokre pakolasa ToDo
         Field field3 = new Field();
         Field field4 = new Field();
         Field field5 = new Field();
