@@ -1,5 +1,8 @@
 package player;
 
+import field.Field;
+import item.Item;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -22,7 +25,7 @@ public class Player {
 			currentField.PopItem();
 			this.AddItem(item);
 		}catch(Exception e) {
-			System.out.println("Nincs több hely az eszköztárban");
+			System.out.println("Nincs tï¿½bb hely az eszkï¿½ztï¿½rban");
 		}
 		
 	}
