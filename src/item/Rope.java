@@ -1,5 +1,6 @@
 package item;
 
+import field.Field;
 import player.Player;
 
 /* Kötél osztály. Ennek használatával a szereplő megmentheti a mellette lévő vízbe esett társát.*/

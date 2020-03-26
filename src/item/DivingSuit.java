@@ -12,7 +12,7 @@ public class DivingSuit extends Item {
 		
 		if(player.GetWearsSuit()) {
 			player.SetWearsSuit(false);
-			System.out.println("player took off divingsuit")
+			System.out.println("player took off divingsuit");
 		} else {
 			player.SetWearsSuit(true);
 			System.out.println("player now wears divingsuit");
