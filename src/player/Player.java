@@ -49,7 +49,7 @@ public class Player {
 		}
 		if (health == 0) {
 			controller.Finish(); 
-		}
+		}a
 	}
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
@@ -116,6 +116,15 @@ public class Player {
 	public void SetHealth(int value) {
 		System.out.println("SetHealth(value)");
 		this.health = value;
+	}
+	
+	public void decrementHealth() {
+		if (this.health > 0)
+			this.health--;
+	}
+	public void incrementHealth() {
+		if (this.health < maxHealth)
+			this.health++;
 	}
 	
 	public int GetMaxHealth() {
