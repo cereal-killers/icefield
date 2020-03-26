@@ -14,5 +14,6 @@ public class Scientist extends Player{
 	public void InspectField(Field field) {
 		System.out.println("InspectField(field)");
 		System.out.println("Field can hold: " + field.GetMaxWeight() + "players");
+		this.decrementEnergy();
 	}
 }
