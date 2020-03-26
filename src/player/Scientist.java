@@ -1,6 +1,7 @@
 package player;
 
 import field.Field;
+import icefield.Controller;
 
 public class Scientist extends Player{
 	

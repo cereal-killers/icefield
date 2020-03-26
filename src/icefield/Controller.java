@@ -3,7 +3,6 @@ package icefield;
 import field.Field;
 import item.Rocket;
 import player.Eskimo;
-import player.Player;
 import player.Scientist;
 
 import java.util.Vector;
@@ -29,8 +28,8 @@ public class Controller {                           //Kontroller osztaly inicial
         //Jatekosok letrehozasa
         Eskimo eskimo1 = new Eskimo(this);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
         Eskimo eskimo2 = new Eskimo(this);
-        Eskimo scientist1 = new Scientist(this);
-        Eskimo scientist2 = new Scientist(this);
+        Scientist scientist1 = new Scientist(this);
+        Scientist scientist2 = new Scientist(this);
     }
 
     public boolean ArePlayersTogether()        //talan  ugy lehetne megoldani ha a fieldek jeleznek ha a jatekosok szamaval egyenlo suly lenne rajtuk
