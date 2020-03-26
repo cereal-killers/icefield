@@ -2,10 +2,10 @@ package item;
 
 import player.Player;
 
-/* Búvárruha osztály. Ha felveszi a játékos, akkor nem hal meg vízbeesés esetén. */
+/* BÃºvÃ¡rruha osztÃ¡ly. Ha felveszi a jÃ¡tÃ©kos, akkor nem hal meg vÃ­zbeesÃ©s esetÃ©n. */
 public class DivingSuit extends Item {
 	
-	/* Ha használja a Player, akkor felkerül rá a búvárruha, vagy ha rajta volt, akkor lekerül róla. */
+	/* Ha hasznÃ¡lja a Player, akkor felkerÃ¼l rÃ¡ a bÃºvÃ¡rruha, vagy ha rajta volt, akkor lekerÃ¼l rÃ³la. */
 	@Override
 	public void Use(Player player) {
 		System.out.println("Use(Player player)");

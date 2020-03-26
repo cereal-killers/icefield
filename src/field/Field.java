@@ -26,10 +26,9 @@ public class Field {
 		//TODO
 	}
 	
-	public Item PushItem()
+	public void PushItem(Item item)
 	{
-		//TODO
-		return null;
+		//TODO	
 	}
 	
 	public Item PopItem()
@@ -48,6 +47,11 @@ public class Field {
 	{
 		//TODO
 		return true;	
+	}
+
+	public int GetMaxWeight() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 
