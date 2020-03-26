@@ -1,4 +1,4 @@
-package src.field;
+package field;
 
 public enum Direction {
 	Up,

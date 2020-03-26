@@ -1,9 +1,9 @@
-package src.field;
+package field;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
-import src.item.Item;
-import src.player.Player;
+import item.Item;
+import player.Player;
 
 public class Field {
 	
