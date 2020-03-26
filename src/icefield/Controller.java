@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Controller {                           //Kontroller osztaly inicializalasa
 
-    Vector<Field> Fields = new Vector<>();     //A jatek mezoinek eltarolasa
+    Vector<Field> Fields = new Vector<>();          //A jatek mezoinek eltarolasa
 
 
 
