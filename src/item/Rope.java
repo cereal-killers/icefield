@@ -42,5 +42,10 @@ public class Rope extends Item {
 		System.out.println(playersToSave.size() + "player(s) saved");
 		System.out.println("energy level: " + player.GetEnergy());
 	}
+	
+	@Override
+	public String GetName() {
+		return "rope";
+	}
 
 }

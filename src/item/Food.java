@@ -13,4 +13,8 @@ public class Food extends Item {
 		System.out.println("health = " + player.GetHealth());
 	}
 
+	@Override
+	public String GetName() {
+		return "food";
+	}
 }

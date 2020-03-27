@@ -9,4 +9,8 @@ public class Flare extends Item {
 		System.out.println("flare cannot be used individually");
 	}
 
+	@Override
+	public String GetName() {
+		return "flare";
+	}
 }

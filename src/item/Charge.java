@@ -8,5 +8,10 @@ public class Charge extends Item {
 	public void Use(Player player) {
 		System.out.println("charge cannot be used individually");
 	}
+	
+	@Override
+	public String GetName() {
+		return "charge";
+	}
 
 }

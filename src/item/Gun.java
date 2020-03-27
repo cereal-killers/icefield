@@ -9,4 +9,8 @@ public class Gun extends Item {
 		System.out.println("gun cannot be used individually");
 	}
 
+	@Override
+	public String GetName() {
+		return "gun";
+	}
 }

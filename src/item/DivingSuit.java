@@ -18,5 +18,10 @@ public class DivingSuit extends Item {
 			System.out.println("player now wears divingsuit");
 		}
 	}
+	
+	@Override
+	public String GetName() {
+		return "divingsuit";
+	}
 
 }

@@ -32,4 +32,9 @@ public class Shovel extends Item {
 		
 		player.SetEnergy(player.GetEnergy() - 1); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
 	}
+	
+	@Override
+	public String GetName() {
+		return "shovel";
+	}
 }

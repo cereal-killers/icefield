@@ -27,4 +27,5 @@ public class Rocket {
 	public void Fire() {
 		System.out.println("Fire()");
 	}
+	
 }
