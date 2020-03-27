@@ -6,6 +6,7 @@ import player.Eskimo;
 import player.Player;
 import player.Scientist;
 
+import java.util.Random;
 import java.util.Vector;
 
 public class Controller implements EndOfGame{                           //Kontroller osztaly inicializalasa
@@ -13,6 +14,9 @@ public class Controller implements EndOfGame{                           //Kontro
     private Vector<Field> fields = new Vector<>();          //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
     private boolean ended = false;
+    private Random random = new Random();
+
+
 
     public Vector<Field> GetFields()
     {
@@ -173,6 +177,9 @@ public class Controller implements EndOfGame{                           //Kontro
     		}
     		if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
     			i = 0;
+    		
+            int val = random.nextInt(10);
+            if (val < 3) SnowStorm();
     	}
     }
 
