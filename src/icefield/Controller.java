@@ -48,11 +48,6 @@ public class Controller implements EndOfGame{                           //Kontro
 
     public void Start()
     {
-
-        //raketa letrehozasa
-        Rocket rocket = new Rocket(this);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
-        System.out.println("raketa letrehozva");
-
         //Itemek letrehozasa
         Charge charge= new Charge();
         DivingSuit divingSuit = new DivingSuit();
@@ -63,6 +58,10 @@ public class Controller implements EndOfGame{                           //Kontro
         Rope rope = new Rope();
         Shovel shovel = new Shovel();
         System.out.println("itemek letrehozva");
+
+        //raketa letrehozasa
+        Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
+        System.out.println("raketa letrehozva");
 
         //Map letrehozasa
         Field field1 = new Field(5, 1, flare);
