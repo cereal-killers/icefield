@@ -10,9 +10,14 @@ import java.util.Vector;
 
 public class Controller implements EndOfGame{                           //Kontroller osztaly inicializalasa
 
-    Vector<Field> fields = new Vector<>();          //A jatek mezoinek eltarolasa
-    Vector<Player> players = new Vector<>();
-    boolean ended = false;
+    private Vector<Field> fields = new Vector<>();          //A jatek mezoinek eltarolasa
+    private Vector<Player> players = new Vector<>();
+    private boolean ended = false;
+
+    public Vector<Field> GetFields()
+    {
+        return fields;
+    }
 
     public boolean GetEnded()
     {
@@ -59,7 +64,7 @@ public class Controller implements EndOfGame{                           //Kontro
         Shovel shovel = new Shovel();
         System.out.println("itemek letrehozva");
 
-        //raketa letrehozasa
+        //raketa letrehozasa1
         Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
         System.out.println("raketa letrehozva");
 
