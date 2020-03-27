@@ -14,8 +14,11 @@ public class Eskimo extends Player {
     //az Eskimo képes igloo-t építeni egy Fieldre, ilyenkor átállítja a Field hasIgloo változóját true-ra
 	public void BuildIgloo() {
 		System.out.println("BuildIgloo()");
-		currentField.SetHasIgloo(true);
-		this.decrementEnergy();
+		if(this.energy > 0) {
+			this.decrementEnergy();
+			currentField.SetHasIgloo(true);
+		}else
+			System.out.println("Not enough energy");
 	}
 	
 	

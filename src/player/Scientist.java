@@ -13,7 +13,13 @@ public class Scientist extends Player{
 	//megnézi, hogy mennyi játékost bír el egy paraméterben megadott szomszédos Field, majd kiírja
 	public void InspectField(Field field) {
 		System.out.println("InspectField(field)");
-		System.out.println("Field can hold: " + field.GetMaxWeight() + "players");
-		this.decrementEnergy();
+		if (this.energy > 0) {
+			this.decrementEnergy();
+			System.out.println("Field can hold: " + field.GetMaxWeight() + "players");
+		}else {
+			System.out.println("Not enough energy");
+		}
+		
+		
 	}
 }

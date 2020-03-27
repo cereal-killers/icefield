@@ -136,7 +136,15 @@ public class Controller implements EndOfGame{                           //Kontro
         Eskimo eskimo2 = new Eskimo(this, field6);
         Scientist scientist1 = new Scientist(this, field6);
         Scientist scientist2 = new Scientist(this, field6);
+        players.add(eskimo1);
+        players.add(scientist1);
+        players.add(eskimo2);
+        players.add(scientist2);
         System.out.println("Jatekosok letrehozva, lehelyezve a palyara");
+        eskimo1.AddItem(food);
+        eskimo1.AddItem(gun);
+        GameLoop();
+        
     }
 
     public boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
@@ -154,6 +162,18 @@ public class Controller implements EndOfGame{                           //Kontro
     {
         System.out.println("You Won!");
         ended =true;
+    }
+    
+    public void GameLoop() { //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
+    	int i;
+    	while (ended == false) { 
+    		for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
+    			System.out.println("Player " + (i + 1) + "'s turn");
+    			players.get(i).Turn();
+    		}
+    		if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
+    			i = 0;
+    	}
     }
 
 
