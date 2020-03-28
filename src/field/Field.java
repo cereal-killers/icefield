@@ -149,6 +149,13 @@ public class Field {
 		snowCount = value;	
 	}
 	
+	//A mezőn levő hóegységek számát egyel csökkenti
+		public void DecrementSnow()
+		{
+			System.out.println("DecrementSnow()");
+			snowCount--;
+		}
+	
 	//A mezőn levő hóegységek számát egyel növeli
 	public void IncrementSnow()
 	{
