@@ -174,5 +174,11 @@ public class Field {
 	 {
 		 return isUpsideDown;
 	 }
+	 
+	 //Listázza a mezőn levő eszközöket
+	 public void ListItems() {
+			for (int i = 0; i < items.size(); i++) {
+				System.out.println((i + 1)+ ": " + items.get(i).GetName());
+			}
 	
 }
