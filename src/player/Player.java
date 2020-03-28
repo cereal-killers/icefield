@@ -53,6 +53,27 @@ public class Player {
 			System.out.println("Not enough energy");
 		}
 	}
+	public int SearchItem(String input) {
+		String[] temp = input.split(" "); //felbontsa 2 stringre, space mentén
+		String item = temp[1].toString(); //ez változóba bele rakja az Item nevét
+		boolean found = false;
+		for (int i = 0; i < items.size() && found == false ; i++) { //addig megy az Player items tömbjében ameddig nem talál
+															//azonos nevű Itemet, vagy ameddig a végére nem ér
+			if (items.get(i).GetName().equals(item)) {	//ha talál akkor a found változót átállítja true-ra
+				found = true;
+				return i;
+			}
+		}
+		return -1;
+	}
+	public void DropItem(String input) {
+		int i = SearchItem(input);
+		if (i == -1) {
+			System.out.println("Player doesn't have this item"); //ha nem talált ilyen Item-et, akkor jelzi hogy nem talált
+		}else {
+			DropItem(items.get(i));
+		}
+	}
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
@@ -90,19 +111,12 @@ public class Player {
 	}
 
 	public void UseItem(String input) { //paraméterben kap egy Stringet, amiben egy "use item", ahol az item egy Item neve 
-		System.out.println("UseItem(String item)");
-		String[] temp = input.split(" "); //felbontsa 2 stringre, space mentén
-		String item = temp[1].toString(); //ez változóba bele rakja az Item nevét
-		boolean found = false;
-		for (int i = 0; i < items.size() && !found ; i++) { //addig megy az Player items tömbjében ameddig nem talál
-															//azonos nevű Itemet, vagy ameddig a végére nem ér
-			if (items.get(i).GetName().equals(item)) {	//ha talál akkor a found változót átállítja true-ra
-				this.UseItem(items.get(i));	//"elsüti" a talált Item-et
-				found = true;
-			}
-		}
-		if (found == false) { 
+		//System.out.println("UseItem(String item)");
+		int i = SearchItem(input);
+		if (i == -1) {
 			System.out.println("Player doesn't have this item"); //ha nem talált ilyen Item-et, akkor jelzi hogy nem talált
+		}else {
+			UseItem(items.get(i));
 		}
 	}
 	
@@ -129,6 +143,13 @@ public class Player {
 		}
 	}
 	
+	public void RemoveSnow() { //eltávolít egy egység havat a currentFieldről
+		System.out.println("RemoveSnow()");
+		currentField.DecrementSnow();
+		System.out.println("1 snow removed");
+		
+	}
+	
 	public void Turn() { //A Player egy körének a függvénye
 		System.out.println("Turn()");
 		String input;
@@ -148,16 +169,26 @@ public class Player {
 					break;
 				case "list inventory": ListItems(); //a felhasználó kilistázza a játékos eszköztárában 
 					break;							//található item-eket
-				case "use food": UseItem(input); //a játékos eszik
+				case "remove snow": RemoveSnow(); //eltávolít a mezőről a játékos 1 egységnyi havat
 					break;
+				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
+				 	break;
+				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
+							UseItem(input); break;
+						}else if (input.matches("^drop\\s\\w*")) { //reguláris kifejezés egy tárgy lerakásához
+							DropItem(input); break;
+						}else {
+							break;
+						}
 			}
 			if (input.equals("end turn")) { //kilép a ciklusból "end turn" utasításra
 				break;
 			}
 		}
-		
 	}
 	
+	
+
 	public boolean GetWearsSuit() {
 		System.out.println("GetWearsSuit()");
 		return wears_suit;
