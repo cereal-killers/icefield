@@ -145,8 +145,6 @@ public class Controller implements EndOfGame{                           //Kontro
         players.add(eskimo2);
         players.add(scientist2);
         System.out.println("Jatekosok letrehozva, lehelyezve a palyara");
-        eskimo1.AddItem(food);
-        eskimo1.AddItem(gun);
         GameLoop();
         
     }
