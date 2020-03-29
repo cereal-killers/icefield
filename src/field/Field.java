@@ -180,5 +180,5 @@ public class Field {
 			for (int i = 0; i < items.size(); i++) {
 				System.out.println((i + 1)+ ": " + items.get(i).GetName());
 			}
-	
+	 }
 }
