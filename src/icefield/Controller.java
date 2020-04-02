@@ -28,7 +28,7 @@ public class Controller implements EndOfGame{                           //Kontro
         return ended;
     }
 
-    public void SnowStorm()                         //A jatekban szereplo hoviharokat lebonyolito fuggveny
+    private void SnowStorm()                         //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
         System.out.println("Az erintett mezokon:");
         //Erintett mezokon a jatekosok testhojenek csokkentese
@@ -168,16 +168,16 @@ public class Controller implements EndOfGame{                           //Kontro
         ended =true;
     }
     
-    public void GameLoop() { //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
+    private void GameLoop() { //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     	int i;
-    	while (ended == false) { 
+    	while (!ended) {
     		for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
     			System.out.println("Player " + (i + 1) + "'s turn");
     			players.get(i).Turn();
     		}
     		if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
     			i = 0;
-    		
+
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
     	}
