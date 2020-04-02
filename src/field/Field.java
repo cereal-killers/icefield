@@ -149,6 +149,13 @@ public class Field {
 		snowCount = value;	
 	}
 	
+	//A mezőn levő hóegységek számát egyel csökkenti
+		public void DecrementSnow()
+		{
+			System.out.println("DecrementSnow()");
+			snowCount--;
+		}
+	
 	//A mezőn levő hóegységek számát egyel növeli
 	public void IncrementSnow()
 	{
@@ -167,5 +174,11 @@ public class Field {
 	 {
 		 return isUpsideDown;
 	 }
-	
+	 
+	 //Listázza a mezőn levő eszközöket
+	 public void ListItems() {
+			for (int i = 0; i < items.size(); i++) {
+				System.out.println((i + 1)+ ": " + items.get(i).GetName());
+			}
+	 }
 }

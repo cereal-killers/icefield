@@ -10,7 +10,7 @@ public class Main {
 		{
 			m.ShowMenuItems();
 			Scanner in = new Scanner(System.in); 
-			MenuItem n=	MenuItem.values()[in.nextInt()];
+			MenuItem n=	MenuItem.values()[in.nextInt()-1];
 			m.ChooseMenuItem(n);
 		}
 	}
