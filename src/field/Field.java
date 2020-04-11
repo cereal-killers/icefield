@@ -1,7 +1,5 @@
 package field;
 import java.util.ArrayList;
-import java.util.EnumMap;
-
 import item.Item;
 import player.Player;
 
@@ -20,7 +18,7 @@ public class Field {
 	
 	//Konstruktor
 	//BeÃ¡llÃ­thatjuk a lÃ©trehozandÃ³ mezÅ‘ tulajdonsÃ¡gait
-	public Field(int maxWeight, int snowCount,Item item)
+	public Field(int maxWeight, int snowCount, Item item)
 	{
 		this.maxWeight = maxWeight;
 		this.snowCount = snowCount; 
@@ -37,24 +35,24 @@ public class Field {
 	}
 	
 	//Visszaadja a paramÃ©terkÃ©nt megadott irÃ¡nyban levÅ‘ szomszÃ©d Field objektumot
-	public Field GetNeighbor(Direction dir) {
+	public Field GetNeighbor(int neighborIndex) {
 		System.out.println("GetNeighbor()");
-		return neighbor.get(dir);
+		return neighbors.get(neighborIndex);
 		
 	}
 	
 	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (dir)
 	//Ha a mÅ±velet sikeres visszatÃ©rÃ©si Ã©rtÃ©ke true
 	//EllenkezÅ‘ esetben Ã©rtÃ©ke false (pÃ©ldÃ¡ul ha az adott irÃ¡nyban nincs mezÅ‘)
-	public boolean PassPlayer(Direction dir, Player player)
+	public boolean PassPlayer(int directionIndex, Player player)
 	{
 		System.out.println("PassPlayer()");
-		if(neighbor.get(dir) != null && neighbor.get(dir).Accept(player))
+		if(neighbor.get(dir) != null && neighbors.get(directionIndex).Accept(player))
 		{
 			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
 			this.Remove(player);
 			//FrissÃ­tjÃ¼k a jÃ¡tÃ©kos jelenlegi helyÃ©t
-			player.SetCurrentField(neighbor.get(dir));
+			player.SetCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
@@ -118,6 +116,13 @@ public class Field {
 		System.out.println("GetPlayers()");	
 		return players;
 	}
+	
+	//Visszaadja a mező szomszédainak listáját
+		public ArrayList<Field> GetNeighbors()
+		{
+			System.out.println("GetNeighbors()");	
+			return neighbors;
+		}
 
 	//Visszaadja a mezÅ‘ maximÃ¡lis teherbÃ­rÃ¡sÃ¡t
 	public int GetMaxWeight() {
