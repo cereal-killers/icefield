@@ -11,7 +11,7 @@ public class Field {
 	private boolean isUpsideDown=false; //Ã‰rtÃ©ke true ha a mezÅ‘ Ã¡tfordult, false ha nem
 	private ArrayList<Item> items = new ArrayList<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
 	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
-	private Creature* polarBear=null;//A mezőn álló jegesmedvére mutató pointer
+	private Creature polarBear=null;//A mezőn álló jegesmedvére mutató pointer
 	//SzomszÃ©dos mezÅ‘ket tartalmazza, a Direction kulcs alapjÃ¡n
 	//tehÃ¡t pÃ©ldÃ¡ul az Up (fel) irÃ¡nyhoz tartozÃ³ mezÅ‘t a megfelelÅ‘ irÃ¡ny megadÃ¡sÃ¡val kapjuk meg
 	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mező szomszédeit tároló lista
@@ -41,13 +41,13 @@ public class Field {
 		
 	}
 	
-	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (dir)
+	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (directionIndex)
 	//Ha a mÅ±velet sikeres visszatÃ©rÃ©si Ã©rtÃ©ke true
 	//EllenkezÅ‘ esetben Ã©rtÃ©ke false (pÃ©ldÃ¡ul ha az adott irÃ¡nyban nincs mezÅ‘)
 	public boolean PassPlayer(int directionIndex, Player player)
 	{
 		System.out.println("PassPlayer()");
-		if(neighbor.get(dir) != null && neighbors.get(directionIndex).Accept(player))
+		if(neighbor.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
 		{
 			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
 			this.Remove(player);
@@ -56,6 +56,20 @@ public class Field {
 			return true;
 		}
 		return false;
+	}
+	
+	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
+	public Creature GetPolarBear()
+	{
+		System.out.println("GetPolarBear()");
+		return polarBear;
+	}
+	
+	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
+	public void SetPolarBear(Creature pb)
+	{
+		System.out.println("SetPolarBear()");
+		polarBear = pb;
 	}
 	
 	//Ha a jÃ¡tÃ©kost lÃ©tezik Ã©rtÃ©ke true ellenkezÅ‘ esetben false
