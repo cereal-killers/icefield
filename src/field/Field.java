@@ -5,72 +5,62 @@ import java.util.EnumMap;
 import item.Item;
 import player.Player;
 
-//Mező osztály
+//MezÅ‘ osztÃ¡ly
 public class Field {
-	private int maxWeight; //Maximális súly amit a mező elbír
-	private int snowCount; //A mezőn levő hóegységek száma
-	private boolean hasIgloo; //Értéke true ha van iglu a mezőn, false ellenkező esetben
-	private boolean isUpsideDown=false; //Értéke true ha a mező átfordult, false ha nem
-	private ArrayList<Item> items = new ArrayList<Item>(); //A mezőn található eszközök (pl ásó) listája
-	private ArrayList<Player> players = new ArrayList<Player>(); //A mezőn álló játékosok listája
-	//Szomszédos mezőket tartalmazza, a Direction kulcs alapján
-	//tehát például az Up (fel) irányhoz tartozó mezőt a megfelelő irány megadásával kapjuk meg
-	private EnumMap<Direction,Field> neighbor = new EnumMap<Direction,Field>(Direction.class);
+	private int maxWeight; //MaximÃ¡lis sÃºly amit a mezÅ‘ elbÃ­r
+	private int snowCount; //A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡ma
+	private boolean hasIgloo; //Ã‰rtÃ©ke true ha van iglu a mezÅ‘n, false ellenkezÅ‘ esetben
+	private boolean isUpsideDown=false; //Ã‰rtÃ©ke true ha a mezÅ‘ Ã¡tfordult, false ha nem
+	private ArrayList<Item> items = new ArrayList<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
+	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
+	private Creature* polarBear=null;//A mezőn álló jegesmedvére mutató pointer
+	//SzomszÃ©dos mezÅ‘ket tartalmazza, a Direction kulcs alapjÃ¡n
+	//tehÃ¡t pÃ©ldÃ¡ul az Up (fel) irÃ¡nyhoz tartozÃ³ mezÅ‘t a megfelelÅ‘ irÃ¡ny megadÃ¡sÃ¡val kapjuk meg
+	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mező szomszédeit tároló lista
 	
 	//Konstruktor
-	//Beállíthatjuk a létrehozandó mező tulajdonságait
+	//BeÃ¡llÃ­thatjuk a lÃ©trehozandÃ³ mezÅ‘ tulajdonsÃ¡gait
 	public Field(int maxWeight, int snowCount,Item item)
 	{
 		this.maxWeight = maxWeight;
-		this.snowCount = snowCount;
+		this.snowCount = snowCount; 
 		if(item != null)
 			items.add(item);
 	}
 	
-	public Field(Field Up,Field Right,Field Down, Field Left)
+	//Szomszéd hozzáadása
+	public void AddNeighbor(Field neighbor)
 	{
-		neighbor.put(Direction.Up, Up);
-		neighbor.put(Direction.Right, Right);
-		neighbor.put(Direction.Down, Down);
-		neighbor.put(Direction.Left, Left);
+		System.out.println("AddNeighbor()");
+		neighbors.add(neighbor);
+		
 	}
 	
-	//Beállíthatjuk a mező szomszédait irány szerint
-	//Ha az adott irányba nincs szomszéd, akkor értéke null
-	public void SetNeighbors(Field Up,Field Right,Field Down, Field Left)
-	{
-		System.out.println("SetNeighbors()");
-		neighbor.put(Direction.Up, Up);
-		neighbor.put(Direction.Right, Right);
-		neighbor.put(Direction.Down, Down);
-		neighbor.put(Direction.Left, Left);
-	}
-	
-	//Visszaadja a paraméterként megadott irányban levő szomszéd Field objektumot
+	//Visszaadja a paramÃ©terkÃ©nt megadott irÃ¡nyban levÅ‘ szomszÃ©d Field objektumot
 	public Field GetNeighbor(Direction dir) {
 		System.out.println("GetNeighbor()");
 		return neighbor.get(dir);
 		
 	}
 	
-	//Átrakja a paraméterként kapott játékost (player) a megadott irányban levő szomszéd mezőre (dir)
-	//Ha a művelet sikeres visszatérési értéke true
-	//Ellenkező esetben értéke false (például ha az adott irányban nincs mező)
+	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (dir)
+	//Ha a mÅ±velet sikeres visszatÃ©rÃ©si Ã©rtÃ©ke true
+	//EllenkezÅ‘ esetben Ã©rtÃ©ke false (pÃ©ldÃ¡ul ha az adott irÃ¡nyban nincs mezÅ‘)
 	public boolean PassPlayer(Direction dir, Player player)
 	{
 		System.out.println("PassPlayer()");
 		if(neighbor.get(dir) != null && neighbor.get(dir).Accept(player))
 		{
-			//Csak akkor töröljük a játékost a jelenlegi mezőről, ha a szomszéd mezőre sikerült áthelyezni
+			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
 			this.Remove(player);
-			//Frissítjük a játékos jelenlegi helyét
+			//FrissÃ­tjÃ¼k a jÃ¡tÃ©kos jelenlegi helyÃ©t
 			player.SetCurrentField(neighbor.get(dir));
 			return true;
 		}
 		return false;
 	}
 	
-	//Ha a játékost létezik értéke true ellenkező esetben false
+	//Ha a jÃ¡tÃ©kost lÃ©tezik Ã©rtÃ©ke true ellenkezÅ‘ esetben false
 	public boolean Accept(Player player)
 	{
 		System.out.println("Accept()");
@@ -79,21 +69,21 @@ public class Field {
 		return false;
 	}
 	
-	//Eltávolítja a paraméterként kapott játékost a mezőről
+	//EltÃ¡volÃ­tja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost a mezÅ‘rÅ‘l
 	public void Remove(Player player)
 	{
 		System.out.println("Remove()");
 		players.remove(player);
 	}
 	
-	//A mezőre kerül a paraméterként kapott eszköz: az items lista végére rakjuk az item-et
+	//A mezÅ‘re kerÃ¼l a paramÃ©terkÃ©nt kapott eszkÃ¶z: az items lista vÃ©gÃ©re rakjuk az item-et
 	public void PushItem(Item item)
 	{
 		System.out.println("PushItem()");
 		items.add(item);
 	}
 	
-	//Visszaadja a legfelső eszközt és törli a listából
+	//Visszaadja a legfelsÅ‘ eszkÃ¶zt Ã©s tÃ¶rli a listÃ¡bÃ³l
 	public Item PopItem()
 	{
 		System.out.println("PopItem()");
@@ -102,15 +92,15 @@ public class Field {
 		return last;
 	}
 	
-	//Visszaadja a legfelső eszközt
+	//Visszaadja a legfelsÅ‘ eszkÃ¶zt
 	public Item GetItem()
 	{
 		System.out.println("GetItem()");
 		return items.get(items.size()-1);	
 	}
 	
-	//Visszatérési értéke true és a mező átfordul ha a mezőre helyezett súly nagyobb mint a maximális súly
-	//ellenkező esetben false
+	//VisszatÃ©rÃ©si Ã©rtÃ©ke true Ã©s a mezÅ‘ Ã¡tfordul ha a mezÅ‘re helyezett sÃºly nagyobb mint a maximÃ¡lis sÃºly
+	//ellenkezÅ‘ esetben false
 	public boolean IsOverWeight()
 	{
 		System.out.println("IsOverWeight()");
@@ -122,60 +112,60 @@ public class Field {
 		return false;
 	}
 	
-	//Visszaadja a mezőn tartózkodó játékosok listáját
+	//Visszaadja a mezÅ‘n tartÃ³zkodÃ³ jÃ¡tÃ©kosok listÃ¡jÃ¡t
 	public ArrayList<Player> GetPlayers()
 	{
 		System.out.println("GetPlayers()");	
 		return players;
 	}
 
-	//Visszaadja a mező maximális teherbírását
+	//Visszaadja a mezÅ‘ maximÃ¡lis teherbÃ­rÃ¡sÃ¡t
 	public int GetMaxWeight() {
 		System.out.println("GetMaxWeight()");
 		return maxWeight;
 	}
 	
-	//Visszaadja a jelenleg a mezőn levő hóegységek számát
+	//Visszaadja a jelenleg a mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t
 	public int GetSnow()
 	{
 		System.out.println("GetSnow()");
 		return snowCount;
 	}
 	
-	//Beállítja a mezőn levő hóegységek számát a value paraméter értékére
+	//BeÃ¡llÃ­tja a mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t a value paramÃ©ter Ã©rtÃ©kÃ©re
 	public void SetSnow(int value)
 	{
 		System.out.println("SetSnow()");
 		snowCount = value;	
 	}
 	
-	//A mezőn levő hóegységek számát egyel csökkenti
+	//A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t egyel csÃ¶kkenti
 		public void DecrementSnow()
 		{
 			System.out.println("DecrementSnow()");
 			snowCount--;
 		}
 	
-	//A mezőn levő hóegységek számát egyel növeli
+	//A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t egyel nÃ¶veli
 	public void IncrementSnow()
 	{
 		System.out.println("IncrementSnow()");
 		snowCount++;
 	}
 	
-	//Beállítja hogy az adott mezőn van-e iglu
+	//BeÃ¡llÃ­tja hogy az adott mezÅ‘n van-e iglu
 	public void SetHasIgloo(boolean value)
 	{
 		hasIgloo = value;
 	}
 	
-	//Visszaadja hogy az adott mező átfordult állapotban van-e
+	//Visszaadja hogy az adott mezÅ‘ Ã¡tfordult Ã¡llapotban van-e
 	 public boolean GetUpsideDown()
 	 {
 		 return isUpsideDown;
 	 }
 	 
-	 //Listázza a mezőn levő eszközöket
+	 //ListÃ¡zza a mezÅ‘n levÅ‘ eszkÃ¶zÃ¶ket
 	 public void ListItems() {
 			for (int i = 0; i < items.size(); i++) {
 				System.out.println((i + 1)+ ": " + items.get(i).GetName());
