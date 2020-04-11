@@ -1,9 +1,19 @@
 package menu;
 
+import java.util.Scanner;
+import java.util.Vector;
+
 import icefield.Controller;
 
 public class Menu {
-	//Függvény a menüben található opciók kiírására
+    private Vector<ScoreData> highscores;
+	private Options options;
+	public Menu(){
+		highscores = new Vector<>();
+		options = new Options();
+	}
+	
+	//FÃ¼ggvÃ©ny a menÃ¼ben talÃ¡lhatÃ³ opciÃ³k kiÃ­rÃ¡sÃ¡ra
 	public void ShowMenuItems() {
 		System.out.println("ShowMenuItems() called.");		
 		System.out.println("1. New Game");		
@@ -11,8 +21,8 @@ public class Menu {
 		System.out.println("3. Show Best Scores");
 		System.out.println("4. Exit");
 	}
-	//Függvény egy menüopció végrehajtására
-	public void ChooseMenuItem(MenuItem item) {
+	//FÃ¼ggvÃ©ny egy menÃ¼opciÃ³ vÃ©grehajtÃ¡sÃ¡ra
+	public boolean ChooseMenuItem(MenuItem item) {
 		System.out.println("ChooseMenuItem(MenuItem item) called.");		
 		switch(item)
 		{
@@ -27,26 +37,47 @@ public class Menu {
 			break;
 		case exit:
 			Exit();
+			return false;
+		default:
+			System.out.println("Incorrect input.");		
 			break;
 		}
+		return true;
 	}
-	//Függvény a játák elindításához
+	//FÃ¼ggvÃ©ny a jÃ¡tÃ©k elindÃ­tÃ¡sÃ¡hoz
 	public void NewGame() {
 		System.out.println("NewGame() called.");	
 		Controller controller = new Controller();
 		controller.Start();
 	}
-	//Függvény a beállítássok eléréséhez
+	//FÃ¼ggvÃ©ny a beÃ¡llÃ­tÃ¡sokhoz
 	public void Settings() {
-		System.out.println("Settings() called.");		
+		options.ShowOptionItems();
+		System.out.println("Settings() called.");
+		Scanner in = new Scanner(System.in); 
+		OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
+		options.ChooseOptionsItem(o);
 	}
-	//Függvény a toplista megmutatásához
+	//FÃ¼ggvÃ©ny a toplista megjelenÃ­tÃ©sÃ©re
 	public void ShowBestScores() {
-		System.out.println("ShowBestScores() called.");		
+		System.out.println("ShowBestScores() called.");
+		if(highscores.isEmpty()) //  ha Ã¼res a tÃ¶mb tudatjuk a felhasznÃ¡lÃ³val
+			System.out.println("There are no highscores yet.");
+		else
+		{
+			for(int i=0; i< highscores.size(); i++)
+				System.out.println((i+1)+". " + highscores.get(i).GetName() + " - " +highscores.get(i).GetScore() );
+		}
 	}
-	//Függvény a játékból való kilépéshez
+	//FÃ¼ggvÃ©ny a jÃ¡tÃ©kbÃ³l tÃ¶rtÃ©nÅ‘ kilÃ©pÃ©shez
 	public void Exit() {
-		System.out.println("Exit() called.");		
+		System.out.println("Exit() called.");
+	}
+	//Ãšj highscore felvitelÃ©re szolgÃ¡lÃ³ fÃ¼ggÃ©vÃ©ny
+	public void AddHighscore(int score)
+	{		
+		System.out.println("AddHighscore() called.");		
+		highscores.add(new ScoreData(options.GetPlayerName(), score));
 	}
 
 }
