@@ -1,6 +1,8 @@
 package player;
 
-public abstract class Moveabe
+import field.Field;
+
+public abstract class Moveable
 {
 	protected Field currentField; //a jégtábla, amin jelenleg a játékos áll
 	

@@ -1,7 +1,11 @@
 package field;
+
 import java.util.ArrayList;
+import java.util.Stack;
+
 import item.Item;
 import player.Player;
+import player.PolarBear;
 
 //MezÅ‘ osztÃ¡ly
 public class Field {
@@ -9,7 +13,7 @@ public class Field {
 	private int snowCount; //A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡ma
 	private boolean hasIgloo; //Ã‰rtÃ©ke true ha van iglu a mezÅ‘n, false ellenkezÅ‘ esetben
 	private boolean isUpsideDown=false; //Ã‰rtÃ©ke true ha a mezÅ‘ Ã¡tfordult, false ha nem
-	private Stack<Item> items = new ArrayList<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
+	private Stack<Item> items = new Stack<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
 	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
 	private PolarBear polarBear=null;//A mezőn álló jegesmedvére mutató pointer
 	//SzomszÃ©dos mezÅ‘ket tartalmazza, a Direction kulcs alapjÃ¡n
@@ -47,8 +51,9 @@ public class Field {
 	public boolean PassPlayer(int directionIndex, Player player)
 	{
 		System.out.println("PassPlayer()");
-		if(neighbor.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
+		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
 		{
+			player.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
 			this.Remove(player);
 			//FrissÃ­tjÃ¼k a jÃ¡tÃ©kos jelenlegi helyÃ©t
@@ -59,7 +64,7 @@ public class Field {
 	}
 	
 	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
-	public Creature GetPolarBear()
+	public PolarBear GetPolarBear()
 	{
 		System.out.println("GetPolarBear()");
 		return polarBear;
@@ -184,8 +189,7 @@ public class Field {
 	 
 	 //ListÃ¡zza a mezÅ‘n levÅ‘ eszkÃ¶zÃ¶ket
 	 public void ListItems() {
-			stack temp = items;
-			while(temp.empty() == false)
-				print(temp.pop());
+			if(items.empty() == false)
+				System.out.println(items);
 	 }
 }

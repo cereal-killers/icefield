@@ -1,9 +1,21 @@
 package player;
 
-public class PolarBear extends Moveable()
+import field.Field;
+
+public class PolarBear extends Moveable
 {
-	public void Move(int direction) {
+	private Field currentField;
+
+	PolarBear(Field _currentField){
+		currentField = _currentField;
+	}
+
+	public void Move(int dir) {
 		System.out.println("Move(dir)");
-		currentField.PassPlayer(dir, this);		
+		currentField.PassPolarBear(dir, this);		
+	}
+
+	public Field GetCurrentField(){
+		return currentField;
 	}
 }

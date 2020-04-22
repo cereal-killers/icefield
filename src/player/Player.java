@@ -6,7 +6,6 @@ import java.util.Scanner;
 import item.Item;
 import field.Field;
 import icefield.Controller;
-import field.Direction;
 
 //játékos osztály
 public class Player extends Moveable{
@@ -20,7 +19,7 @@ public class Player extends Moveable{
 	public Player(Controller c, Field startField) {
 		this.energy = 4;
 		this.wears_suit = false;
-		this.items = new ArrayList<Item>(5);
+		this.items = new ArrayList<Item>();
 		this.controller = c;
 		this.currentField = startField;
 	}
@@ -29,29 +28,17 @@ public class Player extends Moveable{
 	public void PickItemUp() {
 		System.out.println("PickItemUp()");
 		if (this.energy > 0) {
-			this.decrementEnergy(); //1munkába került, ezért csökkenti az energiapontjait
+			
 			Item item = currentField.GetItem();
 			currentField.PopItem();
 			this.AddItem(item); //berakja az eszköztárba
+			this.decrementEnergy(); //1munkába került, ezért csökkenti az energiapontjait
 		}else
 			System.out.println("Not enough energy");
 		
 		
 	}
 	//A játékos lerak egy eszközt az eszköztárából a currentFieldre.
-	public void DropItem(Item item) {
-		System.out.println("DropItem(item)");
-		if (this.energy > 0) {
-			this.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
-			currentField.PushItem(item);
-			Item topitem = currentField.GetItem();
-			if(topitem == item) { //megnézi, hogy a lerakott Item megegyezik-e a currentField-en található legfelső item-el
-				RemoveItem(item); //ha igen, akkor kiveszi az eszköztárból is
-		}
-		else
-			System.out.println("Not enough energy");
-		}
-	}
 	public int SearchItem(String input) {
 		String[] temp = input.split(" "); //felbontsa 2 stringre, space mentén
 		String item = temp[1].toString(); //ez változóba bele rakja az Item nevét
@@ -65,14 +52,6 @@ public class Player extends Moveable{
 		}
 		return -1;
 	}
-	public void DropItem(String input) {
-		int i = SearchItem(input);
-		if (i == -1) {
-			System.out.println("Player doesn't have this item"); //ha nem talált ilyen Item-et, akkor jelzi hogy nem talált
-		}else {
-			DropItem(items.get(i));
-		}
-	}
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
@@ -83,19 +62,21 @@ public class Player extends Moveable{
 	}
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
-	public void Move(int direction) {
+	public void Move(int dir) {
 		System.out.println("Move(dir)");
 		//System.out.println("PassPlayer(dir,player)");
-		
 		if (this.energy > 0)
 		{
-			this.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 			currentField.PassPlayer(dir, this);	
 		}else
 			System.out.println("Not enough energy");
 		
 	}
 	
+	public void RemoveItem(Item item){
+		items.remove(item);
+	}
+
 	//Használ egy Item-et a Player
 	public void UseItem(Item item) {
 		System.out.println("UseItem(item)");
@@ -123,25 +104,14 @@ public class Player extends Moveable{
 	public void AddItem(Item item){
 		System.out.println("AddItem(item)");
 		try {
-			this.items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et
-									  //kivételt dob, ha nincs elég hely
+			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  //kivételt dob, ha nincs elég hely
+			decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
 			System.out.println("Player's inventory is full");
 		}
 		
 	}
-	
-	//Eltávolít egy paraméterben megadott Item-et az eszköztárból
-	public void RemoveItem(Item item) {
-		System.out.println("RemoveItem(item)");
-		if (this.items.remove(item)) { //az ArrayList remove függvénye true-t térít vissza, ha paraméterben megadott
-										   //objektum benne van a listában és ezt eltávolította
-			System.out.println("Item removed from inventory");
-		}else { //ellenkező esetben false-t
-			System.out.println("Player doesn't have this item");
-		}
-	}
-	
+
 	public void RemoveSnow() { //eltávolít egy egység havat a currentFieldről
 		System.out.println("RemoveSnow()");
 		currentField.DecrementSnow();
@@ -152,18 +122,11 @@ public class Player extends Moveable{
 	public void Turn() { //A Player egy körének a függvénye
 		System.out.println("Turn()");
 		String input;
+		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		while(true) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
-			Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
+
 			input = scanner.nextLine();
 			switch (input) {
-				case "up": Move(Direction.Up);  //a játékos felfele irányba szeretne lépni
-					break;
-				case "down": Move(Direction.Down); //a játékos lefele irányba szeretne lépni
-					break;
-				case "left": Move(Direction.Left); //a játékos bal irányba szeretne lépni
-					break;
-				case "right": Move(Direction.Right); //a játékos jobb irányba szeretne lépni
-					break;
 				case "end turn": EndTurn(); //kör vége
 					break;
 				case "list inventory": ListItems(); //a felhasználó kilistázza a játékos eszköztárában 
@@ -174,8 +137,9 @@ public class Player extends Moveable{
 				 	break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
-						}else if (input.matches("^drop\\s\\w*")) { //reguláris kifejezés egy tárgy lerakásához
-							DropItem(input); break;
+						}else if(input.matches("^move\\s\\w*")){
+							String[] temp = input.split(" ");
+							Move(Integer.parseInt(temp[1])); break;
 						}else {
 							break;
 						}
@@ -184,6 +148,7 @@ public class Player extends Moveable{
 				break;
 			}
 		}
+		scanner.close();
 	}
 	
 	
