@@ -9,13 +9,12 @@ import icefield.Controller;
 import field.Direction;
 
 //játékos osztály
-public class Player {
+public class Player extends Moveable{
 	protected int health; //játékos aktuális életpontjai
 	protected int maxHealth; //játékos maximális életpontjai
 	protected int energy; //játékos energiapontjai
 	protected boolean wears_suit; //a játékoson van-e búvárruha vagy sem
 	protected ArrayList<Item> items; //eszköztár
-	protected Field currentField; //a jégtábla, amin jelenleg a játékos áll
 	protected Controller controller;  
     
 	public Player(Controller c, Field startField) {
@@ -84,7 +83,7 @@ public class Player {
 	}
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
-	public void Move(Direction dir) {
+	public void Move(int direction) {
 		System.out.println("Move(dir)");
 		//System.out.println("PassPlayer(dir,player)");
 		

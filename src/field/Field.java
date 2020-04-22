@@ -9,9 +9,9 @@ public class Field {
 	private int snowCount; //A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡ma
 	private boolean hasIgloo; //Ã‰rtÃ©ke true ha van iglu a mezÅ‘n, false ellenkezÅ‘ esetben
 	private boolean isUpsideDown=false; //Ã‰rtÃ©ke true ha a mezÅ‘ Ã¡tfordult, false ha nem
-	private ArrayList<Item> items = new ArrayList<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
+	private Stack<Item> items = new ArrayList<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
 	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
-	private Creature polarBear=null;//A mezőn álló jegesmedvére mutató pointer
+	private PolarBear polarBear=null;//A mezőn álló jegesmedvére mutató pointer
 	//SzomszÃ©dos mezÅ‘ket tartalmazza, a Direction kulcs alapjÃ¡n
 	//tehÃ¡t pÃ©ldÃ¡ul az Up (fel) irÃ¡nyhoz tartozÃ³ mezÅ‘t a megfelelÅ‘ irÃ¡ny megadÃ¡sÃ¡val kapjuk meg
 	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mező szomszédeit tároló lista
@@ -23,7 +23,7 @@ public class Field {
 		this.maxWeight = maxWeight;
 		this.snowCount = snowCount; 
 		if(item != null)
-			items.add(item);
+			items.push(item);
 	}
 	
 	//Szomszéd hozzáadása
@@ -66,7 +66,7 @@ public class Field {
 	}
 	
 	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
-	public void SetPolarBear(Creature pb)
+	public void SetPolarBear(PolarBear pb)
 	{
 		System.out.println("SetPolarBear()");
 		polarBear = pb;
@@ -92,23 +92,21 @@ public class Field {
 	public void PushItem(Item item)
 	{
 		System.out.println("PushItem()");
-		items.add(item);
+		items.push(item);
 	}
 	
 	//Visszaadja a legfelsÅ‘ eszkÃ¶zt Ã©s tÃ¶rli a listÃ¡bÃ³l
 	public Item PopItem()
 	{
 		System.out.println("PopItem()");
-		Item last = items.get(items.size()-1);
-		items.remove(items.size()-1);
-		return last;
+		return items.pop();
 	}
 	
 	//Visszaadja a legfelsÅ‘ eszkÃ¶zt
 	public Item GetItem()
 	{
 		System.out.println("GetItem()");
-		return items.get(items.size()-1);	
+		return items.peek();	
 	}
 	
 	//VisszatÃ©rÃ©si Ã©rtÃ©ke true Ã©s a mezÅ‘ Ã¡tfordul ha a mezÅ‘re helyezett sÃºly nagyobb mint a maximÃ¡lis sÃºly
@@ -186,8 +184,8 @@ public class Field {
 	 
 	 //ListÃ¡zza a mezÅ‘n levÅ‘ eszkÃ¶zÃ¶ket
 	 public void ListItems() {
-			for (int i = 0; i < items.size(); i++) {
-				System.out.println((i + 1)+ ": " + items.get(i).GetName());
-			}
+			stack temp = items;
+			while(temp.empty() == false)
+				print(temp.pop());
 	 }
 }
