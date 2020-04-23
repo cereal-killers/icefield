@@ -67,7 +67,9 @@ public class Player extends Moveable{
 		//System.out.println("PassPlayer(dir,player)");
 		if (this.energy > 0)
 		{
-			currentField.PassPlayer(dir, this);	
+			currentField.PassPlayer(dir, this);
+			if (currentField.GetPolarBear() != null)
+				controller.Finish();
 		}else
 			System.out.println("Not enough energy");
 		
