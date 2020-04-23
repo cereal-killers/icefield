@@ -4,6 +4,7 @@ import field.Field;
 import item.*;
 import player.Eskimo;
 import player.Player;
+import player.PolarBear;
 import player.Scientist;
 import java.util.Random;
 import java.util.Vector;
@@ -36,7 +37,7 @@ public class Controller implements EndOfGame{                           //Kontro
             if ((player.GetCurrentField() == fields.get(5)) || (player.GetCurrentField() == fields.get(8)) ||
                     (player.GetCurrentField() == fields.get(10)) || (player.GetCurrentField() == fields.get(11)
                     || (player.GetCurrentField() == fields.get(16)) || (player.GetCurrentField() == fields.get(2))))
-            player.decrementHealth();
+                player.decrementHealth();
         }
         System.out.println("decrementHealth();");
 
@@ -58,12 +59,12 @@ public class Controller implements EndOfGame{                           //Kontro
     {
         //Itemek letrehozasa
         Charge charge= new Charge();
-        DivingSuit divingSuit = new DivingSuit();
+        //DivingSuit divingSuit = new DivingSuit();
         Flare flare = new Flare();
-        Food food = new Food();
-        Food food2 = new Food();
+        //Food food = new Food();
+        //Food food2 = new Food();
         Gun gun= new Gun();
-        Rope rope = new Rope();
+        //Rope rope = new Rope();
         Shovel shovel = new Shovel();
         System.out.println("itemek letrehozva");
 
@@ -72,42 +73,77 @@ public class Controller implements EndOfGame{                           //Kontro
         System.out.println("raketa letrehozva");
 
         //Map letrehozasa
-        Field field1 = new Field(5, 1, flare);
-        Field field2 = new Field(1, 2, rope);
-        Field field3 = new Field(5, 0, null);
-        Field field4 = new Field(3, 1, charge);
-        Field field5 = new Field(5, 0, divingSuit);
-        Field field6 = new Field(5, 2, null);
-        Field field7 = new Field(4, 0, null);
-        Field field8 = new Field(0, 1, null);
-        Field field9 = new Field(2, 1, food);
+        Field field1 = new Field(2, 1, charge);
+        Field field2 = new Field(5, 2, null);
+        Field field3 = new Field(0, 1, null);
+        Field field4 = new Field(0, 1, null);
+        Field field5 = new Field(5, 0, flare);
+        Field field6 = new Field(1, 2, null);
+        Field field7 = new Field(0, 1, null);
+        Field field8 = new Field(5, 1, gun);
+        Field field9 = new Field(5, 1, shovel);
         Field field10 = new Field(0, 1, null);
-        Field field11 = new Field(3, 1, shovel);
-        Field field12 = new Field(5, 0, null);
-        Field field13 = new Field(5, 3, food2);
-        Field field14 = new Field(5, 3, null);
-        Field field15 = new Field(5, 3, gun);
-        Field field16 = new Field(3, 0, null);
-        System.out.println("map letrehozva");
+        Field field11 = new Field(0, 1, null);
+        Field field12 = new Field(2, 0, null);
+        Field field13 = new Field(5, 3, null);
+
 
 
         //szomszedok beallitasa
-        field1.SetNeighbors(null, field2, field5, null);
-        field2.SetNeighbors(null, field3, field6, field1);
-        field3.SetNeighbors(null, field4, field7, field2);
-        field4.SetNeighbors(null, null, field8, field3);
-        field5.SetNeighbors(field1, field6, field9, null);
-        field6.SetNeighbors(field2, field7, field10, field5);
-        field7.SetNeighbors(field3, field8, field11, field6);
-        field8.SetNeighbors(field4, null, field12, field7);
-        field9.SetNeighbors(field5, field10, field12, null);
-        field10.SetNeighbors(field6, field11, field12, field9);
-        field11.SetNeighbors(field7, field12, field12, field10);
-        field12.SetNeighbors(field8, null, field12, field11);
-        field13.SetNeighbors(field9, field14, null, null);
-        field14.SetNeighbors(field10, field15, null, field13);
-        field15.SetNeighbors(field11, field16, null, field14);
-        field16.SetNeighbors(field12, null, null, field15);
+        field1.AddNeighbor(field2);
+        field1.AddNeighbor(field4);
+        field1.AddNeighbor(field8);
+        field2.AddNeighbor(field1);
+        field2.AddNeighbor(field4);
+        field2.AddNeighbor(field5);
+        field2.AddNeighbor(field3);
+        field3.AddNeighbor(field2);
+        field3.AddNeighbor(field5);
+        field3.AddNeighbor(field6);
+        field4.AddNeighbor(field1);
+        field4.AddNeighbor(field2);
+        field4.AddNeighbor(field5);
+        field4.AddNeighbor(field9);
+        field4.AddNeighbor(field8);
+        field5.AddNeighbor(field2);
+        field5.AddNeighbor(field3);
+        field5.AddNeighbor(field4);
+        field5.AddNeighbor(field6);
+        field5.AddNeighbor(field9);
+        field5.AddNeighbor(field10);
+        field6.AddNeighbor(field3);
+        field6.AddNeighbor(field5);
+        field6.AddNeighbor(field7);
+        field6.AddNeighbor(field10);
+        field6.AddNeighbor(field13);
+        field7.AddNeighbor(field6);
+        field7.AddNeighbor(field13);
+        field8.AddNeighbor(field1);
+        field8.AddNeighbor(field4);
+        field8.AddNeighbor(field9);
+        field8.AddNeighbor(field11);
+        field9.AddNeighbor(field4);
+        field9.AddNeighbor(field5);
+        field9.AddNeighbor(field10);
+        field9.AddNeighbor(field12);
+        field9.AddNeighbor(field11);
+        field9.AddNeighbor(field8);
+        field10.AddNeighbor(field5);
+        field10.AddNeighbor(field6);
+        field10.AddNeighbor(field13);
+        field10.AddNeighbor(field12);
+        field10.AddNeighbor(field9);
+        field11.AddNeighbor(field8);
+        field11.AddNeighbor(field9);
+        field11.AddNeighbor(field12);
+        field12.AddNeighbor(field11);
+        field12.AddNeighbor(field9);
+        field12.AddNeighbor(field10);
+        field12.AddNeighbor(field13);
+        field13.AddNeighbor(field12);
+        field13.AddNeighbor(field10);
+        field13.AddNeighbor(field6);
+        field13.AddNeighbor(field7);
         System.out.println("Szomszedok beallitva");
 
 
@@ -127,26 +163,22 @@ public class Controller implements EndOfGame{                           //Kontro
         fields.add(field11);
         fields.add(field12);
         fields.add(field13);
-        fields.add(field14);
-        fields.add(field15);
-        fields.add(field16);
-
+        System.out.println("map letrehozva");
 
 
 
         //Jatekosok letrehozasa
         Eskimo eskimo1 = new Eskimo(this, field6);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
-        Eskimo eskimo2 = new Eskimo(this, field6);
-        Scientist scientist1 = new Scientist(this, field6);
-        Scientist scientist2 = new Scientist(this, field6);
+        Scientist scientist1 = new Scientist(this, field12);
+        Scientist scientist2 = new Scientist(this, field13);
+        PolarBear polarbear1 = new PolarBear(field2, this);
         players.add(eskimo1);
         players.add(scientist1);
-        players.add(eskimo2);
         players.add(scientist2);
         System.out.println("Jatekosok letrehozva, lehelyezve a palyara");
 
         return GameLoop();
-        
+
     }
 
     public boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
@@ -165,25 +197,25 @@ public class Controller implements EndOfGame{                           //Kontro
         System.out.println("You Won!");
         ended =true;
     }
-    
+
     private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     {
         int numOfTurns = 0;
 
-    	int i;
-    	while (!ended) {
-    		for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
-    			System.out.println("Player " + (i + 1) + "'s turn");
-    			players.get(i).Turn();
-    			numOfTurns++;
-    		}
-    		if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
-    			i = 0;
+        int i;
+        while (!ended) {
+            for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
+                System.out.println("Player " + (i + 1) + "'s turn");
+                players.get(i).Turn();
+                numOfTurns++;
+            }
+            if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
+                i = 0;
 
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
-    	}
-    	return numOfTurns;
+        }
+        return numOfTurns;
     }
 
 
