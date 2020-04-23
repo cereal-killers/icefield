@@ -5,7 +5,6 @@ import item.*;
 import player.Eskimo;
 import player.Player;
 import player.Scientist;
-
 import java.util.Random;
 import java.util.Vector;
 
@@ -55,7 +54,7 @@ public class Controller implements EndOfGame{                           //Kontro
 
     }
 
-    public void Start()
+    public int Start()
     {
         //Itemek letrehozasa
         Charge charge= new Charge();
@@ -145,7 +144,8 @@ public class Controller implements EndOfGame{                           //Kontro
         players.add(eskimo2);
         players.add(scientist2);
         System.out.println("Jatekosok letrehozva, lehelyezve a palyara");
-        GameLoop();
+
+        return GameLoop();
         
     }
 
@@ -166,12 +166,16 @@ public class Controller implements EndOfGame{                           //Kontro
         ended =true;
     }
     
-    private void GameLoop() { //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
+    private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
+    {
+        int numOfTurns = 0;
+
     	int i;
     	while (!ended) {
     		for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
     			System.out.println("Player " + (i + 1) + "'s turn");
     			players.get(i).Turn();
+    			numOfTurns++;
     		}
     		if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
     			i = 0;
@@ -179,6 +183,7 @@ public class Controller implements EndOfGame{                           //Kontro
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
     	}
+    	return numOfTurns;
     }
 
 
