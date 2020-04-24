@@ -129,13 +129,13 @@ public class Field {
 		
 	}
 
-	public boolean Pass(int directionIndex, Polarbear pb)
+	public boolean Pass(int directionIndex, PolarBear pb)
 	{
 		System.out.println("Pass()");
 		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(pb))
 		{
 			this.Remove(pb);
-			pb.setCurrentField(neighbors.get(directionIndex));
+			pb.setCurrentfield(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
@@ -148,7 +148,7 @@ public class Field {
 		{
 			player.decrementEnergy();
 			this.Remove(player);
-			player.setCurrentField(neighbors.get(directionIndex));
+			player.setCurrentfield(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
