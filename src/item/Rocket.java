@@ -20,9 +20,9 @@ public class Rocket {
     	return false;
     }
 
-    public void Assemble() {
+    /*public void Assemble() {
 		System.out.println("Assemble()");
-	}
+	}*/
 	
 	public void Fire() {
 		System.out.println("Fire()");
