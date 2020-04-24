@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import item.Item;
+import item.Rocket;
 import field.Field;
 import icefield.Controller;
 
@@ -90,6 +91,17 @@ public class Player extends Moveable{
 			System.out.println("Not enough energy");
 		}
 		
+	}
+
+	public int RocketParts(){
+		int parts = 0;
+		for (int i = 0; i < items.size(); i++){
+			if (items.get(i).GetName().equals("flare") || items.get(i).GetName().equals("charge")
+			 || items.get(i).GetName().equals("gun") )
+			 	++parts;
+		}
+		return parts;
+
 	}
 
 	public void UseItem(String input) { //paraméterben kap egy Stringet, amiben egy "use item", ahol az item egy Item neve 
