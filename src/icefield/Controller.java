@@ -1,11 +1,7 @@
 package icefield;
 
 import field.Field;
-import item.*;
-import player.Eskimo;
 import player.Player;
-import player.PolarBear;
-import player.Scientist;
 import java.util.Random;
 import java.util.Vector;
 
@@ -34,9 +30,9 @@ public class Controller implements EndOfGame{                           //Kontro
         //Erintett mezokon a jatekosok testhojenek csokkentese
         for (Player player : players)
         {
-            if ((player.GetCurrentField() == fields.get(5)) || (player.GetCurrentField() == fields.get(8)) ||
-                    (player.GetCurrentField() == fields.get(10)) || (player.GetCurrentField() == fields.get(11)
-                    || (player.GetCurrentField() == fields.get(16)) || (player.GetCurrentField() == fields.get(2))))
+            if ((player.getCurrentfield() == fields.get(5)) || (player.getCurrentfield() == fields.get(8)) ||
+                    (player.getCurrentfield() == fields.get(10)) || (player.getCurrentfield() == fields.get(11)
+                    || (player.getCurrentfield() == fields.get(16)) || (player.getCurrentfield() == fields.get(2))))
                 player.decrementHealth();
         }
         System.out.println("decrementHealth();");
@@ -200,16 +196,16 @@ public class Controller implements EndOfGame{                           //Kontro
             for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
-                for (Field field : fields)
-                {
-                    if (getIsUpsideDown)
+                for (Field field : fields) {
+                    if (field.getIsUpsideDown())
                         Finish();
                 }
                 TryFire();
                 numOfTurns++;
+
+                if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
+                    i = 0;
             }
-            if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
-                i = 0;
 
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
