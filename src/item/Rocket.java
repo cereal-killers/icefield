@@ -24,8 +24,9 @@ public class Rocket {
 		System.out.println("Assemble()");
 	}*/
 	
-	public void Fire() {
+	public void TryFire(bool PlayersTogether) {
 		System.out.println("Fire()");
+		//if(isOnOne)
 	}
 	
 }

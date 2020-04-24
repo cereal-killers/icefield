@@ -19,12 +19,13 @@ public class Rope extends Item {
 		Field current = player.GetCurrentField(); /* Ez a mező lesz az, ahol a szereplőnk van. */
 		Field saveFrom = current; /* Erről a mezőről mentjük meg a vízbe esett szereplőt (a lyukas mező). Ha nem találunk megmentendő szereplőt, akkor a current marad, innen tudjuk majd, hogy nem kell csinálni semmit. */
 		
+		ArrayList<Player> playersToSave = new ArrayList<Player>();
 		int dirToSafety = 0; // ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
 		for(Field f : current.GetNeighbors()) {
 			if(f.IsOverWeight()) {
 				//dirToSafety = ;
 				saveFrom = current.GetNeighbor(dirToSafety);
-				ArrayList<Player> playersToSave = saveFrom.GetPlayers();
+				playersToSave = saveFrom.GetPlayers();
 				for(Player p: playersToSave) {
 					//saveFrom.Pass();
 				}
@@ -37,7 +38,7 @@ public class Rope extends Item {
 			return;
 		}
 		*/
-		ArrayList<Player> playersToSave = saveFrom.GetPlayers();
+		//ArrayList<Player> playersToSave = saveFrom.GetPlayers();
 		
 		
 		
