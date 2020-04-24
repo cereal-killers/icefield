@@ -181,8 +181,12 @@ public class Controller implements EndOfGame{                           //Kontro
             for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
-                //fulladas ellenorzes
-                //TryFire(ArePlayersTogether());
+                for (Field field : fields)
+                {
+                    if (getIsUpsideDown)
+                        Finish();
+                }
+                TryFire(ArePlayersTogether());
                 numOfTurns++;
             }
             if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
@@ -193,6 +197,4 @@ public class Controller implements EndOfGame{                           //Kontro
         }
         return numOfTurns;
     }
-
-
 }
