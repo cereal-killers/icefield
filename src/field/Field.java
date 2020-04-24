@@ -15,17 +15,14 @@ public class Field {
 	private int snow; //A mezon levo hoegysegek szama
 	private boolean hasIgloo=false; //Erteke true ha a mezon epult iglu, false ellenkezo esetben
 	private boolean isUpsideDown=false; //Erteke true ha a mezo atfordult, false ellenkezo esetben
-	private Stack<Item> items = new Stack<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
-	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
-	private PolarBear polarBear=null;//A mezőn álló jegesmedvére mutató pointer
-	//SzomszÃ©dos mezÅ‘ket tartalmazza, a Direction kulcs alapjÃ¡n
-	//tehÃ¡t pÃ©ldÃ¡ul az Up (fel) irÃ¡nyhoz tartozÃ³ mezÅ‘t a megfelelÅ‘ irÃ¡ny megadÃ¡sÃ¡val kapjuk meg
-	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mező szomszédeit tároló lista
+	private Stack<Item> items = new Stack<Item>(); //A mezon talalhato eszkozok (pl aso) listaja
+	private ArrayList<Player> players = new ArrayList<Player>(); //A mezon levo szereplok listaja
+	private PolarBear polarBear=null;//A mezon allo jegesmedvere mutato pointer
+	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mezo szomszedait tarolo lista
 	
 	//Konstruktor
 	public Field()
 	{
-		
 	}
 	
 	//Konstruktor
@@ -62,7 +59,7 @@ public class Field {
 		hasIgloo = value;
 	}
 	
-	public int getHasIgloo()
+	public boolean getHasIgloo()
 	{
 		return hasIgloo;
 	}
@@ -97,12 +94,12 @@ public class Field {
 		players=value;
 	}
 	
-	public PolarBear GetPolarBear()
+	public PolarBear getPolarBear()
 	{
 		return polarBear;
 	}
 	
-	public void SetPolarBear(PolarBear pb)
+	public void setPolarBear(PolarBear pb)
 	{
 		polarBear = pb;
 	}
@@ -112,7 +109,7 @@ public class Field {
 		return neighbors;
 	}
 
-	publi void setNeighbors(ArrayList<Field> value)
+	public void setNeighbors(ArrayList<Field> value)
 	{
 		neighbors = value;
 	}
@@ -132,14 +129,26 @@ public class Field {
 		
 	}
 
-	public boolean Pass(int directionIndex, Moveable obj)
+	public boolean Pass(int directionIndex, Polarbear pb)
 	{
 		System.out.println("Pass()");
-		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(obj))
+		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(pb))
 		{
-			obj.decrementEnergy();
-			this.Remove(obj);
-			obj.SetCurrentField(neighbors.get(directionIndex));
+			this.Remove(pb);
+			pb.setCurrentField(neighbors.get(directionIndex));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean Pass(int directionIndex, Player player)
+	{
+		System.out.println("Pass()");
+		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
+		{
+			player.decrementEnergy();
+			this.Remove(player);
+			player.setCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
