@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import item.Item;
+import item.Rocket;
 import field.Field;
 import icefield.Controller;
 
@@ -59,7 +60,7 @@ public class Player extends Moveable{
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
-		if (currentField.GetUpsideDown()) {
+		if (currentField.getIsUpsideDown()) {
 			this.decrementHealth();
 		}
 	}
@@ -69,7 +70,7 @@ public class Player extends Moveable{
 		if (this.energy > 0)
 		{
 			currentField.Pass(dir, this);
-			if (currentField.GetPolarBear() != null)
+			if (currentField.getPolarBear() != null)
 				controller.Finish();
 		}else
 			System.out.println("Not enough energy");
@@ -90,6 +91,17 @@ public class Player extends Moveable{
 			System.out.println("Not enough energy");
 		}
 		
+	}
+
+	public int RocketParts(){
+		int parts = 0;
+		for (int i = 0; i < items.size(); i++){
+			if (items.get(i).GetName().equals("flare") || items.get(i).GetName().equals("charge")
+			 || items.get(i).GetName().equals("gun") )
+			 	++parts;
+		}
+		return parts;
+
 	}
 
 	public void UseItem(String input) { //paraméterben kap egy Stringet, amiben egy "use item", ahol az item egy Item neve 
@@ -202,7 +214,7 @@ public class Player extends Moveable{
 		System.out.println("Health = " + this.health);
 	}
 	
-	public int getMaxhealth() {
+	public int getMaxHealth() {
 		System.out.println("GetMaxHealth()");
 		return maxHealth;
 	}

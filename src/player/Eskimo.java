@@ -18,7 +18,7 @@ public class Eskimo extends Player {
 	public void BuildIgloo() {
 		if(this.energy > 0) {
 			this.decrementEnergy();
-			currentField.SetHasIgloo(true);
+			currentField.setHasIgloo(true);
 		}else
 			System.out.println("Not enough energy");
 	}
