@@ -57,31 +57,16 @@ public class Controller implements EndOfGame{                           //Kontro
 
     public int Start()
     {
-        //Itemek letrehozasa
-        Charge charge= new Charge();
-        //DivingSuit divingSuit = new DivingSuit();
-        Flare flare = new Flare();
-        //Food food = new Food();
-        //Food food2 = new Food();
-        Gun gun= new Gun();
-        //Rope rope = new Rope();
-        Shovel shovel = new Shovel();
-        System.out.println("itemek letrehozva");
-
-        //raketa letrehozasa1
-        Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
-        System.out.println("raketa letrehozva");
-
         //Map letrehozasa
-        Field field1 = new Field(2, 1, charge);
+        Field field1 = new Field(2, 1, null);
         Field field2 = new Field(5, 2, null);
         Field field3 = new Field(0, 1, null);
         Field field4 = new Field(0, 1, null);
-        Field field5 = new Field(5, 0, flare);
+        Field field5 = new Field(5, 0, null);
         Field field6 = new Field(1, 2, null);
         Field field7 = new Field(0, 1, null);
-        Field field8 = new Field(5, 1, gun);
-        Field field9 = new Field(5, 1, shovel);
+        Field field8 = new Field(5, 1, null);
+        Field field9 = new Field(5, 1, null);
         Field field10 = new Field(0, 1, null);
         Field field11 = new Field(0, 1, null);
         Field field12 = new Field(2, 0, null);
@@ -165,21 +150,10 @@ public class Controller implements EndOfGame{                           //Kontro
         fields.add(field13);
         System.out.println("map letrehozva");
 
-
-
-        //Jatekosok letrehozasa
-        Eskimo eskimo1 = new Eskimo(this, field6);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
-        Scientist scientist1 = new Scientist(this, field12);
-        Scientist scientist2 = new Scientist(this, field13);
-        PolarBear polarbear1 = new PolarBear(field2, this);
-        players.add(eskimo1);
-        players.add(scientist1);
-        players.add(scientist2);
-        System.out.println("Jatekosok letrehozva, lehelyezve a palyara");
-
         return GameLoop();
 
     }
+
 
     public boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
     {
@@ -207,6 +181,8 @@ public class Controller implements EndOfGame{                           //Kontro
             for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
+                //fulladas ellenorzes
+                //TryFire(ArePlayersTogether());
                 numOfTurns++;
             }
             if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
