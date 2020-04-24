@@ -59,7 +59,7 @@ public class Player extends Moveable{
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
-		if (currentField.GetUpsideDown()) {
+		if (currentField.getIsUpsideDown()) {
 			this.decrementHealth();
 		}
 	}
@@ -69,7 +69,7 @@ public class Player extends Moveable{
 		if (this.energy > 0)
 		{
 			currentField.Pass(dir, this);
-			if (currentField.GetPolarBear() != null)
+			if (currentField.getPolarBear() != null)
 				controller.Finish();
 		}else
 			System.out.println("Not enough energy");
@@ -202,7 +202,7 @@ public class Player extends Moveable{
 		System.out.println("Health = " + this.health);
 	}
 	
-	public int getMaxhealth() {
+	public int getMaxHealth() {
 		System.out.println("GetMaxHealth()");
 		return maxHealth;
 	}

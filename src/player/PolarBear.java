@@ -18,15 +18,15 @@ public class PolarBear extends Moveable
 
 	public void Move(int dir) {
 		currentField.Pass(dir, this);		
-		if (currentField.GetPlayers().size() != 0)
+		if (currentField.getPlayers().size() != 0)
 			controller.Finish();
 	}
 
-	public Field GetCurrentField(){
+	public Field getCurrentfield(){
 		return currentField;
 	}
 
-	public void SetCurrentField(Field nextField){
+	public void setCurrentfield(Field nextField){
 		currentField = nextField;
 	}
 }
