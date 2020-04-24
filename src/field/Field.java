@@ -48,16 +48,16 @@ public class Field {
 	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (directionIndex)
 	//Ha a mÅ±velet sikeres visszatÃ©rÃ©si Ã©rtÃ©ke true
 	//EllenkezÅ‘ esetben Ã©rtÃ©ke false (pÃ©ldÃ¡ul ha az adott irÃ¡nyban nincs mezÅ‘)
-	public boolean PassPlayer(int directionIndex, Player player)
+	public boolean Pass(int directionIndex, Moveable obj)
 	{
-		System.out.println("PassPlayer()");
-		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
+		System.out.println("Pass()");
+		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(obj))
 		{
-			player.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
+			obj.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
-			this.Remove(player);
+			this.Remove(obj);
 			//FrissÃ­tjÃ¼k a jÃ¡tÃ©kos jelenlegi helyÃ©t
-			player.SetCurrentField(neighbors.get(directionIndex));
+			obj.SetCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
