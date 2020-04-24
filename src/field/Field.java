@@ -1,18 +1,20 @@
 package field;
 
+
 import java.util.ArrayList;
 import java.util.Stack;
 
 import item.Item;
 import player.Player;
 import player.PolarBear;
+import player.Moveable;
 
-//MezÅ‘ osztÃ¡ly
+//Mezo osztaly
 public class Field {
-	private int maxWeight; //MaximÃ¡lis sÃºly amit a mezÅ‘ elbÃ­r
-	private int snowCount; //A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡ma
-	private boolean hasIgloo; //Ã‰rtÃ©ke true ha van iglu a mezÅ‘n, false ellenkezÅ‘ esetben
-	private boolean isUpsideDown=false; //Ã‰rtÃ©ke true ha a mezÅ‘ Ã¡tfordult, false ha nem
+	private int maxWeight; //Maximalis teherbiras
+	private int snow; //A mezon levo hoegysegek szama
+	private boolean hasIgloo=false; //Erteke true ha a mezon epult iglu, false ellenkezo esetben
+	private boolean isUpsideDown=false; //Erteke true ha a mezo atfordult, false ellenkezo esetben
 	private Stack<Item> items = new Stack<Item>(); //A mezÅ‘n talÃ¡lhatÃ³ eszkÃ¶zÃ¶k (pl Ã¡sÃ³) listÃ¡ja
 	private ArrayList<Player> players = new ArrayList<Player>(); //A mezÅ‘n Ã¡llÃ³ jÃ¡tÃ©kosok listÃ¡ja
 	private PolarBear polarBear=null;//A mezőn álló jegesmedvére mutató pointer
@@ -21,16 +23,101 @@ public class Field {
 	private ArrayList<Field> neighbors = new ArrayList<Field>();//A mező szomszédeit tároló lista
 	
 	//Konstruktor
-	//BeÃ¡llÃ­thatjuk a lÃ©trehozandÃ³ mezÅ‘ tulajdonsÃ¡gait
-	public Field(int maxWeight, int snowCount, Item item)
+	public Field()
+	{
+		
+	}
+	
+	//Konstruktor
+	public Field(int maxWeight, int snow, Item item)
 	{
 		this.maxWeight = maxWeight;
-		this.snowCount = snowCount; 
+		this.snow = snow; 
 		if(item != null)
 			items.push(item);
 	}
 	
-	//Szomszéd hozzáadása
+	public int getMaxWeight()
+	{
+		return maxWeight;
+	}
+
+	public void setMaxWeight( int value )
+	{
+		maxWeight = value;
+	}
+	
+	public int getSnow()
+	{
+		return snow;
+	}
+	
+	public void setSnow(int value)
+	{
+		snow = value;	
+	}
+	
+	public void setHasIgloo(boolean value)
+	{
+		hasIgloo = value;
+	}
+	
+	public int getHasIgloo()
+	{
+		return hasIgloo;
+	}
+	
+	public boolean getIsUpsideDown()
+    {
+		return isUpsideDown;
+	}
+	 
+	public void setIsUpsideDown(boolean value)
+	{
+		isUpsideDown = value;
+	}
+	
+	public Stack<Item> getItems()
+	{
+		return items;
+	}
+	
+	public void setItems(Stack<Item> value)
+	{
+		items=value;
+	}
+	
+	public ArrayList<Player> getPlayers()
+	{
+		return players;
+	}
+	
+	public void setPlayers(ArrayList<Player> value)
+	{
+		players=value;
+	}
+	
+	public PolarBear GetPolarBear()
+	{
+		return polarBear;
+	}
+	
+	public void SetPolarBear(PolarBear pb)
+	{
+		polarBear = pb;
+	}
+	
+	public ArrayList<Field> getNeighbors()
+	{
+		return neighbors;
+	}
+
+	publi void setNeighbors(ArrayList<Field> value)
+	{
+		neighbors = value;
+	}
+	
+	//Szomszed hozzaadasa
 	public void AddNeighbor(Field neighbor)
 	{
 		System.out.println("AddNeighbor()");
@@ -38,46 +125,26 @@ public class Field {
 		
 	}
 	
-	//Visszaadja a paramÃ©terkÃ©nt megadott irÃ¡nyban levÅ‘ szomszÃ©d Field objektumot
+	//Visszaadja a paramerterkent megadott iranyban levo szomszed Field objektumot
 	public Field GetNeighbor(int neighborIndex) {
 		System.out.println("GetNeighbor()");
 		return neighbors.get(neighborIndex);
 		
 	}
-	
-	//Ã�trakja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost (player) a megadott irÃ¡nyban levÅ‘ szomszÃ©d mezÅ‘re (directionIndex)
-	//Ha a mÅ±velet sikeres visszatÃ©rÃ©si Ã©rtÃ©ke true
-	//EllenkezÅ‘ esetben Ã©rtÃ©ke false (pÃ©ldÃ¡ul ha az adott irÃ¡nyban nincs mezÅ‘)
+
 	public boolean Pass(int directionIndex, Moveable obj)
 	{
 		System.out.println("Pass()");
 		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(obj))
 		{
-			obj.decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
-			//Csak akkor tÃ¶rÃ¶ljÃ¼k a jÃ¡tÃ©kost a jelenlegi mezÅ‘rÅ‘l, ha a szomszÃ©d mezÅ‘re sikerÃ¼lt Ã¡thelyezni
+			obj.decrementEnergy();
 			this.Remove(obj);
-			//FrissÃ­tjÃ¼k a jÃ¡tÃ©kos jelenlegi helyÃ©t
 			obj.SetCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
 	}
 	
-	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
-	public PolarBear GetPolarBear()
-	{
-		System.out.println("GetPolarBear()");
-		return polarBear;
-	}
-	
-	//Visszaadja hogy az adott mezőn van-e jegesmedve (ha értéke null nincs, ellenkező esetben a jegesmedvét)
-	public void SetPolarBear(PolarBear pb)
-	{
-		System.out.println("SetPolarBear()");
-		polarBear = pb;
-	}
-	
-	//Ha a jÃ¡tÃ©kost lÃ©tezik Ã©rtÃ©ke true ellenkezÅ‘ esetben false
 	public boolean Accept(Player player)
 	{
 		System.out.println("Accept()");
@@ -86,36 +153,30 @@ public class Field {
 		return false;
 	}
 	
-	//EltÃ¡volÃ­tja a paramÃ©terkÃ©nt kapott jÃ¡tÃ©kost a mezÅ‘rÅ‘l
 	public void Remove(Player player)
 	{
 		System.out.println("Remove()");
 		players.remove(player);
 	}
 	
-	//A mezÅ‘re kerÃ¼l a paramÃ©terkÃ©nt kapott eszkÃ¶z: az items lista vÃ©gÃ©re rakjuk az item-et
 	public void PushItem(Item item)
 	{
 		System.out.println("PushItem()");
 		items.push(item);
 	}
 	
-	//Visszaadja a legfelsÅ‘ eszkÃ¶zt Ã©s tÃ¶rli a listÃ¡bÃ³l
 	public Item PopItem()
 	{
 		System.out.println("PopItem()");
 		return items.pop();
 	}
 	
-	//Visszaadja a legfelsÅ‘ eszkÃ¶zt
 	public Item GetItem()
 	{
 		System.out.println("GetItem()");
 		return items.peek();	
 	}
 	
-	//VisszatÃ©rÃ©si Ã©rtÃ©ke true Ã©s a mezÅ‘ Ã¡tfordul ha a mezÅ‘re helyezett sÃºly nagyobb mint a maximÃ¡lis sÃºly
-	//ellenkezÅ‘ esetben false
 	public boolean IsOverWeight()
 	{
 		System.out.println("IsOverWeight()");
@@ -127,67 +188,18 @@ public class Field {
 		return false;
 	}
 	
-	//Visszaadja a mezÅ‘n tartÃ³zkodÃ³ jÃ¡tÃ©kosok listÃ¡jÃ¡t
-	public ArrayList<Player> GetPlayers()
+	public void DecrementSnow()
 	{
-		System.out.println("GetPlayers()");	
-		return players;
+		System.out.println("DecrementSnow()");
+		snow--;
 	}
 	
-	//Visszaadja a mező szomszédainak listáját
-		public ArrayList<Field> GetNeighbors()
-		{
-			System.out.println("GetNeighbors()");	
-			return neighbors;
-		}
-
-	//Visszaadja a mezÅ‘ maximÃ¡lis teherbÃ­rÃ¡sÃ¡t
-	public int GetMaxWeight() {
-		System.out.println("GetMaxWeight()");
-		return maxWeight;
-	}
-	
-	//Visszaadja a jelenleg a mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t
-	public int GetSnow()
-	{
-		System.out.println("GetSnow()");
-		return snowCount;
-	}
-	
-	//BeÃ¡llÃ­tja a mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t a value paramÃ©ter Ã©rtÃ©kÃ©re
-	public void SetSnow(int value)
-	{
-		System.out.println("SetSnow()");
-		snowCount = value;	
-	}
-	
-	//A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t egyel csÃ¶kkenti
-		public void DecrementSnow()
-		{
-			System.out.println("DecrementSnow()");
-			snowCount--;
-		}
-	
-	//A mezÅ‘n levÅ‘ hÃ³egysÃ©gek szÃ¡mÃ¡t egyel nÃ¶veli
 	public void IncrementSnow()
 	{
 		System.out.println("IncrementSnow()");
-		snowCount++;
+		snow++;
 	}
-	
-	//BeÃ¡llÃ­tja hogy az adott mezÅ‘n van-e iglu
-	public void SetHasIgloo(boolean value)
-	{
-		hasIgloo = value;
-	}
-	
-	//Visszaadja hogy az adott mezÅ‘ Ã¡tfordult Ã¡llapotban van-e
-	 public boolean GetUpsideDown()
-	 {
-		 return isUpsideDown;
-	 }
 	 
-	 //ListÃ¡zza a mezÅ‘n levÅ‘ eszkÃ¶zÃ¶ket
 	 public void ListItems() {
 			if(items.empty() == false)
 				System.out.println(items);
