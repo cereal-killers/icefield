@@ -20,12 +20,13 @@ public class Rocket {
     	return false;
     }
 
-    public void Assemble() {
+    /*public void Assemble() {
 		System.out.println("Assemble()");
-	}
+	}*/
 	
-	public void Fire() {
+	public void TryFire(bool PlayersTogether) {
 		System.out.println("Fire()");
+		//if(isOnOne)
 	}
 	
 }
