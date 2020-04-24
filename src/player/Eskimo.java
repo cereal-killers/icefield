@@ -11,9 +11,11 @@ public class Eskimo extends Player {
 		this.health = this.maxHealth;
 	}
 
+	public Eskimo(){
+
+	}
     //az Eskimo képes igloo-t építeni egy Fieldre, ilyenkor átállítja a Field hasIgloo változóját true-ra
 	public void BuildIgloo() {
-		System.out.println("BuildIgloo()");
 		if(this.energy > 0) {
 			this.decrementEnergy();
 			currentField.SetHasIgloo(true);

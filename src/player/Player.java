@@ -23,6 +23,10 @@ public class Player extends Moveable{
 		this.controller = c;
 		this.currentField = startField;
 	}
+
+	public Player(){
+
+	}
 	
 	//A játékos felvesz egy eszközt az eszköztárába arról a jégtábláról amin éppen áll.
 	public void PickItemUp() {
@@ -55,7 +59,6 @@ public class Player extends Moveable{
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
-		System.out.println("EndTurn()");
 		if (currentField.GetUpsideDown()) {
 			this.decrementHealth();
 		}
@@ -63,11 +66,9 @@ public class Player extends Moveable{
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
 	public void Move(int dir) {
-		System.out.println("Move(dir)");
-		//System.out.println("PassPlayer(dir,player)");
 		if (this.energy > 0)
 		{
-			currentField.PassPlayer(dir, this);
+			currentField.Pass(dir, this);
 			if (currentField.GetPolarBear() != null)
 				controller.Finish();
 		}else
@@ -81,7 +82,6 @@ public class Player extends Moveable{
 
 	//Használ egy Item-et a Player
 	public void UseItem(Item item) {
-		System.out.println("UseItem(item)");
 		if (this.energy > 0)
 		{
 			this.decrementEnergy();
@@ -104,7 +104,6 @@ public class Player extends Moveable{
 	
 	//hozzáadja a paraméterben átadott Item-et az inventory tömbbe (eszköztár)
 	public void AddItem(Item item){
-		System.out.println("AddItem(item)");
 		try {
 			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  //kivételt dob, ha nincs elég hely
 			decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
@@ -115,14 +114,12 @@ public class Player extends Moveable{
 	}
 
 	public void RemoveSnow() { //eltávolít egy egység havat a currentFieldről
-		System.out.println("RemoveSnow()");
 		currentField.DecrementSnow();
 		System.out.println("1 snow removed");
 		
 	}
 	
 	public void Turn() { //A Player egy körének a függvénye
-		System.out.println("Turn()");
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		while(true) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
@@ -155,32 +152,32 @@ public class Player extends Moveable{
 	
 	
 
-	public boolean GetWearsSuit() {
+	public boolean getWearssuit() {
 		System.out.println("GetWearsSuit()");
 		return wears_suit;
 	}
 	
-	public void SetWearsSuit(boolean value) {
+	public void setWearssuit(boolean value) {
 		System.out.println("SetWearsSuit(value)");
 		wears_suit = value;
 	}
 	
-	public Field GetCurrentField() {
+	public Field getCurrentfield() {
 		System.out.println("GetCurrentField()");
 		return currentField;
 	}
 	
-	public void SetCurrentField(Field nextField) {
+	public void setCurrentfield(Field nextField) {
 		System.out.println("SetCurrentField(value)");
 		this.currentField = nextField;
 	}
 	
-	public int GetHealth() {
+	public int getHealth() {
 		System.out.println("GetHealth()");
 		return health;
 	}
 	
-	public void SetHealth(int value) {
+	public void setHealth(int value) {
 		System.out.println("SetHealth(value)");
 		if (value > maxHealth) {
 			System.out.println("Health level can't be higher than " + maxHealth);
@@ -205,17 +202,17 @@ public class Player extends Moveable{
 		System.out.println("Health = " + this.health);
 	}
 	
-	public int GetMaxHealth() {
+	public int getMaxhealth() {
 		System.out.println("GetMaxHealth()");
 		return maxHealth;
 	}
 	
-	public int GetEnergy() {
+	public int getEnergy() {
 		System.out.println("GetEnergy()");
 		return energy;
 	}
 	
-	public void SetEnergy(int value) { //az energia nem lehet kisebb, mint 0 és nem lehet nagyobb, mint 4
+	public void setEnergy(int value) { //az energia nem lehet kisebb, mint 0 és nem lehet nagyobb, mint 4
 		System.out.println("SetEnergy(value)");
 		if (value > 4) {
 			System.out.println("Energy level can't be higher than 4");
@@ -230,7 +227,7 @@ public class Player extends Moveable{
 		this.energy--;
 	}
 	
-	public ArrayList<Item> GetItems(){
+	public ArrayList<Item> getItems(){
 		return items;
 	} 
 	

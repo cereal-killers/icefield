@@ -10,6 +10,10 @@ public class Scientist extends Player{
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
 	}
+
+	public Scientist(){
+		
+	}
 	//megnézi, hogy mennyi játékost bír el egy paraméterben megadott szomszédos Field, majd kiírja
 	public void InspectField(Field field) {
 		System.out.println("InspectField(field)");

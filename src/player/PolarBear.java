@@ -12,9 +12,12 @@ public class PolarBear extends Moveable
 		controller = _controller;
 	}
 
+	public PolarBear(){
+
+	}
+
 	public void Move(int dir) {
-		System.out.println("Move(dir)");
-		currentField.PassPolarBear(dir, this);		
+		currentField.Pass(dir, this);		
 		if (currentField.GetPlayers().size() != 0)
 			controller.Finish();
 	}
