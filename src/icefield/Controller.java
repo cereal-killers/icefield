@@ -155,15 +155,34 @@ public class Controller implements EndOfGame{                           //Kontro
     }
 
 
-    public boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
+    private boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
     {
-        Field previous = players.get(0).GetCurrentField();    //az elozo vizsgalt jatekos fieldje
+        Field previous = players.get(0).getCurrentfield();    //az elozo vizsgalt jatekos fieldje
         for (Player player : players)
         {
-            if (player.GetCurrentField() != previous)
+            if (player.getCurrentfield() != previous)
                 return false;
         }
         return true;
+    }
+    private boolean ArePartsTogether()
+    {
+        int partsOnField = 0;
+        for (Field field : fields) {
+            for (Player player : players) {
+                if (player.getCurrentfield() == field)
+                    partsOnField +=  player.RocketParts();
+            }
+            if(partsOnField == 3)
+            return true;
+        }
+        return false;
+    }
+
+    private void TryFire()
+    {
+        if(ArePartsTogether() && ArePlayersTogether())
+            Finish();
     }
 
     public void Finish()
@@ -186,7 +205,7 @@ public class Controller implements EndOfGame{                           //Kontro
                     if (getIsUpsideDown)
                         Finish();
                 }
-                TryFire(ArePlayersTogether());
+                TryFire();
                 numOfTurns++;
             }
             if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
