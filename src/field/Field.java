@@ -129,6 +129,7 @@ public class Field {
 		
 	}
 
+	//A parameterkent kapott directionIndex iranyba tovabb rakja a pb jegesmedvet
 	public boolean Pass(int directionIndex, PolarBear pb)
 	{
 		System.out.println("Pass()");
@@ -141,6 +142,7 @@ public class Field {
 		return false;
 	}
 	
+	//A parameterkent kapott directionIndex iranyba tovabb rakja a player szereplot
 	public boolean Pass(int directionIndex, Player player)
 	{
 		System.out.println("Pass()");
@@ -154,6 +156,7 @@ public class Field {
 		return false;
 	}
 	
+	//Elhelyezi a szereplot a mezon
 	public boolean Accept(Player player)
 	{
 		System.out.println("Accept()");
@@ -162,30 +165,35 @@ public class Field {
 		return false;
 	}
 	
+	//Eltavolitja a mezorol a parameterkent kapott szereplot
 	public void Remove(Player player)
 	{
 		System.out.println("Remove()");
 		players.remove(player);
 	}
 	
+	//Hozzaad egy eszkozt a mezon levo eszkozokhoz
 	public void PushItem(Item item)
 	{
 		System.out.println("PushItem()");
 		items.push(item);
 	}
 	
+	//Visszaadja az mezon levo eszkozok kozul az utolsot es torli
 	public Item PopItem()
 	{
 		System.out.println("PopItem()");
 		return items.pop();
 	}
 	
+	//Visszaadja az mezon levo eszkozok kozul az utolsot
 	public Item GetItem()
 	{
 		System.out.println("GetItem()");
 		return items.peek();	
 	}
 	
+	//Visszateresi erteke igaz, ha a mezon tul sok jatekos all (es ekkor atfordul), false ellenkezo esetben
 	public boolean IsOverWeight()
 	{
 		System.out.println("IsOverWeight()");
@@ -197,20 +205,24 @@ public class Field {
 		return false;
 	}
 	
+	//A mezon levo hoegysegek erteket 1-el csokkenti
 	public void DecrementSnow()
 	{
 		System.out.println("DecrementSnow()");
 		snow--;
 	}
 	
+	//A mezon levo hoegysegek erteket 1-el noveli
 	public void IncrementSnow()
 	{
 		System.out.println("IncrementSnow()");
 		snow++;
 	}
-	 
-	 public void ListItems() {
-			if(items.empty() == false)
-				System.out.println(items);
+	
+	//Mezon levo eszkozok kiirasa
+	public void ListItems()
+	{
+		if(items.empty() == false)
+			System.out.println(items);
 	 }
 }
