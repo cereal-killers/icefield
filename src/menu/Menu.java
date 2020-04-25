@@ -15,12 +15,12 @@ import icefield.Controller;
 public class Menu {
     private Vector<ScoreData> highscores;
 	private Options options;
-	//private AudioPlayer audioPlayer;
+	private AudioPlayer audioPlayer;
 	public Menu(){
 		highscores = new Vector<>();
 		options = new Options();
-	//	audioPlayer = new AudioPlayer();
-	//	audioPlayer.Start(true);
+		audioPlayer = new AudioPlayer();
+		audioPlayer.Start(true);
 		ReadHighscores();
 	}
 	//Függvény a menüben található opciók kiírására
@@ -50,22 +50,22 @@ public class Menu {
 			System.out.println("Incorrect input.");	
 			break;
 		}
-	//	audioPlayer.Reset(options.GetMusic());
+		audioPlayer.Reset(options.GetMusic());
 		return true;
 	}
 	//Függvény a játék elindításához
 	public void NewGame() {
-	//	audioPlayer.Stop();
-		//if(options.GetMusic())
-//			audioPlayer.Start(false);
+		audioPlayer.Stop();
+		if(options.GetMusic())
+			audioPlayer.Start(false);
 		
 		Controller controller = new Controller();
 		int turns = controller.Start();
 		AddHighscore(turns);
 		
-	//	audioPlayer.Stop();
-	//	if(options.GetMusic())
-	//		audioPlayer.Start(true);
+		audioPlayer.Stop();
+		if(options.GetMusic())
+			audioPlayer.Start(true);
 	}
 	//Függvény a beállításokhoz
 	public void Settings() {

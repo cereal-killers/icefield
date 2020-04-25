@@ -1,11 +1,15 @@
-/*package menu;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
+package menu;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 // A zenelejátszót megvalósító osztály
 public class AudioPlayer  {
 
-	private MediaPlayer mediaPlayer;
+	private Clip audioClip;
 	private boolean playing=false;
 
 	    void Start(boolean menu) {
@@ -13,21 +17,22 @@ public class AudioPlayer  {
 	    	System.out.println("Audio is playing.");
 	    	playing = true;
 	    	String filename = menu? "menu":"main";
-	    	String s = getClass().getResource(filename+".mp3").toString();
-	    	System.out.println(s);
-	    	Media hit = new Media(s);
-	    	mediaPlayer = new MediaPlayer(hit);
-	    	mediaPlayer.setOnEndOfMedia(new Runnable() {
-	    	       public void run() {
-	    	    	   mediaPlayer.seek(Duration.ZERO);
-	    	       }
-	    	   });
-	    	mediaPlayer.play();
-	         
+	        File f = new File(System.getProperty("user.dir")+"\\menu\\"+filename+".wav");
+	        AudioInputStream audioInputStream;
+			try {
+				audioInputStream = AudioSystem.getAudioInputStream(f);
+		        audioClip = AudioSystem.getClip();
+		        audioClip.open(audioInputStream);
+		        audioClip.loop(audioClip.LOOP_CONTINUOUSLY);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         
 	    }
 	    public void Stop()
 	    {
-	    	mediaPlayer.stop();
+	    	audioClip.stop();
 	    	System.out.println("Audio stopped.");
 	    	playing = false;
 	    }
@@ -39,4 +44,3 @@ public class AudioPlayer  {
 	    		Start(true);
 	    }
 }
-*/
