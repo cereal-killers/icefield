@@ -299,7 +299,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     public void Finish()
     {
-        System.out.println("You Loose!");
+        System.out.println("You Lose!");
         ended =true;
     }
 
@@ -316,8 +316,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                     if (field.getIsUpsideDown())
                         Finish();
                 }
-                if(TryFire()) return -1;
                 numOfTurns++;
+                if(TryFire()) return numOfTurns;
 
                 if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
                     i = 0;
@@ -326,6 +326,6 @@ public class Controller implements EndOfGame, java.io.Serializable{             
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
         }
-        return numOfTurns;
+        return -1;
     }
 }
