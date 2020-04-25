@@ -328,6 +328,9 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 		}
                 	}
                 }
+                if(field.getHasTent()) {
+                	field.setHasTent(false);
+                }
                    
             }
             int val = random.nextInt(10);
