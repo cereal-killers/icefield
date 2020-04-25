@@ -40,21 +40,28 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     public void viewMap() {
     	for(Field f: fields) {
-    		System.out.print("FIELD #" + fields.indexOf(f)+":\n mW = " + f.getMaxWeight() + "snow = " + f.getSnow() + "tent =" +f.getHasTent()+ " igloo = " + f.getHasIgloo()+ "iUD= "+f.getIsUpsideDown());
+    		System.out.println("FIELD #" + fields.indexOf(f)+": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
     		for(Item i: f.getItems()){
-    			System.out.print(i.getName());
+    			System.out.print(i.getName()+ " ");
+    		}
+    		if(f.getItems().size() == 0) {
+    			System.out.print("-");
     		}
     		for(Player p: f.getPlayers()){
-    			System.out.print(p.getName());
+    			System.out.print(p.getName()+ " ");
     		}
+    		System.out.println();
     		String polarbear;
-    		if(f.getPolarBear() != null) {
+       		if(f.getPolarBear() != null) {
     			polarbear = "true";
     		} else polarbear = "false";
     		System.out.print("PB: " + polarbear);
+    		System.out.print("\t");
     		for(Field n: f.getNeighbors()) {
-    			System.out.println("\t" + fields.indexOf(n) );
+    			System.out.print(fields.indexOf(n)+ " ");
     		}
+    		System.out.println();
+    		System.out.println();
     	}
     }
     
