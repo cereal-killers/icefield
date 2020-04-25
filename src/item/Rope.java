@@ -24,8 +24,8 @@ public class Rope extends Item implements java.io.Serializable{
 		int savedplayers = 0;
 		// ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
 		for(Field f : current.getNeighbors()) {
-			f.setIsUpsideDown(false);
-			if(f.IsOverWeight()) {
+			
+			if(f.getIsUpsideDown()) {
 
 				saveFrom = f;
 				playersToSave = saveFrom.getPlayers();
@@ -34,6 +34,7 @@ public class Rope extends Item implements java.io.Serializable{
 					saveFrom.Pass(dirToSafety,p);
 					savedplayers++;
 				}
+				f.setIsUpsideDown(false);
 			}
 
 		}
