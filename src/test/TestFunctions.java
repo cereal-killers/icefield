@@ -1,6 +1,7 @@
 package test;
 
 import field.Field;
+import icefield.Controller;
 import item.Item;
 import player.PolarBear;
 
@@ -8,7 +9,7 @@ import java.util.Vector;
 
 public class TestFunctions
 {
-    private Vector<Field> fields = new Vector<>();
+    private Controller controller;
 
     public TestFunctions(Vector<Field> fields)
     {
@@ -27,7 +28,7 @@ public class TestFunctions
 
     public void SpawnPolarBear(Field field)             //Jegesmaci lehelyezese adott mezore
     {
-        PolarBear polarbear = new PolarBear(fields.);
+        PolarBear polarbear = new PolarBear(field, controller);
     }
 
     public void SpawnTent(Field field)                  //Sator lehelyezese adott mezore
