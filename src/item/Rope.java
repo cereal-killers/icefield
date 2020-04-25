@@ -21,31 +21,23 @@ public class Rope extends Item implements java.io.Serializable{
 		Field saveFrom = current; /* Erről a mezőről mentjük meg a vízbe esett szereplőt (a lyukas mező). Ha nem találunk megmentendő szereplőt, akkor a current marad, innen tudjuk majd, hogy nem kell csinálni semmit. */
 		
 		ArrayList<Player> playersToSave = new ArrayList<Player>();
-		//int dirToSafety = 0; // ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
+		
+		// ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
 		for(Field f : current.getNeighbors()) {
 			f.setIsUpsideDown(false);
 			if(f.IsOverWeight()) {
-				//dirToSafety = ;
+
 				saveFrom = f;
 				playersToSave = saveFrom.getPlayers();
 				for(Player p: playersToSave) {
 					int dirToSafety = saveFrom.getNeighbors().indexOf(current);
 					saveFrom.Pass(dirToSafety,p);
+
 				}
 			}
-			//++dirToSafety;
+
 		}
-				
-		/*if(saveFrom == current) {
-			System.out.println("no players to save");
-			return;
-		}
-		*/
-		//ArrayList<Player> playersToSave = saveFrom.GetPlayers();
-		
-		
-		
-		//////////////
+
 		player.setEnergy(player.getEnergy() - 1);
 		System.out.println(playersToSave.size() + "player(s) saved");
 		System.out.println("energy level: " + player.getEnergy());
