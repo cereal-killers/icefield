@@ -30,8 +30,6 @@ public class Field implements java.io.Serializable {
 	public Field(int maxWeight, int snow, Item item)
 	{
 		this.maxWeight = maxWeight;
-		if(maxWeight == 0)
-			isUpsideDown = true;
 		this.snow = snow; 
 		if(item != null)
 			items.push(item);
