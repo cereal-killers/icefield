@@ -13,6 +13,7 @@ public class Tent extends Item implements java.io.Serializable {
 			player.getCurrentField().setHasTent(true);
 			player.RemoveItem(this);
 			System.out.println("Tent set");
+			player.decrementEnergy();
 		} else {
 			System.out.println("Field already has tent");
 		}
