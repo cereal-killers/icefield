@@ -105,6 +105,12 @@ public class Field implements java.io.Serializable {
 		players=value;
 	}
 	
+	public void AddPlayer(Player p)
+	{
+		players.add(p);
+		p.setCurrentField(this);
+	}
+
 	public PolarBear getPolarBear()
 	{
 		return polarBear;
@@ -141,10 +147,11 @@ public class Field implements java.io.Serializable {
 	//A parameterkent kapott directionIndex iranyba tovabb rakja a pb jegesmedvet
 	public boolean Pass(int directionIndex, PolarBear pb)
 	{
-		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(pb))
+		if(neighbors.get(directionIndex) != null)
 		{
-			this.Remove(pb);
+			polarBear = null;
 			pb.setCurrentField(neighbors.get(directionIndex));
+			neighbors.get(directionIndex).setPolarBear(pb);
 			return true;
 		}
 		return false;
@@ -164,10 +171,12 @@ public class Field implements java.io.Serializable {
 	}
 	
 	//Elhelyezi a szereplot a mezon
-	public boolean Accept(Moveable player)
+	public boolean Accept(Player player)
 	{
-		if(player != null)
+		if(player != null){
+			players.add(player);
 			return true;
+		}
 		return false;
 	}
 	

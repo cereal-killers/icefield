@@ -29,7 +29,7 @@ public class Scientist extends Player{
 		
 		
 	}
-
+	@Override
 	public void Turn() { //A Player egy körének a függvénye
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
@@ -49,10 +49,10 @@ public class Scientist extends Player{
 					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
-						}else if(input.matches("^move\\s\\w*")){
+						}else if(input.matches("^move\\s\\d+*")){
 							String[] temp = input.split(" ");
 							Move(Integer.parseInt(temp[1])); break;
-						}else if(input.matches("^inspect\\s\\w*")){
+						}else if(input.matches("^inspect\\s\\d+")){
 							String[] temp = input.split(" ");
 							InspectField(currentField.GetNeighbor(Integer.parseInt(temp[1])));
 							break;

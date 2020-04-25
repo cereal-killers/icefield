@@ -25,7 +25,7 @@ public class Eskimo extends Player {
 		}else
 			System.out.println("Not enough energy");
 	}
-	
+	@Override
 	public void Turn() { //A Player egy körének a függvénye
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
@@ -47,7 +47,7 @@ public class Eskimo extends Player {
 					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
-						}else if(input.matches("^move\\s\\w*")){
+						}else if(input.matches("^move\\s\\d+")){
 							String[] temp = input.split(" ");
 							Move(Integer.parseInt(temp[1])); break;
 						}else{

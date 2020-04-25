@@ -41,6 +41,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     		if(f.getItems().size() == 0) {
     			System.out.print("-");
     		}
+    		System.out.print("(" + f.getPlayers().size() + ")");
     		for(Player p: f.getPlayers()){
     			System.out.print(p.getName()+ " ");
     		}
@@ -249,10 +250,12 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         Scientist scientist1 = new Scientist(this, field5);
         Scientist scientist2 = new Scientist(this, field19);
         PolarBear polarbear = new PolarBear(field12, this);
+        
         players.add(eskimo1);
         players.add(eskimo2);
         players.add(scientist1);
         players.add(scientist2);
+        
         System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");
 
         return GameLoop();
