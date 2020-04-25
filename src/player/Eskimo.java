@@ -43,6 +43,8 @@ public class Eskimo extends Player {
 					break;
 				case "igloo": BuildIgloo();
 					break;
+				case "view map": controller.viewMap();
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\w*")){

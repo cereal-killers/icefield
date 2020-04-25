@@ -45,6 +45,8 @@ public class Scientist extends Player{
 					break;
 				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
 					break;
+				case "view map": controller.viewMap();
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\w*")){
