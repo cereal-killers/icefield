@@ -1,10 +1,10 @@
 package menu;
 
-public class ScoreData {
+public class ScoreData implements java.io.Serializable {
 
 	private String name;
 	private int score;
-	
+	ScoreData(){}
 	ScoreData(String n, int s)
 	{
 		name = n;
@@ -12,21 +12,21 @@ public class ScoreData {
 	}
 	
 	//Függvény a score érték módosítására
-	public void SetScore(int newvalue)
+	public void setScore(int newvalue)
 	{
 		score = newvalue; 
 	}
-	public int GetScore()
+	public int getScore()
 	{
 		return score;
 	}
 	
 	//Függvény a name módosítására
-	public void SetName(String newvalue)
+	public void setName(String newvalue)
 	{
 		name = newvalue; 
 	}
-	public String GetName()
+	public String getName()
 	{
 		return name;
 	}
