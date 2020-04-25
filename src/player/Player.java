@@ -50,7 +50,7 @@ public class Player extends Moveable{
 		boolean found = false;
 		for (int i = 0; i < items.size() && found == false ; i++) { //addig megy az Player items tömbjében ameddig nem talál
 															//azonos nevű Itemet, vagy ameddig a végére nem ér
-			if (items.get(i).GetName().equals(item)) {	//ha talál akkor a found változót átállítja true-ra
+			if (items.get(i).getName().equals(item)) {	//ha talál akkor a found változót átállítja true-ra
 				found = true;
 				return i;
 			}
@@ -96,8 +96,8 @@ public class Player extends Moveable{
 	public int RocketParts(){
 		int parts = 0;
 		for (int i = 0; i < items.size(); i++){
-			if (items.get(i).GetName().equals("flare") || items.get(i).GetName().equals("charge")
-			 || items.get(i).GetName().equals("gun") )
+			if (items.get(i).getName().equals("flare") || items.get(i).getName().equals("charge")
+			 || items.get(i).getName().equals("gun") )
 			 	++parts;
 		}
 		return parts;
@@ -245,7 +245,7 @@ public class Player extends Moveable{
 	
 	public void ListItems() {
 		for (int i = 0; i < items.size(); i++) {
-			System.out.println((i + 1)+ ": " + items.get(i).GetName());
+			System.out.println((i + 1)+ ": " + items.get(i).getName());
 		}
 		
 	}
