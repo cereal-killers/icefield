@@ -3,7 +3,7 @@ package item;
 import field.Field;
 import player.Player;
 
-public class Tent extends Item {
+public class Tent extends Item implements java.io.Serializable {
 	
 	@Override
 	public void Use(Player player) {

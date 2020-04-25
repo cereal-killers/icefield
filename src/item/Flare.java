@@ -2,7 +2,7 @@ package item;
 
 import player.Player;
 
-public class Flare extends Item {
+public class Flare extends Item implements java.io.Serializable {
 
 	@Override
 	public void Use(Player player) {

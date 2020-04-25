@@ -4,7 +4,7 @@ import field.Field;
 import player.Player;
 
 /* Ásó osztály, az Item leszármazottja. */
-public class Shovel extends Item {
+public class Shovel extends Item implements java.io.Serializable {
 	
 	/*public Shovel() {
 		// igazából itt nem kell csinálni semmit, kell ez ide?

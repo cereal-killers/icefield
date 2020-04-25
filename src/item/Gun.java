@@ -2,7 +2,7 @@ package item;
 
 import player.Player;
 
-public class Gun extends Item {
+public class Gun extends Item implements java.io.Serializable {
 	
 	@Override
 	public void Use(Player player) {

@@ -3,7 +3,7 @@ package item;
 import player.Player;
 
 /* Búvárruha osztály. Ha felveszi a játékos, akkor nem hal meg vízbeesés esetén. */
-public class DivingSuit extends Item {
+public class DivingSuit extends Item implements java.io.Serializable {
 	
 	/* Ha használja a Player, akkor felkerül rá a búvárruha, vagy ha rajta volt, akkor lekerül róla. */
 	@Override

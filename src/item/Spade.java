@@ -2,7 +2,7 @@ package item;
 
 import player.Player;
 
-public class Spade extends Shovel {
+public class Spade extends Shovel implements java.io.Serializable {
 
 	public Spade() {}
 	private int health = 3;

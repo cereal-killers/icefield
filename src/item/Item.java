@@ -3,7 +3,7 @@ package item;
 import player.Player;
 
 /* Eszköz osztály, ami egy játékbeli eszközt (pl. ásó, kötél, étel) reprezentál, ezeknek absztrakt ősosztálya. */
-public abstract class Item implements  {
+public abstract class Item implements java.io.Serializable {
 	
 	/* A leszármazottak fogják implementálni, hogy náluk a használat hogyan nyilvánul meg. */
 	public abstract void Use(Player player);

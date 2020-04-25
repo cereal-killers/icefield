@@ -7,7 +7,7 @@ import player.Moveable;
 import player.Player;
 
 /* Kötél osztály. Ennek használatával a szereplő megmentheti a mellette lévő vízbe esett társát.*/
-public class Rope extends Item {
+public class Rope extends Item implements java.io.Serializable{
 
 	@Override
 	public void Use(Player player) {

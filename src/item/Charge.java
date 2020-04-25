@@ -2,7 +2,7 @@ package item;
 
 import player.Player;
 
-public class Charge extends Item {
+public class Charge extends Item implements java.io.Serializable {
 
 	@Override
 	public void Use(Player player) {
