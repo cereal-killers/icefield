@@ -10,14 +10,12 @@ public class Options {
 	private String playerName;
 	private int playerNum;
 	private boolean music;
-	private boolean determinism;
 
 	public Options()
 	{
 		// default értékek
 		playerName = "Player";
 		music = true;
-		determinism = false;
 		playerNum = 3;
 	}
 
@@ -39,10 +37,6 @@ public class Options {
 		else
 			System.out.println("off");
 		System.out.print("Determinism = ");
-		if(GetDeterminism())
-			System.out.println("on");
-		else
-			System.out.println("off");
 	}
 	
 	//Függvény egy beállítási opció végrehajtására
@@ -58,10 +52,7 @@ public class Options {
 			break;
 		case music:
 			MusicOption();
-			break;
-		case determinism:
-			DeterminismOption();
-			break;		
+			break;	
 			}
 	}
 	
@@ -101,16 +92,14 @@ public class Options {
 			System.out.println("Incorrect input.");	
 		}		
 	}
-	public void SetPlayerNumber(int newvalue) throws InvalidPlayerNumberException
+	public void SetPlayerNumber(int newvalue)  
 	{
-		System.out.println("SetPlayerNumber(int newvalue) called.");		
 		if(newvalue<3 || newvalue >8)
-			throw new InvalidPlayerNumberException();
+			System.out.println("The number of players must be between 3 and 8.");
 		playerNum = newvalue;
 	}
 	public int GetPlayerNumber()
 	{
-		System.out.println("GetPlayerNumber() called.");		
 		return playerNum;
 	}
 	
@@ -136,43 +125,13 @@ public class Options {
 	}
 	public void SetMusic(boolean newvalue)
 	{		
-		System.out.println("SetMusic(boolean newvalue) called.");		
 		music = newvalue;
 	}
 	public boolean GetMusic()
 	{		
-		System.out.println("GetMusic() called.");		
 		return music;
 	}
 	
-	// Játék determinizmusának beállítására szolgáló függvények
-	public void DeterminismOption()
-	{
-		Scanner in = new Scanner(System.in); 
-		System.out.println("Set the determinism of game. (on/off)");
-		try {
-		SetDeterminism(in.nextLine().equals("on")? true : false);
-		System.out.print("Determinism set to ");
-		if(GetDeterminism())
-			System.out.println("on");
-		else
-			System.out.println("off");
-		}
-		catch(Exception ex)
-		{
-			System.out.println("Incorrect input.");	
-		}		
-	}
-	public void SetDeterminism(boolean newvalue)
-	{		
-		System.out.println("SetDeterminism(boolean newvalue) called.");		
-		determinism = newvalue;
-	}
-	public boolean GetDeterminism()
-	{		
-		System.out.println("GetDeterminism() called.");		
-		return determinism;
-	}	
 
 
 }

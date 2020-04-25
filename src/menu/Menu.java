@@ -47,7 +47,7 @@ public class Menu {
 			Exit();
 			return false;
 		default:
-			System.out.println("Incorrect input.");		
+			System.out.println("Incorrect input.");	
 			break;
 		}
 		return true;
