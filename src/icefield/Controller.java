@@ -26,29 +26,20 @@ public class Controller implements EndOfGame{                           //Kontro
 
     private void SnowStorm()                         //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
-        System.out.println("Az erintett mezokon:");
-        //Erintett mezokon a jatekosok testhojenek csokkentese
-        for (Player player : players)
+        for (int i=1;i<(fields.size())/3;i++)
         {
-            if ((player.getCurrentfield() == fields.get(5)) || (player.getCurrentfield() == fields.get(8)) ||
-                    (player.getCurrentfield() == fields.get(10)) || (player.getCurrentfield() == fields.get(11)
-                    || (player.getCurrentfield() == fields.get(16)) || (player.getCurrentfield() == fields.get(2))))
-                player.decrementHealth();
+            //mezo kivalasztasa
+            int fieldIndex = random.nextInt(fields.size());
+
+            //horeteg novelese
+            fields.get(fieldIndex).IncrementSnow();
+
+            //jatekosok testhojenek csokkentese
+            for (Player player : fields.get(fieldIndex).getPlayers())
+            {
+                    player.decrementHealth();
+            }
         }
-        System.out.println("decrementHealth();");
-
-
-        //Erintett mezokon horeteg novelese
-        fields.get(5).IncrementSnow();
-        fields.get(8).IncrementSnow();
-        fields.get(10).IncrementSnow();
-        fields.get(11).IncrementSnow();
-        fields.get(16).IncrementSnow();
-        fields.get(2).IncrementSnow();
-        System.out.println("IncrementSnow();");
-
-
-
     }
 
     public int Start()
