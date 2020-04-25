@@ -10,11 +10,11 @@ public class Food extends Item {
 		System.out.println("Use(Player player)");
 		player.incrementHealth();
 		player.RemoveItem(this); //Ez ide kell, vagy a Player UseItem() függvényébe?
-		System.out.println("health = " + player.GetHealth());
+		System.out.println("health = " + player.getHealth());
 	}
 
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "food";
 	}
 }

@@ -17,8 +17,8 @@ public class Shovel extends Item {
 		
 		System.out.println("Use(Player player)");
 		
-		Field field = player.GetCurrentField(); /* Ezen a mezőn fogunk havat takarítani, ezt a player-től kérdezzük le. */
-		int snowCount = field.GetSnow();
+		Field field = player.getCurrentfield(); /* Ezen a mezőn fogunk havat takarítani, ezt a player-től kérdezzük le. */
+		int snowCount = field.getSnow();
 		if(snowCount > 1) {                 /* Ha több, mint egy egység hó van a mezőn, */
 			snowCount -= 2;					/* akkor két egységet takarítunk el. */
 			System.out.println("2 snow removed");
@@ -28,13 +28,13 @@ public class Shovel extends Item {
 		} else if (snowCount <= 0) { 		/* Ha nincs hó a jégtáblán, */
 			System.out.println("0 snow removed"); /* akkor nem csinálunk semmit. */
 		}		
-		field.SetSnow(snowCount);			
+		field.setSnow(snowCount);			
 		
-		player.SetEnergy(player.GetEnergy() - 1); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
+		player.setEnergy(player.getEnergy() - 1); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
 	}
 	
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "shovel";
 	}
 }

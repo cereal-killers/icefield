@@ -10,7 +10,7 @@ public class Flare extends Item {
 	}
 
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "flare";
 	}
 }

@@ -10,7 +10,7 @@ public class Charge extends Item {
 	}
 	
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "charge";
 	}
 

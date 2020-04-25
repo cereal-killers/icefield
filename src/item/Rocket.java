@@ -1,5 +1,8 @@
 package item;
 
+import java.util.Vector;
+
+import field.Field;
 import icefield.Controller;
 
 public class Rocket {
@@ -15,18 +18,23 @@ public class Rocket {
     	this.charge = charge;
     }
     
-    private boolean isOnOneField() {
-    	//todo
+    
+   /* private boolean isOnOneField() {
+    	Vector<Field> fields = controller.GetFields();
+    	
+    	
     	return false;
-    }
+    }*/
 
     /*public void Assemble() {
 		System.out.println("Assemble()");
 	}*/
 	
-	public void TryFire(bool PlayersTogether) {
+	/*public void TryFire(boolean playersTogether) {
 		System.out.println("Fire()");
-		//if(isOnOne)
-	}
+		if(isOnOneField() && playersTogether) {
+			controller.Finish();
+		}
+	}*/
 	
 }

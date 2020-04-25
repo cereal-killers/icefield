@@ -10,7 +10,7 @@ public class Gun extends Item {
 	}
 
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "gun";
 	}
 }

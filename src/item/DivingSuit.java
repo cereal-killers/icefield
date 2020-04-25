@@ -10,17 +10,17 @@ public class DivingSuit extends Item {
 	public void Use(Player player) {
 		System.out.println("Use(Player player)");
 		
-		if(player.GetWearsSuit()) {
-			player.SetWearsSuit(false);
+		/*if(player.getWearssuit()) {
+			player.setWearssuit(false);
 			System.out.println("player took off divingsuit");
 		} else {
-			player.SetWearsSuit(true);
+			player.setWearssuit(true);
 			System.out.println("player now wears divingsuit");
-		}
+		}*/
 	}
 	
 	@Override
-	public String GetName() {
+	public String getName() {
 		return "divingsuit";
 	}
 

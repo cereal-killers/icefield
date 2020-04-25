@@ -8,5 +8,5 @@ public abstract class Item {
 	/* A leszármazottak fogják implementálni, hogy náluk a használat hogyan nyilvánul meg. */
 	public abstract void Use(Player player);
 	
-	public abstract String GetName();
+	public abstract String getName();
 }
