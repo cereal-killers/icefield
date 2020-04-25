@@ -1,9 +1,11 @@
 package player;
 
+import java.io.Serializable;
+
 import field.Field;
 import icefield.Controller;
 
-public class PolarBear extends Moveable
+public class PolarBear extends Moveable implements Serializable
 {
 	private Controller controller;
 
@@ -20,14 +22,6 @@ public class PolarBear extends Moveable
 		currentField.Pass(dir, this);		
 		if (currentField.getPlayers().size() != 0)
 			controller.Finish();
-	}
-
-	public Field getCurrentField() {
-		return currentField;
-	}
-	
-	public void setCurrentField(Field nextField) {
-		currentField = nextField;
 	}
 
 	public Controller getController(){
