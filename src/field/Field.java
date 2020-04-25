@@ -10,7 +10,7 @@ import player.PolarBear;
 import player.Moveable;
 
 //Mezo osztaly
-public class Field {
+public class Field implements java.io.Serializable {
 	private int maxWeight; //Maximalis teherbiras
 	private int snow; //A mezon levo hoegysegek szama
 	private boolean hasIgloo=false; //Erteke true ha a mezon epult iglu, false ellenkezo esetben
