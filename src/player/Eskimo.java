@@ -45,6 +45,8 @@ public class Eskimo extends Player {
 					break;
 				case "view map": controller.viewMap();
 					break;
+				case "menu": controller.Finish(); endturn = true;
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\d+")){
