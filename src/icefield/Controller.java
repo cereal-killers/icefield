@@ -34,7 +34,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     public void viewMap() {
     	for(Field f: fields) {
-    		System.out.println("FIELD #" + fields.indexOf(f)+": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
+    		System.out.println("FIELD #" + (fields.indexOf(f)+1) +": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
     		for(Item i: f.getItems()){
     			System.out.print(i.getName()+ " ");
     		}
@@ -53,7 +53,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     		System.out.print("PB: " + polarbear);
     		System.out.print("\t");
     		for(Field n: f.getNeighbors()) {
-    			System.out.print(fields.indexOf(n)+ " ");
+    			System.out.print((fields.indexOf(n)+1)+ " ");
     		}
     		System.out.println();
     		System.out.println();
