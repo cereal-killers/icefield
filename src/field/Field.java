@@ -165,7 +165,7 @@ public class Field implements java.io.Serializable {
 			player.decrementEnergy();
 			this.Remove(player);
 			player.setCurrentField(neighbors.get(directionIndex));
-			if(IsOverWeight()){
+			if(neighbors.get(directionIndex).IsOverWeight()){
 				isUpsideDown = true;
 				System.out.println("Player fell into hole!");
 			}
@@ -211,6 +211,8 @@ public class Field implements java.io.Serializable {
 	//Visszateresi erteke igaz, ha a mezon tul sok jatekos all (es ekkor atfordul), false ellenkezo esetben
 	public boolean IsOverWeight()
 	{
+		System.out.println(players.size());
+		System.out.println(maxWeight);
 		if(players.size()>maxWeight)
 		{
 			this.isUpsideDown = true;
