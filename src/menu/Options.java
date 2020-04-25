@@ -86,7 +86,6 @@ public class Options {
 			SetPlayerNumber(value);
 			System.out.println("PlayerNumber set to "+ GetPlayerNumber());	
 		}
-
 	}
 	public void SetPlayerNumber(int newvalue)  
 	{
