@@ -68,9 +68,13 @@ public class Player extends Moveable implements java.io.Serializable{
 	public void Move(int dir) {
 		if (this.energy > 0)
 		{
-			currentField.Pass(dir, this);
-			if (currentField.getPolarBear() != null)
-				controller.Finish();
+			try{
+				currentField.Pass(dir, this);
+				if (currentField.getPolarBear() != null)
+					controller.Finish();
+			}catch(Exception e){
+				System.out.println("No such neighbor!");
+			}
 		}else
 			System.out.println("Not enough energy");
 		
