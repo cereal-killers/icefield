@@ -23,6 +23,7 @@ public class Rope extends Item {
 		ArrayList<Player> playersToSave = new ArrayList<Player>();
 		//int dirToSafety = 0; // ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
 		for(Field f : current.getNeighbors()) {
+			f.setIsUpsideDown(false);
 			if(f.IsOverWeight()) {
 				//dirToSafety = ;
 				saveFrom = f;

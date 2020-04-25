@@ -153,10 +153,10 @@ public class Controller implements EndOfGame {                          //Kontro
 
     private boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
     {
-        Field previous = players.get(0).getCurrentfield();    //az elozo vizsgalt jatekos fieldje
+        Field previous = players.get(0).getCurrentField();    //az elozo vizsgalt jatekos fieldje
         for (Player player : players)
         {
-            if (player.getCurrentfield() != previous)
+            if (player.getCurrentField() != previous)
                 return false;
         }
         return true;
@@ -166,7 +166,7 @@ public class Controller implements EndOfGame {                          //Kontro
         int partsOnField = 0;
         for (Field field : fields) {
             for (Player player : players) {
-                if (player.getCurrentfield() == field)
+                if (player.getCurrentField() == field)
                     partsOnField +=  player.RocketParts();
             }
             if(partsOnField == 3)
