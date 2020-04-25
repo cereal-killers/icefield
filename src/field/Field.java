@@ -157,7 +157,7 @@ public class Field {
 	}
 	
 	//Elhelyezi a szereplot a mezon
-	public boolean Accept(Player player)
+	public boolean Accept(Moveable player)
 	{
 		System.out.println("Accept()");
 		if(player != null)
@@ -166,7 +166,7 @@ public class Field {
 	}
 	
 	//Eltavolitja a mezorol a parameterkent kapott szereplot
-	public void Remove(Player player)
+	public void Remove(Moveable player)
 	{
 		System.out.println("Remove()");
 		players.remove(player);
