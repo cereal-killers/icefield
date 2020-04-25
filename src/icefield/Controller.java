@@ -7,6 +7,7 @@ import player.Player;
 import player.PolarBear;
 import player.Scientist;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
@@ -322,8 +323,9 @@ public class Controller implements EndOfGame, java.io.Serializable{             
             }
             for (Field field : fields) {
                 if (field.getIsUpsideDown()) {
-                	for(Player p: field.getPlayers()) {
-                		if(!p.getWears_suit()) {
+                    ArrayList<Player> playersFell = field.getPlayers(); 
+                	for(int j = 0; j < playersFell.size() && !ended; ++j) {
+                		if(!playersFell.get(j).getWears_suit()) {
                 			Finish();
                 		}
                 	}

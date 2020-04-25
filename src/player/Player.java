@@ -150,16 +150,6 @@ public class Player extends Moveable implements java.io.Serializable{
 		wears_suit = value;
 	}
 	
-	public Field getCurrentField() {
-		System.out.println("GetCurrentField()");
-		return currentField;
-	}
-	
-	public void setCurrentField(Field nextField) {
-		System.out.println("SetCurrentField(value)");
-		currentField = nextField;
-	}
-	
 	public int getHealth() {
 		System.out.println("GetHealth()");
 		return health;
