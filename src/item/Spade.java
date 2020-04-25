@@ -11,6 +11,7 @@ public class Spade extends Shovel implements java.io.Serializable {
 		super.Use(player);
 		health--;
 		if(health == 0) {
+			System.out.println("Spade broke");
 			player.RemoveItem(this);
 		}
 	}
