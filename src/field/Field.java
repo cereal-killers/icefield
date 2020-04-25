@@ -149,7 +149,7 @@ public class Field implements java.io.Serializable {
 	{
 		if(neighbors.get(directionIndex) != null)
 		{
-			this.Remove(pb);
+			polarBear = null;
 			pb.setCurrentField(neighbors.get(directionIndex));
 			neighbors.get(directionIndex).setPolarBear(pb);
 			return true;
