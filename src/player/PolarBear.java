@@ -22,11 +22,11 @@ public class PolarBear extends Moveable
 			controller.Finish();
 	}
 
-	public Field getCurrentfield(){
+	public Field getCurrentField() {
 		return currentField;
 	}
-
-	public void setCurrentfield(Field nextField){
+	
+	public void setCurrentField(Field nextField) {
 		currentField = nextField;
 	}
 
