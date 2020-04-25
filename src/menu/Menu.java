@@ -20,7 +20,6 @@ public class Menu {
 		options = new Options();
 		ReadHighscores();
 	}
-	
 	//Függvény a menüben található opciók kiírására
 	public void ShowMenuItems() {
 		System.out.println("1. New Game");		
