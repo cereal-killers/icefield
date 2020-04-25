@@ -183,7 +183,7 @@ public class Player extends Moveable{
 	
 	public void setCurrentField(Field nextField) {
 		System.out.println("SetCurrentField(value)");
-		this.currentField = nextField;
+		currentField = nextField;
 	}
 	
 	public int getHealth() {
