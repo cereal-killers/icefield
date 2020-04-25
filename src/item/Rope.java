@@ -20,7 +20,7 @@ public class Rope extends Item implements java.io.Serializable{
 		Field current = player.getCurrentField(); /* Ez a mező lesz az, ahol a szereplőnk van. */
 		Field saveFrom = current; /* Erről a mezőről mentjük meg a vízbe esett szereplőt (a lyukas mező). Ha nem találunk megmentendő szereplőt, akkor a current marad, innen tudjuk majd, hogy nem kell csinálni semmit. */
 		
-		ArrayList<Player> playersToSave = new ArrayList<Player>();
+		// = new ArrayList<Player>();
 		int savedplayers = 0;
 		// ebbe az irányba kell majd a MEGMENTENDŐ szereplőt ÁTRAKNI.
 		for(Field f : current.getNeighbors()) {
@@ -28,7 +28,7 @@ public class Rope extends Item implements java.io.Serializable{
 			if(f.getIsUpsideDown()) {
 
 				saveFrom = f;
-				playersToSave = saveFrom.getPlayers();
+				ArrayList<Player> playersToSave = saveFrom.getPlayers();
 				for(Player p: playersToSave) {
 					int dirToSafety = saveFrom.getNeighbors().indexOf(current);
 					saveFrom.Pass(dirToSafety,p);
