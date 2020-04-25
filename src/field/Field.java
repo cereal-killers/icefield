@@ -167,6 +167,9 @@ public class Field implements java.io.Serializable {
 			player.decrementEnergy();
 			this.Remove(player);
 			player.setCurrentField(neighbors.get(directionIndex));
+			if(IsOverWeight()){
+				isUpsideDown = true;
+			}
 			return true;
 		}
 		return false;
