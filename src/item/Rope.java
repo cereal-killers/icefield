@@ -38,7 +38,7 @@ public class Rope extends Item implements java.io.Serializable{
 
 		}
 
-		player.setEnergy(player.getEnergy() - 1);
+		player.decrementEnergy();
 		System.out.println(playersToSave.size() + "player(s) saved");
 		System.out.println("energy level: " + player.getEnergy());
 	}
