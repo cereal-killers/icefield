@@ -11,6 +11,7 @@ public class Scientist extends Player{
 		super(c, startField);
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
+		name = "Scientist";
 	}
 
 	public Scientist(){

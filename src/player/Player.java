@@ -15,7 +15,8 @@ public class Player extends Moveable implements java.io.Serializable{
 	protected int energy; //játékos energiapontjai
 	protected boolean wears_suit; //a játékoson van-e búvárruha vagy sem
 	protected ArrayList<Item> items; //eszköztár
-	protected Controller controller;  
+	protected Controller controller;
+	protected String name;
     
 	public Player(Controller c, Field startField) {
 		this.energy = 4;
@@ -260,6 +261,14 @@ public class Player extends Moveable implements java.io.Serializable{
 			System.out.println((i + 1)+ ": " + items.get(i).getName());
 		}
 		
+	}
+
+	public String getName(){
+		return name;
+	}
+	
+	public void setName(String value){
+		name = value;
 	}
 	
 }
