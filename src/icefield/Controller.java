@@ -19,19 +19,13 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
 
     //getterek
-    public Vector<Field> getFields() {
-        return fields;
-    }
+    public Vector<Field> getFields() { return fields;}
     public Vector<Player> getPlayers() {return players; }
     public Random getRandom() {return random; }
-    public boolean getEnded() {
-        return ended;
-    }
+    public boolean getEnded() {return ended;}
 
     //setterek
-    public void setFields(Vector<Field> thing) {
-        fields = thing;
-    }
+    public void setFields(Vector<Field> thing) {fields = thing; }
     public void setPlayers(Vector<Player> thing) { players = thing; }
     public void setRandom(Random thing) { random = thing; }
     public void setEnded(boolean thing) { ended = thing; }

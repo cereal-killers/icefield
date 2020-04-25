@@ -2,9 +2,19 @@ package test;
 
 import field.Field;
 import item.Item;
+import player.PolarBear;
+
+import java.util.Vector;
 
 public class TestFunctions
 {
+    private Vector<Field> fields = new Vector<>();
+
+    public TestFunctions(Vector<Field> fields)
+    {
+
+    }
+
     public void SpawnEskimo(Field field, Item item)     //Eszkimo lehelyezese adott mezore
     {
 
@@ -17,7 +27,7 @@ public class TestFunctions
 
     public void SpawnPolarBear(Field field)             //Jegesmaci lehelyezese adott mezore
     {
-
+        PolarBear polarbear = new PolarBear(fields.);
     }
 
     public void SpawnTent(Field field)                  //Sator lehelyezese adott mezore
