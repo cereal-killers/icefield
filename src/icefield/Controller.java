@@ -333,8 +333,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 	}
                 }
                 if(field.getHasTent()) {
+                	System.out.println("Tent disappeared from field " + fields.indexOf(field));
                 	field.setHasTent(false);
-
                 }
                    
             }
