@@ -13,7 +13,7 @@ public class AudioPlayer  {
 	private boolean playing=false;
 
 	    void Start(boolean menu) {
-	    	 new javafx.embed.swing.JFXPanel();
+	    	// new javafx.embed.swing.JFXPanel();
 	    	System.out.println("Audio is playing.");
 	    	playing = true;
 	    	String filename = menu? "menu":"main";
