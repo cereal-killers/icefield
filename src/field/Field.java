@@ -117,14 +117,12 @@ public class Field {
 	//Szomszed hozzaadasa
 	public void AddNeighbor(Field neighbor)
 	{
-		System.out.println("AddNeighbor()");
 		neighbors.add(neighbor);
 		
 	}
 	
 	//Visszaadja a paramerterkent megadott iranyban levo szomszed Field objektumot
 	public Field GetNeighbor(int neighborIndex) {
-		System.out.println("GetNeighbor()");
 		return neighbors.get(neighborIndex);
 		
 	}
@@ -132,11 +130,10 @@ public class Field {
 	//A parameterkent kapott directionIndex iranyba tovabb rakja a pb jegesmedvet
 	public boolean Pass(int directionIndex, PolarBear pb)
 	{
-		System.out.println("Pass()");
 		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(pb))
 		{
 			this.Remove(pb);
-			pb.setCurrentfield(neighbors.get(directionIndex));
+			pb.setCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
@@ -145,12 +142,11 @@ public class Field {
 	//A parameterkent kapott directionIndex iranyba tovabb rakja a player szereplot
 	public boolean Pass(int directionIndex, Player player)
 	{
-		System.out.println("Pass()");
 		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
 		{
 			player.decrementEnergy();
 			this.Remove(player);
-			player.setCurrentfield(neighbors.get(directionIndex));
+			player.setCurrentField(neighbors.get(directionIndex));
 			return true;
 		}
 		return false;
@@ -159,7 +155,6 @@ public class Field {
 	//Elhelyezi a szereplot a mezon
 	public boolean Accept(Moveable player)
 	{
-		System.out.println("Accept()");
 		if(player != null)
 			return true;
 		return false;
@@ -168,35 +163,30 @@ public class Field {
 	//Eltavolitja a mezorol a parameterkent kapott szereplot
 	public void Remove(Moveable player)
 	{
-		System.out.println("Remove()");
 		players.remove(player);
 	}
 	
 	//Hozzaad egy eszkozt a mezon levo eszkozokhoz
 	public void PushItem(Item item)
 	{
-		System.out.println("PushItem()");
 		items.push(item);
 	}
 	
 	//Visszaadja az mezon levo eszkozok kozul az utolsot es torli
 	public Item PopItem()
 	{
-		System.out.println("PopItem()");
 		return items.pop();
 	}
 	
 	//Visszaadja az mezon levo eszkozok kozul az utolsot
 	public Item GetItem()
 	{
-		System.out.println("GetItem()");
 		return items.peek();	
 	}
 	
 	//Visszateresi erteke igaz, ha a mezon tul sok jatekos all (es ekkor atfordul), false ellenkezo esetben
 	public boolean IsOverWeight()
 	{
-		System.out.println("IsOverWeight()");
 		if(players.size()>maxWeight)
 		{
 			this.isUpsideDown = true;
@@ -208,14 +198,12 @@ public class Field {
 	//A mezon levo hoegysegek erteket 1-el csokkenti
 	public void DecrementSnow()
 	{
-		System.out.println("DecrementSnow()");
 		snow--;
 	}
 	
 	//A mezon levo hoegysegek erteket 1-el noveli
 	public void IncrementSnow()
 	{
-		System.out.println("IncrementSnow()");
 		snow++;
 	}
 	
