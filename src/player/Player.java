@@ -24,6 +24,7 @@ public class Player extends Moveable implements java.io.Serializable{
 		this.items = new ArrayList<Item>();
 		this.controller = c;
 		this.currentField = startField;
+		currentField.Accept(this);
 	}
 
 	public Player(){
