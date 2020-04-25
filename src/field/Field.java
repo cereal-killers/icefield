@@ -13,6 +13,7 @@ import player.Moveable;
 public class Field implements java.io.Serializable {
 	private int maxWeight; //Maximalis teherbiras
 	private int snow; //A mezon levo hoegysegek szama
+	private boolean hasTent=false; //Erteke true ha a mezon epult sator, false ellenkezo esetben
 	private boolean hasIgloo=false; //Erteke true ha a mezon epult iglu, false ellenkezo esetben
 	private boolean isUpsideDown=false; //Erteke true ha a mezo atfordult, false ellenkezo esetben
 	private Stack<Item> items = new Stack<Item>(); //A mezon talalhato eszkozok (pl aso) listaja
@@ -54,6 +55,16 @@ public class Field implements java.io.Serializable {
 		snow = value;	
 	}
 	
+	public void setHasTent(boolean value)
+	{
+		hasTent = value;
+	}
+	
+	public boolean getHasTent()
+	{
+		return hasTent;
+	}
+
 	public void setHasIgloo(boolean value)
 	{
 		hasIgloo = value;
