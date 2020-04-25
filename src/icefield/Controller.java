@@ -10,7 +10,7 @@ import player.Scientist;
 import java.util.Random;
 import java.util.Vector;
 
-public class Controller implements EndOfGame {                          //Kontroller osztaly inicializalasa
+public class Controller implements EndOfGame, java.io.Serializable{                          //Kontroller osztaly inicializalasa
 
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
