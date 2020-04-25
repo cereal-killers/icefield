@@ -10,7 +10,7 @@ import player.Scientist;
 import java.util.Random;
 import java.util.Vector;
 
-public class Controller implements EndOfGame, java.io.Serializable{     //Kontroller osztaly inicializalasa
+public class Controller implements EndOfGame, java.io.Serializable{                          //Kontroller osztaly inicializalasa
 
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
@@ -38,6 +38,26 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
 
     public Controller(){}
 
+    public void viewMap() {
+    	for(Field f: fields) {
+    		System.out.print("FIELD #" + fields.indexOf(f)+":\n mW = " + f.getMaxWeight() + "snow = " + f.getSnow() + "tent =" +f.getHasTent()+ " igloo = " + f.getHasIgloo()+ "iUD= "+f.getIsUpsideDown());
+    		for(Item i: f.getItems()){
+    			System.out.print(i.getName());
+    		}
+    		for(Player p: f.getPlayers()){
+    			System.out.print(p.getName());
+    		}
+    		String polarbear;
+    		if(f.getPolarBear() != null) {
+    			polarbear = "true";
+    		} else polarbear = "false";
+    		System.out.print("PB: " + polarbear);
+    		for(Field n: f.getNeighbors()) {
+    			System.out.println("\t" + fields.indexOf(n) );
+    		}
+    	}
+    }
+    
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
         for (int i=1;i<(fields.size())/3;i++)
@@ -72,7 +92,7 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
         System.out.println("itemek letrehozva");
 
         //raketa letrehozasa1
-        Rocket rocket = new Rocket(this, gun, flare, charge);   //A kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
+        Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
         System.out.println("raketa letrehozva");
 
         //Map letrehozasa
@@ -223,7 +243,7 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
 
 
         //Jatekosok letrehozasa
-        Eskimo eskimo1 = new Eskimo(this, field6);            //A kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
+        Eskimo eskimo1 = new Eskimo(this, field6);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
         Eskimo eskimo2 = new Eskimo(this, field17);
         Scientist scientist1 = new Scientist(this, field5);
         Scientist scientist2 = new Scientist(this, field19);
@@ -239,9 +259,9 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
     }
 
 
-    private boolean ArePlayersTogether()                        //Azt vizsgalja egy mezon vannak-e a jatekosok
+    private boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
     {
-        Field previous = players.get(0).getCurrentField();      //az elozo vizsgalt jatekos fieldje
+        Field previous = players.get(0).getCurrentField();    //az elozo vizsgalt jatekos fieldje
         for (Player player : players)
         {
             if (player.getCurrentField() != previous)
@@ -275,13 +295,13 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
         ended =true;
     }
 
-    private int GameLoop()                                      //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
+    private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     {
         int numOfTurns = 0;
 
         int i;
         while (!ended) {
-            for (i = 0; i < players.size(); i++) {              //egymás után jönnek a játékosok
+            for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
                 for (Field field : fields) {
@@ -291,7 +311,7 @@ public class Controller implements EndOfGame, java.io.Serializable{     //Kontro
                 TryFire();
                 numOfTurns++;
 
-                if (i == players.size())                        //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
+                if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
                     i = 0;
             }
 
