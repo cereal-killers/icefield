@@ -69,7 +69,7 @@ public class Player extends Moveable implements java.io.Serializable{
 		if (this.energy > 0)
 		{
 			try{
-				currentField.Pass(dir-1, this);
+				currentField.Pass(dir, this);
 				if (currentField.getPolarBear() != null)
 					controller.Finish();
 			}catch(Exception e){
