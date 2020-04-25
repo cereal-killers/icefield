@@ -4,6 +4,7 @@ import field.Field;
 import icefield.Controller;
 import item.Item;
 import player.Eskimo;
+import player.Player;
 import player.PolarBear;
 import player.Scientist;
 
@@ -37,21 +38,25 @@ public class TestFunctions
 
     public void SpawnTent(Field field)                  //Sator lehelyezese adott mezore
     {
-
+        field.setHasTent(true);
     }
 
     public void SpawnIgloo(Field field)                  //Iglu lehelyezese adott mezore
     {
-
+        field.setHasIgloo(true);
     }
 
     public void SpawnItem(Field field, Item item)        //Sator lehelyezese adott mezore
     {
-
+        field.PushItem(item);
     }
 
     public void SpawnSnowStorm(Field field)              //Iglu lehelyezese adott mezore
     {
-
+        field.IncrementSnow();
+        for (Player player : field.getPlayers())
+        {
+            player.decrementHealth();
+        }
     }
 }
