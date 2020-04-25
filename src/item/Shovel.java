@@ -17,7 +17,7 @@ public class Shovel extends Item {
 		
 		System.out.println("Use(Player player)");
 		
-		Field field = player.getCurrentfield(); /* Ezen a mezőn fogunk havat takarítani, ezt a player-től kérdezzük le. */
+		Field field = player.getCurrentField(); /* Ezen a mezőn fogunk havat takarítani, ezt a player-től kérdezzük le. */
 		int snowCount = field.getSnow();
 		if(snowCount > 1) {                 /* Ha több, mint egy egység hó van a mezőn, */
 			snowCount -= 2;					/* akkor két egységet takarítunk el. */

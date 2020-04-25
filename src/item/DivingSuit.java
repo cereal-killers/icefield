@@ -14,7 +14,7 @@ public class DivingSuit extends Item {
 			//player.setWearssuit(false);
 			//System.out.println("player took off divingsuit");
 		//} else {
-			player.setWearssuit(true);
+			player.setWears_suit(true);
 			System.out.println("player now wears divingsuit");
 		//}
 	}

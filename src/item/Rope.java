@@ -17,7 +17,7 @@ public class Rope extends Item {
 			System.out.println("no energy");
 			return;
 		} 		
-		Field current = player.getCurrentfield(); /* Ez a mező lesz az, ahol a szereplőnk van. */
+		Field current = player.getCurrentField(); /* Ez a mező lesz az, ahol a szereplőnk van. */
 		Field saveFrom = current; /* Erről a mezőről mentjük meg a vízbe esett szereplőt (a lyukas mező). Ha nem találunk megmentendő szereplőt, akkor a current marad, innen tudjuk majd, hogy nem kell csinálni semmit. */
 		
 		ArrayList<Player> playersToSave = new ArrayList<Player>();
