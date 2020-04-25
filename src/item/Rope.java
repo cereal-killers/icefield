@@ -13,10 +13,10 @@ public class Rope extends Item implements java.io.Serializable{
 	public void Use(Player player) {
 		System.out.println("Use(Player player)");
 		
-		if(player.getEnergy() <= 0) { 	/* A kötél használata egy energiát vesz igénybe. */
+		/*if(player.getEnergy() <= 0) { 
 			System.out.println("no energy");
 			return;
-		} 		
+		}*/ 		
 		Field current = player.getCurrentField(); /* Ez a mező lesz az, ahol a szereplőnk van. */
 		Field saveFrom = current; /* Erről a mezőről mentjük meg a vízbe esett szereplőt (a lyukas mező). Ha nem találunk megmentendő szereplőt, akkor a current marad, innen tudjuk majd, hogy nem kell csinálni semmit. */
 		
