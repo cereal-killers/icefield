@@ -31,7 +31,7 @@ public class Controller implements EndOfGame {                          //Kontro
     public void setRandom(Random thing) { random = thing; }
     public void setEnded(boolean thing) { ended = thing; }
 
-    Controller(){}
+    public Controller(){}
 
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
