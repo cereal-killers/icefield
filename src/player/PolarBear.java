@@ -29,4 +29,13 @@ public class PolarBear extends Moveable
 	public void setCurrentfield(Field nextField){
 		currentField = nextField;
 	}
+
+	public Controller getController(){
+		return controller;
+	}
+	
+	public void setController(Controller _controller){
+		controller = _controller;
+	}
+
 }
