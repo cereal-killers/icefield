@@ -255,6 +255,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         players.add(eskimo2);
         players.add(scientist1);
         players.add(scientist2);
+        scientist2.AddItem(new Rope());
         
         System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");
 

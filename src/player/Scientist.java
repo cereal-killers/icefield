@@ -57,7 +57,7 @@ public class Scientist extends Player{
 						}else if(input.matches("^inspect\\s\\d+")){
 							String[] temp = input.split(" ");
 							try{
-								InspectField(currentField.GetNeighbor(Integer.parseInt(temp[1])));
+								InspectField(currentField.GetNeighbor(Integer.parseInt(temp[1])-1));
 							}catch(Exception e){
 								System.out.println("No such neighbor!");
 							}

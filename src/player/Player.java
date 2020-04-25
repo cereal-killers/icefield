@@ -69,7 +69,7 @@ public class Player extends Moveable implements java.io.Serializable{
 		if (this.energy > 0)
 		{
 			try{
-				currentField.Pass(dir, this);
+				currentField.Pass(dir-1, this);
 				if (currentField.getPolarBear() != null)
 					controller.Finish();
 			}catch(Exception e){
@@ -88,7 +88,6 @@ public class Player extends Moveable implements java.io.Serializable{
 	public void UseItem(Item item) {
 		if (this.energy > 0)
 		{
-			this.decrementEnergy();
 			item.Use(this);	
 		}else{
 			System.out.println("Not enough energy");
@@ -125,7 +124,6 @@ public class Player extends Moveable implements java.io.Serializable{
 			if (item.getName() == "divingsuit"){
 				item.Use(this);
 			}
-			decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
 			System.out.println("Player's inventory is full");
 		}
@@ -216,8 +214,8 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 	
 	public void decrementEnergy(){
-		System.out.println("decrementEnergy()");
 		this.energy--;
+		System.out.println("energy level: " + energy);
 	}
 	
 	public ArrayList<Item> getItems(){
