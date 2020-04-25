@@ -312,17 +312,23 @@ public class Controller implements EndOfGame, java.io.Serializable{             
             for (i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
-                for (Field field : fields) {
-                    if (field.getIsUpsideDown())
-                        Finish();
-                }
+                
                 numOfTurns++;
                 if(TryFire()) return numOfTurns;
 
                 if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
                     i = 0;
             }
-
+            for (Field field : fields) {
+                if (field.getIsUpsideDown()) {
+                	for(Player p: field.getPlayers()) {
+                		if(!p.getWears_suit()) {
+                			Finish();
+                		}
+                	}
+                }
+                   
+            }
             int val = random.nextInt(10);
             if (val < 3) SnowStorm();
         }
