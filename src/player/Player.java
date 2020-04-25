@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import item.Item;
-import item.Rocket;
 import field.Field;
 import icefield.Controller;
 
@@ -33,7 +32,6 @@ public class Player extends Moveable{
 	public void PickItemUp() {
 		System.out.println("PickItemUp()");
 		if (this.energy > 0) {
-			
 			Item item = currentField.GetItem();
 			currentField.PopItem();
 			this.AddItem(item); //berakja az eszköztárba
@@ -117,7 +115,11 @@ public class Player extends Moveable{
 	//hozzáadja a paraméterben átadott Item-et az inventory tömbbe (eszköztár)
 	public void AddItem(Item item){
 		try {
-			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  //kivételt dob, ha nincs elég hely
+			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  
+			//kivételt dob, ha nincs elég hely
+			if (item.getName() == "divingsuit"){
+				item.Use(this);
+			}
 			decrementEnergy(); //1 munkába került, ezért csökkenti az energiapontjait
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
 			System.out.println("Player's inventory is full");
@@ -164,22 +166,22 @@ public class Player extends Moveable{
 	
 	
 
-	public boolean getWearssuit() {
+	public boolean getWears_suit() {
 		System.out.println("GetWearsSuit()");
 		return wears_suit;
 	}
 	
-	public void setWearssuit(boolean value) {
+	public void setWears_suit(boolean value) {
 		System.out.println("SetWearsSuit(value)");
 		wears_suit = value;
 	}
 	
-	public Field getCurrentfield() {
+	public Field getCurrentField() {
 		System.out.println("GetCurrentField()");
 		return currentField;
 	}
 	
-	public void setCurrentfield(Field nextField) {
+	public void setCurrentField(Field nextField) {
 		System.out.println("SetCurrentField(value)");
 		this.currentField = nextField;
 	}
@@ -218,7 +220,10 @@ public class Player extends Moveable{
 		System.out.println("GetMaxHealth()");
 		return maxHealth;
 	}
-	
+	public void setMaxHealth(int value){
+		maxHealth = value;
+	}
+
 	public int getEnergy() {
 		System.out.println("GetEnergy()");
 		return energy;
@@ -241,8 +246,20 @@ public class Player extends Moveable{
 	
 	public ArrayList<Item> getItems(){
 		return items;
-	} 
+	}
 	
+	public void setItems(ArrayList<Item> array){
+		items = array;
+	}
+
+	public Controller getController(){
+		return controller;
+	}
+	
+	public void setController(Controller _controller){
+		controller = _controller;
+	}
+
 	public void ListItems() {
 		for (int i = 0; i < items.size(); i++) {
 			System.out.println((i + 1)+ ": " + items.get(i).getName());
