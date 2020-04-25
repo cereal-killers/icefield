@@ -1,5 +1,6 @@
 package player;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,9 +59,7 @@ public class Player extends Moveable implements java.io.Serializable{
 	//Kör vége, ilyenkor ha a játékos vízben maradt, akkor az életpontjai csökkennek egyel
 	//Ha pedig az életpontjai elfogynak, vagyis 0, akkor meghívja a controller Finish() függvényét
 	public void EndTurn() {
-		if (currentField.getIsUpsideDown()) {
-			this.decrementHealth();
-		}
+		energy = 4;
 	}
 	
 	//A játékos lép egyet a paraméternek megadott dir irányba.
@@ -136,11 +135,11 @@ public class Player extends Moveable implements java.io.Serializable{
 	public void Turn() { //A Player egy körének a függvénye
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
-		while(true) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
-
+		boolean endturn = false;
+		while(!endturn) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
 			input = scanner.nextLine();
 			switch (input) {
-				case "end turn": EndTurn(); //kör vége
+				case "end turn": EndTurn(); endturn = true;//kör vége
 					break;
 				case "list inventory": ListItems(); //a felhasználó kilistázza a játékos eszköztárában 
 					break;							//található item-eket
@@ -157,11 +156,7 @@ public class Player extends Moveable implements java.io.Serializable{
 							break;
 						}
 			}
-			if (input.equals("end turn")) { //kilép a ciklusból "end turn" utasításra
-				break;
-			}
 		}
-		scanner.close();
 	}
 	
 	
