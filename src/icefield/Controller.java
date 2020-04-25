@@ -287,15 +287,19 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         return false;
     }
 
-    private void TryFire()
+    private boolean TryFire()
     {
-        if(ArePartsTogether() && ArePlayersTogether())
-            Finish();
+        if(ArePartsTogether() && ArePlayersTogether()) {
+            System.out.println("You Won!");
+            ended = true;
+            return true;
+        }
+        return false;
     }
 
     public void Finish()
     {
-        System.out.println("You Won!");
+        System.out.println("You Loose!");
         ended =true;
     }
 
@@ -305,14 +309,14 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
         int i;
         while (!ended) {
-            for (i = 0; i < players.size(); i++) { //egymás után jönnek a játékosok
+            for (i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
                 players.get(i).Turn();
                 for (Field field : fields) {
                     if (field.getIsUpsideDown())
                         Finish();
                 }
-                TryFire();
+                if(TryFire()) return -1;
                 numOfTurns++;
 
                 if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére

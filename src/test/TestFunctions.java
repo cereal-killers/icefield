@@ -8,7 +8,6 @@ import player.Player;
 import player.PolarBear;
 import player.Scientist;
 
-import java.util.Vector;
 
 public class TestFunctions
 {
