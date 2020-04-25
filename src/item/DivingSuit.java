@@ -10,13 +10,13 @@ public class DivingSuit extends Item {
 	public void Use(Player player) {
 		System.out.println("Use(Player player)");
 		
-		/*if(player.getWearssuit()) {
-			player.setWearssuit(false);
-			System.out.println("player took off divingsuit");
-		} else {
+		//if(player.getWearssuit()) {
+			//player.setWearssuit(false);
+			//System.out.println("player took off divingsuit");
+		//} else {
 			player.setWearssuit(true);
 			System.out.println("player now wears divingsuit");
-		}*/
+		//}
 	}
 	
 	@Override
