@@ -10,6 +10,7 @@ public class PolarBear extends Moveable implements java.io.Serializable
 	public PolarBear(Field _currentField, Controller _controller){
 		currentField = _currentField;
 		controller = _controller;
+		currentField.setPolarBear(this);
 	}
 
 	public PolarBear(){
