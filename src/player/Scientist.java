@@ -21,7 +21,10 @@ public class Scientist extends Player{
 	public void InspectField(Field field) {
 		System.out.println("InspectField(field)");
 		if (this.energy > 0) {
-			System.out.println("Field can hold: " + field.getMaxWeight() + "players");
+			if (field.getMaxWeight() == Integer.MAX_VALUE)
+				System.out.println("Field is stable");
+			else
+				System.out.println("Field can hold: " + field.getMaxWeight() + "players");
 			this.decrementEnergy();
 		}else {
 			System.out.println("Not enough energy");

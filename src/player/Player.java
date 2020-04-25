@@ -70,8 +70,10 @@ public class Player extends Moveable implements java.io.Serializable{
 		{
 			try{
 				currentField.Pass(dir, this);
-				if (currentField.getPolarBear() != null)
+				if (currentField.getPolarBear() != null){
+					System.out.println("You became polarbear's dinner!");
 					controller.Finish();
+				}
 			}catch(Exception e){
 				System.out.println("No such neighbor!");
 			}
@@ -177,7 +179,7 @@ public class Player extends Moveable implements java.io.Serializable{
 		System.out.println("incrementHealth()");
 		if (this.health < maxHealth)
 			this.health++;
-		System.out.println("Health = " + this.health);
+		//System.out.println("Health = " + this.health);
 	}
 	
 	public int getMaxHealth() {

@@ -98,28 +98,30 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
         System.out.println("raketa letrehozva");
 
+
+        int inf = Integer.MAX_VALUE;
         //Map letrehozasa
-        Field field1 = new Field(6, 1, rope);
+        Field field1 = new Field(inf, 1, rope);
         Field field2 = new Field(0, 1, null);
         Field field3 = new Field(2, 1, null);
-        Field field4 = new Field(6, 1, charge);
-        Field field5 = new Field(6, 0, null);
+        Field field4 = new Field(inf, 1, charge);
+        Field field5 = new Field(inf, 0, null);
         Field field6 = new Field(3, 2, null);
-        Field field7 = new Field(6, 1, divingSuit);
-        Field field8 = new Field(6, 1, shovel);
-        Field field9 = new Field(6, 1, tent);
-        Field field10 = new Field(6, 1, null);
+        Field field7 = new Field(inf, 1, divingSuit);
+        Field field8 = new Field(inf, 1, shovel);
+        Field field9 = new Field(inf, 1, tent);
+        Field field10 = new Field(inf, 1, null);
         Field field11 = new Field(3, 1, spade);
-        Field field12 = new Field(6, 0, null);
+        Field field12 = new Field(inf, 0, null);
         Field field13 = new Field(2, 3, gun);
-        Field field14 = new Field(6, 3, null);
-        Field field15 = new Field(6, 2, null);
+        Field field14 = new Field(inf, 3, null);
+        Field field15 = new Field(inf, 2, null);
         Field field16 = new Field(0, 1, null);
-        Field field17 = new Field(6, 0, null);
+        Field field17 = new Field(inf, 0, null);
         Field field18 = new Field(2, 3, food);
-        Field field19 = new Field(6, 1, null);
-        Field field20 = new Field(6, 3, flare);
-        Field field21 = new Field(6, 2, null);
+        Field field19 = new Field(inf, 1, null);
+        Field field20 = new Field(inf, 3, flare);
+        Field field21 = new Field(inf, 2, food2);
         Field field22 = new Field(0, 1, null);
         Field field23 = new Field(0, 1, null);
 
