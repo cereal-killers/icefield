@@ -1,11 +1,9 @@
 package player;
 
-import java.io.Serializable;
-
 import field.Field;
 import icefield.Controller;
 
-public class PolarBear extends Moveable implements Serializable
+public class PolarBear extends Moveable implements java.io.Serializable
 {
 	private Controller controller;
 

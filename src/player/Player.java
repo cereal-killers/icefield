@@ -8,7 +8,7 @@ import field.Field;
 import icefield.Controller;
 
 //játékos osztály
-public class Player extends Moveable implements Serializable{
+public class Player extends Moveable implements java.io.Serializable{
 	protected int health; //játékos aktuális életpontjai
 	protected int maxHealth; //játékos maximális életpontjai
 	protected int energy; //játékos energiapontjai
