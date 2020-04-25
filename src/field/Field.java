@@ -202,13 +202,24 @@ public class Field implements java.io.Serializable {
 	//Visszaadja az mezon levo eszkozok kozul az utolsot es torli
 	public Item PopItem()
 	{
-		return items.pop();
+		try{
+			return items.pop();
+		}catch(Exception e){
+			System.out.println("No item on field");
+			return null;
+		}
 	}
 	
 	//Visszaadja az mezon levo eszkozok kozul az utolsot
 	public Item GetItem()
 	{
-		return items.peek();	
+		try{
+			return items.peek();
+		}catch(Exception e){
+			System.out.println("No item on field");
+			return null;
+		}
+		
 	}
 	
 	//Visszateresi erteke igaz, ha a mezon tul sok jatekos all (es ekkor atfordul), false ellenkezo esetben
@@ -227,7 +238,12 @@ public class Field implements java.io.Serializable {
 	//A mezon levo hoegysegek erteket 1-el csokkenti
 	public void DecrementSnow()
 	{
-		snow--;
+		if (snow != 0){
+			snow--;
+			System.out.println("1 snow removed!");
+		}
+		else
+			System.out.println("Field already clear!");
 	}
 	
 	//A mezon levo hoegysegek erteket 1-el noveli

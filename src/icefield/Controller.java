@@ -339,7 +339,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                    
             }
             int val = random.nextInt(10);
-            if (val < 3) SnowStorm();
+            if (val < 9) SnowStorm();
         }
         return -1;
     }
