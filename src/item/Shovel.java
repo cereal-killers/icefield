@@ -30,7 +30,7 @@ public class Shovel extends Item implements java.io.Serializable {
 		}		
 		field.setSnow(snowCount);			
 		
-		player.setEnergy(player.getEnergy() - 1); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
+		player.decrementEnergy(); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
 	}
 	
 	@Override
