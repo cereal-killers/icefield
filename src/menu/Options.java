@@ -21,7 +21,6 @@ public class Options {
 
 	//Függvény a menüben található opciók kiírására
 	public void ShowOptionItems() {
-		System.out.println("ShowOptionItems() called.");		
 		System.out.println("1. Player name");		
 		System.out.println("2. Number of players");
 		System.out.println("3. Music");
@@ -39,7 +38,6 @@ public class Options {
 	
 	//Függvény egy beállítási opció végrehajtására
 	public void ChooseOptionsItem(OptionsItem item) {
-		System.out.println("ChooseOptionsItem(OptionsItem item) called.");	
 		switch(item)
 		{
 		case playername:
@@ -80,15 +78,15 @@ public class Options {
 	{
 		Scanner in = new Scanner(System.in); 
 		System.out.println("Set the number of players to a value between 3 and 8.");	
-		try {
-			SetPlayerNumber(in.nextInt());
-			System.out.println("PlayerNumber set to "+ GetPlayerNumber());	
-
-		}
-		catch(Exception ex)
+		int value = in.nextInt();
+		if(value>8 ||value<3)
+			System.out.println("Invalid input.");
+		else
 		{
-			System.out.println("Incorrect input.");	
-		}		
+			SetPlayerNumber(value);
+			System.out.println("PlayerNumber set to "+ GetPlayerNumber());	
+		}
+
 	}
 	public void SetPlayerNumber(int newvalue)  
 	{

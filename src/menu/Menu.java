@@ -23,7 +23,6 @@ public class Menu {
 	
 	//Függvény a menüben található opciók kiírására
 	public void ShowMenuItems() {
-		System.out.println("ShowMenuItems() called.");		
 		System.out.println("1. New Game");		
 		System.out.println("2. Settings");
 		System.out.println("3. Show Best Scores");
