@@ -160,7 +160,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         field8.AddNeighbor(field1);
         field8.AddNeighbor(field5);
         field8.AddNeighbor(field9);
-        field8.AddNeighbor(field23);
+        field8.AddNeighbor(field13);
         field9.AddNeighbor(field8);
         field9.AddNeighbor(field5);
         field9.AddNeighbor(field10);
@@ -333,8 +333,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 	}
                 }
                 if(field.getHasTent()) {
-                	System.out.println("Tent disappeared from field " + fields.indexOf(field));
                 	field.setHasTent(false);
+
                 }
                    
             }
