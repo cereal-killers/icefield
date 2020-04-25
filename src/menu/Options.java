@@ -25,7 +25,6 @@ public class Options {
 		System.out.println("1. Player name");		
 		System.out.println("2. Number of players");
 		System.out.println("3. Music");
-		System.out.println("4. Determinism");
 		System.out.println();
 		System.out.println("Current state:");
 		System.out.println();
@@ -36,7 +35,6 @@ public class Options {
 			System.out.println("on");
 		else
 			System.out.println("off");
-		System.out.print("Determinism = ");
 	}
 	
 	//Függvény egy beállítási opció végrehajtására
