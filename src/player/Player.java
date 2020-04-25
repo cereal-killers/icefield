@@ -35,10 +35,15 @@ public class Player extends Moveable implements java.io.Serializable{
 	public void PickItemUp() {
 		System.out.println("PickItemUp()");
 		if (this.energy > 0) {
-			Item item = currentField.PopItem();
-			if (item != null){
-				this.AddItem(item); //berakja az eszköztárba
-				this.decrementEnergy(); //1munkába került, ezért csökkenti az energiapontjait
+			if (currentField.getSnow() == 0){
+				Item item = currentField.PopItem();
+				if (item != null){
+					this.AddItem(item); //berakja az eszköztárba
+					this.decrementEnergy(); //1munkába került, ezért csökkenti az energiapontjait
+				}
+			}
+			else{
+				System.out.println("Field is covered with snow!");
 			}
 		}else
 			System.out.println("Not enough energy");
