@@ -5,26 +5,35 @@ import player.Player;
 import java.util.Random;
 import java.util.Vector;
 
-public class Controller implements EndOfGame{                           //Kontroller osztaly inicializalasa
+public class Controller implements EndOfGame {                          //Kontroller osztaly inicializalasa
 
-    private Vector<Field> fields = new Vector<>();          //A jatek mezoinek eltarolasa
+    private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
     private boolean ended = false;
     private Random random = new Random();
 
 
-
-    public Vector<Field> GetFields()
-    {
+    //getterek
+    public Vector<Field> getFields() {
         return fields;
     }
-
-    public boolean GetEnded()
-    {
+    public Vector<Player> getPlayers() {return players; }
+    public Random getRandom() {return random; }
+    public boolean getEnded() {
         return ended;
     }
 
-    private void SnowStorm()                         //A jatekban szereplo hoviharokat lebonyolito fuggveny
+    //setterek
+    public void setFields(Vector<Field> thing) {
+        fields = thing;
+    }
+    public void setPlayers(Vector<Player> thing) { players = thing; }
+    public void setRandom(Random thing) { random = thing; }
+    public void setEnded(boolean thing) { ended = thing; }
+
+    public Controller(){}
+
+    private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
         for (int i=1;i<(fields.size())/3;i++)
         {
