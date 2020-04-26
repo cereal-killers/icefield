@@ -104,7 +104,8 @@ public class TestFunctions
 				}
 				
 			} else if(command[0] == "polarbear") {
-				
+				int dir = Integer.parseInt(command[1]);
+				controller.getPolarBear().Move(dir);
 			} else if(command[0] == "set"){
 				if(command[1] == "igloo") {
 					int field = Integer.parseInt(command[2]);
@@ -120,11 +121,16 @@ public class TestFunctions
 				
 			} else if(command[0] == "snowstorm") {
 				int howmany = command.length - 1;
-				for(int i = 0; i< howmany ; ++i) {
+				for(int i = 0; i < howmany ; ++i) {
 					int field = Integer.parseInt(command[i+1]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnSnowStorm(f);
 				}
+				System.out.print("Snowstorm affected fields: ");
+				for(int i = 1; i < command.length; ++i) {
+					System.out.print(command[i] + " ");
+				}
+				System.out.println();
 			} else {
 				System.out.println("Invalid command!");
 			}
@@ -135,32 +141,42 @@ public class TestFunctions
     {
         Eskimo eskimo = new Eskimo(controller, field);
         eskimo.AddItem(item);
+        System.out.println("Eskimo spawned");
     }
 
     public void SpawnScientist(Field field, Item item)  //Kutato lehelyezese adott mezore
     {
         Scientist scientist = new Scientist(controller, field);
         scientist.AddItem(item);
+        System.out.println("Scientist spawned");
     }
 
     public void SpawnPolarBear(Field field)             //Jegesmaci lehelyezese adott mezore
     {
-        PolarBear polarbear = new PolarBear(field, controller);
+    	if(controller.getPolarBear() != null) {
+    		System.out.println("There's already a polarbear");
+    	} else {
+    		PolarBear polarbear = new PolarBear(field, controller);
+    		System.out.println("Polarbear spawned");
+    	}
     }
 
     public void SetTent(Field field)                  //Sator lehelyezese adott mezore
     {
         field.setHasTent(true);
+        System.out.println("Tent set");
     }
 
     public void SetIgloo(Field field)                  //Iglu lehelyezese adott mezore
     {
         field.setHasIgloo(true);
+        System.out.println("Igloo built");
     }
 
     public void SpawnItem(Field field, Item item)        //Sator lehelyezese adott mezore
     {
         field.PushItem(item);
+        System.out.println("Item spawned");
     }
 
     public void SpawnSnowStorm(Field field)              //Iglu lehelyezese adott mezore
