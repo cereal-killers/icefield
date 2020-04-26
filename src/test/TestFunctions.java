@@ -75,6 +75,7 @@ public class TestFunctions
 					int field = Integer.parseInt(command[2]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnPolarBear(f);
+					
 				} else if(command[1].contentEquals("item") ) {
 					int field = Integer.parseInt(command[3]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés

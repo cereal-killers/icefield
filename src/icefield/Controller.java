@@ -48,6 +48,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     public void viewMap() {
     	for(Field f: fields) {
+    		
     		System.out.println("FIELD #" + (fields.indexOf(f)+1) +": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
     		for(Item i: f.getItems()){
     			System.out.print(i.getName()+ " ");
