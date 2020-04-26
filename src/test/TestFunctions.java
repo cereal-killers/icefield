@@ -206,11 +206,13 @@ public class TestFunctions
 
     public void SpawnSnowStorm(Field field)              //Iglu lehelyezese adott mezore
     {
-        field.IncrementSnow();
-        for (Player player : field.getPlayers())
-        {
-            player.decrementHealth();
-        }
+		field.IncrementSnow();
+		if (!field.getHasIgloo() && !field.getHasTent()){
+        	for (Player player : field.getPlayers())
+        	{
+            	player.decrementHealth();
+			}
+		}	
     }
     
     public void viewMap() {
