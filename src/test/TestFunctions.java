@@ -115,7 +115,12 @@ public class TestFunctions
 				
 			} else if(command[0].contentEquals("polarbear") ) {
 				int dir = Integer.parseInt(command[1]);
-				controller.getPolarBear().Move(dir);
+				if(controller.getPolarBear() != null ) {
+					controller.getPolarBear().Move(dir);
+				}else {
+					System.out.println("No polarbear on map!");
+				}
+				
 			} else if(command[0].contentEquals("set")){
 				if(command[1].contentEquals("igloo") ) {
 					int field = Integer.parseInt(command[2]);
