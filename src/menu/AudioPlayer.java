@@ -16,7 +16,7 @@ public class AudioPlayer  {
 	    	System.out.println("Audio is playing.");
 	    	playing = true;
 	    	String filename = menu? "menu":"main";
-	        File f = new File(System.getProperty("user.dir")+"\\menu\\"+filename+".wav");
+	        File f = new File(System.getProperty("user.dir")+"\\src\\menu\\"+filename+".wav");
 	        AudioInputStream audioInputStream;
 			try {
 				audioInputStream = AudioSystem.getAudioInputStream(f);

@@ -181,7 +181,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         fields.add(field13);
         System.out.println("map letrehozva");*/
 
-    	String filename = "tesztpalya";
+    	String filename = "nagypalya";
     	ReadController(filename);// beolvassuk az xml filebol a mappat
         System.out.println(filename+" beolvasva.");
         return GameLoop();
@@ -270,7 +270,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
   	{
   	  	FileOutputStream fos;
   		try {
-  			fos = new FileOutputStream(System.getProperty("user.dir")+"/"+palya+".xml");
+  			fos = new FileOutputStream(System.getProperty("user.dir")+"\\src\\"+palya+".xml");
   		 	XMLEncoder encoder = new XMLEncoder(fos);
   		  	encoder.writeObject(this);
   		  	encoder.close();
@@ -284,13 +284,13 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
   	public void ReadController(String palya )
   	{
-  	  	if (new File(System.getProperty("user.dir")+"/"+palya+".xml").exists()==false) // ha nem létezik még a fájl
+  	  	if (new File(System.getProperty("user.dir")+"\\src\\"+palya+".xml").exists()==false) // ha nem létezik még a fájl
   	  	{
-  			System.out.println(System.getProperty("user.dir")+"/"+palya+".xml file does not exists.");
+  			System.out.println(System.getProperty("user.dir")+"\\src\\"+palya+".xml file does not exists.");
   			return;
   	  	}
   		try {
-  			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/"+palya+".xml");
+  			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\"+palya+".xml");
   		  	XMLDecoder decoder = new XMLDecoder(fis);
   		  	Controller copy = (Controller) decoder.readObject();
   		  	this.ended = copy.getEnded();
