@@ -78,12 +78,12 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
-    
-    		for (int i=1;i<(fields.size())/3;i++)
+    		System.out.print("Snowstorm on fields: ");
+    		for (int i=1;i<(fields.size())/5;i++)
             {
                 //mezo kivalasztasa
                 int fieldIndex = random.nextInt(fields.size());
-
+                System.out.print( (fieldIndex+1) +" ");
                 //horeteg novelese
                 fields.get(fieldIndex).IncrementSnow();
 
@@ -93,7 +93,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                         player.decrementHealth();
                 }
             }
-    	
+    		
         
     }
 
@@ -357,6 +357,9 @@ public class Controller implements EndOfGame, java.io.Serializable{             
             }
             if(!testMode) {
             	SnowStorm();
+            	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
+            	int bearDir = random.nextInt(maxBearDir);
+            	polarBear.Move(bearDir);
             }
             
         }
