@@ -37,7 +37,7 @@ public class TestFunctions
 			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
 			if (command[0].contentEquals("endtest") ) {
-				endtest = true;
+				//endtest = true;
 			} else if (command[0].contentEquals("spawn")) {
 				if( command[1].contentEquals("eskimo") || command[1].contentEquals("scientist")) {
 					Item item = null;
