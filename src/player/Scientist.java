@@ -5,6 +5,10 @@ import java.util.Scanner;
 import field.Field;
 import icefield.Controller;
 
+
+/** 
+ * Kutató szereplő osztálynak a megvalósítása 
+ */
 public class Scientist extends Player{
 	
 	public Scientist(Controller c, Field startField) {

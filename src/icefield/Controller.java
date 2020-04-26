@@ -16,7 +16,7 @@ import player.Player;
 import player.PolarBear;
 import test.TestFunctions;
 
-public class Controller implements EndOfGame, java.io.Serializable{                          //Kontroller osztaly inicializalasa
+public class Controller implements java.io.Serializable{                          //Kontroller osztaly inicializalasa
 
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
