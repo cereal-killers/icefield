@@ -10,7 +10,6 @@ public class Food extends Item implements java.io.Serializable {
 		System.out.println("Use(Player player)");
 		player.incrementHealth();
 		player.RemoveItem(this); //Ez ide kell, vagy a Player UseItem() függvényébe?
-		System.out.println("health = " + player.getHealth());
 	}
 
 	@Override

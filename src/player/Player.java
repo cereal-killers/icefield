@@ -179,9 +179,13 @@ public class Player extends Moveable implements java.io.Serializable{
 		}
 	}
 	public void incrementHealth() {//1-el növeli az életpontokat
-		if (this.health < maxHealth)
+		if (this.health < maxHealth){
 			this.health++;
-		//System.out.println("Health = " + this.health);
+			System.out.println("health: " + health);
+		}else{
+			System.out.println("Health is already maxed out!");
+			System.out.println("health: " + health);
+		}
 	}
 	
 	public int getMaxHealth() {
