@@ -1,13 +1,5 @@
 package icefield;
 
-import field.Field;
-import item.*;
-import menu.ScoreData;
-import player.Eskimo;
-import player.Player;
-import player.PolarBear;
-import player.Scientist;
-
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.File;
@@ -17,6 +9,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
+import field.Field;
+import item.Item;
+import player.Player;
+import player.PolarBear;
+import test.TestFunctions;
+
 public class Controller implements EndOfGame, java.io.Serializable{                          //Kontroller osztaly inicializalasa
 
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
@@ -24,7 +22,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     private PolarBear polarBear = new PolarBear();
     private boolean ended = false;
     private transient Random random = new Random();
-
+    private boolean testMode = false;
+    private TestFunctions test = new TestFunctions(this);
 
     //getterek
     public Vector<Field> getFields() { return fields;}
@@ -32,6 +31,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     public PolarBear getPolarBear() {return polarBear;}
     public Random getRandom() {return random; }
     public boolean getEnded() {return ended;}
+    public boolean getTestMode() {return testMode;}
 
     //setterek
     public void setFields(Vector<Field> thing) {fields = thing; }
@@ -39,7 +39,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     public void setPolarBear(PolarBear thing) { polarBear = thing;}
     public void setRandom(Random thing) { random = thing; }
     public void setEnded(boolean thing) { ended = thing; }
-
+    public void setTestMode(boolean value) {testMode = value;}
 
     public Controller(){}
 
@@ -73,20 +73,25 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
-        for (int i=1;i<(fields.size())/3;i++)
-        {
-            //mezo kivalasztasa
-            int fieldIndex = random.nextInt(fields.size());
-
-            //horeteg novelese
-            fields.get(fieldIndex).IncrementSnow();
-
-            //jatekosok testhojenek csokkentese
-            for (Player player : fields.get(fieldIndex).getPlayers())
+    	if(!testMode) {
+    		for (int i=1;i<(fields.size())/3;i++)
             {
-                    player.decrementHealth();
+                //mezo kivalasztasa
+                int fieldIndex = random.nextInt(fields.size());
+
+                //horeteg novelese
+                fields.get(fieldIndex).IncrementSnow();
+
+                //jatekosok testhojenek csokkentese
+                for (Player player : fields.get(fieldIndex).getPlayers())
+                {
+                        player.decrementHealth();
+                }
             }
-        }
+    	} else {
+    		test.testCommand();
+    	}
+        
     }
 
     public int Start()
@@ -259,8 +264,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 }
                    
             }
-            int val = random.nextInt(10);
-            if (val < 9) SnowStorm();
+            SnowStorm();
         }
         return -1;
     }
