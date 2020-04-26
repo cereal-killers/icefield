@@ -44,13 +44,13 @@ public class TestFunctions
 					if(command.length == 4) {
 						if(command[3].contentEquals("shovel") ) {
 							item = new Shovel();
-						}else if (command[3].contentEquals( "spade")) {
+						} else if (command[3].contentEquals( "spade")) {
 							item = new Spade();
 						} else if(command[3].contentEquals("food")) {
 							item = new Food();
-						}else if(command[3].contentEquals("divingsuit") ) {
+						} else if(command[3].contentEquals("divingsuit") ) {
 							item = new DivingSuit();
-						}else if(command[3].contentEquals("rope") ) {
+						} else if(command[3].contentEquals("rope") ) {
 							item = new Rope();
 						} else if(command[3].contentEquals("tent") ) {
 							item = new Tent();
@@ -223,7 +223,7 @@ public class TestFunctions
     		}
     		System.out.print("(" + f.getPlayers().size() + ")");
     		for(Player p: f.getPlayers()){
-    			System.out.print(p.getName()+ " ");
+    			System.out.print(" "+p.getName());
     		}
     		System.out.println();
     		String polarbear;
