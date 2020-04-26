@@ -60,10 +60,12 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 //horeteg novelese
                 fields.get(fieldIndex).IncrementSnow();
 
-                //jatekosok testhojenek csokkentese
-                for (Player player : fields.get(fieldIndex).getPlayers())
-                {
+                //jatekosok testhojenek csokkentese, ha nincsenek sátorban vagy iglooban
+                if (!fields.get(fieldIndex).getHasIgloo() && !fields.get(fieldIndex).getHasTent()){
+                    for (Player player : fields.get(fieldIndex).getPlayers())
+                    {
                         player.decrementHealth();
+                    }
                 }
             }
     		
