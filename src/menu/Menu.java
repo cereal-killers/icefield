@@ -11,11 +11,11 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import icefield.Controller;
-
+// A menüt megvalósító osztály
 public class Menu {
-    private Vector<ScoreData> highscores;
-	private Options options;
-	private AudioPlayer audioPlayer;
+    private Vector<ScoreData> highscores; // a toplistát tároló tömb
+	private Options options; // a beállítások osztálya
+	private AudioPlayer audioPlayer; // a zenele játszóosztálya
 	public Menu(){
 		highscores = new Vector<>();
 		options = new Options();
@@ -23,14 +23,20 @@ public class Menu {
 		audioPlayer.Start(true);
 		ReadHighscores();
 	}
-	//Függvény a menüben található opciók kiírására
+	/**
+	 * Függvény a menüben található opciók kiírására
+	 */
 	public void ShowMenuItems() {
 		System.out.println("1. New Game");		
 		System.out.println("2. Settings");
 		System.out.println("3. Show Best Scores");
 		System.out.println("4. Exit");
 	}
-	//Függvény egy menüopció végrehajtására
+	/**
+	 * Függvény egy menüopció végrehajtására
+	 * @param item menüopció
+	 * @return false ha kilépünk a játékból
+	 */
 	public boolean ChooseMenuItem(MenuItem item) {
 		switch(item)
 		{
@@ -53,7 +59,9 @@ public class Menu {
 		audioPlayer.Reset(options.GetMusic());
 		return true;
 	}
-	//Függvény a játék elindításához
+	/**
+	 * Függvény a játék elindításához
+	 */
 	public void NewGame() {
 		audioPlayer.Stop();
 		if(options.GetMusic())
@@ -68,7 +76,9 @@ public class Menu {
 		if(options.GetMusic())
 			audioPlayer.Start(true);
 	}
-	//Függvény a beállításokhoz
+	/**
+	 * Függvény a beállításokhoz
+	 */
 	public void Settings() {
 		options.ShowOptionItems();
 		Scanner in = new Scanner(System.in); 
@@ -80,7 +90,9 @@ public class Menu {
 			System.out.println("Invalid input.");
 		}
 	}
-	//Függvény a toplista megjelenítésére
+	/**
+	 * Függvény a toplista megjelenítésére
+	 */
 	public void ShowBestScores() {
 		// rendezés
 		Collections.sort(highscores, new Comparator<ScoreData>() {
@@ -97,17 +109,24 @@ public class Menu {
 				System.out.println((i+1)+". " + highscores.get(i).getName() + " - " +highscores.get(i).getScore() );
 		}
 	}
-	//Függvény a játékból történő kilépéshez
+	/**
+	 * Függvény a játékból történő kilépéshez
+	 */
 	public void Exit() {
 		WriteHighscores();
 	}
-	//Új highscore felvitelére szolgáló függévény
+	/**
+	 * Új highscore felvitelére szolgáló függévény
+	 * @param score az új toplista elem értéke
+	 */
 	public void AddHighscore(int score)
 	{		
 		System.out.println("New highscore added.");		
 		highscores.add(new ScoreData(options.GetPlayerName(), score));
 	}
-	//Függvény a toplista kiírására
+	/**
+	 * Függvény a toplista kiírására
+	 */
 	public void WriteHighscores()
 	{
 	  	FileOutputStream fos;
@@ -122,7 +141,9 @@ public class Menu {
 		}
 
 	}
-	//Függvény a toplista beolvasására
+	/**
+	 * Függvény a toplista beolvasására
+	 */
 	public void ReadHighscores()
 	{
 	  	if (new File(System.getProperty("user.dir")+"\\src\\highscores.xml").exists()==false) // ha nem létezik még a fájl

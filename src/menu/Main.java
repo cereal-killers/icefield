@@ -1,9 +1,11 @@
 package menu;
 
 import java.util.Scanner;
-
 public class Main {
-
+/**
+ * A program main függvénye
+ * @param args
+ */
 	public static void main(String[] args) {
 		Menu m = new Menu();
 		boolean game = true;

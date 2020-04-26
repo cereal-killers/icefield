@@ -17,7 +17,9 @@ public class Options {
 		music = true;
 	}
 
-	//Függvény a menüben található opciók kiírására
+	/**
+	 * Függvény a menüben található opciók kiírására
+	 */
 	public void ShowOptionItems() {
 		System.out.println("1. Player name");		
 		System.out.println("2. Music");
@@ -32,7 +34,10 @@ public class Options {
 			System.out.println("off");
 	}
 	
-	//Függvény egy beállítási opció végrehajtására
+	/**
+	 * Függvény egy beállítási opció végrehajtására
+	 * @param item az option enum
+	 */
 	public void ChooseOptionsItem(OptionsItem item) {
 		switch(item)
 		{
@@ -47,7 +52,9 @@ public class Options {
 			}
 	}
 	
-	// Játékos nevének beállítására szolgáló függvények
+	/**
+	 *  Játékos nevének beállítására szolgáló függvény
+	 */
 	public void PlayerNameOption()
 	{
 		Scanner in = new Scanner(System.in); 
@@ -56,18 +63,28 @@ public class Options {
 		System.out.println("PlayerNumber set to "+ GetPlayerName());	
 
 	}
+	/**
+	 * Playername settere
+	 * @param newname új playername
+	 */
 	public void SetPlayerName(String newname)
 	{
 		System.out.println("SetPlayerName(String newname) called.");		
 		playerName = newname;
 	}
+	/**
+	 * Playername gettere
+	 * @return a meglévő playername
+	 */
 	public String GetPlayerName()
 	{
 		System.out.println("GetPlayerName() called.");		
 		return playerName;
 	}
 	
-	// Játék zenéjének beállítására szolgáló függvények
+	/**
+	 *  Játék zenéjének beállítására szolgáló függvények
+	 */
 	public void MusicOption()
 	{
 		Scanner in = new Scanner(System.in); 
@@ -86,10 +103,18 @@ public class Options {
 			System.out.println("Incorrect input.");	
 		}		
 	}
+	/**
+	 * A zene beállításának settere
+	 * @param newvalue új értéke
+	 */
 	public void SetMusic(boolean newvalue)
 	{		
 		music = newvalue;
 	}
+	/**
+	 * A zene beállításának gettere
+	 * @return a jelenlegi zenebeállítás
+	 */
 	public boolean GetMusic()
 	{		
 		return music;

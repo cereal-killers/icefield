@@ -12,6 +12,9 @@ public class AudioPlayer  {
 	private Clip audioClip;
 	private boolean playing=false;
 
+		/**Elindítja a zenét
+		 * @param menu megadja, hogy a menü zenéjét játszuk-e le vagy sem
+		 */
 	    void Start(boolean menu) {
 	    	System.out.println("Audio is playing.");
 	    	playing = true;
@@ -28,12 +31,19 @@ public class AudioPlayer  {
 			}
          
 	    }
+	    /**
+	     * Leállítja a zenét
+	     */
 	    public void Stop()
 	    {
 	    	audioClip.stop();
 	    	System.out.println("Audio stopped.");
 	    	playing = false;
 	    }
+	    /**
+	     * A zene lejátszását frissítő függvény
+	     * @param music megadja, hogy legyen-e zene vagy sem
+	     */
 	    public void Reset(boolean music)
 	    {
 	    	if (!music && playing)
