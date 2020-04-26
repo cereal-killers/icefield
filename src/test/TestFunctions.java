@@ -33,8 +33,7 @@ public class TestFunctions
 		System.out.println("(TEST)");
 		//String input;
 		//Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
-		boolean endtest = false;
-		while(!endtest) { 
+		
 			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
 			if (command[0].contentEquals("endtest") ) {
@@ -135,7 +134,7 @@ public class TestFunctions
 			} else {
 				System.out.println("Invalid command!");
 			}
-		}
+		
 	}
 	
     public void SpawnEskimo(Field field, Item item)     //Eszkimo lehelyezese adott mezore
