@@ -37,64 +37,64 @@ public class TestFunctions
 		while(!endtest) { 
 			input = scanner.nextLine();
 			String[] command = input.split("\\s+");
-			if (command[0] == "endtest") {
+			if (command[0].contentEquals("endtest") ) {
 				endtest = true;
-			} else if (command[0] == "spawn") {
-				if( command[1] == "eskimo" || command[1] == "scientist") {
+			} else if (command[0].contentEquals("spawn")) {
+				if( command[1].contentEquals("eskimo") || command[1].contentEquals("scientist")) {
 					Item item = null;
 					if(command.length == 4) {
-						if(command[3] == "shovel") {
+						if(command[3].contentEquals("shovel") ) {
 							item = new Shovel();
-						}else if (command[3] == "spade") {
+						}else if (command[3].contentEquals( "spade")) {
 							item = new Spade();
-						} else if(command[3]== "food") {
+						} else if(command[3].contentEquals("food")) {
 							item = new Food();
-						}else if(command[3] == "divingsuit") {
+						}else if(command[3].contentEquals("divingsuit") ) {
 							item = new DivingSuit();
-						}else if(command[3] == "rope") {
+						}else if(command[3].contentEquals("rope") ) {
 							item = new Rope();
-						} else if(command[3] == "tent") {
+						} else if(command[3].contentEquals("tent") ) {
 							item = new Tent();
-						} else if(command[3] == "charge") {
+						} else if(command[3].contentEquals("charge") ) {
 							item = new Charge();
-						} else if(command[3] == "flare") {
+						} else if(command[3].contentEquals("flare") ) {
 							item = new Flare();
-						} else if(command[3] == "gun") {
+						} else if(command[3].contentEquals("gun") ) {
 							item = new Gun();
 						}
 					}
 					int field = Integer.parseInt(command[2]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
-					if(command[1] == "eskimo") {
+					if(command[1].contentEquals("eskimo") ) {
 						SpawnEskimo(f,item);
-					} else if(command[1] == "scientist") {
+					} else if(command[1].contentEquals("scientist") ) {
 						SpawnScientist(f, item);
 					}
 					
-				} else if(command[1] == "polarbear") {
+				} else if(command[1].contentEquals("polarbear") ) {
 					int field = Integer.parseInt(command[2]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnPolarBear(f);
-				} else if(command[1] == "item") {
+				} else if(command[1].contentEquals("item") ) {
 					int field = Integer.parseInt(command[3]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
-					if(command[2] == "shovel") {
+					if(command[2].contentEquals("shovel") ) {
 						SpawnItem(f, new Shovel());
-					}else if (command[2] == "spade") {
+					}else if (command[2].contentEquals("spade") ) {
 						SpawnItem(f, new Spade());
 					} else if(command[2]== "food") {
 						SpawnItem(f, new Food());
-					}else if(command[2] == "divingsuit") {
+					}else if(command[2].contentEquals("divingsuit") ) {
 						SpawnItem(f, new DivingSuit());
-					}else if(command[2] == "rope") {
+					}else if(command[2].contentEquals("rope") ) {
 						SpawnItem(f, new Rope());
-					} else if(command[2] == "tent") {
+					} else if(command[2].contentEquals("tent") ) {
 						SpawnItem(f, new Tent());
-					} else if(command[2] == "charge") {
+					} else if(command[2].contentEquals("charge") ) {
 						SpawnItem(f, new Charge());
-					} else if(command[2] == "flare") {
+					} else if(command[2].contentEquals("flare") ) {
 						SpawnItem(f, new Flare());
-					} else if(command[2] == "gun") {
+					} else if(command[2].contentEquals("gun") ) {
 						SpawnItem(f, new Gun());
 					} else {
 						System.out.println("No such item!");
@@ -103,15 +103,15 @@ public class TestFunctions
 					System.out.println("This cannot be spawned");
 				}
 				
-			} else if(command[0] == "polarbear") {
+			} else if(command[0].contentEquals("polarbear") ) {
 				int dir = Integer.parseInt(command[1]);
 				controller.getPolarBear().Move(dir);
-			} else if(command[0] == "set"){
-				if(command[1] == "igloo") {
+			} else if(command[0].contentEquals("set")){
+				if(command[1].contentEquals("igloo") ) {
 					int field = Integer.parseInt(command[2]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SetIgloo(f);
-				} else if(command[1] == "tent") {
+				} else if(command[1].contentEquals("tent") ) {
 					int field = Integer.parseInt(command[2]);
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SetTent(f);
@@ -119,7 +119,7 @@ public class TestFunctions
 					System.out.println("No such thing can be set");
 				}
 				
-			} else if(command[0] == "snowstorm") {
+			} else if(command[0].contentEquals("snowstorm") ) {
 				int howmany = command.length - 1;
 				for(int i = 0; i < howmany ; ++i) {
 					int field = Integer.parseInt(command[i+1]);

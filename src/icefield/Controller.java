@@ -39,7 +39,10 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     public void setPolarBear(PolarBear thing) { polarBear = thing;}
     public void setRandom(Random thing) { random = thing; }
     public void setEnded(boolean thing) { ended = thing; }
-    public void setTestMode(boolean value) {testMode = value;}
+    public void setTestMode(boolean value) {
+    	testMode = value;
+    	System.out.println("Testmode: " + testMode);
+    }
 
     public Controller(){}
 
