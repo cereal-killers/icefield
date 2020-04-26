@@ -33,7 +33,7 @@ public class TestFunctions
 		System.out.println("(TEST)");
 		//String input;
 		//Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
-		
+		try {
 			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
 			if (command[0].contentEquals("endtest") ) {
@@ -76,8 +76,15 @@ public class TestFunctions
 					SpawnPolarBear(f);
 					
 				} else if(command[1].contentEquals("item") ) {
+					Field f  = new Field();	
 					int field = Integer.parseInt(command[3]);
-					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
+					if(controller.getFields().size() - 1 < field ) {
+						System.out.println("No such field!");
+					}else {
+						f = controller.getFields().get(field);
+					}
+					
+					
 					if(command[2].contentEquals("shovel") ) {
 						SpawnItem(f, new Shovel());
 					}else if (command[2].contentEquals("spade") ) {
@@ -136,7 +143,9 @@ public class TestFunctions
 			} else {
 				System.out.println("Invalid command!");
 			}
-		
+		}  catch (Exception e) {
+			System.out.println("Invalid input, maybe not a number when choosing field!");
+		}	
 	}
 	
     public void SpawnEskimo(Field field, Item item)     //Eszkimo lehelyezese adott mezore
