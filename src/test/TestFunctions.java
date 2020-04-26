@@ -29,13 +29,13 @@ public class TestFunctions
         controller = c;
     }
 
-	public void testCommand() { //A Player egy körének a függvénye
-		System.out.println("TEST COMMAND: ");
-		String input;
-		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
+	public void testCommand(String input) { //A Player egy körének a függvénye
+		System.out.println("(TEST)");
+		//String input;
+		//Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		boolean endtest = false;
 		while(!endtest) { 
-			input = scanner.nextLine();
+			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
 			if (command[0].contentEquals("endtest") ) {
 				endtest = true;
