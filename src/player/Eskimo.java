@@ -57,6 +57,9 @@ public class Eskimo extends Player {
 					break;
 				case "neighbors": System.out.println(currentField.getNeighbors().size());
 					break;
+				case "field items": if (currentField.getSnow() == 0) System.out.println(currentField.getItems());
+									else System.out.println("Field is covered with snow!");
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\d+")){
