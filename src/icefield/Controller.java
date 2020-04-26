@@ -311,27 +311,26 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     {
         int numOfTurns = 0;
-        
-        System.out.println("TEST MODE? (You can switch later) (Y/N)");
         String input_test;
 		Scanner scan = new Scanner(System.in);
+        while(players.size() == 0) {
+			System.out.println("No players on map, please put down a player:");
+			input_test = scan.nextLine();
+			test.testCommand(input_test);
+		}
+        System.out.println("TEST MODE? (You can switch later) (Y/N)");
+        
 		input_test = scan.nextLine();
 		input_test = input_test.toUpperCase();
 		if(input_test.contentEquals("Y")) {
 			testMode = true;
-			System.out.println("Type commands and start the game with \"start\"");
-			System.out.println("Please put down at least 1 player");
+			System.out.println("Type test commands and start the game with \"start\"");
 			while(!input_test.contentEquals("start")) {
 				input_test = scan.nextLine();
 				test.testCommand(input_test);
 			}
 			
 		} else if(input_test.contentEquals("N")) {
-			while(players.size() == 0) {
-				System.out.println("No players on map, please put down a player:");
-				input_test = scan.nextLine();
-				test.testCommand(input_test);
-			}
 			System.out.println("Ok, game starts");
 		} else {
 			System.out.println("Invalid command, testmode off");
