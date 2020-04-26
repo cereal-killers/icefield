@@ -32,6 +32,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     public Random getRandom() {return random; }
     public boolean getEnded() {return ended;}
     public boolean getTestMode() {return testMode;}
+    public TestFunctions getTestFunctions() {return test;}
 
     //setterek
     public void setFields(Vector<Field> thing) {fields = thing; }
