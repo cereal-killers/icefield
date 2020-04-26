@@ -39,6 +39,7 @@ public class Player extends Moveable implements java.io.Serializable{
 				if (item != null){
 					this.AddItem(item); //berakja az eszköztárba
 					this.decrementEnergy(); //1munkába került, ezért csökkenti az energiapontjait
+					System.out.println("You picked up a(n) " + item.getName());
 				}
 			}
 			else{
@@ -221,7 +222,7 @@ public class Player extends Moveable implements java.io.Serializable{
 
 	public void ListItems() {
 		for (int i = 0; i < items.size(); i++) {
-			System.out.println((i + 1)+ ": " + items.get(i).getName());
+			System.out.println(items.get(i).getName());
 		}
 		
 	}
