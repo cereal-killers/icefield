@@ -360,7 +360,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 }
                 if(field.getHasTent()) {
                 	field.setHasTent(false);
-
+                	System.out.println("Tent removed from field " + (fields.indexOf(field)+1));
                 }
                    
             }
