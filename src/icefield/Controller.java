@@ -315,24 +315,33 @@ public class Controller implements java.io.Serializable{                        
         int numOfTurns = 0;
         String input_test;
 		Scanner scan = new Scanner(System.in);
-        while(players.size() == 0) {
+		/* Ha olyan palyat toltottunk be amin nincs alapbol szereplo, akkor kotelezoen le kell rakni egyet,
+		 * kulonben nem mukodik a jatek, mert nincs kinek parancsot adni. */
+        while(players.size() == 0) { 
 			System.out.println("No players on map, please put down a player:");
 			input_test = scan.nextLine();
 			test.testCommand(input_test);
 		}
+        /* Miutan mar van jatekos a palyan, donthetunk, hogy teszt modban kezdjuk-e a jatekot. */
         System.out.println("TEST MODE? (You can switch later) (Y/N)");
         
 		input_test = scan.nextLine();
 		input_test = input_test.toUpperCase();
 		if(input_test.contentEquals("Y")) {
 			testMode = true;
+			/* Ha teszt modban kezdunk, van lehetosegunk a jatek kezdete elott barmennyi tesztparancsot kiadni,
+			 * igy barmit letehetunk barhova (eszkozoket, jatekosokat, iglut, satrat), mozgathatjuk a jegesmedvet,
+			 * hoviharokkal beallithatjuk a homennyisegeket az egyes mezokon */
 			System.out.println("Type test commands and start the game with \"start\"");
+			/* A kezdeti tesztparancsok utan "start"-ra indul a jatek */
 			while(!input_test.contentEquals("start")) {
 				input_test = scan.nextLine();
 				test.testCommand(input_test);
 			}
 			
 		} else if(input_test.contentEquals("N")) {
+			/* Ha nem teszt modban inditjuk a jatekot, akkor nincsenek jatek eleji teszt parancsok,
+			 * a jatek azonnal kezdodik. Kesobb barmikor atvalthatunk teszt modba. */
 			System.out.println("Ok, game starts");
 		} else {
 			System.out.println("Invalid command, testmode off");
