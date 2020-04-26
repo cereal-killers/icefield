@@ -20,7 +20,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
-    private PolarBear polarBear = new PolarBear();
+    private PolarBear polarBear = null;
     private boolean ended = false;
     private transient Random random = new Random();
     private boolean testMode = false;
