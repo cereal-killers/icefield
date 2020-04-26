@@ -83,7 +83,7 @@ public class TestFunctions
 						SpawnItem(f, new Shovel());
 					}else if (command[2].contentEquals("spade") ) {
 						SpawnItem(f, new Spade());
-					} else if(command[2]== "food") {
+					} else if(command[2].contentEquals("food")) {
 						SpawnItem(f, new Food());
 					}else if(command[2].contentEquals("divingsuit") ) {
 						SpawnItem(f, new DivingSuit());
