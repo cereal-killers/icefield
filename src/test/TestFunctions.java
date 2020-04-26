@@ -38,9 +38,6 @@ public class TestFunctions
 			String[] command = input.split("\\s+");
 			if(command[0].contentEquals("view") && command[1].contentEquals("map")) {
 				viewMap();
-			}
-			else if (command[0].contentEquals("endtest") ) {
-				//endtest = true;
 			} else if (command[0].contentEquals("spawn")) {
 				if( command[1].contentEquals("eskimo") || command[1].contentEquals("scientist")) {
 					Item item = null;
@@ -80,7 +77,6 @@ public class TestFunctions
 					int field = Integer.parseInt(command[2]) - 1;
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnPolarBear(f);
-					
 				} else if(command[1].contentEquals("item") ) {
 					Field f  = new Field();	
 					int field = Integer.parseInt(command[3]) - 1;
