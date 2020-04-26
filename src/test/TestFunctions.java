@@ -115,7 +115,7 @@ public class TestFunctions
 				}
 				
 			} else if(command[0].contentEquals("polarbear") ) {
-				int dir = Integer.parseInt(command[1]);
+				int dir = Integer.parseInt(command[1]) - 1;
 				if(controller.getPolarBear() != null ) {
 					controller.getPolarBear().Move(dir);
 				}else {
