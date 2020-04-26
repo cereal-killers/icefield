@@ -57,6 +57,10 @@ public class Scientist extends Player{
 				case "field items": if (currentField.getSnow() == 0) System.out.println(currentField.getItems());
 									else System.out.println("Field is covered with snow!");
 					break;
+				case "test on": controller.setTestMode(true);
+					break;
+				case "test off": controller.setTestMode(false);
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\d+")){
@@ -71,6 +75,7 @@ public class Scientist extends Player{
 							}
 							break;
 						}else{
+							System.out.println("Invalid command!");
 							break;
 						}
 			}
