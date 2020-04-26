@@ -21,7 +21,7 @@ public class Player extends Moveable implements java.io.Serializable{
 	public Player(Controller c, Field startField) {
 		this.energy = 4;
 		this.wears_suit = false;
-		this.items = new ArrayList<Item>();
+		this.items = new ArrayList<Item>(5);
 		this.controller = c;
 		this.currentField = startField;
 		currentField.Accept(this);
@@ -127,9 +127,8 @@ public class Player extends Moveable implements java.io.Serializable{
 	//hozzáadja a paraméterben átadott Item-et az inventory tömbbe (eszköztár)
 	public void AddItem(Item item){
 		try {
-			if (items.size() < 5)
-				items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  
-				//kivételt dob, ha nincs elég hely
+			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  
+			//kivételt dob, ha nincs elég hely
 			if (item.getName() == "divingsuit"){
 				item.Use(this);
 			}
