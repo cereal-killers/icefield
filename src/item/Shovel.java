@@ -15,8 +15,6 @@ public class Shovel extends Item implements java.io.Serializable {
 	@Override
 	public void Use(Player player) {
 		
-		System.out.println("Use(Player player)");
-		
 		Field field = player.getCurrentField(); /* Ezen a mezőn fogunk havat takarítani, ezt a player-től kérdezzük le. */
 		int snowCount = field.getSnow();
 		if(snowCount > 1) {                 /* Ha több, mint egy egység hó van a mezőn, */
