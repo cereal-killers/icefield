@@ -411,7 +411,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
   		  	for(Player p : players)
   		  		p.setController(this);
   		  	this.polarBear = copy.getPolarBear();
-  		  	this.polarBear.setController(this);
+  		  	if (polarBear != null)
+  		  		this.polarBear.setController(this);
   		  	decoder.close();
   		  	fis.close();
   		} catch (Exception e) {
