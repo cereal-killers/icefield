@@ -127,10 +127,12 @@ public class Player extends Moveable implements java.io.Serializable{
 	//hozzáadja a paraméterben átadott Item-et az inventory tömbbe (eszköztár)
 	public void AddItem(Item item){
 		try {
-			items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  
-			//kivételt dob, ha nincs elég hely
-			if (item.getName() == "divingsuit"){
-				item.Use(this);
+			if (item != null){
+				items.add(item); //az ArrayList add függvényével belerakja az inventory-ba az item-et					  
+				//kivételt dob, ha nincs elég hely
+				if (item.getName() == "divingsuit"){
+					item.Use(this);
+				}
 			}
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
 			System.out.println("Player's inventory is full");
