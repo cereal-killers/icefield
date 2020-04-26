@@ -209,9 +209,6 @@
                                 <void property="items">
                                  <object class="java.util.ArrayList"/>
                                 </void>
-                                <void property="maxHealth">
-                                 <int>4</int>
-                                </void>
                                 <void property="name">
                                  <string>Scientist</string>
                                 </void>
@@ -247,9 +244,6 @@
                              </void>
                              <void property="items">
                               <object class="java.util.ArrayList"/>
-                             </void>
-                             <void property="maxHealth">
-                              <int>4</int>
                              </void>
                              <void property="name">
                               <string>Scientist</string>
@@ -292,9 +286,6 @@
                        </void>
                        <void property="items">
                         <object class="java.util.ArrayList"/>
-                       </void>
-                       <void property="maxHealth">
-                        <int>5</int>
                        </void>
                        <void property="name">
                         <string>Eskimo</string>
@@ -348,7 +339,7 @@
          </void>
         </void>
         <void property="polarBear">
-         <object class="player.PolarBear">
+         <object class="player.PolarBear" id="PolarBear0">
           <void property="controller">
            <object idref="Controller0"/>
           </void>
@@ -421,6 +412,9 @@
    <void method="add">
     <object idref="Scientist1"/>
    </void>
+  </void>
+  <void property="polarBear">
+   <object idref="PolarBear0"/>
   </void>
  </object>
 </java>
