@@ -248,9 +248,20 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         players.add(scientist1);
         players.add(scientist2);
         System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");*/
-
-
-    	String filename = "nagypalya";
+    	Scanner scan = new Scanner(System.in);
+    	boolean felt = true;
+    	String filename = "";
+    	while(felt)
+    	{
+	    	System.out.println("Please enter the map's filename. (tesztpalya/focilabda/nagypalya)");
+	    	try {
+	    		filename = scan.nextLine();
+	    	if (filename.contentEquals("tesztpalya")||filename.contentEquals("focilabda")||filename.contentEquals("nagypalya"))
+	    		felt = false;
+	    	}
+	    	catch(Exception ex)
+	    	{}
+    	}
     	ReadController(filename);// beolvassuk az xml filebol a mappat
         System.out.println(filename+" beolvasva.");
         return GameLoop();

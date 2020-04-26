@@ -8,7 +8,6 @@ import field.Field;
 public class Options {
 	
 	private String playerName;
-	private int playerNum;
 	private boolean music;
 
 	public Options()
@@ -16,19 +15,16 @@ public class Options {
 		// default értékek
 		playerName = "Player";
 		music = true;
-		playerNum = 3;
 	}
 
 	//Függvény a menüben található opciók kiírására
 	public void ShowOptionItems() {
 		System.out.println("1. Player name");		
-		System.out.println("2. Number of players");
-		System.out.println("3. Music");
+		System.out.println("2. Music");
 		System.out.println();
 		System.out.println("Current state:");
 		System.out.println();
 		System.out.println("Player name = "+ GetPlayerName());
-		System.out.println("Number of players = "+ GetPlayerNumber());
 		System.out.print("Music = ");
 		if(GetMusic())
 			System.out.println("on");
@@ -42,9 +38,6 @@ public class Options {
 		{
 		case playername:
 			PlayerNameOption();
-			break;
-		case playernumber:
-			PlayerNumberOption();
 			break;
 		case music:
 			MusicOption();
@@ -73,33 +66,6 @@ public class Options {
 		System.out.println("GetPlayerName() called.");		
 		return playerName;
 	}
-	
-
-	// Játékosok számának beállítására szolgáló függvények
-	public void PlayerNumberOption()
-	{
-		Scanner in = new Scanner(System.in); 
-		System.out.println("Set the number of players to a value between 3 and 8.");	
-		int value = in.nextInt();
-		if(value>8 ||value<3)
-			System.out.println("Invalid input.");
-		else
-		{
-			SetPlayerNumber(value);
-			System.out.println("PlayerNumber set to "+ GetPlayerNumber());	
-		}
-	}
-	public void SetPlayerNumber(int newvalue)  
-	{
-		if(newvalue<3 || newvalue >8)
-			System.out.println("The number of players must be between 3 and 8.");
-		playerNum = newvalue;
-	}
-	public int GetPlayerNumber()
-	{
-		return playerNum;
-	}
-	
 	
 	// Játék zenéjének beállítására szolgáló függvények
 	public void MusicOption()
