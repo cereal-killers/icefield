@@ -112,7 +112,7 @@ public class Menu {
 	{
 	  	FileOutputStream fos;
 		try {
-			fos = new FileOutputStream(System.getProperty("user.dir")+"/highscores.xml");
+			fos = new FileOutputStream(System.getProperty("user.dir")+"\\src\\highscores.xml");
 		 	XMLEncoder encoder = new XMLEncoder(fos);
 		  	encoder.writeObject(highscores);
 		  	encoder.close();
@@ -125,10 +125,13 @@ public class Menu {
 	//Függvény a toplista beolvasására
 	public void ReadHighscores()
 	{
-	  	if (new File(System.getProperty("user.dir")+"/highscores.xml").exists()==false) // ha nem létezik még a fájl
+	  	if (new File(System.getProperty("user.dir")+"\\src\\highscores.xml").exists()==false) // ha nem létezik még a fájl
+	  	{
+	  		System.out.println(System.getProperty("user.dir")+"\\src\\highscores.xml file does not exists.");
 	  		return;
+	  	}
 		try {
-			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/highscores.xml");
+			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\highscores.xml");
 		  	XMLDecoder decoder = new XMLDecoder(fis);
 		  	highscores = (Vector<ScoreData>) decoder.readObject();
 		  	decoder.close();

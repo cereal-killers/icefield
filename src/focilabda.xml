@@ -16,7 +16,7 @@
       <void method="add">
        <object class="field.Field" id="Field1">
         <void property="maxWeight">
-         <int>5</int>
+         <int>10</int>
         </void>
         <void property="neighbors">
          <void method="add">
@@ -39,7 +39,7 @@
                </void>
               </void>
               <void property="maxWeight">
-               <int>5</int>
+               <int>10</int>
               </void>
               <void property="neighbors">
                <void method="add">
@@ -75,7 +75,7 @@
                         <void method="add">
                          <object class="field.Field" id="Field7">
                           <void property="maxWeight">
-                           <int>5</int>
+                           <int>10</int>
                           </void>
                           <void property="neighbors">
                            <void method="add">
@@ -95,7 +95,7 @@
                                     </void>
                                    </void>
                                    <void property="maxWeight">
-                                    <int>5</int>
+                                    <int>10</int>
                                    </void>
                                    <void property="neighbors">
                                     <void method="add">
@@ -112,7 +112,7 @@
                                        </void>
                                       </void>
                                       <void property="maxWeight">
-                                       <int>5</int>
+                                       <int>10</int>
                                       </void>
                                       <void property="neighbors">
                                        <void method="add">

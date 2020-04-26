@@ -10,7 +10,7 @@
       </void>
      </void>
      <void property="maxWeight">
-      <int>6</int>
+      <int>10</int>
      </void>
      <void property="neighbors">
       <void method="add">
@@ -45,7 +45,7 @@
                   </void>
                  </void>
                  <void property="maxWeight">
-                  <int>6</int>
+                  <int>10</int>
                  </void>
                  <void property="neighbors">
                   <void method="add">
@@ -62,7 +62,7 @@
                      </void>
                     </void>
                     <void property="maxWeight">
-                     <int>6</int>
+                     <int>10</int>
                     </void>
                     <void property="neighbors">
                      <void method="add">
@@ -80,7 +80,7 @@
                   <void method="add">
                    <object class="field.Field" id="Field6">
                     <void property="maxWeight">
-                     <int>6</int>
+                     <int>10</int>
                     </void>
                     <void property="neighbors">
                      <void method="add">
@@ -100,13 +100,13 @@
                         <void method="add">
                          <object class="field.Field" id="Field8">
                           <void property="maxWeight">
-                           <int>6</int>
+                           <int>10</int>
                           </void>
                           <void property="neighbors">
                            <void method="add">
                             <object class="field.Field" id="Field9">
                              <void property="maxWeight">
-                              <int>6</int>
+                              <int>10</int>
                              </void>
                              <void property="neighbors">
                               <void method="add">
@@ -117,7 +117,7 @@
                                  </void>
                                 </void>
                                 <void property="maxWeight">
-                                 <int>6</int>
+                                 <int>10</int>
                                 </void>
                                 <void property="neighbors">
                                  <void method="add">
@@ -128,7 +128,7 @@
                                     </void>
                                    </void>
                                    <void property="maxWeight">
-                                    <int>6</int>
+                                    <int>10</int>
                                    </void>
                                    <void property="neighbors">
                                     <void method="add">
@@ -137,7 +137,7 @@
                                     <void method="add">
                                      <object class="field.Field" id="Field12">
                                       <void property="maxWeight">
-                                       <int>6</int>
+                                       <int>10</int>
                                       </void>
                                       <void property="neighbors">
                                        <void method="add">
@@ -226,7 +226,7 @@
                                           <void method="add">
                                            <object class="field.Field" id="Field16">
                                             <void property="maxWeight">
-                                             <int>6</int>
+                                             <int>10</int>
                                             </void>
                                             <void property="neighbors">
                                              <void method="add">
@@ -255,7 +255,7 @@
                                                 <void method="add">
                                                  <object class="field.Field" id="Field18">
                                                   <void property="maxWeight">
-                                                   <int>6</int>
+                                                   <int>10</int>
                                                   </void>
                                                   <void property="neighbors">
                                                    <void method="add">
@@ -267,7 +267,7 @@
                                                    <void method="add">
                                                     <object class="field.Field" id="Field19">
                                                      <void property="maxWeight">
-                                                      <int>6</int>
+                                                      <int>10</int>
                                                      </void>
                                                      <void property="neighbors">
                                                       <void method="add">
@@ -279,7 +279,7 @@
                                                          <void method="add">
                                                           <object class="field.Field" id="Field21">
                                                            <void property="maxWeight">
-                                                            <int>6</int>
+                                                            <int>10</int>
                                                            </void>
                                                            <void property="neighbors">
                                                             <void method="add">
@@ -311,7 +311,7 @@
                                                             </void>
                                                            </void>
                                                            <void property="maxWeight">
-                                                            <int>6</int>
+                                                            <int>10</int>
                                                            </void>
                                                            <void property="neighbors">
                                                             <void method="add">
