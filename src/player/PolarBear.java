@@ -18,7 +18,7 @@ public class PolarBear extends Moveable implements java.io.Serializable
 	}
 
 	public void Move(int dir) {
-		currentField.Pass(dir, this);		
+		currentField.Pass(dir, this);	
 		if (currentField.getPlayers().size() != 0){
 			System.out.println("You became polarbear's dinner!");
 			controller.Finish();

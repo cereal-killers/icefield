@@ -48,13 +48,11 @@ public class Scientist extends Player{
 					break;
 				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
 					break;
-				case "view map": controller.viewMap();
-					break;
 				case "menu": controller.Finish(); endturn = true;
 					break;
 				case "neighbors": System.out.println(currentField.getNeighbors().size());
 					break;
-				case "field items": if (currentField.getSnow() == 0) System.out.println(currentField.getItems());
+				case "field items": if (currentField.getSnow() == 0) System.out.println(currentField.GetItem());
 									else System.out.println("Field is covered with snow!");
 					break;
 				case "test on": controller.setTestMode(true);
