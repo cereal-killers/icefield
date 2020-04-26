@@ -77,7 +77,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
-    	if(!testMode) {
+    
     		for (int i=1;i<(fields.size())/3;i++)
             {
                 //mezo kivalasztasa
@@ -92,9 +92,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                         player.decrementHealth();
                 }
             }
-    	} else {
-    		test.testCommand();
-    	}
+    	
         
     }
 
@@ -356,7 +354,10 @@ public class Controller implements EndOfGame, java.io.Serializable{             
                 }
                    
             }
-            SnowStorm();
+            if(!testMode) {
+            	SnowStorm();
+            }
+            
         }
         return -1;
     }
