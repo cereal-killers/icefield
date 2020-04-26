@@ -65,7 +65,8 @@ public class TestFunctions
 							item = new Gun();
 						}
 					}
-					int field = Integer.parseInt(command[2]);
+					int field = Integer.parseInt(command[2]) - 1;
+					
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					if(command[1].contentEquals("eskimo") ) {
 						SpawnEskimo(f,item);
@@ -74,13 +75,13 @@ public class TestFunctions
 					}
 					
 				} else if(command[1].contentEquals("polarbear") ) {
-					int field = Integer.parseInt(command[2]);
+					int field = Integer.parseInt(command[2]) - 1;
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnPolarBear(f);
 					
 				} else if(command[1].contentEquals("item") ) {
 					Field f  = new Field();	
-					int field = Integer.parseInt(command[3]);
+					int field = Integer.parseInt(command[3]) - 1;
 					if(controller.getFields().size() - 1 < field ) {
 						System.out.println("No such field!");
 					}else {
@@ -123,11 +124,11 @@ public class TestFunctions
 				
 			} else if(command[0].contentEquals("set")){
 				if(command[1].contentEquals("igloo") ) {
-					int field = Integer.parseInt(command[2]);
+					int field = Integer.parseInt(command[2]) - 1;
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SetIgloo(f);
 				} else if(command[1].contentEquals("tent") ) {
-					int field = Integer.parseInt(command[2]);
+					int field = Integer.parseInt(command[2]) - 1;
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SetTent(f);
 				} else {
@@ -137,7 +138,7 @@ public class TestFunctions
 			} else if(command[0].contentEquals("snowstorm") ) {
 				int howmany = command.length - 1;
 				for(int i = 0; i < howmany ; ++i) {
-					int field = Integer.parseInt(command[i+1]);
+					int field = Integer.parseInt(command[i+1]) - 1;
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
 					SpawnSnowStorm(f);
 				}
