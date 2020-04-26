@@ -70,6 +70,7 @@ public class Eskimo extends Player {
 							String[] temp = input.split(" ");
 							Move(Integer.parseInt(temp[1]) - 1); break;
 						}else{
+							System.out.println("Invalid command!");
 							break;
 						}
 			}

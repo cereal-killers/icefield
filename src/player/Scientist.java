@@ -75,6 +75,7 @@ public class Scientist extends Player{
 							}
 							break;
 						}else{
+							System.out.println("Invalid command!");
 							break;
 						}
 			}
