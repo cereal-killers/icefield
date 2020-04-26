@@ -139,7 +139,12 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 
 	public void RemoveSnow() { //eltávolít egy egység havat a currentFieldről
-		currentField.DecrementSnow();
+		if (energy > 0){
+			if (currentField.DecrementSnow())
+				decrementEnergy();
+		}else{
+			System.out.println("Not enough energy!");
+		}
 	}
 	
 	public void Turn(){

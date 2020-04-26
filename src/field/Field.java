@@ -238,14 +238,16 @@ public class Field implements java.io.Serializable {
 	}
 	
 	//A mezon levo hoegysegek erteket 1-el csokkenti
-	public void DecrementSnow()
+	public boolean DecrementSnow()
 	{
 		if (snow != 0){
 			snow--;
 			System.out.println("1 snow removed!");
+			return true;
 		}
 		else
 			System.out.println("Field already clear!");
+		return false;
 	}
 	
 	//A mezon levo hoegysegek erteket 1-el noveli
