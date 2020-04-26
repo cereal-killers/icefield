@@ -57,7 +57,8 @@ public class Field implements java.io.Serializable {
 	
 	public void setHasTent(boolean value)
 	{
-		hasTent = value;
+		if(!hasIgloo)
+			hasTent = value;
 	}
 	
 	public boolean getHasTent()
@@ -67,7 +68,7 @@ public class Field implements java.io.Serializable {
 
 	public void setHasIgloo(boolean value)
 	{
-		if (maxWeight == Integer.MAX_VALUE)
+		if (maxWeight == Integer.MAX_VALUE && !hasTent)
 			hasIgloo = value;
 		else
 			System.out.println("Field is not stable");
