@@ -16,139 +16,40 @@ import player.Player;
 import player.PolarBear;
 import test.TestFunctions;
 
-/** 
- * A játékvezérlőnek az implementálása
- */
-public class Controller implements java.io.Serializable{
+public class Controller implements java.io.Serializable{                          //Kontroller osztaly inicializalasa
 
-    /** 
-    * A pályán levő Field-ek tárolója
-    */
-    private Vector<Field> fields = new Vector<>();
-    /** 
-    * A pályán levő Playerek-ek tárolója
-    */
+    private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
-    /** 
-    * A jegesmedve
-    */
     private PolarBear polarBear = null;
-    /** 
-    * A játék végét jelző változó
-    */
     private boolean ended = false;
-
     private transient Random random = new Random();
-    /** 
-    * Teszt módot jelző változó
-    */
     private boolean testMode = false;
-    /** 
-    * Objektum, ami tartalmazza teszt funkciókat.
-    */
     private TestFunctions test = new TestFunctions(this);
 
-    
-    /** 
-     * fields gettere
-     * @param value
-     * @return Vector<Field>
-     */
     //getterek
     public Vector<Field> getFields() { return fields;}
-    
-    /** 
-     * players gettere
-     * @param value
-     * @return Vector<Player>
-     */
     public Vector<Player> getPlayers() {return players; }
-    
-    /** 
-     * polarBear getter
-     * @param value
-     * @return PolarBear
-     */
     public PolarBear getPolarBear() {return polarBear;}
-    
-    /** 
-     * random gettere
-     * @param value
-     * @return Random
-     */
     public Random getRandom() {return random; }
-    
-    /** 
-     * ended getter
-     * @param value
-     * @return boolean
-     */
     public boolean getEnded() {return ended;}
-    
-    /** 
-     * testMode getter
-     * @param value
-     * @return boolean
-     */
     public boolean getTestMode() {return testMode;}
-    
-    /** 
-     * TestFunctions gettere
-     * @param value
-     * @return TestFunctions
-     */
     public TestFunctions getTestFunctions() {return test;}
 
-    
-    /** 
-     * fields settere
-     * @param value
-     */
     //setterek
     public void setFields(Vector<Field> thing) {fields = thing; }
-    
-    /** 
-     * players settere
-     * @param value
-     */
     public void setPlayers(Vector<Player> thing) { players = thing; }
-    
-    /** 
-     * polarBear settere
-     * @param value
-     */
     public void setPolarBear(PolarBear thing) { polarBear = thing;}
-    
-    /**
-     * random settere 
-     * @param value
-     */
     public void setRandom(Random thing) { random = thing; }
-    
-    /** 
-     * ended settere
-     * @param value
-     */
     public void setEnded(boolean thing) { ended = thing; }
-    
-    /** 
-     * testMode settere
-     * @param value
-     */
     public void setTestMode(boolean value) {
     	testMode = value;
     	System.out.println("Testmode: " + testMode);
     }
 
-    /** 
-     * Üres konstruktor serializáláshoz
-     */
     public Controller(){}
 
-    /** 
-     * A játékban szereplő hóviharokat lebonyolító függvény
-     */
-    private void SnowStorm()                                            
+    
+    private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {
     		System.out.print("Snowstorm on fields: ");
     		for (int i=1;i<(fields.size())/5;i++)
@@ -171,17 +72,188 @@ public class Controller implements java.io.Serializable{
         
     }
 
-    
-    /** 
-     * Játékot indító függvény
-     * @return int
-     */
     public int Start()
     { 
-    	Scanner scan = new Scanner(System.in); 
+
+        /*//Itemek letrehozasa
+        Charge charge= new Charge();
+        DivingSuit divingSuit = new DivingSuit();
+        Flare flare = new Flare();
+        Food food = new Food();
+        Food food2 = new Food();
+        Gun gun= new Gun();
+        Rope rope = new Rope();
+        Shovel shovel = new Shovel();
+        Spade spade = new Spade();
+        Tent tent = new Tent();
+        System.out.println("itemek letrehozva");
+
+        //raketa letrehozasa1
+        Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
+        System.out.println("raketa letrehozva");
+
+        //Map letrehozasa
+        Field field1 = new Field(10, 1, rope);
+        Field field2 = new Field(0, 1, null);
+        Field field3 = new Field(2, 1, null);
+        Field field4 = new Field(10, 1, charge);
+        Field field5 = new Field(10, 0, null);
+        Field field6 = new Field(3, 2, null);
+        Field field7 = new Field(10, 1, divingSuit);
+        Field field8 = new Field(10, 1, shovel);
+        Field field9 = new Field(10, 1, tent);
+        Field field10 = new Field(10, 1, null);
+        Field field11 = new Field(3, 1, spade);
+        Field field12 = new Field(10, 0, null);
+        Field field13 = new Field(2, 3, gun);
+        Field field14 = new Field(10, 3, null);
+        Field field15 = new Field(10, 2, null);
+        Field field16 = new Field(0, 1, null);
+        Field field17 = new Field(10, 0, null);
+        Field field18 = new Field(2, 3, food);
+        Field field19 = new Field(10, 1, null);
+        Field field20 = new Field(10, 3, flare);
+        Field field21 = new Field(10, 2, null);
+        Field field22 = new Field(0, 1, null);
+        Field field23 = new Field(0, 1, null);
+
+
+
+        //szomszedok beallitasa
+        field1.AddNeighbor(field2);
+        field1.AddNeighbor(field5);
+        field1.AddNeighbor(field8);
+        field2.AddNeighbor(field1);
+        field2.AddNeighbor(field6);
+        field2.AddNeighbor(field5);
+        field2.AddNeighbor(field3);
+        field3.AddNeighbor(field2);
+        field3.AddNeighbor(field7);
+        field3.AddNeighbor(field6);
+        field3.AddNeighbor(field4);
+        field4.AddNeighbor(field3);
+        field4.AddNeighbor(field7);
+        field5.AddNeighbor(field1);
+        field5.AddNeighbor(field2);
+        field5.AddNeighbor(field6);
+        field5.AddNeighbor(field10);
+        field5.AddNeighbor(field9);
+        field5.AddNeighbor(field8);
+        field6.AddNeighbor(field2);
+        field6.AddNeighbor(field3);
+        field6.AddNeighbor(field7);
+        field6.AddNeighbor(field10);
+        field6.AddNeighbor(field5);
+        field7.AddNeighbor(field6);
+        field7.AddNeighbor(field3);
+        field7.AddNeighbor(field4);
+        field7.AddNeighbor(field12);
+        field7.AddNeighbor(field11);
+        field8.AddNeighbor(field1);
+        field8.AddNeighbor(field5);
+        field8.AddNeighbor(field9);
+        field8.AddNeighbor(field23);
+        field9.AddNeighbor(field8);
+        field9.AddNeighbor(field5);
+        field9.AddNeighbor(field10);
+        field9.AddNeighbor(field23);
+        field10.AddNeighbor(field9);
+        field10.AddNeighbor(field5);
+        field10.AddNeighbor(field6);
+        field10.AddNeighbor(field14);
+        field10.AddNeighbor(field18);
+        field10.AddNeighbor(field17);
+        field11.AddNeighbor(field7);
+        field11.AddNeighbor(field14);
+        field11.AddNeighbor(field12);
+        field12.AddNeighbor(field11);
+        field12.AddNeighbor(field7);
+        field12.AddNeighbor(field15);
+        field13.AddNeighbor(field8);
+        field13.AddNeighbor(field16);
+        field14.AddNeighbor(field10);
+        field14.AddNeighbor(field11);
+        field14.AddNeighbor(field18);
+        field14.AddNeighbor(field19);
+        field15.AddNeighbor(field19);
+        field15.AddNeighbor(field22);
+        field15.AddNeighbor(field20);
+        field15.AddNeighbor(field12);
+        field16.AddNeighbor(field13);
+        field16.AddNeighbor(field23);
+        field16.AddNeighbor(field17);
+        field17.AddNeighbor(field16);
+        field17.AddNeighbor(field18);
+        field17.AddNeighbor(field10);
+        field18.AddNeighbor(field17);
+        field18.AddNeighbor(field10);
+        field18.AddNeighbor(field14);
+        field18.AddNeighbor(field19);
+        field18.AddNeighbor(field21);
+        field19.AddNeighbor(field18);
+        field19.AddNeighbor(field14);
+        field19.AddNeighbor(field15);
+        field19.AddNeighbor(field22);
+        field19.AddNeighbor(field21);
+        field20.AddNeighbor(field15);
+        field20.AddNeighbor(field22);
+        field21.AddNeighbor(field18);
+        field21.AddNeighbor(field19);
+        field21.AddNeighbor(field22);
+        field22.AddNeighbor(field21);
+        field22.AddNeighbor(field19);
+        field22.AddNeighbor(field15);
+        field22.AddNeighbor(field20);
+        field23.AddNeighbor(field9);
+        field23.AddNeighbor(field16);
+        System.out.println("Szomszedok beallitva");
+
+
+
+
+        //fieldek maphoz valo hozzaadasa
+        fields.add(field1);
+        fields.add(field2);
+        fields.add(field3);
+        fields.add(field4);
+        fields.add(field5);
+        fields.add(field6);
+        fields.add(field7);
+        fields.add(field8);
+        fields.add(field9);
+        fields.add(field10);
+        fields.add(field11);
+        fields.add(field12);
+        fields.add(field13);
+        fields.add(field14);
+        fields.add(field15);
+        fields.add(field16);
+        fields.add(field17);
+        fields.add(field18);
+        fields.add(field19);
+        fields.add(field20);
+        fields.add(field21);
+        fields.add(field22);
+        fields.add(field23);
+        System.out.println("map letrehozva");
+
+
+
+        //Jatekosok letrehozasa
+        Eskimo eskimo1 = new Eskimo(this, field6);            //a kontroller atadja magat a playereknek parameterkent hogy tudjanak finisht hivni
+        Eskimo eskimo2 = new Eskimo(this, field17);
+        Scientist scientist1 = new Scientist(this, field5);
+        Scientist scientist2 = new Scientist(this, field19);
+        polarBear = new PolarBear(field12, this);
+        players.add(eskimo1);
+        players.add(eskimo2);
+        players.add(scientist1);
+        players.add(scientist2);
+        System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");*/
+    	Scanner scan = new Scanner(System.in);
     	boolean felt = true;
     	String filename = "";
-    	while(felt) //ki lehet választani a milyen pályán szeretnénk játszani
+    	while(felt)
     	{
 	    	System.out.println("Please enter the map's filename. (tesztpalya/focilabda/nagypalya)");
 	    	try {
@@ -198,11 +270,6 @@ public class Controller implements java.io.Serializable{
     }
 
 
-    
-    /** 
-     * Visszatér, hogy a játékosok egy mezőn vannak-e
-     * @return boolean
-     */
     private boolean ArePlayersTogether()        //Azt vizsgalja egy mezon vannak-e a jatekosok
     {
         Field previous = players.get(0).getCurrentField();    //az elozo vizsgalt jatekos fieldje
@@ -213,11 +280,6 @@ public class Controller implements java.io.Serializable{
         }
         return true;
     }
-    
-    /** 
-     * Visszatér, ha a rakétaalkatrészek egy mezőn vannak
-     * @return boolean
-     */
     private boolean ArePartsTogether()
     {
         int partsOnField = 0;
@@ -232,14 +294,8 @@ public class Controller implements java.io.Serializable{
         return false;
     }
 
-    
-    /** 
-     * Megpróbálja elsütni a rakétát
-     * @return boolean
-     */
     private boolean TryFire()
     {
-        //A játékosok és a rakétaalkatrészek mind egy mezőn vannak
         if(ArePartsTogether() && ArePlayersTogether()) {
             System.out.println("You Won!");
             ended = true;
@@ -248,21 +304,13 @@ public class Controller implements java.io.Serializable{
         return false;
     }
 
-    /** 
-     * Befejezi a játékmenet futását és a csapat vesztett
-     */
     public void Finish()
     {
         System.out.println("You Lose!");
         ended =true;
     }
 
-    
-    /** 
-     * A játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
-     * @return int visszatér a végzett játékmenet körök számával
-     */
-    private int GameLoop() 
+    private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     {
         int numOfTurns = 0;
         String input_test;
@@ -290,41 +338,38 @@ public class Controller implements java.io.Serializable{
 			System.out.println("Invalid command, testmode off");
 		}
 		
-        
+        int i;
         while (!ended) {
-            for (int i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
+            for (i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
-                System.out.println("Player type: " + players.get(i).getName()); //kiírjuk a játékos típusát
-                System.out.println("health: " + players.get(i).getHealth()); //és a health-jét
-                players.get(i).Turn(); //elindítjuk a játékos körét
+                System.out.println("Player type: " + players.get(i).getName());
+                System.out.println("health: " + players.get(i).getHealth());
+                players.get(i).Turn(); 
                 
                 numOfTurns++;
-                if(TryFire()) return numOfTurns; //megpróbáljuk elsütni a rakétát, 
-                //ha sikerül visszatérünk a körök számával
-
+                if(TryFire()) return numOfTurns;
 
                 if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
                     i = 0;
             }
-            //végignézzük a mezőket, hogy van-e közöttük, ami fel van fordulva
             for (Field field : fields) {
-                if (field.getIsUpsideDown()) { //ha felfordult, akkor megnézzük, hogy minden játékoson van-e búvárruha
+                if (field.getIsUpsideDown()) {
                     ArrayList<Player> playersFell = field.getPlayers(); 
                 	for(int j = 0; j < playersFell.size() && !ended; ++j) {
-                		if(!playersFell.get(j).getWears_suit()) { //ha nincs, akkor játék vége
+                		if(!playersFell.get(j).getWears_suit()) {
                 			Finish();
                 		}
                 	}
                 }
-                if(field.getHasTent()) { //ha van egy mezőn sátor, akkor levesszük onnan
+                if(field.getHasTent()) {
                 	field.setHasTent(false);
                 	System.out.println("Tent removed from field " + (fields.indexOf(field)+1));
                 }
                    
             }
-            if(!testMode) { //ha nem vagyunk testMode-ban, akkor hívodík a SnowStorm 
+            if(!testMode) {
             	SnowStorm();
-            	if(polarBear != null) { //és ha van jegesmedve, akkor mozgatjuk véletlenszerű irányba
+            	if(polarBear != null) {
                 	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
                 	int bearDir = random.nextInt(maxBearDir);
                 	polarBear.Move(bearDir);
@@ -335,11 +380,8 @@ public class Controller implements java.io.Serializable{
         }
         return -1;
     }
-    
-    /** 
-     * Függvény a controller kiírására
-     * @param palya megadjuk az xml fajl nevet (.xml nelkul)
-     */
+    //Függvény a controller kiírására
+    // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
   	public void WriteController(String palya)
   	{
   	  	FileOutputStream fos;
@@ -354,11 +396,8 @@ public class Controller implements java.io.Serializable{
   		}
 
   	}
-  	
-      /** 
-       * Függvény a controller beolvasására
-       * @param palya stringben megadjuk az xml fajl nevet (.xml nelkul)
-       */
+  	//Függvény a controller beolvasására
+    // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
   	public void ReadController(String palya )
   	{
   	  	if (new File(System.getProperty("user.dir")+"\\src\\"+palya+".xml").exists()==false) // ha nem létezik még a fájl

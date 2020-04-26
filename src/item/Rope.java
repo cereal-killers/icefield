@@ -6,9 +6,15 @@ import field.Field;
 import player.Moveable;
 import player.Player;
 
-/* Kötél osztály. Ennek használatával a szereplő megmentheti a mellette lévő vízbe esett társát.*/
+/** 
+ * Kotel megvalositasa. Ennek hasznalataval a szereplo megmentheti a mellette levo vizbe esett tarsat.
+ */
 public class Rope extends Item implements java.io.Serializable{
 
+	/** 
+	 * A kotel hasznalatanak megvalositasa. Hasznalatkor a szereplo megment minden vizbe esett szereplot akik a hasznaloval szomszedosan helyezkednek el. Ekkor a megmentettek atkerulnek a megmento mezojere.
+	 * @param player A szereplo, aki hasznalja
+	 */
 	@Override
 	public void Use(Player player) {
 		
@@ -39,6 +45,10 @@ public class Rope extends Item implements java.io.Serializable{
 		System.out.println("energy level: " + player.getEnergy());
 	}
 	
+	/** 
+	 * A kotel nevevel ter vissza(rope), azonositashoz kell
+	 * @return rope (string)
+	 */
 	@Override
 	public String getName() {
 		return "rope";

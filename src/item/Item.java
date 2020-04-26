@@ -2,11 +2,20 @@ package item;
 
 import player.Player;
 
-/* Eszköz osztály, ami egy játékbeli eszközt (pl. ásó, kötél, étel) reprezentál, ezeknek absztrakt ősosztálya. */
+/** 
+ * Eszkoz osztaly, ami egy jatekbeli eszkozt (pl. aso, kotel, etel) reprezental, ezeknek absztrakt ososztalya.
+ */
 public abstract class Item implements java.io.Serializable {
 	
-	/* A leszármazottak fogják implementálni, hogy náluk a használat hogyan nyilvánul meg. */
+	/** 
+	 * Az eszkoz hasznalatanak megvalositasat implementalo fuggvenyek ezt a fuggvenyt definialjak felul.
+	 * @param player A szereplo, aki hasznalja
+	 */
 	public abstract void Use(Player player);
 	
+	/** 
+	 * Az item nevevel ter vissza, azonositashoz kell
+	 * @return megvalositas fuggo (string)
+	 */
 	public abstract String getName();
 }

@@ -29,10 +29,12 @@ public class TestFunctions
         controller = c;
     }
 
+    /** 
+	 * Feldolgozza a tesztparancsot, es a megfelelo fuggvenyt hivja. Lekezeli az ervenytelen parancsot is.
+	 * @param input A feldolgozando parancs, jellemzoen par szavas sztring
+	 */
 	public void testCommand(String input) { //A Player egy körének a függvénye
 		System.out.println("(TEST)");
-		//String input;
-		//Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		try {
 			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
@@ -156,6 +158,11 @@ public class TestFunctions
 		}	
 	}
 	
+	/** 
+	 * Az adott mezore letesz egy eszkimot es az eszkoztaraba beletesz egy adott eszkozt
+	 * @param field A mezo amire letesszuk az eszkimot
+	 * @param item Az eszkoz, amit az eszkimonak adunk. Ha semmit nem adunk neki, lehet null.
+	 */
     public void SpawnEskimo(Field field, Item item)     //Eszkimo lehelyezese adott mezore
     {
         Eskimo eskimo = new Eskimo(controller, field);
@@ -164,6 +171,11 @@ public class TestFunctions
         System.out.println("Eskimo spawned");
     }
 
+    /** 
+	 * Az adott mezore letesz egy kutatot es az eszkoztaraba beletesz egy adott eszkozt
+	 * @param field A mezo amire letesszuk a kutatot
+	 * @param item Az eszkoz, amit a kutatonak adunk. Ha semmit nem adunk neki, lehet null.
+	 */
     public void SpawnScientist(Field field, Item item)  //Kutato lehelyezese adott mezore
     {
         Scientist scientist = new Scientist(controller, field);
@@ -172,6 +184,10 @@ public class TestFunctions
         System.out.println("Scientist spawned");
     }
 
+    /** 
+	 * Az adott mezore letesz egy jegesmedvet. Ha mar van a palyan jegesmedve, akkor nem tudunk megegyet lerakni.
+	 * @param field A mezo amire letesszuk a jegesmedvet
+	 */
     public void SpawnPolarBear(Field field)             //Jegesmaci lehelyezese adott mezore
     {
     	if(controller.getPolarBear() != null) {
@@ -182,24 +198,41 @@ public class TestFunctions
     	}
     }
 
+    /** 
+   	 * Az adott mezore felallit egy satrat, amennyiben ott nincs mar sator vagy iglu
+   	 * @param field A mezo amire felallitjuk a satrat. Ez lehet instabil mezo is.
+   	 */
     public void SetTent(Field field)                  //Sator lehelyezese adott mezore
     {
         field.setHasTent(true);
         System.out.println("Tent set");
     }
 
+    /** 
+   	 * Az adott mezore felepit egy iglut, amennyiben ott nincs mar sator vagy iglu.
+   	 * @param field A mezo amire felepitjuk az iglut. Csak stabil mezo lehet.
+   	 */
     public void SetIgloo(Field field)                  //Iglu lehelyezese adott mezore
     {
         field.setHasIgloo(true);
         System.out.println("Igloo built");
     }
 
+    /** 
+	 * Az adott mezore letesz egy eszkozt. Ha ho van a mezon, akkor a ho ala kerul.
+	 * @param field A mezo amire letesszuk az eszkozt
+	 * @param item Az eszkoz
+	 */
     public void SpawnItem(Field field, Item item)        //Sator lehelyezese adott mezore
     {
         field.PushItem(item);
         System.out.println("Item spawned");
     }
 
+    /** 
+   	 * Az adott mezot hoviharral sujtja, ahol a jatekosok megserulnek, ha nincsenek satorban vagy igluban. A mezore pontosan egy egyseg havat rak.
+   	 * @param field A mezo amit hoviharral sujtunk.
+   	 */
     public void SpawnSnowStorm(Field field)              //Iglu lehelyezese adott mezore
     {
 		field.IncrementSnow();
@@ -211,6 +244,9 @@ public class TestFunctions
 		}	
     }
     
+    /** 
+   	 * Kiirja a kimenetre a terkep minden fontos informaciojat, azaz minden mezore: sorszam, teherbiras, mennyi ho van rajta, van-e rajta sator, van-e rajta iglu, fel van-e fordulva, milyen eszkozok vannak rajta, melyik szereplok vannak rajta, van-e rajta jegesmedve, es hogy hanyas azonositoju mezok a szomszedai.
+   	 */
     public void viewMap() {
     	for(Field f: controller.getFields()) {
     		

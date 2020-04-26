@@ -3,15 +3,16 @@ package item;
 import field.Field;
 import player.Player;
 
-/* Ásó osztály, az Item leszármazottja. */
+
+/** 
+ * Lapat megvalositasa. Ennek hasznalataval a szereplo egy egyseg energiaval ket egyseg havat takarithat el a mezorol.
+ */
 public class Shovel extends Item implements java.io.Serializable {
 	
-	/*public Shovel() {
-		// igazából itt nem kell csinálni semmit, kell ez ide?
-		// nem hiszem - Levi
-	}*/
-	
-	/* Átadjuk, hogy melyik szereplő használja. Ez a függvény egy munkával a szereplő mezőjéről 2 egység havat takarít el.*/
+	/** 
+	 * A lapat hasznalatanak megvalositasa. A szereplo ketto havat eltakarit, vagy 1/0-at, ha a mezon csak annyi van. Egy energiaba kerul.
+	 * @param player A szereplo, aki hasznalja
+	 */
 	@Override
 	public void Use(Player player) {
 		
@@ -31,6 +32,10 @@ public class Shovel extends Item implements java.io.Serializable {
 		player.decrementEnergy(); /* Az ásóval ásás a szereplőnek egy energiájába kerül. */
 	}
 	
+	/** 
+	 * A lapat nevevel ter vissza(shovel), azonositashoz kell
+	 * @return shovel (string)
+	 */
 	@Override
 	public String getName() {
 		return "shovel";
