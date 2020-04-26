@@ -5,6 +5,10 @@ import java.util.Scanner;
 import field.Field;
 import icefield.Controller;
 
+
+/** 
+ * Eszkimó szereplő osztálynak a megvalósítása 
+ */
 public class Eskimo extends Player {
 
 	public Eskimo(Controller c, Field startField){ 
@@ -14,17 +18,22 @@ public class Eskimo extends Player {
 		name = "Eskimo";
 	}
 
+	/** 
+	 * Üres konstruktor serializáláshoz
+	 */
 	public Eskimo(){
 		maxHealth = 5;
 	}
-    //az Eskimo képes igloo-t építeni egy Fieldre, ilyenkor átállítja a Field hasIgloo változóját true-ra
+	/** 
+	 * az Eskimo képes igloo-t építeni egy Fieldre, ilyenkor átállítja a Field hasIgloo változóját true-ra
+	 */
 	public void BuildIgloo() {
-		if(this.energy > 0) {
-			if (currentField.getHasIgloo())
+		if(this.energy > 0) { //energiát vesz igénybe
+			if (currentField.getHasIgloo()) //megvizsgálja, hogy van-e már igloo a Field-en
 				System.out.println("Field already has igloo");
-			else{
+			else{//ha nincs akkor megpróbál rátenni
 				currentField.setHasIgloo(true);
-				if (currentField.getHasIgloo()){
+				if (currentField.getHasIgloo()){ //ha sikerül rátenni, akkor csökkenti az energiát
 					this.decrementEnergy();
 					System.out.println("Igloo set");
 				}
@@ -33,8 +42,12 @@ public class Eskimo extends Player {
 		}else
 			System.out.println("Not enough energy");
 	}
+	
+	/** 
+	 * Az Eskimo egy körének a függvénye
+	 */
 	@Override
-	public void Turn() { //A Player egy körének a függvénye
+	public void Turn() {
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		boolean endturn = false;
@@ -49,27 +62,30 @@ public class Eskimo extends Player {
 					break;
 				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
 					break;
-				case "igloo": BuildIgloo();
+				case "igloo": BuildIgloo(); //igloo-t épít
 					break;
-				case "menu": controller.Finish(); endturn = true;
+				case "menu": controller.Finish(); endturn = true; //kilép a menube
 					break;
-				case "neighbors": System.out.println(currentField.getNeighbors().size());
+				case "neighbors": System.out.println(currentField.getNeighbors().size()); //megnézi hány szomszédja van a currentFieldnek
 					break;
 				case "peek": if (currentField.getSnow() == 0) System.out.println(currentField.GetItem().getName());
 									else System.out.println("Field is covered with snow!");
+							//megnézi milyen item van a currentFielden
 					break;
-				case "test on": controller.setTestMode(true);
+				case "test on": controller.setTestMode(true); //bekapcsolódik a test mode
 					break;
-				case "test off": controller.setTestMode(false);
+				case "test off": controller.setTestMode(false); //kikapcsolódik a test mode
 					break;
-				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
+				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használata parancs felismeréséhez
 							UseItem(input); break;
-						}else if(input.matches("^move\\s\\d+")){
+						}else if(input.matches("^move\\s\\d+")){ //reguláris kifejezés lépés parancs felismeréséhez
 							String[] temp = input.split(" ");
-							Move(Integer.parseInt(temp[1]) - 1); break;
+							Move(Integer.parseInt(temp[1]) - 1);
+							break;
 						}else{
 							if (controller.getTestMode())
-								controller.getTestFunctions().testCommand(input);
+								controller.getTestFunctions().testCommand(input); //ha be van kapcsolva a teszt mód,
+								//akkor, ami inputot nem ismer fel a Turn(), azt átadja a testCommand() függvénynek
 							else
 								System.out.println("Invalid command!");
 							break;

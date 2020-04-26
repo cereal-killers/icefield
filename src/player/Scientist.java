@@ -14,17 +14,21 @@ public class Scientist extends Player{
 		name = "Scientist";
 	}
 
+	/** 
+	 * Üres konstruktor serializáláshoz
+	 */
 	public Scientist(){
 		maxHealth = 4;
 	}
-	//megnézi, hogy mennyi játékost bír el egy paraméterben megadott szomszédos Field, majd kiírja
+	/** 
+	 * Megvizsgálja, hogy mennyi játékost bír el egy paraméterben megadott szomszédos Field, majd kiírja
+	 */
 	public void InspectField(Field field) {
-		System.out.println("InspectField(field)");
-		if (this.energy > 0) {
-			if (field.getMaxWeight() == Integer.MAX_VALUE)
+		if (this.energy > 0) { //energiába kerül
+			if (field.getMaxWeight() == 10) //a 10 teherbírású mező stabil
 				System.out.println("Field is stable");
 			else
-				System.out.println("Field can hold: " + field.getMaxWeight() + "players");
+				System.out.println("Field can hold: " + field.getMaxWeight() + " players");
 			this.decrementEnergy();
 		}else {
 			System.out.println("Not enough energy");
@@ -32,8 +36,11 @@ public class Scientist extends Player{
 		
 		
 	}
+	/** 
+	 * Az Scientist egy körének a függvénye
+	 */
 	@Override
-	public void Turn() { //A Player egy körének a függvénye
+	public void Turn() {
 		String input;
 		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 		boolean endturn = false;
@@ -48,23 +55,24 @@ public class Scientist extends Player{
 					break;
 				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
 					break;
-				case "menu": controller.Finish(); endturn = true;
+				case "menu": controller.Finish(); endturn = true; //kilép a menube
 					break;
-				case "neighbors": System.out.println(currentField.getNeighbors().size());
+				case "neighbors": System.out.println(currentField.getNeighbors().size()); //megnézi hány szomszédja van a currentFieldnek
 					break;
 				case "peek": if (currentField.getSnow() == 0) System.out.println(currentField.GetItem().getName());
 									else System.out.println("Field is covered with snow!");
+							//megnézi milyen item van a currentFielden
 					break;
-				case "test on": controller.setTestMode(true);
+				case "test on": controller.setTestMode(true); //bekapcsolódik a test mode
 					break;
-				case "test off": controller.setTestMode(false);
+				case "test off": controller.setTestMode(false); //kikapcsolódik a test mode
 					break;
-				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
+				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használata parancs felismeréséhez
 							UseItem(input); break;
-						}else if(input.matches("^move\\s\\d+")){
+						}else if(input.matches("^move\\s\\d+")){ //reguláris kifejezés lépés parancs felismeréséhez
 							String[] temp = input.split(" ");
 							Move(Integer.parseInt(temp[1])-1); break;
-						}else if(input.matches("^inspect\\s\\d+")){
+						}else if(input.matches("^inspect\\s\\d+")){ //reguláris kifejezés InspectField funkcióhoz
 							String[] temp = input.split(" ");
 							try{
 								InspectField(currentField.GetNeighbor(Integer.parseInt(temp[1])-1));
@@ -74,7 +82,8 @@ public class Scientist extends Player{
 							break;
 						}else{
 							if (controller.getTestMode())
-								controller.getTestFunctions().testCommand(input);
+								controller.getTestFunctions().testCommand(input);//ha be van kapcsolva a teszt mód,
+								//akkor, ami inputot nem ismer fel a Turn(), azt átadja a testCommand() függvénynek
 							else
 								System.out.println("Invalid command!");
 							break;
