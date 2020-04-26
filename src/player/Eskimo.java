@@ -55,11 +55,13 @@ public class Eskimo extends Player {
 					break;
 				case "menu": controller.Finish(); endturn = true;
 					break;
+				case "neighbors": System.out.println(currentField.getNeighbors().size());
+					break;
 				default: if(input.matches("^use\\s\\w*")) { //reguláris kifejezés egy tárgy használatához
 							UseItem(input); break;
 						}else if(input.matches("^move\\s\\d+")){
 							String[] temp = input.split(" ");
-							Move(Integer.parseInt(temp[1])); break;
+							Move(Integer.parseInt(temp[1]) - 1); break;
 						}else{
 							break;
 						}

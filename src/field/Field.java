@@ -165,13 +165,17 @@ public class Field implements java.io.Serializable {
 	{
 		if(neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player))
 		{
-			player.decrementEnergy();
+			if (player.getCurrentField().getIsUpsideDown()){ //ha lyukban van a játékos, akkor nem tud mozogni
+				System.out.println("Player is in hole, can't move!");
+				return false;
+			}
 			this.Remove(player);
 			player.setCurrentField(neighbors.get(directionIndex));
 			if(neighbors.get(directionIndex).IsOverWeight()){
 				isUpsideDown = true;
 				System.out.println("Player fell into hole!");
 			}
+			player.decrementEnergy();
 			return true;
 		}
 		return false;
@@ -225,8 +229,6 @@ public class Field implements java.io.Serializable {
 	//Visszateresi erteke igaz, ha a mezon tul sok jatekos all (es ekkor atfordul), false ellenkezo esetben
 	public boolean IsOverWeight()
 	{
-		System.out.println(players.size());
-		System.out.println(maxWeight);
 		if(players.size()>maxWeight)
 		{
 			this.isUpsideDown = true;
