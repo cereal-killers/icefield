@@ -221,9 +221,12 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 
 	public void ListItems() {
-		for (int i = 0; i < items.size(); i++) {
-			System.out.println(items.get(i).getName());
-		}
+		if (items.size() != 0){
+			for (int i = 0; i < items.size(); i++) {
+				System.out.println(items.get(i).getName());
+			}
+		}else
+			System.out.println("Inventory is empty!");
 		
 	}
 
