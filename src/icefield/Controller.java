@@ -365,9 +365,12 @@ public class Controller implements EndOfGame, java.io.Serializable{             
             }
             if(!testMode) {
             	SnowStorm();
-            	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
-            	int bearDir = random.nextInt(maxBearDir);
-            	polarBear.Move(bearDir);
+            	if(polarBear != null) {
+                	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
+                	int bearDir = random.nextInt(maxBearDir);
+                	polarBear.Move(bearDir);
+            	}
+
             }
             
         }
