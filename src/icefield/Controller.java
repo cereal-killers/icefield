@@ -344,6 +344,11 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 			}
 			
 		} else if(input_test.contentEquals("N")) {
+			while(players.size() == 0) {
+				System.out.println("No players on map, please put down a player:");
+				input_test = scan.nextLine();
+				test.testCommand(input_test);
+			}
 			System.out.println("Ok, game starts");
 		} else {
 			System.out.println("Invalid command, testmode off");
