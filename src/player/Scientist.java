@@ -15,7 +15,7 @@ public class Scientist extends Player{
 	}
 
 	public Scientist(){
-
+		maxHealth = 4;
 	}
 	//megnézi, hogy mennyi játékost bír el egy paraméterben megadott szomszédos Field, majd kiírja
 	public void InspectField(Field field) {
@@ -73,4 +73,5 @@ public class Scientist extends Player{
 			}
 		}
 	}
+
 }

@@ -207,7 +207,7 @@ public class Field implements java.io.Serializable {
 	public Item PopItem()
 	{
 		try{
-			return items.pop();
+			return items.pop(); //kiveszi a legfelsőbb elemet, ha üres kivételt dob
 		}catch(Exception e){
 			System.out.println("No item on field");
 			return null;

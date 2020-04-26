@@ -15,7 +15,7 @@ public class Eskimo extends Player {
 	}
 
 	public Eskimo(){
-
+		maxHealth = 5;
 	}
     //az Eskimo képes igloo-t építeni egy Fieldre, ilyenkor átállítja a Field hasIgloo változóját true-ra
 	public void BuildIgloo() {

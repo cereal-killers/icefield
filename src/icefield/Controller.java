@@ -364,10 +364,10 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
   	public void ReadController(String palya )
   	{
-  	  	if (new File(System.getProperty("user.dir")+"/"+palya+".xml").exists()==false) // ha nem létezik még a fájl
+  	  	if (new File(System.getProperty("user.dir")+"/"+"src/"+palya+".xml").exists()==false) // ha nem létezik még a fájl
   	  		return;
   		try {
-  			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/"+palya+".xml");
+  			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/"+"src/"+palya+".xml");
   		  	XMLDecoder decoder = new XMLDecoder(fis);
   		  	Controller copy = (Controller) decoder.readObject();
   		  	this.fields = copy.fields;
