@@ -216,10 +216,6 @@ public class Field implements java.io.Serializable {
 	 */
 	public boolean Pass(int directionIndex, Player player) {
 		if (neighbors.get(directionIndex) != null && neighbors.get(directionIndex).Accept(player)) {
-			if (player.getCurrentField().getIsUpsideDown()) { // ha lyukban van a játékos, akkor nem tud mozogni
-				System.out.println("Player is in hole, can't move!");
-				return false;
-			}
 			this.Remove(player);
 			player.setCurrentField(neighbors.get(directionIndex));
 			if (neighbors.get(directionIndex).IsOverWeight()) {

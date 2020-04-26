@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import item.Item;
 import field.Field;
 import icefield.Controller;
-
-//játékos osztály
+/** 
+ * Szereplő osztálynak a megvalósítása 
+ */
 public class Player extends Moveable implements java.io.Serializable{
 	protected int health; //játékos aktuális életpontjai
 	protected int maxHealth; //játékos maximális életpontjai
@@ -87,13 +88,16 @@ public class Player extends Moveable implements java.io.Serializable{
 		if (this.energy > 0)
 		{
 			try{
-				currentField.Pass(dir, this); //meghívja a currentField Pass függvényét, 
-				//kivételt dob ha nem tud a dir indexű szomszédra lépni
-
-				//Ha a Field-en, amire lépett PolarBear van, akkor meghívja a Finish-t
-				if (currentField.getPolarBear() != null){
-					System.out.println("You became polarbear's dinner!");
-					controller.Finish();
+				if (getCurrentField().getIsUpsideDown()) { // ha lyukban van a játékos, akkor nem tud mozogni
+					System.out.println("Player is in hole, can't move!");
+				}else{
+					currentField.Pass(dir, this); //meghívja a currentField Pass függvényét, 
+					//kivételt dob ha nem tud a dir indexű szomszédra lépni
+					//Ha a Field-en, amire lépett PolarBear van, akkor meghívja a Finish-t
+					if (currentField.getPolarBear() != null){
+						System.out.println("You became polarbear's dinner!");
+						controller.Finish();
+					}
 				}
 			}catch(Exception e){ //elkapjuk a kivételt
 				System.out.println("No such neighbor!");
