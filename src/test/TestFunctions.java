@@ -131,6 +131,8 @@ public class TestFunctions
 					System.out.print(command[i] + " ");
 				}
 				System.out.println();
+			} else if(command[0].contentEquals("start")){
+				
 			} else {
 				System.out.println("Invalid command!");
 			}

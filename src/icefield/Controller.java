@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
 
 import field.Field;
@@ -327,7 +328,27 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     private int GameLoop() //a játék ciklusa, mindaddig fut ameddig nem nyer a csapat, vagy meg nem hal valaki.
     {
         int numOfTurns = 0;
-
+        
+        System.out.println("TEST MODE? (You can switch later) (Y/N)");
+        String input_test;
+		Scanner scan = new Scanner(System.in);
+		input_test = scan.nextLine();
+		input_test = input_test.toUpperCase();
+		if(input_test.contentEquals("Y")) {
+			testMode = true;
+			System.out.println("Type commands and start the game with \"start\"");
+			System.out.println("Please put down at least 1 player");
+			while(!input_test.contentEquals("start")) {
+				input_test = scan.nextLine();
+				test.testCommand(input_test);
+			}
+			
+		} else if(input_test.contentEquals("N")) {
+			System.out.println("Ok, game starts");
+		} else {
+			System.out.println("Invalid command, testmode off");
+		}
+		
         int i;
         while (!ended) {
             for (i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
