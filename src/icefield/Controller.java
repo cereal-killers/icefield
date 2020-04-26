@@ -68,7 +68,7 @@ public class Controller implements java.io.Serializable{                        
                     }
                 }
             }
-    		
+    		System.out.println();
         
     }
 
