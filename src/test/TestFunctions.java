@@ -142,6 +142,7 @@ public class TestFunctions
     {
         Eskimo eskimo = new Eskimo(controller, field);
         eskimo.AddItem(item);
+        controller.getPlayers().add(eskimo);
         System.out.println("Eskimo spawned");
     }
 
@@ -149,6 +150,7 @@ public class TestFunctions
     {
         Scientist scientist = new Scientist(controller, field);
         scientist.AddItem(item);
+        controller.getPlayers().add(scientist);
         System.out.println("Scientist spawned");
     }
 
