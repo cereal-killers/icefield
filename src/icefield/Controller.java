@@ -48,34 +48,6 @@ public class Controller implements EndOfGame, java.io.Serializable{             
 
     public Controller(){}
 
-    public void viewMap() {
-    	for(Field f: fields) {
-    		
-    		System.out.println("FIELD #" + (fields.indexOf(f)+1) +": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
-    		for(Item i: f.getItems()){
-    			System.out.print(i.getName()+ " ");
-    		}
-    		if(f.getItems().size() == 0) {
-    			System.out.print("-");
-    		}
-    		System.out.print("(" + f.getPlayers().size() + ")");
-    		for(Player p: f.getPlayers()){
-    			System.out.print(p.getName()+ " ");
-    		}
-    		System.out.println();
-    		String polarbear;
-       		if(f.getPolarBear() != null) {
-    			polarbear = "true";
-    		} else polarbear = "false";
-    		System.out.print("PB: " + polarbear);
-    		System.out.print("\t");
-    		for(Field n: f.getNeighbors()) {
-    			System.out.print((fields.indexOf(n)+1)+ " ");
-    		}
-    		System.out.println();
-    		System.out.println();
-    	}
-    }
     
     private void SnowStorm()                                            //A jatekban szereplo hoviharokat lebonyolito fuggveny
     {

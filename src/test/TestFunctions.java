@@ -36,7 +36,10 @@ public class TestFunctions
 		try {
 			//input = scanner.nextLine();
 			String[] command = input.split("\\s+");
-			if (command[0].contentEquals("endtest") ) {
+			if(command[0].contentEquals("view") && command[1].contentEquals("map")) {
+				viewMap();
+			}
+			else if (command[0].contentEquals("endtest") ) {
 				//endtest = true;
 			} else if (command[0].contentEquals("spawn")) {
 				if( command[1].contentEquals("eskimo") || command[1].contentEquals("scientist")) {
@@ -199,5 +202,34 @@ public class TestFunctions
         {
             player.decrementHealth();
         }
+    }
+    
+    public void viewMap() {
+    	for(Field f: controller.getFields()) {
+    		
+    		System.out.println("FIELD #" + (controller.getFields().indexOf(f)+1) +": mW = " + f.getMaxWeight() + " snow=" + f.getSnow() + " tent=" +f.getHasTent()+ " igloo=" + f.getHasIgloo()+ " iUD="+f.getIsUpsideDown());
+    		for(Item i: f.getItems()){
+    			System.out.print(i.getName()+ " ");
+    		}
+    		if(f.getItems().size() == 0) {
+    			System.out.print("-");
+    		}
+    		System.out.print("(" + f.getPlayers().size() + ")");
+    		for(Player p: f.getPlayers()){
+    			System.out.print(p.getName()+ " ");
+    		}
+    		System.out.println();
+    		String polarbear;
+       		if(f.getPolarBear() != null) {
+    			polarbear = "true";
+    		} else polarbear = "false";
+    		System.out.print("PB: " + polarbear);
+    		System.out.print("\t");
+    		for(Field n: f.getNeighbors()) {
+    			System.out.print((controller.getFields().indexOf(n)+1)+ " ");
+    		}
+    		System.out.println();
+    		System.out.println();
+    	}
     }
 }
