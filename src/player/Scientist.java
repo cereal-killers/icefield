@@ -52,7 +52,7 @@ public class Scientist extends Player{
 					break;
 				case "neighbors": System.out.println(currentField.getNeighbors().size());
 					break;
-				case "peek": if (currentField.getSnow() == 0) System.out.println(currentField.GetItem());
+				case "peek": if (currentField.getSnow() == 0) System.out.println(currentField.GetItem().getName());
 									else System.out.println("Field is covered with snow!");
 					break;
 				case "test on": controller.setTestMode(true);
