@@ -33,7 +33,6 @@ public class Player extends Moveable implements java.io.Serializable{
 	
 	//A játékos felvesz egy eszközt az eszköztárába arról a jégtábláról amin éppen áll.
 	public void PickItemUp() {
-		System.out.println("PickItemUp()");
 		if (this.energy > 0) {
 			if (currentField.getSnow() == 0){
 				Item item = currentField.PopItem();
@@ -154,32 +153,22 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 
 	public boolean getWears_suit() {
-		System.out.println("GetWearsSuit()");
 		return wears_suit;
 	}
 	
 	public void setWears_suit(boolean value) {
-		System.out.println("SetWearsSuit(value)");
 		wears_suit = value;
 	}
 	
 	public int getHealth() {
-		System.out.println("GetHealth()");
 		return health;
 	}
 	
 	public void setHealth(int value) {
-		System.out.println("SetHealth(value)");
-		if (value > maxHealth) {
-			System.out.println("Health level can't be higher than " + maxHealth);
-		}else if (value < 0) {
-			System.out.println("Health level can't be lower than 0");
-		}else
 			this.health = value;
 	}
 	
 	public void decrementHealth() {//1-el csökkenti az életpontokat
-		System.out.println("decrementHealth()");
 		if (this.health > 0)
 			this.health--;
 		if (health == 0) {
@@ -187,14 +176,12 @@ public class Player extends Moveable implements java.io.Serializable{
 		}
 	}
 	public void incrementHealth() {//1-el növeli az életpontokat
-		System.out.println("incrementHealth()");
 		if (this.health < maxHealth)
 			this.health++;
 		//System.out.println("Health = " + this.health);
 	}
 	
 	public int getMaxHealth() {
-		System.out.println("GetMaxHealth()");
 		return maxHealth;
 	}
 	public void setMaxHealth(int value){
@@ -202,17 +189,10 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 
 	public int getEnergy() {
-		System.out.println("GetEnergy()");
 		return energy;
 	}
 	
 	public void setEnergy(int value) { //az energia nem lehet kisebb, mint 0 és nem lehet nagyobb, mint 4
-		System.out.println("SetEnergy(value)");
-		if (value > 4) {
-			System.out.println("Energy level can't be higher than 4");
-		}else if (value < 0) {
-			System.out.println("Energy level can't be lower than 0");
-		}else
 			this.energy = value;
 	}
 	
