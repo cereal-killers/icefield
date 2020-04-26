@@ -68,7 +68,9 @@ public class TestFunctions
 					int field = Integer.parseInt(command[2]) - 1;
 					
 					Field f = controller.getFields().get(field); // egyelőre nincs hibakezelés
-					if(command[1].contentEquals("eskimo") ) {
+					if(f.getPlayers().size() == f.getMaxWeight()) {
+						System.out.println("Field overweight, player cannot be spawned");
+					} else if(command[1].contentEquals("eskimo") ) {
 						SpawnEskimo(f,item);
 					} else if(command[1].contentEquals("scientist") ) {
 						SpawnScientist(f, item);
