@@ -11,8 +11,13 @@ public class Main {
 		{
 			m.ShowMenuItems();
 			Scanner in = new Scanner(System.in); 
-			MenuItem n=	MenuItem.values()[in.nextInt()-1];
-			game = m.ChooseMenuItem(n);
+			try {
+				MenuItem n=	MenuItem.values()[in.nextInt()-1];
+				game = m.ChooseMenuItem(n);
+			}
+			catch(Exception ex){
+				System.out.println("Invalid input.");
+			}
 		}
 	}
 }

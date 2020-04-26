@@ -2,11 +2,17 @@ package icefield;
 
 import field.Field;
 import item.*;
+import menu.ScoreData;
 import player.Eskimo;
 import player.Player;
 import player.PolarBear;
 import player.Scientist;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
@@ -16,7 +22,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     private Vector<Field> fields = new Vector<>();                      //A jatek mezoinek eltarolasa
     private Vector<Player> players = new Vector<>();
     private boolean ended = false;
-    private Random random = new Random();
+    private transient Random random = new Random();
 
 
     //getterek
@@ -80,9 +86,9 @@ public class Controller implements EndOfGame, java.io.Serializable{             
     }
 
     public int Start()
-    {
-        //Itemek letrehozasa
-        Charge charge= new Charge();
+    { 
+    	//Itemek letrehozasa
+        /*Charge charge= new Charge();
         DivingSuit divingSuit = new DivingSuit();
         Flare flare = new Flare();
         Food food = new Food();
@@ -98,30 +104,28 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         Rocket rocket = new Rocket(this, gun, flare, charge);           //a kontroller atadja magat a rocketnak parameterkent hogy a rocket Finish()-t tudjon hívni.
         System.out.println("raketa letrehozva");
 
-
-        int inf = Integer.MAX_VALUE;
         //Map letrehozasa
-        Field field1 = new Field(inf, 1, rope);
+        Field field1 = new Field(6, 1, rope);
         Field field2 = new Field(0, 1, null);
         Field field3 = new Field(2, 1, null);
-        Field field4 = new Field(inf, 1, charge);
-        Field field5 = new Field(inf, 0, null);
+        Field field4 = new Field(6, 1, charge);
+        Field field5 = new Field(6, 0, null);
         Field field6 = new Field(3, 2, null);
-        Field field7 = new Field(inf, 1, divingSuit);
-        Field field8 = new Field(inf, 1, shovel);
-        Field field9 = new Field(inf, 1, tent);
-        Field field10 = new Field(inf, 1, null);
+        Field field7 = new Field(6, 1, divingSuit);
+        Field field8 = new Field(6, 1, shovel);
+        Field field9 = new Field(6, 1, tent);
+        Field field10 = new Field(6, 1, null);
         Field field11 = new Field(3, 1, spade);
-        Field field12 = new Field(inf, 0, null);
+        Field field12 = new Field(6, 0, null);
         Field field13 = new Field(2, 3, gun);
-        Field field14 = new Field(inf, 3, null);
-        Field field15 = new Field(inf, 2, null);
+        Field field14 = new Field(6, 3, null);
+        Field field15 = new Field(6, 2, null);
         Field field16 = new Field(0, 1, null);
-        Field field17 = new Field(inf, 0, null);
+        Field field17 = new Field(6, 0, null);
         Field field18 = new Field(2, 3, food);
-        Field field19 = new Field(inf, 1, null);
-        Field field20 = new Field(inf, 3, flare);
-        Field field21 = new Field(inf, 2, food2);
+        Field field19 = new Field(6, 1, null);
+        Field field20 = new Field(6, 3, flare);
+        Field field21 = new Field(6, 2, null);
         Field field22 = new Field(0, 1, null);
         Field field23 = new Field(0, 1, null);
 
@@ -160,7 +164,7 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         field8.AddNeighbor(field1);
         field8.AddNeighbor(field5);
         field8.AddNeighbor(field9);
-        field8.AddNeighbor(field13);
+        field8.AddNeighbor(field23);
         field9.AddNeighbor(field8);
         field9.AddNeighbor(field5);
         field9.AddNeighbor(field10);
@@ -253,17 +257,14 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         Scientist scientist1 = new Scientist(this, field5);
         Scientist scientist2 = new Scientist(this, field19);
         PolarBear polarbear = new PolarBear(field12, this);
-        
         players.add(eskimo1);
         players.add(eskimo2);
         players.add(scientist1);
         players.add(scientist2);
-        scientist2.AddItem(new Rope());
-        
-        System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");
-
+        System.out.println("Jatekosok es Maci letrehozva, lehelyezve a palyara");*/
+    	ReadController("nagypalya");// beolvassuk az xml filebol a mappat
+        System.out.println("Nagypalya beolvasva.");
         return GameLoop();
-
     }
 
 
@@ -343,4 +344,40 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         }
         return -1;
     }
+    //Függvény a controller kiírására
+    // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
+  	public void WriteController(String palya)
+  	{
+  	  	FileOutputStream fos;
+  		try {
+  			fos = new FileOutputStream(System.getProperty("user.dir")+"/"+palya+".xml");
+  		 	XMLEncoder encoder = new XMLEncoder(fos);
+  		  	encoder.writeObject(this);
+  		  	encoder.close();
+  		  	fos.close();
+  		} catch (Exception e) {
+  			e.printStackTrace();
+  		}
+
+  	}
+  	//Függvény a controller beolvasására
+    // a palya stringben megadjuk az xml fajl nevet (.xml nelkul)
+  	public void ReadController(String palya )
+  	{
+  	  	if (new File(System.getProperty("user.dir")+"/"+palya+".xml").exists()==false) // ha nem létezik még a fájl
+  	  		return;
+  		try {
+  			FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/"+palya+".xml");
+  		  	XMLDecoder decoder = new XMLDecoder(fis);
+  		  	Controller copy = (Controller) decoder.readObject();
+  		  	this.fields = copy.fields;
+  		  	this.players = copy.players;
+  		  	this.ended = copy.ended;
+  		  	decoder.close();
+  		  	fis.close();
+  		} catch (Exception e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+  	}
 }

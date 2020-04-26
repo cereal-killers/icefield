@@ -61,7 +61,8 @@ public class Menu {
 		
 		Controller controller = new Controller();
 		int turns = controller.Start();
-		AddHighscore(turns);
+		if (turns>0)
+			AddHighscore(turns);
 		
 		audioPlayer.Stop();
 		if(options.GetMusic())
@@ -71,8 +72,13 @@ public class Menu {
 	public void Settings() {
 		options.ShowOptionItems();
 		Scanner in = new Scanner(System.in); 
-		OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
-		options.ChooseOptionsItem(o);
+		try {
+			OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
+			options.ChooseOptionsItem(o);
+		}
+		catch(Exception ex){
+			System.out.println("Invalid input.");
+		}
 	}
 	//Függvény a toplista megjelenítésére
 	public void ShowBestScores() {

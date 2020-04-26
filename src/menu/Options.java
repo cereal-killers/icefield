@@ -48,7 +48,9 @@ public class Options {
 			break;
 		case music:
 			MusicOption();
-			break;	
+			break;
+		default:
+			System.out.println("Invalid input.");
 			}
 	}
 	

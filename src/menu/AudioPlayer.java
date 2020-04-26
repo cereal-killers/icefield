@@ -13,7 +13,6 @@ public class AudioPlayer  {
 	private boolean playing=false;
 
 	    void Start(boolean menu) {
-	    	// new javafx.embed.swing.JFXPanel();
 	    	System.out.println("Audio is playing.");
 	    	playing = true;
 	    	String filename = menu? "menu":"main";
@@ -25,8 +24,7 @@ public class AudioPlayer  {
 		        audioClip.open(audioInputStream);
 		        audioClip.loop(audioClip.LOOP_CONTINUOUSLY);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Audio error.");
 			}
          
 	    }
