@@ -132,6 +132,7 @@ public class Player extends Moveable implements java.io.Serializable{
 				//kivételt dob, ha nincs elég hely
 				if (item.getName() == "divingsuit"){
 					item.Use(this);
+					System.out.println("Player now wears a divingsuit");
 				}
 			}
 		}catch(Exception e) {	//elkapja a kivételt és kiír egy hibaüzenetet
