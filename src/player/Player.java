@@ -169,8 +169,10 @@ public class Player extends Moveable implements java.io.Serializable{
 	}
 	
 	public void decrementHealth() {//1-el csökkenti az életpontokat
-		if (this.health > 0)
+		if (this.health > 0){
 			this.health--;
+			System.out.println("health: " + health);
+		}
 		if (health == 0) {
 			controller.Finish(); 
 		}

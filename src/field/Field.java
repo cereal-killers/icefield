@@ -176,6 +176,10 @@ public class Field implements java.io.Serializable {
 				isUpsideDown = true;
 				System.out.println("Player fell into hole!");
 			}
+			if(neighbors.get(directionIndex).getHasIgloo())
+				System.out.println("Player stepped into igloo!");
+			else if(neighbors.get(directionIndex).getHasTent())
+				System.out.println("Player stepped into tent!");
 			player.decrementEnergy();
 			return true;
 		}

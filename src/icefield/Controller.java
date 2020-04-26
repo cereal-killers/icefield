@@ -340,7 +340,8 @@ public class Controller implements EndOfGame, java.io.Serializable{             
         while (!ended) {
             for (i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
                 System.out.println("Player " + (i + 1) + "'s turn");
-                players.get(i).Turn();
+                System.out.println("health: " + players.get(i).getHealth());
+                players.get(i).Turn(); 
                 
                 numOfTurns++;
                 if(TryFire()) return numOfTurns;
