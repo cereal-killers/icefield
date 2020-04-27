@@ -1,5 +1,8 @@
 package menu;
-// az optionsöket mgvalósító enum
+/**
+ * Beállításopció enum
+ *
+ */
 public enum OptionsItem {
 	playername,
 	music,

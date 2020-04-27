@@ -11,11 +11,16 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import icefield.Controller;
-// A menüt megvalósító osztály
+/**
+ * A menüt megvalósító osztály
+ */
 public class Menu {
     private Vector<ScoreData> highscores; // a toplistát tároló tömb
 	private Options options; // a beállítások osztálya
 	private AudioPlayer audioPlayer; // a zenele játszóosztálya
+	/**
+	 * Konstruktor
+	 */
 	public Menu(){
 		highscores = new Vector<>();
 		options = new Options();

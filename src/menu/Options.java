@@ -4,12 +4,18 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import field.Field;
-
+/**
+ * A beállításokat megvalósító osztály
+ *
+ */
 public class Options {
 	
 	private String playerName;
 	private boolean music;
 
+	/**
+	 * Konstruktor
+	 */
 	public Options()
 	{
 		// default értékek

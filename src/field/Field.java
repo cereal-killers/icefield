@@ -8,7 +8,11 @@ import player.Player;
 import player.PolarBear;
 import player.Moveable;
 
-//Mezo osztaly
+/**
+ * Mezo osztaly
+ * 
+ *
+ */
 public class Field implements java.io.Serializable {
 	private int maxWeight; // Maximalis teherbiras
 	private int snow; // A mezon levo hoegysegek szama
@@ -19,11 +23,19 @@ public class Field implements java.io.Serializable {
 	private ArrayList<Player> players = new ArrayList<Player>(); // A mezon levo szereplok listaja
 	private PolarBear polarBear = null;// A mezon allo jegesmedvere mutato pointer
 	private ArrayList<Field> neighbors = new ArrayList<Field>();// A mezo szomszedait tarolo lista
-
+	
+	/**
+	 * Kontruktor
+	 */
 	public Field() {
 	}
 
-	// Konstruktor
+	/**
+	 * Konstruktor
+	 * @param maxWeight max teherbírás
+	 * @param snow jelenlegi hó
+	 * @param item tárgy a fielden
+	 */
 	public Field(int maxWeight, int snow, Item item) {
 		this.maxWeight = maxWeight;
 		this.snow = snow;

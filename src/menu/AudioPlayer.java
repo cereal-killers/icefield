@@ -6,7 +6,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-// A zenelejátszót megvalósító osztály
+/**
+ * A zenelejátszó osztálya
+ *
+ */
 public class AudioPlayer  {
 
 	private Clip audioClip;

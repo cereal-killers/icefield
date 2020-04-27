@@ -1,6 +1,10 @@
 package menu;
 
 import java.util.Scanner;
+/**
+ * A fő osztály
+ *
+ */
 public class Main {
 /**
  * A program main függvénye

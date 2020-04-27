@@ -1,5 +1,8 @@
 package menu;
-//Felsorolt típus a menüpontokhoz
+/**
+ * Felsorolt tipus a menupontokhoz
+ *
+ */
 public enum MenuItem {
 
 	newgame,

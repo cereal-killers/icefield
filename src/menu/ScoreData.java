@@ -1,10 +1,21 @@
 package menu;
-// A toplista egy elemét megvalósító osztály
+/**
+ * A toplista egy elemét megvalósító osztály
+ *
+ */
 public class ScoreData implements java.io.Serializable {
 
 	private String name; // játékos neve
 	private int score; // játékos pontszáma => hány kör alatt teljesítette a pályát
+	/**
+	 * Konstruktor
+	 */
 	ScoreData(){}
+	/**
+	 * Konstruktor
+	 * @param n név
+	 * @param s pontszám
+	 */
 	ScoreData(String n, int s)
 	{
 		name = n;
