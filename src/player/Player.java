@@ -8,12 +8,33 @@ import icefield.Controller;
  * Szereplő osztálynak a megvalósítása 
  */
 public class Player extends Moveable implements java.io.Serializable{
-	protected int health; //játékos aktuális életpontjai
-	protected int maxHealth; //játékos maximális életpontjai
-	protected int energy; //játékos energiapontjai
-	protected boolean wears_suit; //a játékoson van-e búvárruha vagy sem
-	protected ArrayList<Item> items; //eszköztár
+	/**
+	 * játékos aktuális életpontjai
+ 	 */
+	protected int health;
+	/**
+	 * játékos maximális életpontjai
+ 	 */
+	protected int maxHealth;
+	/**
+	 * játékos energiapontjai
+ 	 */
+	protected int energy;
+	/**
+	 * a játékoson van-e búvárruha vagy sem
+ 	 */
+	protected boolean wears_suit;
+	/**
+	 * eszköztár
+ 	 */
+	protected ArrayList<Item> items;
+	/**
+	 * controller
+ 	 */
 	protected Controller controller;
+	/**
+	 * szereplőtípus neve
+ 	 */
 	protected String name;
     
 	public Player(Controller c, Field startField) {
@@ -22,9 +43,12 @@ public class Player extends Moveable implements java.io.Serializable{
 		this.items = new ArrayList<Item>(5);
 		this.controller = c;
 		this.currentField = startField;
-		currentField.Accept(this);
+		currentField.Accept(this); //rárakja magát a paraméterben megadott Fieldre
 	}
 
+	/** 
+	 * Üres konstruktor serializáláshoz
+	 */
 	public Player(){
 
 	}
