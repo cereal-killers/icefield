@@ -22,8 +22,15 @@ import player.Scientist;
 
 public class TestFunctions
 {
+	/** 
+	 * Az adott jatek kontrollere
+	 */
     private Controller controller;
 
+    /** 
+	 * Konstruktor, ahol beallitjuk a kontrollert
+	 * @param c A kontroller
+	 */
     public TestFunctions(Controller c)
     {
         controller = c;

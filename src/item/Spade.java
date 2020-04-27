@@ -7,20 +7,26 @@ import player.Player;
  */
 public class Spade extends Shovel implements java.io.Serializable {
 
+	/** 
+	 * Ures konstruktor szerializalashoz
+	 */
 	public Spade() {}
+	/**
+ 	 * Az aso eletereje, kezdetben 3
+ 	 */
 	private int health = 3;
 	
 	/** 
-	 * A torekeny hasznalatanak megvalositasa. A szereplo ketto havat eltakarit, vagy 1/0-at, ha a mezon csak annyi van. Ha harmadjara hasznaljuk, eltorik, errol visszajelzest is kapunk. Egy energiaba kerul.
+	 * A torekeny aso hasznalatanak megvalositasa. A szereplo ketto havat eltakarit, vagy 1/0-at, ha a mezon csak annyi van. Ha harmadjara hasznaljuk, eltorik, errol visszajelzest is kapunk. Egy energiaba kerul.
 	 * @param player A szereplo, aki hasznalja
 	 */
 	@Override
 	public void Use(Player player) {
-		super.Use(player);
-		health--;
-		if(health == 0) {
-			System.out.println("Spade broke");
-			player.RemoveItem(this);
+		super.Use(player); //hasznalatkor ugyanaz tortenik mint a lapat hasznalatakor,
+		health--; //de az aso eletereje csokken eggyel
+		if(health == 0) { // es ha eleri a nullat
+			System.out.println("Spade broke"); //akkor eltorik
+			player.RemoveItem(this); //es eltunik az eszkoztarunkbol
 		}
 	}
 	

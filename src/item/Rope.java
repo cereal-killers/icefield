@@ -23,24 +23,24 @@ public class Rope extends Item implements java.io.Serializable{
 		
 		int savedplayers = 0;
 		
-		for(Field f : current.getNeighbors()) {
+		for(Field f : current.getNeighbors()) { //a szomszedos mezokre
 			
-			if(f.getIsUpsideDown()) {
+			if(f.getIsUpsideDown()) { //megnezzuk hogy atfordult-e
 
-				saveFrom = f;
+				saveFrom = f; //ha igen, akkor innen mentunk jatekosokat
 				ArrayList<Player> playersToSave = saveFrom.getPlayers();
-				for(int i = 0; i< playersToSave.size();++i) {
+				for(int i = 0; i< playersToSave.size();++i) { //sorban kimentjuk az osszeset
 					Player p = playersToSave.get(i);
 					int dirToSafety = saveFrom.getNeighbors().indexOf(current);
 					saveFrom.Pass(dirToSafety,p);
 					savedplayers++;
 				}
-				f.setIsUpsideDown(false);
+				f.setIsUpsideDown(false); //a mezot visszaforditjuk
 			}
 
 		}
 
-		player.decrementEnergy();
+		player.decrementEnergy(); // egy energiaba kerul
 		System.out.println(savedplayers + " player(s) saved");
 		System.out.println("energy level: " + player.getEnergy());
 	}
