@@ -10,7 +10,11 @@ import icefield.Controller;
  * Eszkimó szereplő osztálynak a megvalósítása 
  */
 public class Eskimo extends Player {
-
+	/** 
+	 * A Scientist konstruktora
+	 * @param c a játék kontrollere
+	 * @param startField az eszkimó kezdeti mezője
+	 */
 	public Eskimo(Controller c, Field startField){ 
 		super(c, startField);
 		this.maxHealth = 5;

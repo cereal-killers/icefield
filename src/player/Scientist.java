@@ -11,11 +11,17 @@ import icefield.Controller;
  */
 public class Scientist extends Player{
 	
+
+	/** 
+	 * A Scientist konstruktora
+	 * @param c a játék kontrollere
+	 * @param startField a kutató kezdeti mezője
+	 */
 	public Scientist(Controller c, Field startField) {
 		super(c, startField);
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
-		name = "Scientist";
+		name = "Scientist"; //itt a nevet beállítjuk a osztály nevére
 	}
 
 	/** 

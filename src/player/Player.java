@@ -36,7 +36,12 @@ public class Player extends Moveable implements java.io.Serializable{
 	 * szereplőtípus neve
  	 */
 	protected String name;
-    
+	
+	/** 
+	 * A játékos konstruktora
+	 * @param c a játék kontrollere
+	 * @param startField a játékos kezdeti mezője
+	 */
 	public Player(Controller c, Field startField) {
 		this.energy = 4;
 		this.wears_suit = false;

@@ -15,6 +15,12 @@ public class PolarBear extends Moveable implements java.io.Serializable
  	 */
 	private Controller controller;
 
+
+	/** 
+	 * A PolarBear konstruktora
+	 * @param _currentField a jegesmedve kezdeti mezője
+	 * @param _controller a játék kontrollere
+	 */
 	public PolarBear(Field _currentField, Controller _controller){
 		currentField = _currentField;
 		controller = _controller;
