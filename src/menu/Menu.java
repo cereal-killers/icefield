@@ -15,9 +15,18 @@ import icefield.Controller;
  * A menüt megvalósító osztály
  */
 public class Menu {
-    private Vector<ScoreData> highscores; // a toplistát tároló tömb
-	private Options options; // a beállítások osztálya
-	private AudioPlayer audioPlayer; // a zenele játszóosztálya
+	/**
+	 *  a toplistát tároló tömb
+	 */
+    private Vector<ScoreData> highscores; 
+    /**
+     * a beállítások osztálya
+     */
+	private Options options; 
+	/**
+	 * a zenelejátszó osztály
+	 */
+	private AudioPlayer audioPlayer; 
 	/**
 	 * Konstruktor
 	 */

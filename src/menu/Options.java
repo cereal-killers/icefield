@@ -9,8 +9,13 @@ import field.Field;
  *
  */
 public class Options {
-	
+	/**
+	 * A játékos neve amit a toplistában megjelenítünk
+	 */
 	private String playerName;
+	/**
+	 * A zene bekapcsolását jelző boolean
+	 */
 	private boolean music;
 
 	/**

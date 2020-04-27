@@ -14,15 +14,42 @@ import player.Moveable;
  *
  */
 public class Field implements java.io.Serializable {
-	private int maxWeight; // Maximalis teherbiras
-	private int snow; // A mezon levo hoegysegek szama
-	private boolean hasTent = false; // Erteke true ha a mezon epult sator, false ellenkezo esetben
-	private boolean hasIgloo = false; // Erteke true ha a mezon epult iglu, false ellenkezo esetben
-	private boolean isUpsideDown = false; // Erteke true ha a mezo atfordult, false ellenkezo esetben
-	private Stack<Item> items = new Stack<Item>(); // A mezon talalhato eszkozok (pl aso) listaja
-	private ArrayList<Player> players = new ArrayList<Player>(); // A mezon levo szereplok listaja
-	private PolarBear polarBear = null;// A mezon allo jegesmedvere mutato pointer
-	private ArrayList<Field> neighbors = new ArrayList<Field>();// A mezo szomszedait tarolo lista
+	/**
+	 *  Maximalis teherbiras
+	 */
+	private int maxWeight; 
+	/**
+	 * A mezon levo hoegysegek szama
+	 */
+	private int snow; 
+	/**
+	 * Erteke true ha a mezon epult sator, false ellenkezo esetben
+	 */
+	private boolean hasTent = false; 
+	/**
+	 * Erteke true ha a mezon epult iglu, false ellenkezo esetben
+	 */
+	private boolean hasIgloo = false;
+	/**
+	 *  Erteke true ha a mezo atfordult, false ellenkezo esetben
+	 */
+	private boolean isUpsideDown = false;
+	/**
+	 * A mezon talalhato eszkozok (pl aso) listaja
+	 */
+	private Stack<Item> items = new Stack<Item>(); 
+	/**
+	 *  A mezon levo szereplok listaja
+	 */
+	private ArrayList<Player> players = new ArrayList<Player>();
+	/**
+	 * A mezon allo jegesmedvere mutato pointer
+	 */
+	private PolarBear polarBear = null;
+	/**
+	 *  A mezo szomszedait tarolo lista
+	 */
+	private ArrayList<Field> neighbors = new ArrayList<Field>();
 	
 	/**
 	 * Kontruktor

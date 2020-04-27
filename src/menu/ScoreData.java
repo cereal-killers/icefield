@@ -5,8 +5,14 @@ package menu;
  */
 public class ScoreData implements java.io.Serializable {
 
-	private String name; // játékos neve
-	private int score; // játékos pontszáma => hány kör alatt teljesítette a pályát
+	/**
+	 * A játékos neve
+	 */
+	private String name; 
+	/**
+	 * játékos pontszáma => hány kör alatt teljesítette a pályát
+	 */
+	private int score; 
 	/**
 	 * Konstruktor
 	 */

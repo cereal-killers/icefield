@@ -12,7 +12,13 @@ import javax.sound.sampled.Clip;
  */
 public class AudioPlayer  {
 
+	/**
+	 * A lejátszáshoz szükséges clip osztály
+	 */
 	private Clip audioClip;
+	/**
+	 * megadja, hogy az audió éppen lejátszódik-e vagy sem
+	 */
 	private boolean playing=false;
 
 		/**Elindítja a zenét
