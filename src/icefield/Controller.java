@@ -29,6 +29,11 @@ public class Controller implements java.io.Serializable{
     * A pályán levő Playerek-ek tárolója
     */
     private Vector<Player> players = new Vector<>();
+    
+    /**
+     * A jelenlegi játékos
+     */
+    private Player currentPlayer;
     /** 
     * A jegesmedve
     */
@@ -56,6 +61,14 @@ public class Controller implements java.io.Serializable{
      */
     //getterek
     public Vector<Field> getFields() { return fields;}
+    
+    
+    /** 
+     * visszaadja a jelenlegi játékost
+     * @param value
+     * @return Vector<Player>
+     */
+    public Vector<Player> getCurrentPlayer() {return players; }
     
     /** 
      * players gettere
@@ -305,6 +318,7 @@ public class Controller implements java.io.Serializable{
                 System.out.println("Player " + (i + 1) + "'s turn");
                 System.out.println("Player type: " + players.get(i).getName()); //kiírjuk a játékos típusát
                 System.out.println("health: " + players.get(i).getHealth()); //és a health-jét
+                currentPlayer = players.get(i);
                 players.get(i).Turn(); //elindítjuk a játékos körét
                 
                 numOfTurns++;

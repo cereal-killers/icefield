@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel{
     private BufferedImage backGround;
+    private Inventory inventory;
+
 
     public GamePanel()
     {
@@ -21,11 +23,21 @@ public class GamePanel extends JPanel{
 	    {
 	        e.printStackTrace();
 	    }
+	    this.setVisible(true);
     }
     
     @Override
     public void paint(Graphics g)
     {
         g.drawImage(backGround, 0,0, this);
+    }
+    public Inventory getInventory()
+    {
+    	return inventory;
+    }
+    public void setInventory(Inventory inv)
+    {
+    	inventory = inv;
+    	this.add(inv);
     }
 }

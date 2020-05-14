@@ -24,11 +24,14 @@ public class Container extends JFrame {
 	}
 	public void navigate(String where)
 	{
+		this.removeAll();
 		switch(where)
 		{
 		case "game":
 			GamePanel g = new GamePanel();
+			g.setInventory(new Inventory(gamelistener.getController().getCurrentPlayer())) ;
 			currentpanel = g;
+			this.add(g);
 			break;
 		case "menu":
 			MenuPanel m = new MenuPanel(this);
@@ -37,15 +40,20 @@ public class Container extends JFrame {
 				j.addActionListener(gamelistener);
 			}
 			currentpanel = m;
+			this.add(m);
+
 
 			break;
 		case "options":
 			OptionsPanel o = new OptionsPanel(this);
 			o.getMusic().addActionListener(gamelistener);
 			currentpanel = o;
+			this.add(o);
 			break;
 		case "highscores":
-			currentpanel = new HighschoresPanel(this);
+			Highscorespanel h = new HighscoresPanel(this);
+			currentpanel = h;
+			this.add(h);
 			break;
 		case "choosemap":
 			MapPanel mp = new MapPanel();
@@ -54,6 +62,7 @@ public class Container extends JFrame {
 				b.addActionListener(gamelistener);
 			}
 			currentpanel = mp;
+			this.add(mp);
 			break;
 		}
 	}
