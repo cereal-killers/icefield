@@ -1,5 +1,8 @@
 package menu;
 
+import graphics.MenuPanel;
+
+import javax.swing.*;
 import java.util.Scanner;
 /**
  * A fő osztály
@@ -11,6 +14,10 @@ public class Main {
  * @param args
  */
 	public static void main(String[] args) {
+		JFrame f=new JFrame("fela dat");
+
+		MenuPanel mp = new MenuPanel(f);
+
 		Menu m = new Menu();
 		boolean game = true;
 		while (game)
