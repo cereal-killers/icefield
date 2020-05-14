@@ -1,5 +1,6 @@
 package menu;
 
+import graphics.Container;
 import graphics.MenuPanel;
 
 import javax.swing.*;
@@ -14,10 +15,8 @@ public class Main {
  * @param args
  */
 	public static void main(String[] args) {
-		JFrame f=new JFrame("fela dat");
-
-		MenuPanel mp = new MenuPanel(f);
-
+		Container c= new Container();
+		c.repaint();
 		Menu m = new Menu();
 		boolean game = true;
 		while (game)

@@ -16,7 +16,7 @@ public class Container extends JFrame {
 	
 	private GameListener gamelistener;
 	
-	Container()
+	public Container()
 	{
 		gamelistener = new GameListener(this);
 		navigate("menu");
@@ -43,7 +43,6 @@ public class Container extends JFrame {
 			OptionsPanel o = new OptionsPanel(this);
 			o.getMusic().addActionListener(gamelistener);
 			currentpanel = o;
-
 			break;
 		case "highscores":
 			currentpanel = new HighschoresPanel(this);
