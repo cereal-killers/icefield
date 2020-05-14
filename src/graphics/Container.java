@@ -13,8 +13,10 @@ import menu.Menu;
 public class Container extends JFrame {
 
 	private JPanel currentpanel;
-	
+	private GamePanel game;
 	private GameListener gamelistener;
+	private Controller controller;
+
 	
 	public Container()
 	{
@@ -29,7 +31,8 @@ public class Container extends JFrame {
 		{
 		case "game":
 			GamePanel g = new GamePanel();
-			g.setInventory(new Inventory(gamelistener.getController().getCurrentPlayer())) ;
+			game = g;
+			g.setInventory(new Inventory(controller.getCurrentPlayer())) ;
 			currentpanel = g;
 			this.add(g);
 			break;
@@ -70,7 +73,13 @@ public class Container extends JFrame {
     @Override
     public void paint(Graphics g)
     {
+		game.setInventory(new Inventory(controller.getCurrentPlayer())); // TODO NULL eset
         currentpanel.repaint();
+    }
+    
+    public void setController(Controller c)
+    {
+    	controller = c;
     }
 	
 }

@@ -18,6 +18,7 @@ public class Main {
 		Container c= new Container();
 		c.repaint();
 		Menu m = new Menu();
+		c.setController(m.getController());
 		boolean game = true;
 		while (game)
 		{

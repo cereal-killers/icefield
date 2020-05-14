@@ -27,6 +27,11 @@ public class Menu {
 	 * a zenelejátszó osztály
 	 */
 	private AudioPlayer audioPlayer; 
+	
+	/**
+	 * A controller osztály egy példánya
+	 */
+	private Controller controller; 
 	/**
 	 * Konstruktor
 	 */
@@ -37,6 +42,12 @@ public class Menu {
 		audioPlayer.Start(true);
 		ReadHighscores();
 	}
+	
+	/**
+	 * Controller gettere
+	 */
+	public Controller getController() {return controller;}
+	
 	/**
 	 * Függvény a menüben található opciók kiírására
 	 */
@@ -81,7 +92,7 @@ public class Menu {
 		if(options.GetMusic())
 			audioPlayer.Start(false);
 		
-		Controller controller = new Controller();
+		this.controller = new Controller();
 		int turns = controller.Start();
 		if (turns>0)
 			AddHighscore(turns);
