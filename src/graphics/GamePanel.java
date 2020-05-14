@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import icefield.Controller;
+
 public class GamePanel extends JPanel{
     private BufferedImage backGround;
-    private Inventory inventory;
+    private Inventory inventory = null;
     private ArrayList<FieldPanel> fields;
-
+    private Controller controller;
 
     public GamePanel(String palya)
     {
@@ -37,10 +39,12 @@ public class GamePanel extends JPanel{
     {
     	return inventory;
     }
-    public void setInventory(Inventory inv)
+    public void refreshInventory()
     {
-    	inventory = inv;
-    	this.add(inv);
+    	if (inventory!=null)
+    		this.remove(inventory);
+    	inventory = new Inventory(controller.getCurrentPlayer());
+    	this.add(inventory);
     }
     
     public void createFields(String palya)
@@ -48,6 +52,10 @@ public class GamePanel extends JPanel{
     	switch(palya)
     	{
     	case "foci":
+    		fields.add(new FieldPanel(controller.getFields().get(0),246,61,182,119, 0));
+    		fields.add(new FieldPanel(controller.getFields().get(0),514,135,150,70, 1));
+    		fields.add(new FieldPanel(controller.getFields().get(0),793,162,158,152, 2));
+
     		break;
     	case "nagy":
     		break;
@@ -55,6 +63,8 @@ public class GamePanel extends JPanel{
     		break;
     	}
     }
+    public void setController(Controller c){controller = c;}
+
     
     public ArrayList<FieldPanel> getFields(){return fields;}
 }

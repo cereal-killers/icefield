@@ -15,11 +15,12 @@ public class Container extends JFrame {
 	private JPanel currentpanel;
 	private GamePanel game;
 	private GameListener gamelistener;
-	private Controller controller;
 
 	
 	public Container()
 	{
+		this.setBounds(0,0,1200,720);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gamelistener = new GameListener(this);
 		navigate("menu");
 		
@@ -75,7 +76,7 @@ public class Container extends JFrame {
 			this.add(o);
 			break;
 		case "highscores":
-			Highscorespanel h = new HighscoresPanel();
+			HighscoresPanel h = new HighscoresPanel();
 			currentpanel = h;
 			this.add(h);
 			break;
@@ -94,13 +95,13 @@ public class Container extends JFrame {
     @Override
     public void paint(Graphics g)
     {
-		game.setInventory(new Inventory(controller.getCurrentPlayer())); // TODO NULL eset
-        currentpanel.repaint();
+    	game.refreshInventory();
+    	currentpanel.repaint();
     }
     
     public void setController(Controller c)
     {
-    	controller = c;
+    	game.setController(c);
     }
 	
 }

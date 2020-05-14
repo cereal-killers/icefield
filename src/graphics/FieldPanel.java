@@ -68,17 +68,17 @@ public class FieldPanel{
         try
         {
             for( Item i : _field.getItems())
-                itemImages.add(ImageIO.read(new File("src\\images\\"+i.getName()+".png")));
+                itemImages.add(ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\"+i.getName()+".png")));
             for( Player i : _field.getPlayers())
-                playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png ")) );
+                playerImages.add( ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\"+i.getName()+".png ")) );
             if(_field.getPolarBear() != null)
-                polarbearImage = ImageIO.read(new File("src\\images\\polarbear.png"));
+                polarbearImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\polarbear.png"));
             if(field.getSnow()>0)
-                snowImage = ImageIO.read(new File("src\\images\\snow.png"));
+                snowImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\snow.png"));
             if(field.getHasTent())
-                thingImage = ImageIO.read(new File("src\\images\\tent.png"));
+                thingImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\tent.png"));
             else if(field.getHasIgloo())
-                 thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
+                 thingImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\igloo.png"));
         }catch(IOException e)
         {
             e.printStackTrace();
