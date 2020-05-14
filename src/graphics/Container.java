@@ -18,7 +18,7 @@ public class Container extends JFrame {
 	
 	Container()
 	{
-		gamelistener = new GameListener(new Controller(), this, new Menu());
+		gamelistener = new GameListener(this);
 		navigate("menu");
 		
 	}
