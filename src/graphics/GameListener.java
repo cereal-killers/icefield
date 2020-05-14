@@ -24,13 +24,13 @@ public class GameListener implements ActionListener, KeyListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) { // még csak a modellen végzett változtatások vannak, a viewen nem
-		String cmd_in = e.getActionCommand();
+		String[] cmd_in = e.getActionCommand().split("\\s+");
 		String cmd_out = "";
 		InputStream stdin = System.in;
 		System.setIn(stdin);
 		
 
-		switch(cmd_in) {
+		switch(cmd_in[0]) {
 			case "newgame":{
 				cmd_out = "1";
 				container.navigate("choosemap");
@@ -60,50 +60,49 @@ public class GameListener implements ActionListener, KeyListener {
 				}
 				container.toggleMusic();*/
 			} break;
-			case "remove snow":{
+			case "remove_snow":{
 				cmd_out = "remove snow";
 			}break;
-			case "build igloo":{
+			case "build_igloo":{
 				cmd_out = "build igloo";
 			}break;
-			case "pick up item":{
+			case "pick_up_item":{
 				cmd_out = "pick up item";
 			}break;
 			case "menu":{
 				cmd_out = "menu";
 			}break;
-			case "end turn": {
+			case "end_turn": {
 				cmd_out = "end turn";
 			}break;
+			case "nagy": {
+				cmd_out = "nagypalya";
+				container.navigate("nagy");
+			}break;
+			case "foci": {
+				cmd_out = "focipalya";
+				container.navigate("foci");
+			}break;
+			case "teszt": {
+				cmd_out = "tesztpalya";
+				container.navigate("teszt");
+			}break;
+			case "move": {
+				cmd_out = "tesztpalya";
+				container.navigate("teszt");
+			}break;
+			case "inspect": {
+				cmd_out = "tesztpalya";
+				container.navigate("teszt");
+			}break;
+			case "use": {
+				cmd_out = "tesztpalya";
+				container.navigate("teszt");
+			}break;
 			default: {
-				String[] cmd_out_split = cmd_out.split("\\s+");
-				if(cmd_out_split[0] == "move") {
-						
-				} else if(cmd_out_split[0].contentEquals("inspect")) {
-						
-				} else if(cmd_out_split[0].contentEquals("use")) {
-						
-				} else if(cmd_out_split[0].contentEquals("test")) {
-						
-				} 
+				
 			} break;
 		}
-
-		/*int chosenMap = Integer.parseInt(cmd_in);
-		switch(chosenMap) {
-		case 1: {
-			cmd_out= "tesztpalya";
-		} break;
-		case 2: {
-			cmd_out = "focilabda";
-		} break;
-		case 3: {
-			cmd_out = "nagypalya";
-		} break;
-		default: break;
-		}
-		container.navigate("game");
-		*/
 		System.setIn(new ByteArrayInputStream(cmd_out.getBytes()));
 		container.repaint();
 	}
