@@ -68,7 +68,7 @@ public class Controller implements java.io.Serializable{
      * @param value
      * @return Vector<Player>
      */
-    public Player getCurrentPlayer() {return players; }
+    public Player getCurrentPlayer() {return currentPlayer; }
     
     /** 
      * players gettere

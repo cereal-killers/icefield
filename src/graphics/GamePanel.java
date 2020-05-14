@@ -13,7 +13,7 @@ public class GamePanel extends JPanel{
     private Inventory inventory;
 
 
-    public GamePanel()
+    public GamePanel(String palya)
     {
 	    try
 	    {

@@ -26,13 +26,27 @@ public class Container extends JFrame {
 	}
 	public void navigate(String where)
 	{
-		this.removeAll();
+		this.remove(currentpanel);
 		switch(where)
 		{
-		case "game":
-			GamePanel g = new GamePanel();
+		case "foci":
+			GamePanel g = new GamePanel("foci");
 			game = g;
-			g.setInventory(new Inventory(controller.getCurrentPlayer())) ;
+			g.setInventory(new Inventory(controller.getCurrentPlayer()));
+			currentpanel = g;
+			this.add(g);
+			break;
+		case "nagy":
+			GamePanel g = new GamePanel("nagy");
+			game = g;
+			g.setInventory(new Inventory(controller.getCurrentPlayer()));
+			currentpanel = g;
+			this.add(g);
+			break;
+		case "teszt":
+			GamePanel g = new GamePanel("teszt");
+			game = g;
+			g.setInventory(new Inventory(controller.getCurrentPlayer()));
 			currentpanel = g;
 			this.add(g);
 			break;
