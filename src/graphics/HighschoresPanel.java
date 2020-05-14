@@ -23,7 +23,7 @@ public class HighschoresPanel extends JPanel
 
         try
         {
-            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\HighscoresPanel.png"));
+            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\highscores.png"));
         }
         catch (IOException e)
         {
