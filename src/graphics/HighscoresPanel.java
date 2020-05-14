@@ -36,6 +36,8 @@ public class HighscoresPanel extends JPanel
             namelabels.add(player);
             this.add(player);
         }
+	    this.setVisible(true);
+
 
     }
 

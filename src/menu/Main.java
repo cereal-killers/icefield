@@ -15,10 +15,9 @@ public class Main {
  * @param args
  */
 	public static void main(String[] args) {
-		Container c= new Container();
-		c.repaint();
+
 		Menu m = new Menu();
-		c.setController(m.getController());
+		Container c= new Container(m.getController());
 		boolean game = true;
 		while (game)
 		{

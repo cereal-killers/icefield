@@ -76,6 +76,8 @@ public class MenuPanel extends JPanel {
         this.add(settings);
         this.add(bestScores);
         this.add(exit);
+	    this.setVisible(true);
+
     }
 
     @Override

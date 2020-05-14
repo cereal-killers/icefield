@@ -40,7 +40,7 @@ public class OptionsPanel extends JPanel
         submitButton.setOpaque(false);
         submitButton.setContentAreaFilled(false);
         submitButton.setBorderPainted(false);
-        submitButton.setActionCommand("submit");
+        submitButton.setActionCommand("submit Player");
         this.add(submitButton);
 
         //Music CheckBox felparameterezese
@@ -49,6 +49,8 @@ public class OptionsPanel extends JPanel
         music.setSelectedIcon(new ImageIcon("src\\images\\musicoff.png"));
         music.setActionCommand("togglemusic");
         this.add(music);
+	    this.setVisible(true);
+
     }
 
     @Override

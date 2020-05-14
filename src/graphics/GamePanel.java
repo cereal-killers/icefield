@@ -7,33 +7,48 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import icefield.Controller;
 
 public class GamePanel extends JPanel{
     private BufferedImage backGround;
+    private BufferedImage map;
     private Inventory inventory = null;
     private ArrayList<FieldPanel> fields;
     private Controller controller;
 
-    public GamePanel(String palya)
+    public GamePanel(String palya, Controller c)
     {
 	    try
 	    {
 	        backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\background.png"));
+	        map = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\"+palya+".png"));
 	    }
 	    catch (IOException e)
 	    {
 	        e.printStackTrace();
 	    }
+	    controller = c;
+	    createFields(palya);
 	    this.setVisible(true);
     }
     
     @Override
     public void paint(Graphics g)
     {
-        g.drawImage(backGround, 0,0, this);
+    	refreshInventory();
+    	//1. háttér
+        g.drawImage(backGround, 0,0, this); 
+        //2. map
+        g.drawImage(map, 0,0, this); 
+        //3. inventory
+        inventory.paint(g, this);
+        //4. fieldek
+        for(FieldPanel f : fields)
+        	f.paint(g, this);
+
     }
     public Inventory getInventory()
     {
@@ -41,15 +56,23 @@ public class GamePanel extends JPanel{
     }
     public void refreshInventory()
     {
-    	if (inventory!=null)
-    		this.remove(inventory);
+    	if (inventory!=null) //torles
+    	{
+    		this.remove(inventory.getEndTurnButton());
+    		for (JButton b : inventory.getItemButtons())
+    			this.remove(b);
+    	}
     	inventory = new Inventory(controller.getCurrentPlayer());
-    	this.add(inventory);
+    	// hozzaadas
+		this.add(inventory.getEndTurnButton());
+		for (JButton b : inventory.getItemButtons())
+			this.add(b);
     }
     
     public void createFields(String palya)
     {
     	fields.clear();
+    	// poziciok bellítasa
     	switch(palya)
     	{
     	case "foci":
@@ -108,9 +131,10 @@ public class GamePanel extends JPanel{
     		fields.add(new FieldPanel(controller.getFields().get(12),552,416,  173,138, 12));
     		break;
     	}
+    	// buttonok hozzaadasa
+    	for(FieldPanel f: fields)
+    		this.add(f.getButton());
     }
-    public void setController(Controller c){controller = c;}
-
     
     public ArrayList<FieldPanel> getFields(){return fields;}
 }
