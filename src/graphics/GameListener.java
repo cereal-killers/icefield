@@ -47,18 +47,18 @@ public class GameListener implements ActionListener, KeyListener {
 				cmd_out = "4";
 			} break;
 			case "submit":{
-				String newName = optionsPanel.GetNameTextField().getText();
+				/*String newName = optionsPanel.GetNameTextField().getText();
 				cmd_out = "1\r\n" + newName;
-				container.savePlayerName();
+				container.savePlayerName();*/
 			} break;
 			case "togglemusic":{
-				boolean music = menu.getOptions().getMusic();
+				/*boolean music = menu.getOptions().getMusic();
 				if(music) {
 					cmd_out = "2\r\noff";
 				}else {
 					cmd_out = "2\r\non";
 				}
-				container.toggleMusic();
+				container.toggleMusic();*/
 			} break;
 			case "remove snow":{
 				cmd_out = "remove snow";
@@ -105,7 +105,7 @@ public class GameListener implements ActionListener, KeyListener {
 		container.navigate("game");
 		*/
 		System.setIn(new ByteArrayInputStream(cmd_out.getBytes()));
-	
+		container.repaint();
 	}
 	
 	@Override
@@ -118,6 +118,7 @@ public class GameListener implements ActionListener, KeyListener {
 			cmd_out = "menu";
 		}
 		System.setIn(new ByteArrayInputStream(cmd_out.getBytes()));
+		container.repaint();
 	}
 	
 	@Override
