@@ -48,7 +48,7 @@ public class Container extends JFrame {
 			this.add(teszt);
 			break;
 		case "menu":
-			MenuPanel m = new MenuPanel(this);
+			MenuPanel m = new MenuPanel();
 			for(JButton j : m.getMenuButtons())
 			{
 				j.addActionListener(gamelistener);
@@ -57,13 +57,13 @@ public class Container extends JFrame {
 			this.add(m);
 			break;
 		case "options":
-			OptionsPanel o = new OptionsPanel(this);
+			OptionsPanel o = new OptionsPanel();
 			o.getMusic().addActionListener(gamelistener);
 			currentpanel = o;
 			this.add(o);
 			break;
 		case "highscores":
-			Highscorespanel h = new HighscoresPanel(this);
+			Highscorespanel h = new HighscoresPanel();
 			currentpanel = h;
 			this.add(h);
 			break;

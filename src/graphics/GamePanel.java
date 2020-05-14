@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel{
     private BufferedImage backGround;
     private Inventory inventory;
+    private ArrayList<FieldPanel> fields;
 
 
     public GamePanel(String palya)
@@ -40,4 +42,11 @@ public class GamePanel extends JPanel{
     	inventory = inv;
     	this.add(inv);
     }
+    
+    public void createFields(String palya)
+    {
+    	
+    }
+    
+    public ArrayList<FieldPanel> getFields(){return fields;}
 }

@@ -133,6 +133,9 @@ public class Menu {
 			for(int i=0; i< highscores.size(); i++)
 				System.out.println((i+1)+". " + highscores.get(i).getName() + " - " +highscores.get(i).getScore() );
 		}
+		//késleltetés
+		Scanner in = new Scanner(System.in); 
+		in.next();
 	}
 	/**
 	 * Függvény a játékból történő kilépéshez
