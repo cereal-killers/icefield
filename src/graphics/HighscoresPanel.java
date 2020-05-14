@@ -8,19 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class HighschoresPanel extends JPanel
+public class HighscoresPanel extends JPanel
 {
     private BufferedImage backGround;
     private ArrayList<JLabel> namelabels;
-    private JFrame frame;
     private Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
-    private JPanel panel;
 
-    public HighschoresPanel(JFrame _frame)
+    public HighscoresPanel()
     {
-        frame = _frame;
-        panel = (JPanel) frame.getContentPane();
-
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\highscores.png"));
@@ -30,8 +25,6 @@ public class HighschoresPanel extends JPanel
             e.printStackTrace();
         }
 
-        frame.invalidate();
-
         //namelabelek hozzaadasa
         for (int i= 0; i<5;i++)     //később: File-on végigmenni
         {
@@ -39,9 +32,9 @@ public class HighschoresPanel extends JPanel
             player.setFont(AmaticSc);
             player.setForeground(Color.WHITE);      //ToDo: szin = (198, 205, 229)
             player.setText("János " + readFile(i) + " kört bírt");
+            player.setBounds(460, 250+i*54, 375, 50);
             namelabels.add(player);
-            panel.setBounds(460, 250+i*54, 375, 50);
-            panel.add(player);
+            this.add(player);
         }
 
     }
@@ -75,14 +68,6 @@ public class HighschoresPanel extends JPanel
         this.namelabels = namelabels;
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public void setFrame(JFrame frame) {
-        this.frame = frame;
-    }
-
     public Font getAmaticSc() {
         return AmaticSc;
     }
@@ -91,11 +76,4 @@ public class HighschoresPanel extends JPanel
         AmaticSc = amaticSc;
     }
 
-    public JPanel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
-    }
 }

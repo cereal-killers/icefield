@@ -30,25 +30,22 @@ public class Container extends JFrame {
 		switch(where)
 		{
 		case "foci":
-			GamePanel g = new GamePanel("foci");
-			game = g;
-			g.setInventory(new Inventory(controller.getCurrentPlayer()));
-			currentpanel = g;
-			this.add(g);
+			GamePanel foci = new GamePanel("foci");
+			game = foci;
+			currentpanel = foci;
+			this.add(foci);
 			break;
 		case "nagy":
-			GamePanel g = new GamePanel("nagy");
-			game = g;
-			g.setInventory(new Inventory(controller.getCurrentPlayer()));
+			GamePanel nagy = new GamePanel("nagy");
+			game = nagy;
 			currentpanel = g;
-			this.add(g);
+			this.add(nagy);
 			break;
 		case "teszt":
-			GamePanel g = new GamePanel("teszt");
-			game = g;
-			g.setInventory(new Inventory(controller.getCurrentPlayer()));
-			currentpanel = g;
-			this.add(g);
+			GamePanel teszt = new GamePanel("teszt");
+			game = teszt;
+			currentpanel = teszt;
+			this.add(teszt);
 			break;
 		case "menu":
 			MenuPanel m = new MenuPanel(this);
@@ -58,8 +55,6 @@ public class Container extends JFrame {
 			}
 			currentpanel = m;
 			this.add(m);
-
-
 			break;
 		case "options":
 			OptionsPanel o = new OptionsPanel(this);

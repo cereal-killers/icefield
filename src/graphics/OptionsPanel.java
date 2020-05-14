@@ -13,13 +13,9 @@ public class OptionsPanel extends JPanel
     private JTextField nameTextField;
     private JCheckBox music;
     private JButton submitButton;
-    private JFrame frame;
-    private JPanel panel;
 
-    public OptionsPanel(JFrame _frame)
+    public OptionsPanel()
     {
-        frame = _frame;
-        panel = (JPanel) frame.getContentPane();
         Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
 
         try
@@ -31,13 +27,12 @@ public class OptionsPanel extends JPanel
             e.printStackTrace();
         }
 
-        frame.invalidate();
 
         //Nametextfield beallitasa
         nameTextField.setBounds(255,365,265,60);
         nameTextField.setFont(AmaticSc);
         nameTextField.setOpaque(false);
-        panel.add(nameTextField);
+        this.add(nameTextField);
 
 
         //SubmitButton felparameterezese
@@ -46,14 +41,14 @@ public class OptionsPanel extends JPanel
         submitButton.setContentAreaFilled(false);
         submitButton.setBorderPainted(false);
         submitButton.setActionCommand("submit");
-        panel.add(submitButton);
+        this.add(submitButton);
 
         //Music CheckBox felparameterezese
         music.setBounds(701, 504, 100, 100);
         music.setIcon(new ImageIcon("src\\images\\musicon.png"));
         music.setSelectedIcon(new ImageIcon("src\\images\\musicoff.png"));
         music.setActionCommand("togglemusic");
-        panel.add(music);
+        this.add(music);
     }
 
     @Override
@@ -93,21 +88,5 @@ public class OptionsPanel extends JPanel
 
     public void setSubmitButton(JButton submitButton) {
         this.submitButton = submitButton;
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public void setFrame(JFrame frame) {
-        this.frame = frame;
-    }
-
-    public JPanel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
     }
 }
