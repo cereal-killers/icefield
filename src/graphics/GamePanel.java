@@ -45,7 +45,15 @@ public class GamePanel extends JPanel{
     
     public void createFields(String palya)
     {
-    	
+    	switch(palya)
+    	{
+    	case "foci":
+    		break;
+    	case "nagy":
+    		break;
+    	case "teszt":
+    		break;
+    	}
     }
     
     public ArrayList<FieldPanel> getFields(){return fields;}

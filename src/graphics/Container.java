@@ -32,18 +32,30 @@ public class Container extends JFrame {
 		case "foci":
 			GamePanel foci = new GamePanel("foci");
 			game = foci;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
 			currentpanel = foci;
 			this.add(foci);
 			break;
 		case "nagy":
 			GamePanel nagy = new GamePanel("nagy");
 			game = nagy;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
 			currentpanel = g;
 			this.add(nagy);
 			break;
 		case "teszt":
 			GamePanel teszt = new GamePanel("teszt");
 			game = teszt;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
 			currentpanel = teszt;
 			this.add(teszt);
 			break;
