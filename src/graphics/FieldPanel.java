@@ -103,8 +103,8 @@ public class FieldPanel{
             for(int i=0;i<playerImages.size();i++)
                  g.drawImage(
                     playerImages.get(i),
-                    posX + width/2 - 26 + Math.cos( (i*2*Math.PI) / playerImages.size() ) *30,
-                    posY + height/2 - 112 + Math.sin ( (i*2*Math.PI) / playerImages.size() ) *30, 
+                    (int)(posX + width/2 - 26 + Math.cos( (i*2*Math.PI) / playerImages.size() ) *30),
+                    (int)(posY + height/2 - 112 + Math.sin ( (i*2*Math.PI) / playerImages.size() ) *30), 
                     currentPanel);
         }
 

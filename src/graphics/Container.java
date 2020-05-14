@@ -26,35 +26,56 @@ public class Container extends JFrame {
 	}
 	public void navigate(String where)
 	{
-		this.removeAll();
+		this.remove(currentpanel);
 		switch(where)
 		{
-		case "game":
-			GamePanel g = new GamePanel();
-			game = g;
-			g.setInventory(new Inventory(controller.getCurrentPlayer())) ;
+		case "foci":
+			GamePanel foci = new GamePanel("foci");
+			game = foci;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
+			currentpanel = foci;
+			this.add(foci);
+			break;
+		case "nagy":
+			GamePanel nagy = new GamePanel("nagy");
+			game = nagy;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
 			currentpanel = g;
-			this.add(g);
+			this.add(nagy);
+			break;
+		case "teszt":
+			GamePanel teszt = new GamePanel("teszt");
+			game = teszt;
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+			}
+			currentpanel = teszt;
+			this.add(teszt);
 			break;
 		case "menu":
-			MenuPanel m = new MenuPanel(this);
+			MenuPanel m = new MenuPanel();
 			for(JButton j : m.getMenuButtons())
 			{
 				j.addActionListener(gamelistener);
 			}
 			currentpanel = m;
 			this.add(m);
-
-
 			break;
 		case "options":
-			OptionsPanel o = new OptionsPanel(this);
+			OptionsPanel o = new OptionsPanel();
 			o.getMusic().addActionListener(gamelistener);
 			currentpanel = o;
 			this.add(o);
 			break;
 		case "highscores":
-			Highscorespanel h = new HighscoresPanel(this);
+			Highscorespanel h = new HighscoresPanel();
 			currentpanel = h;
 			this.add(h);
 			break;

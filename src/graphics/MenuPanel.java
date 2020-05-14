@@ -12,13 +12,8 @@ import java.util.ArrayList;
 public class MenuPanel extends JPanel {
     private BufferedImage backGround = new BufferedImage(1200, 720, BufferedImage.TYPE_INT_RGB);
     private ArrayList<JButton> menuButtons = new ArrayList<JButton>();
-    private JFrame frame;
-    private JPanel panel;
 
-    public MenuPanel(JFrame _frame) {
-        super();
-        frame = _frame;
-
+    public MenuPanel() {
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\menu.png"));
@@ -27,8 +22,6 @@ public class MenuPanel extends JPanel {
         {
             e.printStackTrace();
         }
-
-        frame.invalidate();
 
         //gombok letrehozasa
         JButton newGame = new JButton();
@@ -79,18 +72,10 @@ public class MenuPanel extends JPanel {
         menuButtons.add(bestScores);
         menuButtons.add(exit);
 
-        panel = (JPanel) frame.getContentPane();
-
-        panel.add(newGame);
-        panel.add(settings);
-        panel.add(bestScores);
-        panel.add(exit);
-
-        //panel.add(textbox);
-
-        frame.setLocationRelativeTo(null);
-        frame.pack();
-        frame.setVisible(true);
+        this.add(newGame);
+        this.add(settings);
+        this.add(bestScores);
+        this.add(exit);
     }
 
     @Override
@@ -114,21 +99,5 @@ public class MenuPanel extends JPanel {
 
     public void setMenuButtons(ArrayList<JButton> menuButtons) {
         this.menuButtons = menuButtons;
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
-    public void setFrame(JFrame frame) {
-        this.frame = frame;
-    }
-
-    public JPanel getPanel() {
-        return panel;
-    }
-
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
     }
 }
