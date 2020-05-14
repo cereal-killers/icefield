@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import field.Field;
 import item.Item;
+import player.Player;
 
 import java.awt.Graphics;
 
@@ -68,6 +69,16 @@ public class FieldPanel{
         {
             for( Item i : _field.getItems())
                 itemImages.add(ImageIO.read(new File("src\\images\\"+i.getName()+".png")));
+            for( Player i : _field.getPlayers())
+                playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png ")) );
+            if(_field.getPolarBear() != null)
+                polarbearImage = ImageIO.read(new File("src\\images\\polarbear.png"));
+            if(field.getSnow()>0)
+                snowImage = ImageIO.read(new File("src\\images\\snow.png"));
+            if(field.getHasTent())
+                thingImage = ImageIO.read(new File("src\\images\\tent.png"));
+            else if(field.getHasIgloo())
+                 thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
         }catch(IOException e)
         {
             e.printStackTrace();
