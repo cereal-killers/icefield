@@ -62,10 +62,10 @@ public class FieldPanel{
         height = _height;
         currentPanel.add(button);
         button.setBounds(x,y,width, height);
+        
         button.setActionCommand("field"+num);
         try
         {
-            thingImage = ImageIO.read(new File("src\\images\\"+ _field.GetItem().getName()+".png"));
             for( Item i : _field.getItems())
                 itemImages.add(ImageIO.read(new File("src\\images\\"+i.getName()+".png")));
         }catch(IOException e)
@@ -78,9 +78,11 @@ public class FieldPanel{
     {
         button.setOpaque(false);
         button.setContentAreaFilled(false);
-        button.setBorderPainted(false); 
+        button.setBorderPainted(false);
+
         //eszkoz
         g.drawImage(itemImages.peek(), posX, posY, currentPanel);
+
         //playerek
         if(playerImages.size() == 1)
         {
@@ -90,13 +92,19 @@ public class FieldPanel{
             for(int i=0;i<playerImages.size();i++)
                  g.drawImage(
                     playerImages.get(i),
-                    posX + width/2 - 26 + cos( (i*2*Math.PI) / playerImages.size() ) *30,
-                    posY + height/2 - 112 + sin ( (i*2*Math.PI) / playerImages.size() ) *30, 
+                    posX + width/2 - 26 + Math.cos( (i*2*Math.PI) / playerImages.size() ) *30,
+                    posY + height/2 - 112 + Math.sin ( (i*2*Math.PI) / playerImages.size() ) *30, 
                     currentPanel);
         }
 
+        //polarbear
+        g.drawImage(polarbearImage, posX+width/2-54, posY+height/2-112, currentPanel);
 
+        //ho
+        g.drawImage(snowImage, posX + width/2 -63, posY + height/2 -38, currentPanel);
 
+        //sator/iglu
+        g.drawImage(thingImage, posX + width - 72, posY + height -36, currentPanel);
     }
 
 
