@@ -54,6 +54,7 @@ public class Inventory extends JPanel {
         currentPlayer.getHealth()*(195/currentPlayer.getMaxHealth()));
         g.setColor(Color.blue);
         g.fillRect(832, 525 + (4 - currentPlayer.getEnergy())*(195/4), 197, currentPlayer.getEnergy()*(195/4));
+        itemImages.clear();
         for (int i = 0; i < currentPlayer.getItems().size(); ++i){
             try {
                 BufferedImage temp = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\"+currentPlayer.getItems().get(i).getName()+".png"));
