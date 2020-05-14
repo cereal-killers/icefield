@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+//import javax.swing.*;
 import java.awt.*;
-import java.awt.image.*;
+//import java.awt.image.*;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class Inventory extends JPanel {
     private Player currentPlayer;
-    private BufferedImage background;
+    private BufferedImage backGround;
     private ArrayList<BufferedImage> itemImages;
     private ArrayList<JButton> itemButtons;
     private JButton endTurnButton;
@@ -29,7 +29,7 @@ public class Inventory extends JPanel {
     public Inventory(Player player){
         currentPlayer = player;
         try {
-            background = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\inventory.png"));
+            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\inventory.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,14 +72,14 @@ public class Inventory extends JPanel {
 				e.printStackTrace();
 			}
         }
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backGround, 0, 0, this);
     }
 
     public Player getCurrentPlayer(){ return currentPlayer;}
     public void setCurrentPlayer(Player player){currentPlayer = player;}
 
-    public BufferedImage getBackground(){ return background;}
-    public void setBackground(BufferedImage image){ background = image; }
+    public BufferedImage getBackGround(){ return backGround;}
+    public void setBackGround(BufferedImage image){ backGround = image; }
 
     public ArrayList<JButton> getItemButtons(){return itemButtons; }
     public void setItemButtons(ArrayList<JButton> buttons){ itemButtons = buttons;}
