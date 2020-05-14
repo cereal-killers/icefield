@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class HighschoresPanel extends JPanel
 {
-    private BufferedImage background;
+    private BufferedImage backGround;
     private ArrayList<JLabel> namelabels;
     private JFrame frame;
     private Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
@@ -23,7 +23,7 @@ public class HighschoresPanel extends JPanel
 
         try
         {
-            background = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\HighscoresPanel.png"));
+            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\HighscoresPanel.png"));
         }
         catch (IOException e)
         {
@@ -49,7 +49,7 @@ public class HighschoresPanel extends JPanel
     @Override
     public void paint(Graphics g)
     {
-        g.drawImage(background, 0,0, this);
+        g.drawImage(backGround, 0,0, this);
     }
 
     //filebeolvaso fuggveny
@@ -59,14 +59,12 @@ public class HighschoresPanel extends JPanel
     }
 
     //getterek & setterek
-
-    @Override
-    public BufferedImage getBackground() {
-        return background;
+    public BufferedImage getBackGround() {
+        return backGround;
     }
 
-    public void setBackground(BufferedImage background) {
-        this.background = background;
+    public void setBackGround(BufferedImage backGround) {
+        this.backGround = backGround;
     }
 
     public ArrayList<JLabel> getNamelabels() {

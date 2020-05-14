@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class OptionsPanel extends JPanel
 {
-    private BufferedImage background;
+    private BufferedImage backGround;
     private JTextField nameTextField;
     private JCheckBox music;
     private JButton submitButton;
@@ -24,7 +24,7 @@ public class OptionsPanel extends JPanel
 
         try
         {
-            background = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\options.png"));
+            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\options.png"));
         }
         catch (IOException e)
         {
@@ -59,18 +59,16 @@ public class OptionsPanel extends JPanel
     @Override
     public void paint(Graphics g)
     {
-        g.drawImage(background, 0,0, this);
+        g.drawImage(backGround, 0,0, this);
     }
 
     //getterek & setterek
-
-    @Override
-    public BufferedImage getBackground() {
-        return background;
+    public BufferedImage getBackGround() {
+        return backGround;
     }
 
-    public void setBackground(BufferedImage background) {
-        this.background = background;
+    public void setBackGround(BufferedImage backGround) {
+        this.backGround = backGround;
     }
 
     public JTextField getNameTextField() {

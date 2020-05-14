@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class MenuPanel extends JPanel {
-    private BufferedImage background = new BufferedImage(1200, 720, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage backGround = new BufferedImage(1200, 720, BufferedImage.TYPE_INT_RGB);
     private ArrayList<JButton> menuButtons = new ArrayList<JButton>();
     private JFrame frame;
     private JPanel panel;
@@ -21,7 +21,7 @@ public class MenuPanel extends JPanel {
 
         try
         {
-            background = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\menu.png"));
+            backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\menu.png"));
         }
         catch (IOException e)
         {
@@ -96,16 +96,16 @@ public class MenuPanel extends JPanel {
     @Override
     public void paint(Graphics g)
     {
-        g.drawImage(background, 0,0, this);
+        g.drawImage(backGround, 0,0, this);
     }
 
     //getterek & setterek
-    public BufferedImage getBackground() {
-        return background;
+    public BufferedImage getBackGround() {
+        return backGround;
     }
 
-    public void setBackground(BufferedImage background) {
-        this.background = background;
+    public void setBackGround(BufferedImage backGround) {
+        this.backGround = backGround;
     }
 
     public ArrayList<JButton> getMenuButtons() {
