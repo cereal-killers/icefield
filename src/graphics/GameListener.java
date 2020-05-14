@@ -79,11 +79,11 @@ public class GameListener implements ActionListener, KeyListener {
 				String[] cmd_out_split = cmd_out.split("\\s+");
 				if(cmd_out_split[0] == "move") {
 						
-				} else if(cmd_out_split[0] == "inspect") {
+				} else if(cmd_out_split[0].contentEquals("inspect")) {
 						
-				} else if(cmd_out_split[0] == "use") {
+				} else if(cmd_out_split[0].contentEquals("use")) {
 						
-				} else if(cmd_out_split[0] == "test") {
+				} else if(cmd_out_split[0].contentEquals("test")) {
 						
 				} 
 			} break;
