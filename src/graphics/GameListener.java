@@ -98,7 +98,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				//container.navigate("nagy");
 			}break;
 			case "foci": {
-				cmd_to_model = "focipalya";
+				cmd_to_model = "focilabda";
 				//container.navigate("foci");
 			}break;
 			case "teszt": {
@@ -148,6 +148,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							ex.printStackTrace();
 						}
 					}
+					sendCommandToModel("N");
 					container.navigate("nagy");
 					//sendCommandToModel("N");
 				} break;
@@ -160,8 +161,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							ex.printStackTrace();
 						}
 					}
+					sendCommandToModel("N");
 					container.navigate("foci");
-					//sendCommandToModel("N");
+					
 				} break;
 				case "teszt":{
 					synchronized(Controller.mapLoaded) {
@@ -172,8 +174,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							ex.printStackTrace();
 						}
 					}
+					sendCommandToModel("N");
 					container.navigate("teszt");
-					//sendCommandToModel("N");
+					//
 				} break;
 				default:break;
 			}
