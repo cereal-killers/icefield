@@ -106,8 +106,8 @@ public class GamePanel extends JPanel{
     		fields.add(new FieldPanel(controller.getFields().get(8),281,243,  177,60, 8));
     		fields.add(new FieldPanel(controller.getFields().get(9),467,241,  108,116, 9));
     		fields.add(new FieldPanel(controller.getFields().get(10),810,265,  162,66, 10));
-    		fields.add(new FieldPanel(controller.getFields().get(11),985,000,  175,105, 11));
-    		fields.add(new FieldPanel(controller.getFields().get(12),300,28,  106,163, 12));
+    		fields.add(new FieldPanel(controller.getFields().get(11),985,195,  175,105, 11));
+    		fields.add(new FieldPanel(controller.getFields().get(12),28,300,  106,163, 12));
     		fields.add(new FieldPanel(controller.getFields().get(13),601,292,  190,67, 13));
     		fields.add(new FieldPanel(controller.getFields().get(14),872,346,  188,76, 14));
     		fields.add(new FieldPanel(controller.getFields().get(15),144,424,  167,82, 15));
