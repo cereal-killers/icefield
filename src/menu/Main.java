@@ -24,11 +24,14 @@ public class Main {
 			m.ShowMenuItems();
 			Scanner in = new Scanner(System.in); 
 			try {
+				//if(in.hasNextInt()) {
 				MenuItem n=	MenuItem.values()[in.nextInt()-1];
 				game = m.ChooseMenuItem(n);
+				//}
 			}
 			catch(Exception ex){
 				System.out.println("Invalid input.");
+				ex.printStackTrace();
 			}
 		}
 	}

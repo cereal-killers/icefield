@@ -13,8 +13,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.StringBufferInputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -30,11 +33,19 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	private Controller controller;
 	private PrintStream stdout;
 	private InputStream stdin;
+	private String cmd;
+	private ByteArrayInputStream baos;
 	
-	public GameListener(Container _container, Controller _controller) {
+	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException {
 		this.container = _container;
 		stdout = System.out;
 		stdin = System.in;
+		cmd = "";
+		baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
+		System.setIn(baos);
+		//StringBufferInputStream s = new StringBufferInputStream("ABCD");
+		//System.setIn(s);
+		//cmd = "5";
 	}
 	
 	@Override
@@ -126,7 +137,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		int key = e.getKeyCode();
 		String cmd_to_model = "";
 		if(key == KeyEvent.VK_ESCAPE) {
-			cmd_to_model = "menu";
+			cmd_to_model = "3";
 		}
 		sendCommandToModel(cmd_to_model);
 		container.repaint();
@@ -197,10 +208,14 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	
 	private void sendCommandToModel(String cmd) {
 		cmd = cmd + System.lineSeparator();
-		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
+		//baos = new ByteArrayInputStream(cmd.getBytes());
+		//cmd = cmd + "\r\n";
+		//System.setIn(new ByteArrayInputStream(cmd.getBytes()));
+		//System.setIn(baos);
 		//Scanner scanner = new Scanner(System.in);
 		//System.out.println(scanner.nextLine());
 		//scanner.close();
+		//cmd = "";
 		
 		stdout.println(cmd); //debug célból
 	}
