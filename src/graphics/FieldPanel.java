@@ -63,7 +63,7 @@ public class FieldPanel{
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
-        button.setActionCommand("field"+num);
+        button.setActionCommand("field "+num);
         playerImages = new ArrayList<BufferedImage>();
         itemImages = new Stack<BufferedImage>();
     }
