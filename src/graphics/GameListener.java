@@ -31,6 +31,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	
 	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
+		this.controller = _controller;
 		stdout = System.out;
 		stdin = System.in;
 		String cmd = "";
