@@ -255,6 +255,9 @@ public class Controller implements java.io.Serializable{
         //A játékosok és a rakétaalkatrészek mind egy mezőn vannak
         if(ArePartsTogether() && ArePlayersTogether()) {
             System.out.println("You Won!");
+    		//késleltetés
+    		Scanner in = new Scanner(System.in); 
+    		in.next();
             ended = true;
             return true;
         }
@@ -267,6 +270,9 @@ public class Controller implements java.io.Serializable{
     public void Finish()
     {
         System.out.println("You Lose!");
+		//késleltetés
+		Scanner in = new Scanner(System.in); 
+		in.next();
         ended =true;
     }
 

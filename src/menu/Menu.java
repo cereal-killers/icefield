@@ -36,6 +36,7 @@ public class Menu {
 	 * Konstruktor
 	 */
 	public Menu(){
+		this.controller = new Controller();
 		highscores = new Vector<>();
 		options = new Options();
 		audioPlayer = new AudioPlayer();
@@ -92,7 +93,6 @@ public class Menu {
 		if(options.GetMusic())
 			audioPlayer.Start(false);
 		
-		this.controller = new Controller();
 		int turns = controller.Start();
 		if (turns>0)
 			AddHighscore(turns);

@@ -17,6 +17,8 @@ public class MapPanel extends JPanel{
     
     public MapPanel()
     {
+    	this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
 	    try
 	    {
 	        backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\map.png"));
@@ -56,7 +58,8 @@ public class MapPanel extends JPanel{
         this.add(foci);
         this.add(nagy);
         this.add(teszt);
-        this.setVisible(true);
+	    this.setVisible(true);
+	    this.setFocusable(true);
 
     }
     

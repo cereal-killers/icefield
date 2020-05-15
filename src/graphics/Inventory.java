@@ -16,7 +16,7 @@ import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Inventory extends JPanel {
+public class Inventory {
     private Player currentPlayer;
     private BufferedImage backGround;
     private ArrayList<BufferedImage> itemImages;
@@ -36,18 +36,24 @@ public class Inventory extends JPanel {
         }
         itemImages = new ArrayList<BufferedImage>();
         itemButtons = new ArrayList<JButton>();
-        endTurnButton = new JButton("End turn");
+        endTurnButton = new JButton();
         endTurnButton.setActionCommand("endturn");
         endTurnButton.setOpaque(false);
         endTurnButton.setContentAreaFilled(false);
         endTurnButton.setBorderPainted(false);
-        endTurnButton.setBounds(505, 585, 183, 53);
-        this.add(endTurnButton);
-        
+        endTurnButton.setBounds(505, 585, 183, 53);     
+        for (int i=0; i<5; i++)
+        {
+            JButton item = new JButton();
+            item.setOpaque(false);
+            item.setContentAreaFilled(false);
+            item.setBorderPainted(false);
+            item.setBounds(417 + i*80, 651, 60, 58);
+            itemButtons.add(item);
+        }
     }
 
-    @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g, JPanel p){
         g.setColor(Color.red);
         g.fillRect(189, 525 + 
         (currentPlayer.getMaxHealth()-currentPlayer.getHealth())*(195/currentPlayer.getMaxHealth()), 185,
@@ -59,20 +65,14 @@ public class Inventory extends JPanel {
             try {
                 BufferedImage temp = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\"+currentPlayer.getItems().get(i).getName()+".png"));
                 itemImages.add(temp);
-                JButton item = new JButton();
-                item.setActionCommand(currentPlayer.getItems().get(i).getName());
-                item.setOpaque(false);
-                item.setContentAreaFilled(false);
-                item.setBorderPainted(false);
-                item.setBounds(417 + i*80, 651, 60, 58);
-                this.add(item);
-                g.drawImage(temp, 417 + i*80, 651, this);
+                itemButtons.get(i).setActionCommand("item" + currentPlayer.getItems().get(i).getName());
+                g.drawImage(temp, 417 + i*80, 651, p);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
-        g.drawImage(backGround, 0, 0, this);
+        g.drawImage(backGround, 0, 0, p);
     }
 
     public Player getCurrentPlayer(){ return currentPlayer;}

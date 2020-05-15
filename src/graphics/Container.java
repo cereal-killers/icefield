@@ -12,95 +12,116 @@ import menu.Menu;
 
 public class Container extends JFrame {
 
-	private JPanel currentpanel;
-	private GamePanel game;
+	private JPanel currentpanel = null;
 	private GameListener gamelistener;
 	private Controller controller;
-
 	
-	public Container()
+	public Container(Controller c)
 	{
+		controller = c;
 		gamelistener = new GameListener(this);
+		this.setTitle("Ice Field");
+		this.setBounds(0,0,1200,720);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addKeyListener(gamelistener);
+	    this.setVisible(true);
+	    this.setFocusable(true);
 		navigate("menu");
-		
+
 	}
 	public void navigate(String where)
 	{
-		this.remove(currentpanel);
+		if (currentpanel!=null)
+			this.remove(currentpanel);
+		GamePanel game = null;
 		switch(where)
 		{
 		case "foci":
-			GamePanel foci = new GamePanel("foci");
-			game = foci;
-			for(FieldPanel f: game.getFields())
-			{
-				f.getButton().addActionListener(gamelistener);
-			}
-			currentpanel = foci;
-			this.add(foci);
+			game = new GamePanel("foci", controller);
 			break;
 		case "nagy":
-			GamePanel nagy = new GamePanel("nagy");
-			game = nagy;
-			for(FieldPanel f: game.getFields())
-			{
-				f.getButton().addActionListener(gamelistener);
-			}
-			currentpanel = g;
-			this.add(nagy);
+			game = new GamePanel("nagy", controller);
 			break;
 		case "teszt":
-			GamePanel teszt = new GamePanel("teszt");
-			game = teszt;
-			for(FieldPanel f: game.getFields())
-			{
-				f.getButton().addActionListener(gamelistener);
-			}
-			currentpanel = teszt;
-			this.add(teszt);
+			game = new GamePanel("teszt", controller);
 			break;
 		case "menu":
 			MenuPanel m = new MenuPanel();
-			for(JButton j : m.getMenuButtons())
+			m.addKeyListener(gamelistener);
+			for(JButton b : m.getMenuButtons())
 			{
-				j.addActionListener(gamelistener);
+				b.addActionListener(gamelistener);
+				b.addKeyListener(gamelistener);
 			}
 			currentpanel = m;
 			this.add(m);
 			break;
 		case "options":
 			OptionsPanel o = new OptionsPanel();
+			o.addKeyListener(gamelistener);
 			o.getMusic().addActionListener(gamelistener);
+			o.getMusic().addKeyListener(gamelistener);
 			currentpanel = o;
 			this.add(o);
 			break;
 		case "highscores":
-			Highscorespanel h = new HighscoresPanel();
+			HighscoresPanel h = new HighscoresPanel();
+			h.addKeyListener(gamelistener);
 			currentpanel = h;
 			this.add(h);
 			break;
 		case "choosemap":
 			MapPanel mp = new MapPanel();
+			mp.addKeyListener(gamelistener);
 			for( JButton b : mp.getMapButtons())
 			{
 				b.addActionListener(gamelistener);
+				b.addKeyListener(gamelistener);
 			}
 			currentpanel = mp;
 			this.add(mp);
 			break;
+		case "win":
+			EndPanel wp = new EndPanel(true);
+			wp.addKeyListener(gamelistener);
+			currentpanel = wp;
+			this.add(wp);
+			break;
+		case "lose":
+			EndPanel lp = new EndPanel(false);
+			lp.addKeyListener(gamelistener);
+			currentpanel = lp;
+			this.add(lp);
+			break;
 		}
+		// ha gamepanelre megyunk
+		if (game!=null)
+		{
+			game.addKeyListener(gamelistener);
+			game.getInventory().getEndTurnButton().addActionListener(gamelistener);
+			game.getInventory().getEndTurnButton().addKeyListener(gamelistener);
+			for(JButton b: game.getInventory().getItemButtons())
+			{
+				b.addActionListener(gamelistener);
+				b.addKeyListener(gamelistener);
+			}
+			for(FieldPanel f: game.getFields())
+			{
+				f.getButton().addActionListener(gamelistener);
+				f.getButton().addKeyListener(gamelistener);
+				f.getButton().addMouseListener(gamelistener);
+			}
+			currentpanel = game;
+			this.add(game);
+		}
+		//refresh
+		repaint();
 	}
 	
     @Override
     public void paint(Graphics g)
     {
-		game.setInventory(new Inventory(controller.getCurrentPlayer())); // TODO NULL eset
-        currentpanel.repaint();
-    }
-    
-    public void setController(Controller c)
-    {
-    	controller = c;
+    	currentpanel.repaint();
     }
 	
 }
