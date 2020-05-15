@@ -121,6 +121,7 @@ public class Container extends JFrame {
     @Override
     public void paint(Graphics g)
     {
+    	if (currentpanel!=null)
     	currentpanel.repaint();
     }
 	
