@@ -34,6 +34,7 @@ public class Options {
 	public void ShowOptionItems() {
 		System.out.println("1. Player name");		
 		System.out.println("2. Music");
+		System.out.println("3. Back");
 		System.out.println();
 		System.out.println("Current state:");
 		System.out.println();
@@ -49,7 +50,7 @@ public class Options {
 	 * Függvény egy beállítási opció végrehajtására
 	 * @param item az option enum
 	 */
-	public void ChooseOptionsItem(OptionsItem item) {
+	public boolean ChooseOptionsItem(OptionsItem item) {
 		switch(item)
 		{
 		case playername:
@@ -58,9 +59,12 @@ public class Options {
 		case music:
 			MusicOption();
 			break;
+		case back:
+			return false;
 		default:
 			System.out.println("Invalid input.");
 			}
+		return true;
 	}
 	
 	/**

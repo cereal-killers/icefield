@@ -105,14 +105,19 @@ public class Menu {
 	 * Függvény a beállításokhoz
 	 */
 	public void Settings() {
-		options.ShowOptionItems();
 		Scanner in = new Scanner(System.in); 
-		try {
-			OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
-			options.ChooseOptionsItem(o);
-		}
-		catch(Exception ex){
-			System.out.println("Invalid input.");
+		boolean felt= true;
+		while(felt)
+			{
+			options.ShowOptionItems();
+	
+			try {
+				OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
+				felt = options.ChooseOptionsItem(o);
+			}
+			catch(Exception ex){
+				System.out.println("Invalid input.");
+			}
 		}
 	}
 	/**
