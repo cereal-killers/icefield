@@ -81,6 +81,18 @@ public class Container extends JFrame {
 			currentpanel = mp;
 			this.add(mp);
 			break;
+		case "win":
+			EndPanel wp = new EndPanel(true);
+			wp.addKeyListener(gamelistener);
+			currentpanel = wp;
+			this.add(wp);
+			break;
+		case "lose":
+			EndPanel lp = new EndPanel(false);
+			lp.addKeyListener(gamelistener);
+			currentpanel = lp;
+			this.add(lp);
+			break;
 		}
 		// ha gamepanelre megyunk
 		if (game!=null)
