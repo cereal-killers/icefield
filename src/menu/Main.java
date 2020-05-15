@@ -22,7 +22,8 @@ public class Main {
 		while (game)
 		{
 			m.ShowMenuItems();
-			Scanner in = new Scanner(System.in); 
+			Scanner in = new Scanner(System.in);
+			System.out.println(in.nextLine());
 			try {
 				//if(in.hasNextInt()) {
 				MenuItem n=	MenuItem.values()[in.nextInt()-1];

@@ -36,13 +36,15 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	private String cmd;
 	private ByteArrayInputStream baos;
 	
-	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException {
+	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
 		stdout = System.out;
 		stdin = System.in;
 		cmd = "";
 		baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
+		//baos = new ByteArrayInputStream(System.lineSeparator().getBytes("UTF-8"));
 		System.setIn(baos);
+		baos.wait();
 		//StringBufferInputStream s = new StringBufferInputStream("ABCD");
 		//System.setIn(s);
 		//cmd = "5";
@@ -128,7 +130,12 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				
 			} break;
 		}
-		sendCommandToModel(cmd_to_model);
+		try {
+			sendCommandToModel(cmd_to_model);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		container.repaint(); //biztos ez kell? nem implementáltad, magától meg nem kérdezi le a modellt
 	}
 	
@@ -139,7 +146,12 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		if(key == KeyEvent.VK_ESCAPE) {
 			cmd_to_model = "3";
 		}
-		sendCommandToModel(cmd_to_model);
+		try {
+			sendCommandToModel(cmd_to_model);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		container.repaint();
 	}
 	
@@ -167,7 +179,12 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				} break;
 				default: break;
 			}
-			sendCommandToModel(cmd_to_model);
+			try {
+				sendCommandToModel(cmd_to_model);
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			container.repaint();
 		}
 		
@@ -206,8 +223,10 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		
 	}
 	
-	private void sendCommandToModel(String cmd) {
+	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException {
 		cmd = cmd + System.lineSeparator();
+		//baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
+		baos.notify();
 		//baos = new ByteArrayInputStream(cmd.getBytes());
 		//cmd = cmd + "\r\n";
 		//System.setIn(new ByteArrayInputStream(cmd.getBytes()));
@@ -215,7 +234,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		//Scanner scanner = new Scanner(System.in);
 		//System.out.println(scanner.nextLine());
 		//scanner.close();
-		//cmd = "";
+		cmd = "";
 		
 		stdout.println(cmd); //debug célból
 	}
