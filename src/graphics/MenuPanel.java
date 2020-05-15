@@ -60,7 +60,7 @@ public class MenuPanel extends JPanel {
         bestScores.setOpaque(false);
         bestScores.setContentAreaFilled(false);
         bestScores.setBorderPainted(false);
-        bestScores.setActionCommand("bestscores");
+        bestScores.setActionCommand("highscores");
 
         exit.setBounds(370, 567, 573, 75);
         exit.setOpaque(false);
