@@ -20,10 +20,14 @@ public class Container extends JFrame {
 	{
 		controller = c;
 		gamelistener = new GameListener(this);
+		this.setTitle("Ice Field");
 		this.setBounds(0,0,1200,720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(gamelistener);
+	    this.setVisible(true);
+	    this.setFocusable(true);
 		navigate("menu");
+
 	}
 	public void navigate(String where)
 	{

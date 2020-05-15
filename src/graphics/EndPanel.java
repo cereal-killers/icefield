@@ -13,6 +13,8 @@ public class EndPanel extends JPanel {
 	private BufferedImage backGround;
 	public EndPanel(boolean win)
 	{
+		this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
 		 try
 	     {
 			 if( win)
@@ -24,6 +26,8 @@ public class EndPanel extends JPanel {
 	     {
 	         e.printStackTrace();
 	     }
+		 this.setVisible(true);
+		 this.setFocusable(true);
 	}
 	
     @Override

@@ -14,6 +14,8 @@ public class MenuPanel extends JPanel {
     private ArrayList<JButton> menuButtons = new ArrayList<JButton>();
 
     public MenuPanel() {
+    	this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\menu.png"));
@@ -77,7 +79,7 @@ public class MenuPanel extends JPanel {
         this.add(bestScores);
         this.add(exit);
 	    this.setVisible(true);
-
+	    this.setFocusable(true);
     }
 
     @Override

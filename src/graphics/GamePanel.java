@@ -21,6 +21,8 @@ public class GamePanel extends JPanel{
 
     public GamePanel(String palya, Controller c)
     {
+		this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
 	    try
 	    {
 	        backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\background.png"));
@@ -33,6 +35,7 @@ public class GamePanel extends JPanel{
 	    controller = c;
 	    createFields(palya);
 	    this.setVisible(true);
+	    this.setFocusable(true);
     }
     
     @Override

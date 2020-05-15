@@ -16,6 +16,8 @@ public class HighscoresPanel extends JPanel
 
     public HighscoresPanel()
     {
+    	this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\highscores.png"));
@@ -37,8 +39,7 @@ public class HighscoresPanel extends JPanel
             this.add(player);
         }
 	    this.setVisible(true);
-
-
+	    this.setFocusable(true);
     }
 
     @Override

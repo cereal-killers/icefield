@@ -17,7 +17,8 @@ public class OptionsPanel extends JPanel
     public OptionsPanel()
     {
         Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
-
+        this.setLayout(null);
+		this.setBounds(0,0, 1200, 720);
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\options.png"));
@@ -45,11 +46,12 @@ public class OptionsPanel extends JPanel
 
         //Music CheckBox felparameterezese
         music.setBounds(701, 504, 100, 100);
-        music.setIcon(new ImageIcon("src\\images\\musicon.png"));
-        music.setSelectedIcon(new ImageIcon("src\\images\\musicoff.png"));
+        music.setIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicon.png"));
+        music.setSelectedIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicoff.png"));
         music.setActionCommand("togglemusic");
         this.add(music);
 	    this.setVisible(true);
+	    this.setFocusable(true);
 
     }
 
