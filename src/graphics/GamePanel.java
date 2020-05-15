@@ -55,6 +55,7 @@ public class GamePanel extends JPanel{
     }
     public Inventory getInventory()
     {
+    	refreshInventory();
     	return inventory;
     }
     public void refreshInventory()

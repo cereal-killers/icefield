@@ -23,9 +23,6 @@ public class Inventory {
     private ArrayList<JButton> itemButtons;
     private JButton endTurnButton;
 
-    public Inventory(){
-
-    }
     public Inventory(Player player){
         currentPlayer = player;
         try {

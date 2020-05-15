@@ -20,7 +20,7 @@ public class Eskimo extends Player {
 		super(c, startField);
 		this.maxHealth = 5;
 		this.health = this.maxHealth;
-		name = "Eskimo";
+		name = "eskimo";
 	}
 
 	/** 

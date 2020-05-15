@@ -55,13 +55,17 @@ public class FieldPanel{
     {
         posX=x;
         posY=y;
+        field = _field;
         width = _width;
         height = _height;
+        button = new JButton();
         button.setBounds(x,y,width, height);
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
         button.setActionCommand("field"+num);
+        playerImages = new ArrayList<BufferedImage>();
+        itemImages = new Stack<BufferedImage>();
     }
 
     public void paint(Graphics g, JPanel p)
@@ -72,19 +76,19 @@ public class FieldPanel{
     	 try
          {
              for( Item i : field.getItems())
-                 itemImages.add(ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\"+i.getName()+".png")));
+                 itemImages.add(ImageIO.read(new File("src\\images\\"+i.getName()+".png")));
              for( Player i :field.getPlayers())
-                 playerImages.add( ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\"+i.getName()+".png ")) );
+                 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png")) );
              if(field.getPolarBear() != null)
-                 polarbearImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\polarbear.png"));
+                 polarbearImage = ImageIO.read(new File("src\\images\\polarbear.png"));
              if(field.getSnow()>0)
-                 snowImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\snow.png"));
+                 snowImage = ImageIO.read(new File("src\\images\\snow.png"));
              if(field.getHasTent())
-                 thingImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\tent.png"));
+                 thingImage = ImageIO.read(new File("src\\images\\tent.png"));
              else if(field.getHasIgloo())
-                 thingImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\igloo.png"));
+                 thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
              else if(field.getIsUpsideDown())
-                 thingImage = ImageIO.read(new File(System.getProperty("user.dir")+"src\\images\\hole.png"));
+                 thingImage = ImageIO.read(new File("src\\images\\hole.png"));
          }catch(IOException e)
          {
              e.printStackTrace();

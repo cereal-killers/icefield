@@ -22,7 +22,7 @@ public class Scientist extends Player{
 		super(c, startField);
 		this.maxHealth = 4;
 		this.health = this.maxHealth;
-		name = "Scientist"; //itt a nevet beállítjuk a osztály nevére
+		name = "scientist"; //itt a nevet beállítjuk a osztály nevére
 	}
 
 	/** 
