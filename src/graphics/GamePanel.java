@@ -46,11 +46,12 @@ public class GamePanel extends JPanel{
         g.drawImage(backGround, 0,0, this); 
         //2. map
         g.drawImage(map, 0,0, this); 
-        //3. inventory
-        inventory.paint(g, this);
-        //4. fieldek
+        //3. fieldek
         for(FieldPanel f : fields)
         	f.paint(g, this);
+        
+        //4. inventory
+        inventory.paint(g, this);
 
     }
     public Inventory getInventory()
@@ -90,9 +91,9 @@ public class GamePanel extends JPanel{
     		fields.add(new FieldPanel(controller.getFields().get(7),140,320, 180,120, 7));
     		fields.add(new FieldPanel(controller.getFields().get(8),397,316,  116,87, 8));
     		fields.add(new FieldPanel(controller.getFields().get(9),585,316,  201,83, 9));
-    		fields.add(new FieldPanel(controller.getFields().get(10),796,385,  150,91, 10));
-    		fields.add(new FieldPanel(controller.getFields().get(11),355,423,  136,101, 11));
-    		fields.add(new FieldPanel(controller.getFields().get(12),552,416,  173,138, 12));
+    		fields.add(new FieldPanel(controller.getFields().get(10),358,427,  134,97, 10));
+    		fields.add(new FieldPanel(controller.getFields().get(11),542,408,  184,146, 11));
+    		fields.add(new FieldPanel(controller.getFields().get(12),796,385,  150,93, 12));
     		break;
     	case "nagy":
     		fields.add(new FieldPanel(controller.getFields().get(0),203,74,  165,74, 0));
@@ -130,9 +131,9 @@ public class GamePanel extends JPanel{
     		fields.add(new FieldPanel(controller.getFields().get(7),140,320, 180,120, 7));
     		fields.add(new FieldPanel(controller.getFields().get(8),397,316,  116,87, 8));
     		fields.add(new FieldPanel(controller.getFields().get(9),585,316,  201,83, 9));
-    		fields.add(new FieldPanel(controller.getFields().get(10),796,385,  150,91, 10));
-    		fields.add(new FieldPanel(controller.getFields().get(11),355,423,  136,101, 11));
-    		fields.add(new FieldPanel(controller.getFields().get(12),552,416,  173,138, 12));
+    		fields.add(new FieldPanel(controller.getFields().get(10),358,427,  134,97, 10));
+    		fields.add(new FieldPanel(controller.getFields().get(11),542,408,  184,146, 11));
+    		fields.add(new FieldPanel(controller.getFields().get(12),796,385,  150,93, 12));
     		break;
     	}
     	// buttonok hozzaadasa
