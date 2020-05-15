@@ -106,10 +106,19 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			}break;
 			case "field": {
 				int globalIndex = Integer.parseInt(cmd_from_view[1]); // 0-tól indul
-				Field moveTo = controller.getFields().get(globalIndex); //0-tól indul
-				int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(moveTo); // 0-tól indul
-				int dirToModel = direction + 1; // a move parancsot 1-től kell indexelni
-				cmd_to_model = "move " + dirToModel; 
+				if(globalIndex == controller.getFields().indexOf(controller.getCurrentPlayer().getCurrentField())) {
+					if(controller.getFields().get(globalIndex).getSnow() == 0) {
+						cmd_to_model = "pick up item";
+					} else {
+						cmd_to_model = "remove snow";
+					}
+				} else {
+					Field moveTo = controller.getFields().get(globalIndex); //0-tól indul
+					int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(moveTo); // 0-tól indul
+					int dirToModel = direction + 1; // a move parancsot 1-től kell indexelni
+					cmd_to_model = "move " + dirToModel; 
+				}
+
 			}break;
 			case "inspect": {
 				cmd_to_model = "tesztpalya";
