@@ -52,7 +52,7 @@ public class GamePanel extends JPanel{
         g.drawImage(map, 0,0, this); 
         //3. fieldek
         for(FieldPanel f : fields)
-        	f.paint(g, this);
+        	f.paint(g, this, controller.getCurrentPlayer());
         
         //4. inventory
         inventory.paint(g, this);

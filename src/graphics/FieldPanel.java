@@ -68,7 +68,7 @@ public class FieldPanel{
         itemImages = new Stack<BufferedImage>();
     }
 
-    public void paint(Graphics g, JPanel p)
+    public void paint(Graphics g, JPanel p, Player currentPlayer)
     {
     	itemImages.clear();
     	playerImages.clear();
@@ -83,14 +83,25 @@ public class FieldPanel{
              if(field.getSnow()>0)
                  snowImage = ImageIO.read(new File("src\\images\\snow.png"));
              for( Player i :field.getPlayers())
-                 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png")) );
+             {
+            	 if (i==currentPlayer)
+            		 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+"_selected.png")) );
+            	 else
+                     playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png")) );
+             }
              if(field.getIsUpsideDown())
              {
                  thingImage = ImageIO.read(new File("src\\images\\hole.png"));
              	playerImages.clear();
 
                  for( Player i :field.getPlayers())
-                     playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+"_drowned.png")) );
+                 {
+                	 if (i==currentPlayer)
+                		 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+"_selected_drowned.png")) );
+                	 else
+                         playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+"_drowned.png")) );
+
+                 }
              }
              else if(field.getHasIgloo())
                  thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
