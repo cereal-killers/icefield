@@ -16,7 +16,7 @@ public class GamePanel extends JPanel{
     private BufferedImage backGround;
     private BufferedImage map;
     private Inventory inventory = null;
-    private ArrayList<FieldPanel> fields;
+    private ArrayList<FieldPanel> fields = new ArrayList<FieldPanel>();
     private Controller controller;
 
     public GamePanel(String palya, Controller c)

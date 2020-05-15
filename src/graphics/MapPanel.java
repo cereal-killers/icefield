@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class MapPanel extends JPanel{
 	
     private BufferedImage backGround;
-    private ArrayList<JButton> mapButtons;
+    private ArrayList<JButton> mapButtons = new ArrayList<JButton>();
     
     public MapPanel()
     {

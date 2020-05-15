@@ -21,7 +21,7 @@ public class Container extends JFrame {
 		controller = c;
 		gamelistener = new GameListener(this, c);
 		this.setTitle("Ice Field");
-		this.setBounds(0,0,1200,720);
+		this.setBounds(0,0,1217,767);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(gamelistener);
 	    this.setVisible(true);

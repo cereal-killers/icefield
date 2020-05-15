@@ -54,7 +54,7 @@ public class MenuPanel extends JPanel {
         settings.setOpaque(false);
         settings.setContentAreaFilled(false);
         settings.setBorderPainted(false);
-        settings.setActionCommand("settings");
+        settings.setActionCommand("options");
 
         bestScores.setBounds(370, 467, 573, 75);
         bestScores.setOpaque(false);

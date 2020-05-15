@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class HighscoresPanel extends JPanel
 {
     private BufferedImage backGround;
-    private ArrayList<JLabel> namelabels;
+    private ArrayList<JLabel> namelabels = new ArrayList<JLabel>();
     private Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
 
     public HighscoresPanel()
@@ -26,7 +26,6 @@ public class HighscoresPanel extends JPanel
         {
             e.printStackTrace();
         }
-
         //namelabelek hozzaadasa
         for (int i= 0; i<5;i++)     //később: File-on végigmenni
         {
@@ -35,6 +34,7 @@ public class HighscoresPanel extends JPanel
             player.setForeground(Color.WHITE);      //ToDo: szin = (198, 205, 229)
             player.setText("János " + readFile(i) + " kört bírt");
             player.setBounds(460, 250+i*54, 375, 50);
+            player.setVisible(true);
             namelabels.add(player);
             this.add(player);
         }

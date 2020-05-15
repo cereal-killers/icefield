@@ -30,6 +30,7 @@ public class OptionsPanel extends JPanel
 
 
         //Nametextfield beallitasa
+        nameTextField = new JTextField();
         nameTextField.setBounds(255,365,265,60);
         nameTextField.setFont(AmaticSc);
         nameTextField.setOpaque(false);
@@ -37,6 +38,7 @@ public class OptionsPanel extends JPanel
 
 
         //SubmitButton felparameterezese
+        submitButton = new JButton();
         submitButton.setBounds(599, 328, 300, 120);
         submitButton.setOpaque(false);
         submitButton.setContentAreaFilled(false);
@@ -45,6 +47,7 @@ public class OptionsPanel extends JPanel
         this.add(submitButton);
 
         //Music CheckBox felparameterezese
+        music = new JCheckBox();
         music.setBounds(701, 504, 100, 100);
         music.setIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicon.png"));
         music.setSelectedIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicoff.png"));
