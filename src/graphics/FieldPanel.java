@@ -77,33 +77,43 @@ public class FieldPanel{
          {
              for( Item i : field.getItems())
                  itemImages.add(ImageIO.read(new File("src\\images\\"+i.getName()+".png")));
-             for( Player i :field.getPlayers())
-                 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png")) );
+
              if(field.getPolarBear() != null)
                  polarbearImage = ImageIO.read(new File("src\\images\\polarbear.png"));
              if(field.getSnow()>0)
                  snowImage = ImageIO.read(new File("src\\images\\snow.png"));
-             if(field.getHasTent())
-                 thingImage = ImageIO.read(new File("src\\images\\tent.png"));
+             for( Player i :field.getPlayers())
+                 playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+".png")) );
+             if(field.getIsUpsideDown())
+             {
+                 thingImage = ImageIO.read(new File("src\\images\\hole.png"));
+             	playerImages.clear();
+
+                 for( Player i :field.getPlayers())
+                     playerImages.add( ImageIO.read(new File("src\\images\\"+i.getName()+"_drowned.png")) );
+             }
              else if(field.getHasIgloo())
                  thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
-             else if(field.getIsUpsideDown())
-                 thingImage = ImageIO.read(new File("src\\images\\hole.png"));
+             else if(field.getHasTent())
+                 thingImage = ImageIO.read(new File("src\\images\\tend.png"));
          }catch(IOException e)
          {
              e.printStackTrace();
          }
 
          //sator/iglu
-         if (thingImage!=null)
-         g.drawImage(thingImage, posX + width - 72, posY + height -36, p);
+         if (thingImage!=null && field.getIsUpsideDown()==false)
+        	 g.drawImage(thingImage, posX + width - 72, posY + height -36, p);
          
+         else if(thingImage!=null && field.getIsUpsideDown()==true)
+             g.drawImage(thingImage, posX + width/2 - 72, posY + height/2 -33, p);
+
          //ho
-         if (snowImage!=null)
+         if (snowImage!=null && field.getIsUpsideDown()==false)
          g.drawImage(snowImage, posX + width/2 -63, posY + height/2 -38, p);
 
         //eszkoz
-    	 if (itemImages.size()>0 && snowImage ==null)
+    	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false)
         g.drawImage(itemImages.peek(), posX, posY, p);
 
         //playerek
