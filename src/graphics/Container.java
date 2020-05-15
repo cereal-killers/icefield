@@ -19,7 +19,7 @@ public class Container extends JFrame {
 	public Container(Controller c)
 	{
 		controller = c;
-		gamelistener = new GameListener(this);
+		gamelistener = new GameListener(this, c);
 		this.setTitle("Ice Field");
 		this.setBounds(0,0,1200,720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
