@@ -30,7 +30,7 @@ public class HighscoresPanel extends JPanel
         for (int i= 0; i<5;i++)     //később: File-on végigmenni
         {
             JLabel player = new JLabel();
-            player.setFont(AmaticSc);
+           // player.setFont(AmaticSc);
             player.setForeground(Color.WHITE);      //ToDo: szin = (198, 205, 229)
             player.setText("János " + readFile(i) + " kört bírt");
             player.setBounds(460, 250+i*54, 375, 50);

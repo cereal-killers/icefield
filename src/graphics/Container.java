@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Graphics;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +20,12 @@ public class Container extends JFrame {
 	public Container(Controller c)
 	{
 		controller = c;
-		gamelistener = new GameListener(this, c);
+		try {
+			gamelistener = new GameListener(this, c);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setTitle("Ice Field");
 		this.setBounds(0,0,1217,767);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

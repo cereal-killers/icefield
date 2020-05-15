@@ -32,8 +32,8 @@ public class OptionsPanel extends JPanel
         //Nametextfield beallitasa
         nameTextField = new JTextField();
         nameTextField.setBounds(255,365,265,60);
-        nameTextField.setFont(AmaticSc);
-        nameTextField.setOpaque(false);
+        nameTextField.setVisible(true);
+      //  nameTextField.setFont(AmaticSc);
         this.add(nameTextField);
 
 
@@ -49,9 +49,10 @@ public class OptionsPanel extends JPanel
         //Music CheckBox felparameterezese
         music = new JCheckBox();
         music.setBounds(701, 504, 100, 100);
-        music.setIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicon.png"));
-        music.setSelectedIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\musicoff.png"));
+        music.setIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\buttonon.png"));
+        music.setSelectedIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\buttonoff.png"));
         music.setActionCommand("togglemusic");
+        music.setVisible(true);
         this.add(music);
 	    this.setVisible(true);
 	    this.setFocusable(true);
