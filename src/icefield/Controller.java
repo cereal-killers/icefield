@@ -12,6 +12,7 @@ import java.util.Vector;
 
 import field.Field;
 import item.Item;
+import menu.Main;
 import player.Player;
 import player.PolarBear;
 import test.TestFunctions;
@@ -191,13 +192,23 @@ public class Controller implements java.io.Serializable{
      */
     public int Start()
     { 
-    	Scanner scan = new Scanner(System.in); 
+
+    	 
     	boolean felt = true;
     	String filename = "";
     	while(felt) //ki lehet választani a milyen pályán szeretnénk játszani
     	{
 	    	System.out.println("Please enter the map's filename. (tesztpalya/focilabda/nagypalya)");
 	    	try {
+	    		synchronized(Main.lock) {
+	    			try {
+	    				Main.lock.wait();
+	    			} catch (InterruptedException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    		Scanner scan = new Scanner(System.in);
 	    		filename = scan.nextLine();
 	    	if (filename.contentEquals("tesztpalya")||filename.contentEquals("focilabda")||filename.contentEquals("nagypalya"))
 	    		felt = false;
@@ -256,6 +267,14 @@ public class Controller implements java.io.Serializable{
         if(ArePartsTogether() && ArePlayersTogether()) {
             System.out.println("You Won!");
     		//késleltetés
+    		synchronized(Main.lock) {
+    			try {
+    				Main.lock.wait();
+    			} catch (InterruptedException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
     		Scanner in = new Scanner(System.in); 
     		in.next();
             ended = true;
@@ -271,6 +290,14 @@ public class Controller implements java.io.Serializable{
     {
         System.out.println("You Lose!");
 		//késleltetés
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Scanner in = new Scanner(System.in); 
 		in.next();
         ended =true;
@@ -285,17 +312,35 @@ public class Controller implements java.io.Serializable{
     {
         int numOfTurns = 0;
         String input_test;
-		Scanner scan = new Scanner(System.in);
+
+		
 		/* Ha olyan palyat toltottunk be amin nincs alapbol szereplo, akkor kotelezoen le kell rakni egyet,
 		 * kulonben nem mukodik a jatek, mert nincs kinek parancsot adni. */
         while(players.size() == 0) { 
 			System.out.println("No players on map, please put down a player:");
+			synchronized(Main.lock) {
+				try {
+					Main.lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			Scanner scan = new Scanner(System.in);
 			input_test = scan.nextLine();
 			test.testCommand(input_test);
 		}
         /* Miutan mar van jatekos a palyan, donthetunk, hogy teszt modban kezdjuk-e a jatekot. */
         System.out.println("TEST MODE? (You can switch later) (Y/N)");
-        
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Scanner scan = new Scanner(System.in);
 		input_test = scan.nextLine();
 		input_test = input_test.toUpperCase();
 		if(input_test.contentEquals("Y")) {
@@ -306,6 +351,14 @@ public class Controller implements java.io.Serializable{
 			System.out.println("Type test commands and start the game with \"start\"");
 			/* A kezdeti tesztparancsok utan "start"-ra indul a jatek */
 			while(!input_test.contentEquals("start")) {
+				synchronized(Main.lock) {
+					try {
+						Main.lock.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				input_test = scan.nextLine();
 				test.testCommand(input_test);
 			}

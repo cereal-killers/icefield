@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import field.Field;
 import icefield.Controller;
+import menu.Main;
 
 
 /** 
@@ -53,9 +54,18 @@ public class Eskimo extends Player {
 	@Override
 	public void Turn() {
 		String input;
-		Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
+		
 		boolean endturn = false;
 		while(!endturn) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
+			synchronized(Main.lock) {
+				try {
+					Main.lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 			input = scanner.nextLine();
 			switch (input) {
 				case "end turn": EndTurn(); endturn = true;//kör vége

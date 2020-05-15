@@ -72,8 +72,17 @@ public class Options {
 	 */
 	public void PlayerNameOption()
 	{
+
+		System.out.println("Set the name of player.");
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Scanner in = new Scanner(System.in); 
-		System.out.println("Set the name of player.");	
 		SetPlayerName(in.nextLine());
 		System.out.println("PlayerNumber set to "+ GetPlayerName());	
 
@@ -102,9 +111,18 @@ public class Options {
 	 */
 	public void MusicOption()
 	{
-		Scanner in = new Scanner(System.in); 
+
 		System.out.println("Set the music of game. (on/off)");
 		try {
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Scanner in = new Scanner(System.in); 
 		SetMusic(in.nextLine().equals("on")? true : false);
 		System.out.print("Music set to ");
 		if(GetMusic())

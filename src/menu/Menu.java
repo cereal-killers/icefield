@@ -105,13 +105,22 @@ public class Menu {
 	 * Függvény a beállításokhoz
 	 */
 	public void Settings() {
-		Scanner in = new Scanner(System.in); 
+		
 		boolean felt= true;
 		while(felt)
 			{
 			options.ShowOptionItems();
 	
 			try {
+				synchronized(Main.lock) {
+					try {
+						Main.lock.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				Scanner in = new Scanner(System.in); 
 				OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
 				felt = options.ChooseOptionsItem(o);
 			}
@@ -139,6 +148,22 @@ public class Menu {
 				System.out.println((i+1)+". " + highscores.get(i).getName() + " - " +highscores.get(i).getScore() );
 		}
 		//késleltetés
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		synchronized(Main.lock) {
+			try {
+				Main.lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Scanner in = new Scanner(System.in); 
 		in.next();
 	}

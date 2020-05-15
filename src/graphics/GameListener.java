@@ -16,7 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.StringBufferInputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
@@ -25,6 +24,7 @@ import javax.swing.JButton;
 import field.Field;
 import graphics.Container;
 import icefield.Controller;
+import menu.Main;
 import menu.Menu;
 
 public class GameListener implements ActionListener, KeyListener, MouseListener {
@@ -33,21 +33,13 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	private Controller controller;
 	private PrintStream stdout;
 	private InputStream stdin;
-	private String cmd;
-	private ByteArrayInputStream baos;
 	
 	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
 		stdout = System.out;
 		stdin = System.in;
-		cmd = "";
-		baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
-		//baos = new ByteArrayInputStream(System.lineSeparator().getBytes("UTF-8"));
-		System.setIn(baos);
-		//baos.wait();
-		//StringBufferInputStream s = new StringBufferInputStream("ABCD");
-		//System.setIn(s);
-		//cmd = "5";
+		String cmd = "";
+		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
 	}
 	
 	@Override
@@ -70,6 +62,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			} break;
 			case "exit":{
 				cmd_to_model = "4"; //talán az ablakkal is külön kell majd valamit kezdeni?
+				container.dispose();
 			} break;
 			case "submit":{
 				String newName = cmd_from_view[1];
@@ -148,6 +141,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		String cmd_to_model = "";
 		if(key == KeyEvent.VK_ESCAPE) {
 			cmd_to_model = "3";
+			container.navigate("menu");
 		}
 		try {
 			sendCommandToModel(cmd_to_model);
@@ -234,18 +228,12 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	
 	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException, InterruptedException {
 		cmd = cmd + System.lineSeparator();
-		//baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
-		//baos.notify();
-		//baos = new ByteArrayInputStream(cmd.getBytes());
-		//cmd = cmd + "\r\n";
 		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
-		//System.setIn(baos);
-		//Scanner scanner = new Scanner(System.in);
-		//System.out.println(scanner.nextLine());
-		//scanner.close();
-		cmd = "";
-		//baos.wait();
-		stdout.println(cmd); //debug célból
+		synchronized(Main.lock) {
+			Main.lock.notifyAll();
+		}
+		stdout.print(cmd); //debug célból
+
 	}
 	
 	/*private String getOutputFromModel() {
