@@ -90,8 +90,16 @@ public class FieldPanel{
              e.printStackTrace();
          }
 
+         //sator/iglu
+         if (thingImage!=null)
+         g.drawImage(thingImage, posX + width - 72, posY + height -36, p);
+         
+         //ho
+         if (snowImage!=null)
+         g.drawImage(snowImage, posX + width/2 -63, posY + height/2 -38, p);
+
         //eszkoz
-    	 if (itemImages.size()>0)
+    	 if (itemImages.size()>0 && snowImage ==null)
         g.drawImage(itemImages.peek(), posX, posY, p);
 
         //playerek
@@ -111,12 +119,7 @@ public class FieldPanel{
         //polarbear
         if (polarbearImage!=null)
         	g.drawImage(polarbearImage, posX+width/2-54, posY+height/2-112, p);
-        //ho
-        if (snowImage!=null)
-        g.drawImage(snowImage, posX + width/2 -63, posY + height/2 -38, p);
-        //sator/iglu
-        if (thingImage!=null)
-        g.drawImage(thingImage, posX + width - 72, posY + height -36, p);
+
     }
 
 
