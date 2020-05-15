@@ -44,7 +44,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
 		//baos = new ByteArrayInputStream(System.lineSeparator().getBytes("UTF-8"));
 		System.setIn(baos);
-		baos.wait();
+		//baos.wait();
 		//StringBufferInputStream s = new StringBufferInputStream("ABCD");
 		//System.setIn(s);
 		//cmd = "5";
@@ -135,6 +135,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		container.repaint(); //biztos ez kell? nem implementáltad, magától meg nem kérdezi le a modellt
 	}
@@ -149,6 +152,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		try {
 			sendCommandToModel(cmd_to_model);
 		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -182,6 +188,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			try {
 				sendCommandToModel(cmd_to_model);
 			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -223,19 +232,19 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		
 	}
 	
-	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException {
+	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException, InterruptedException {
 		cmd = cmd + System.lineSeparator();
 		//baos = new ByteArrayInputStream(cmd.getBytes("UTF-8"));
-		baos.notify();
+		//baos.notify();
 		//baos = new ByteArrayInputStream(cmd.getBytes());
 		//cmd = cmd + "\r\n";
-		//System.setIn(new ByteArrayInputStream(cmd.getBytes()));
+		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
 		//System.setIn(baos);
 		//Scanner scanner = new Scanner(System.in);
 		//System.out.println(scanner.nextLine());
 		//scanner.close();
 		cmd = "";
-		
+		//baos.wait();
 		stdout.println(cmd); //debug célból
 	}
 	

@@ -23,7 +23,7 @@ public class Main {
 		{
 			m.ShowMenuItems();
 			Scanner in = new Scanner(System.in);
-			System.out.println(in.nextLine());
+			//System.out.println(in.nextLine());
 			try {
 				//if(in.hasNextInt()) {
 				MenuItem n=	MenuItem.values()[in.nextInt()-1];
@@ -32,7 +32,7 @@ public class Main {
 			}
 			catch(Exception ex){
 				System.out.println("Invalid input.");
-				ex.printStackTrace();
+				//ex.printStackTrace();
 			}
 		}
 	}
