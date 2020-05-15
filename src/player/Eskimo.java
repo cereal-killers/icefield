@@ -5,6 +5,7 @@ import java.util.Scanner;
 import field.Field;
 import icefield.Controller;
 import menu.Main;
+import test.TestFunctions;
 
 
 /** 
@@ -105,6 +106,8 @@ public class Eskimo extends Player {
 							break;
 						}
 			}
+			TestFunctions tf = new TestFunctions(this.controller);
+			tf.viewMap();
 		}
 	}
 
