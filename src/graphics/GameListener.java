@@ -89,7 +89,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			case "menu":{
 				cmd_to_model = "menu";
 			}break;
-			case "end_turn": {
+			case "endturn": {
 				cmd_to_model = "end turn";
 			}break;
 			case "nagy": {

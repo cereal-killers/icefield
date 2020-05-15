@@ -258,7 +258,8 @@ public class Field implements java.io.Serializable {
 			this.Remove(player);
 			player.setCurrentField(neighbors.get(directionIndex));
 			if (neighbors.get(directionIndex).IsOverWeight()) {
-				isUpsideDown = true;
+				//isUpsideDown = true;
+				neighbors.get(directionIndex).setIsUpsideDown(true);
 				System.out.println("Player fell into hole!");
 			}
 			if (neighbors.get(directionIndex).getHasIgloo())
