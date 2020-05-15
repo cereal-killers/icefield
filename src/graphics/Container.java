@@ -22,7 +22,7 @@ public class Container extends JFrame {
 		controller = c;
 		try {
 			gamelistener = new GameListener(this, c);
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
