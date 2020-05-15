@@ -12,21 +12,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Scanner;
 
 import javax.swing.JButton;
 
 import field.Field;
-import graphics.Container;
 import icefield.Controller;
 import menu.Main;
-import menu.Menu;
 
 public class GameListener implements ActionListener, KeyListener, MouseListener {
 
@@ -48,6 +42,10 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		String[] cmd_from_view = e.getActionCommand().split("\\s+");
 		String cmd_to_model = "";
 		System.out.println(e.getActionCommand());
+		for(int i=0;i<cmd_from_view.length;++i) {
+			System.out.print(cmd_from_view[i]+ " ");
+		}
+		System.out.println();
 		switch(cmd_from_view[0]) {
 			case "newgame":{
 				cmd_to_model = "1";
@@ -105,7 +103,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				cmd_to_model = "tesztpalya";
 				//container.navigate("teszt");
 			}break;
-			case "move": {
+			case "field": {
 				int globalIndex = Integer.parseInt(cmd_from_view[1]); // 0-tól indul
 				Field moveTo = controller.getFields().get(globalIndex); //0-tól indul
 				int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(moveTo); // 0-tól indul
