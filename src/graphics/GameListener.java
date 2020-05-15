@@ -47,7 +47,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	public void actionPerformed(ActionEvent e) { 
 		String[] cmd_from_view = e.getActionCommand().split("\\s+");
 		String cmd_to_model = "";
-		
+		System.out.println(e.getActionCommand());
 		switch(cmd_from_view[0]) {
 			case "newgame":{
 				cmd_to_model = "1";
@@ -285,7 +285,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	
 	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException, InterruptedException {
 		cmd = cmd + System.lineSeparator();
-		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
+		System.setIn(new ByteArrayInputStream(cmd.getBytes("UTF-8")));
 		synchronized(Main.lock) {
 			Main.lock.notifyAll();
 		}
