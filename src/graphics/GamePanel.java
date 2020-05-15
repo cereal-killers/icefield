@@ -34,6 +34,10 @@ public class GamePanel extends JPanel{
 	    }
 	    controller = c;
 	    createFields(palya);
+	    inventory = new Inventory(controller.getCurrentPlayer());
+	    this.add(inventory.getEndTurnButton());
+	    for(JButton b : inventory.getItemButtons())
+	    	this.add(b);
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
@@ -61,17 +65,7 @@ public class GamePanel extends JPanel{
     }
     public void refreshInventory()
     {
-    	if (inventory!=null) //torles
-    	{
-    		this.remove(inventory.getEndTurnButton());
-    		for (JButton b : inventory.getItemButtons())
-    			this.remove(b);
-    	}
-    	inventory = new Inventory(controller.getCurrentPlayer());
-    	// hozzaadas
-		this.add(inventory.getEndTurnButton());
-		for (JButton b : inventory.getItemButtons())
-			this.add(b);
+    	inventory.setCurrentPlayer(controller.getCurrentPlayer());
     }
     
     public void createFields(String palya)
