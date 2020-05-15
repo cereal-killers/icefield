@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -94,15 +95,15 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			}break;
 			case "nagy": {
 				cmd_to_model = "nagypalya";
-				container.navigate("nagy");
+				//container.navigate("nagy");
 			}break;
 			case "foci": {
 				cmd_to_model = "focipalya";
-				container.navigate("foci");
+				//container.navigate("foci");
 			}break;
 			case "teszt": {
 				cmd_to_model = "tesztpalya";
-				container.navigate("teszt");
+				//container.navigate("teszt");
 			}break;
 			case "move": {
 				int globalIndex = Integer.parseInt(cmd_from_view[1]); // 0-tól indul
@@ -124,7 +125,59 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			} break;
 		}
 		try {
+			/*switch(cmd_from_view[0]) {
+			case "nagy":{
+				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
+			} break;
+			case "foci":{
+				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
+			} break;
+			case "teszt":{
+				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
+			} break;
+			default:break;
+		}*/
 			sendCommandToModel(cmd_to_model);
+			switch(cmd_from_view[0]) {
+				case "nagy":{
+					synchronized(Controller.mapLoaded) {
+						try {
+							Controller.mapLoaded.wait();
+						} catch (InterruptedException ex) {
+							// TODO Auto-generated catch block
+							ex.printStackTrace();
+						}
+					}
+					container.navigate("nagy");
+					//sendCommandToModel("N");
+				} break;
+				case "foci":{
+					synchronized(Controller.mapLoaded) {
+						try {
+							Controller.mapLoaded.wait();
+						} catch (InterruptedException ex) {
+							// TODO Auto-generated catch block
+							ex.printStackTrace();
+						}
+					}
+					container.navigate("foci");
+					//sendCommandToModel("N");
+				} break;
+				case "teszt":{
+					synchronized(Controller.mapLoaded) {
+						try {
+							Controller.mapLoaded.wait();
+						} catch (InterruptedException ex) {
+							// TODO Auto-generated catch block
+							ex.printStackTrace();
+						}
+					}
+					container.navigate("teszt");
+					//sendCommandToModel("N");
+				} break;
+				default:break;
+			}
+			
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -132,6 +185,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		container.repaint(); //biztos ez kell? nem implementáltad, magától meg nem kérdezi le a modellt
 	}
 	

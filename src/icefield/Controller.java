@@ -22,6 +22,7 @@ import test.TestFunctions;
  */
 public class Controller implements java.io.Serializable{
 
+	public static Object mapLoaded = new Object();
     /** 
     * A pályán levő Field-ek tárolója
     */
@@ -218,6 +219,9 @@ public class Controller implements java.io.Serializable{
     	}
     	ReadController(filename);// beolvassuk az xml filebol a mappat
         System.out.println(filename+" beolvasva.");
+        synchronized(mapLoaded) {
+			mapLoaded.notifyAll();
+        }
         return GameLoop();
     }
 
