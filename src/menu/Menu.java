@@ -86,7 +86,7 @@ public class Menu {
 			System.out.println("Incorrect input.");	
 			break;
 		}
-		audioPlayer.Reset(options.GetMusic());
+
 		return true;
 	}
 	/**
@@ -127,6 +127,8 @@ public class Menu {
 				Scanner in = new Scanner(System.in); 
 				OptionsItem o=	OptionsItem.values()[in.nextInt()-1];
 				felt = options.ChooseOptionsItem(o);
+				audioPlayer.Reset(options.GetMusic());
+
 			}
 			catch(Exception ex){
 				System.out.println("Invalid input.");
