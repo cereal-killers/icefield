@@ -131,5 +131,4 @@ public class Container extends JFrame {
     	if (currentpanel!=null)
     	currentpanel.repaint();
     }
-	
 }

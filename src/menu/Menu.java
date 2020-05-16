@@ -44,7 +44,6 @@ public class Menu implements Serializable {
 		audioPlayer.Start(true);
 		ReadHighscores();
 	}
-	
 	/**
 	 * Controller gettere
 	 */

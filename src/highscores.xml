@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <java version="1.8.0_221" class="java.beans.XMLDecoder">
  <object class="java.util.Vector">
   <void method="add">
@@ -12,4 +13,8 @@
    </object>
   </void>
  </object>
+=======
+<java version="11.0.6" class="java.beans.XMLDecoder">
+ <object class="java.util.Vector"/>
+>>>>>>> branch 'master' of https://github.com/cereal-killers/icefield.git
 </java>
