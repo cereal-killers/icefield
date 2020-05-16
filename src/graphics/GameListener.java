@@ -124,15 +124,15 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 						}
 					}*/
 					//System.out.println("megkaptam2");
-					if(controller.getWon()) {
-						System.out.println("megkaptam3");
-						container.navigate("win");
-						currentPanel = "win";
-					} else if(controller.checkIfGameLost()) {
+					if(controller.checkIfGameLost()) {
 						System.out.println("megkaptam4");
 						container.navigate("lose");
 						currentPanel = "lose";
-					}
+					}else if(controller.getWon()) {
+						System.out.println("megkaptam3");
+						container.navigate("win");
+						currentPanel = "win";
+					} 
 				}
 			}break;
 			case "nagy": {
@@ -186,12 +186,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					synchronized(Controller.mapLoaded) {
 						try {
 							Controller.mapLoaded.wait();
+							
 						} catch (InterruptedException ex) {
 							// TODO Auto-generated catch block
 							ex.printStackTrace();
 						}
 					}
 					sendCommandToModel("N");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
 					container.navigate("nagy");
 					currentPanel = "nagy";
 					//sendCommandToModel("N");
@@ -200,12 +204,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					synchronized(Controller.mapLoaded) {
 						try {
 							Controller.mapLoaded.wait();
+							
 						} catch (InterruptedException ex) {
 							// TODO Auto-generated catch block
 							ex.printStackTrace();
 						}
 					}
 					sendCommandToModel("N");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
 					container.navigate("foci");
 					currentPanel = "foci";
 				} break;
@@ -219,6 +227,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 						}
 					}
 					sendCommandToModel("N");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
 					container.navigate("teszt");
 					currentPanel = "teszt";
 				} break;

@@ -450,6 +450,9 @@ public class Controller implements java.io.Serializable{
                 System.out.println("Player type: " + players.get(i).getName()); //kiírjuk a játékos típusát
                 System.out.println("health: " + players.get(i).getHealth()); //és a health-jét
                 currentPlayer = players.get(i);
+                synchronized(mapLoaded) {
+        			mapLoaded.notifyAll();
+                }
                 players.get(i).Turn(); //elindítjuk a játékos körét
                 
                 numOfTurns++;
