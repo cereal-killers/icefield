@@ -58,7 +58,6 @@ public class OptionsPanel extends JPanel
         submitButton.setBorderPainted(false);
         submitButton.setActionCommand("submit Player");
         this.add(submitButton);
-
         //Music CheckBox felparameterezese
         music = new JCheckBox();
         music.setBounds(695, 500, 104, 100);
