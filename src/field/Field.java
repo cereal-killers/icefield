@@ -14,6 +14,8 @@ import player.Moveable;
  *
  */
 public class Field implements java.io.Serializable {
+	private boolean isInspected = false;
+	
 	/**
 	 *  Maximalis teherbiras
 	 */
@@ -64,6 +66,7 @@ public class Field implements java.io.Serializable {
 	 * @param item tárgy a fielden
 	 */
 	public Field(int maxWeight, int snow, Item item) {
+		this.SetIsInspected(false);
 		this.maxWeight = maxWeight;
 		this.snow = snow;
 		if (item != null)
@@ -368,5 +371,13 @@ public class Field implements java.io.Serializable {
 	public void ListItems() {
 		if (items.empty() == false)
 			System.out.println(items);
+	}
+
+	public boolean GetIsInspected() {
+		return isInspected;
+	}
+
+	public void SetIsInspected(boolean isInspected) {
+		this.isInspected = isInspected;
 	}
 }
