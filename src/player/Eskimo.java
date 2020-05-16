@@ -106,8 +106,8 @@ public class Eskimo extends Player {
 							break;
 						}
 			}
-			TestFunctions tf = new TestFunctions(this.controller);
-			tf.viewMap();
+			//TestFunctions tf = new TestFunctions(this.controller);
+			//tf.viewMap();
 		}
 	}
 

@@ -43,6 +43,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	@Override
 	public void actionPerformed(ActionEvent e) { 
 		String[] cmd_from_view = e.getActionCommand().split("\\s+");
+		System.out.println(e.getActionCommand()); //Leónak
 		String cmd_to_model = "";
 
 		switch(cmd_from_view[0]) {
@@ -222,6 +223,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		System.out.println(e.toString()); //Leónak
 		String cmd_to_model = "";
 		if(currentPanel.contentEquals("win") || currentPanel.contentEquals("lose")) {
 			cmd_to_model = "x";
@@ -284,6 +286,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
+		System.out.println(e.toString()); //Leónak
 		JButton j = new JButton();
 		try {
 			j = (JButton) e.getComponent();
