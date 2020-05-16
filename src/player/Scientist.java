@@ -37,6 +37,7 @@ public class Scientist extends Player{
 	 */
 	public void InspectField(Field field) {
 		if (this.energy > 0) { //energiába kerül
+			field.SetIsInspected(true);
 			if (field.getMaxWeight() == 10) //a 10 teherbírású mező stabil
 				System.out.println("Field is stable");
 			else

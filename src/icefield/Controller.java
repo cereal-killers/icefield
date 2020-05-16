@@ -458,7 +458,9 @@ public class Controller implements java.io.Serializable{
         			mapLoaded.notifyAll();
                 }
                 players.get(i).Turn(); //elindítjuk a játékos körét
-                
+                for(Field field : fields) {
+                	field.SetIsInspected(false);
+                }
                 numOfTurns++;
                 if(TryFire()) return numOfTurns; //megpróbáljuk elsütni a rakétát, 
                 //ha sikerül visszatérünk a körök számával
