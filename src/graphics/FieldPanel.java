@@ -15,6 +15,9 @@ import field.Field;
 import item.Item;
 import player.Player;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 
 public class FieldPanel{
@@ -150,6 +153,18 @@ public class FieldPanel{
     		 for(int i=0;i<itemImages.size();i++)
     			 g.drawImage(itemImages.get(i) , posX +80*i , posY, p);
     	       
+    	 }
+    	 //teherbiras
+    	 if (field.GetIsInspected()==true)
+    	 {
+    		 try {
+				g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		 g.setColor(Color.white);
+    		 g.drawString(String.valueOf(field.getMaxWeight()), posX + width /2,posY +height/2);
     	 }
 
     }
