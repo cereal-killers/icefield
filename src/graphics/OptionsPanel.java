@@ -68,6 +68,7 @@ public class OptionsPanel extends JPanel
         	  }
         	  public void insertUpdate(DocumentEvent e) {
         		  update();
+
         	  }
 
         	  public void update() {
@@ -78,7 +79,7 @@ public class OptionsPanel extends JPanel
         	     }
         	     else if (s.length()>10)
         	     {
-          	       s = s.substring(0, 10);
+        	    	 s = s.substring(0,10);
           	     }
         	     submitButton.setActionCommand("submit "+s);
         	  }

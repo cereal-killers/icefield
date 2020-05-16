@@ -68,6 +68,8 @@ public class Container extends JFrame {
 			o.addKeyListener(gamelistener);
 			o.getMusic().addActionListener(gamelistener);
 			o.getMusic().addKeyListener(gamelistener);
+			o.getSubmitButton().addActionListener(gamelistener);
+			o.getSubmitButton().addKeyListener(gamelistener);
 			currentpanel = o;
 			this.add(o);
 			break;
