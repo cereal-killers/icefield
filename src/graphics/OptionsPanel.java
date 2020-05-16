@@ -3,6 +3,8 @@ package graphics;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -47,10 +49,8 @@ public class OptionsPanel extends JPanel
         nameTextField.setText("Player");
         nameTextField.setBackground(new Color(26, 39, 79));
         nameTextField.setBorder(new LineBorder(new Color(26, 39, 79),1));
-        this.add(nameTextField);
-
-
-        //SubmitButton felparameterezese
+        
+      //SubmitButton felparameterezese
         submitButton = new JButton();
         submitButton.setBounds(599, 328, 300, 120);
         submitButton.setOpaque(false);
@@ -58,6 +58,34 @@ public class OptionsPanel extends JPanel
         submitButton.setBorderPainted(false);
         submitButton.setActionCommand("submit Player");
         this.add(submitButton);
+        
+        nameTextField.getDocument().addDocumentListener(new DocumentListener() {
+        	  public void changedUpdate(DocumentEvent e) {
+        		  update();
+        	  }
+        	  public void removeUpdate(DocumentEvent e) {
+        		  update();
+        	  }
+        	  public void insertUpdate(DocumentEvent e) {
+        		  update();
+        	  }
+
+        	  public void update() {
+        		  String s = nameTextField.getText();
+        	     if (s.length()<1)
+        	     {
+        	       s = "Player";
+        	     }
+        	     else if (s.length()>10)
+        	     {
+          	       s = s.substring(0, 10);
+          	     }
+        	     submitButton.setActionCommand("submit "+s);
+        	  }
+        	});
+        
+        this.add(nameTextField);
+       
         //Music CheckBox felparameterezese
         music = new JCheckBox();
         music.setBounds(695, 500, 104, 100);
