@@ -12,7 +12,7 @@ public class HighscoresPanel extends JPanel
 {
     private BufferedImage backGround;
     private ArrayList<JLabel> namelabels = new ArrayList<JLabel>();
-    private Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
+    private Font AmaticSc;
     private JPanel valami;
 
     public HighscoresPanel()
@@ -42,6 +42,15 @@ public class HighscoresPanel extends JPanel
             namelabels.add(player);
             this.add(player);
         }*/
+        try {
+			AmaticSc = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(48f);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
@@ -52,9 +61,12 @@ public class HighscoresPanel extends JPanel
         
         g.drawImage(backGround, 0,0, this);
         g.setFont(AmaticSc);
-        g.setColor(Color.WHITE);
+        g.setColor(new Color(198, 205, 229));
         for (int i= 0; i<5;i++){
-            g.drawString("Jánoska "  + readFile(i) + " kört bírt", 410, 290+i*54);
+        	{
+        		String s ="10karakter "  + readFile(i) + " kört bírt";
+            g.drawString(s, (int)(410+133-(s.length()*(2.3f+(s.length()-10)*0.17f))) , 290+i*68);
+        	}
         }
     }
 

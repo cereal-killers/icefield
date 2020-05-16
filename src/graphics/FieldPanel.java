@@ -123,9 +123,6 @@ public class FieldPanel{
          if (snowImage!=null && field.getIsUpsideDown()==false)
          g.drawImage(snowImage, posX + width/2 -63, posY + height/2 -38, p);
 
-        //eszkoz
-    	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false)
-        g.drawImage(itemImages.peek(), posX, posY, p);
 
         //playerek
         if(playerImages.size() == 1)
@@ -144,6 +141,10 @@ public class FieldPanel{
         //polarbear
         if (polarbearImage!=null)
         	g.drawImage(polarbearImage, posX+width/2-54, posY+height/2-112, p);
+        
+        //eszkoz
+    	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false)
+        g.drawImage(itemImages.peek(), posX, posY, p);
 
     }
 

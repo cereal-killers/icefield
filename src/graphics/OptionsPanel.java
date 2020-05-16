@@ -62,6 +62,7 @@ public class OptionsPanel extends JPanel
     @Override
     public void paint(Graphics g)
     {
+    	super.paint(g);
         g.drawImage(backGround, 0,0, this);
     }
 
