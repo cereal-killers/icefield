@@ -114,7 +114,7 @@ public class FieldPanel{
 
          //sator/iglu
          if (thingImage!=null && field.getIsUpsideDown()==false)
-        	 g.drawImage(thingImage, posX + width - 72, posY + height -36, p);
+        	 g.drawImage(thingImage, posX + width - 72, posY+height/2 -36, p);
          
          else if(thingImage!=null && field.getIsUpsideDown()==true)
              g.drawImage(thingImage, posX + width/2 - 72, posY + height/2 -33, p);
@@ -137,8 +137,8 @@ public class FieldPanel{
             for(int i=0;i<playerImages.size();i++)
                  g.drawImage(
                     playerImages.get(i),
-                    (int)(posX + width/2 - 26 + Math.cos( (i*2*Math.PI) / playerImages.size() ) *30),
-                    (int)(posY + height/2 - 112 + Math.sin ( (i*2*Math.PI) / playerImages.size() ) *30), 
+                    (int)(posX + width/2 - 26 + Math.cos( (-i*2*Math.PI) / playerImages.size() ) *30),
+                    (int)(posY + height/2 - 112 + Math.sin ( (-i*2*Math.PI) / playerImages.size() ) *30), 
                     p);
         }
         //polarbear
