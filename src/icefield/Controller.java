@@ -258,9 +258,9 @@ public class Controller implements java.io.Serializable{
     	}
     	ReadController(filename);// beolvassuk az xml filebol a mappat
         System.out.println(filename+" beolvasva.");
-        synchronized(mapLoaded) {
+        /*synchronized(mapLoaded) {
 			mapLoaded.notifyAll();
-        }
+        }*/
         return GameLoop();
     }
 
@@ -404,6 +404,9 @@ public class Controller implements java.io.Serializable{
 		}
         /* Miutan mar van jatekos a palyan, donthetunk, hogy teszt modban kezdjuk-e a jatekot. */
         System.out.println("TEST MODE? (You can switch later) (Y/N)");
+        synchronized(mapLoaded) {
+			mapLoaded.notifyAll();
+        }
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
@@ -450,6 +453,7 @@ public class Controller implements java.io.Serializable{
                 System.out.println("Player type: " + players.get(i).getName()); //kiírjuk a játékos típusát
                 System.out.println("health: " + players.get(i).getHealth()); //és a health-jét
                 currentPlayer = players.get(i);
+                //talán majd ide egy if hogy van-e player
                 synchronized(mapLoaded) {
         			mapLoaded.notifyAll();
                 }

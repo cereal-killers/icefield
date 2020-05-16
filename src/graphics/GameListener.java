@@ -32,6 +32,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	private PrintStream stdout;
 	private InputStream stdin;
 	private String currentPanel;
+	private boolean sendCommand = true;
 	
 	public GameListener(Container _container, Menu _menu) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
@@ -125,26 +126,66 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					}*/
 					//System.out.println("megkaptam2");
 					if(controller.checkIfGameLost()) {
-						System.out.println("megkaptam4");
+						//System.out.println("megkaptam4");
 						container.navigate("lose");
 						currentPanel = "lose";
 					}else if(controller.getWon()) {
-						System.out.println("megkaptam3");
+						//System.out.println("megkaptam3");
 						container.navigate("win");
 						currentPanel = "win";
 					} 
 				}
 			}break;
 			case "nagy": {
-				cmd_to_model = "nagypalya";
-				//container.navigate("nagy");
+				
+				try {
+					sendCommandToModel("nagypalya");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+					sendCommandToModel("N");
+					
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+				} catch (Exception e1) {}
+				container.navigate("nagy");
+				currentPanel = "nagy";
+				sendCommand = false;
+				//cmd_to_model = "nagypalya"; // összesen ez az egy sor volt itt
 			}break;
 			case "foci": {
-				cmd_to_model = "focilabda";
+				try {
+					sendCommandToModel("focilabda");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+					sendCommandToModel("N");
+					
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+				} catch (Exception e1) {}
+				container.navigate("foci");
+				currentPanel = "foci";
+				sendCommand = false;
 				//container.navigate("foci");
 			}break;
 			case "teszt": {
-				cmd_to_model = "tesztpalya";
+				try {
+					sendCommandToModel("tesztpalya");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+					sendCommandToModel("N");
+					
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+				} catch (Exception e1) {}
+				container.navigate("teszt");
+				currentPanel = "teszt";
+				sendCommand = false;
 				//container.navigate("teszt");
 			}break;
 			case "field": {
@@ -179,9 +220,14 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		
 		try {
 
-			sendCommandToModel(cmd_to_model);
+			if(sendCommand) {
+				sendCommandToModel(cmd_to_model);
+			} else {
+				sendCommand = true;
+			}
 			
-			switch(cmd_from_view[0]) {
+			
+			/*switch(cmd_from_view[0]) {
 				case "nagy":{
 					synchronized(Controller.mapLoaded) {
 						try {
@@ -238,7 +284,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 
 				} break;
 				default:break;
-			}
+			}*/
 			
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
