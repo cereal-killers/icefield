@@ -22,6 +22,7 @@ import field.Field;
 import icefield.Controller;
 import menu.Main;
 import menu.Menu;
+import menu.Options;
 
 public class GameListener implements ActionListener, KeyListener, MouseListener {
 
@@ -74,13 +75,29 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				cmd_to_model = "1" + System.lineSeparator() + newName;
 			} break;
 			case "togglemusic":{
-				/*boolean music = menu.getOptions().getMusic();
-				if(music) {
-					cmd_out = "2\r\noff";
-				}else {
-					cmd_out = "2\r\non";
+				boolean music = menu.getOptions().GetMusic();
+				cmd_to_model = "2";
+				try {
+					sendCommandToModel(cmd_to_model);
+				} catch (UnsupportedEncodingException | InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				container.toggleMusic();*/
+				synchronized(Options.musicIsReadyToSet) {
+					try {
+						Options.musicIsReadyToSet.wait();
+						//System.out.println("megkaptam1");
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				}
+				if(music) {
+					cmd_to_model = "off";
+				}else {
+					cmd_to_model = "on";
+				}
+				//container.toggleMusic();
 			} break;
 			case "remove_snow":{
 				cmd_to_model = "remove snow";

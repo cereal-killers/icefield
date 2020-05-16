@@ -49,6 +49,10 @@ public class Menu {
 	 */
 	public Controller getController() {return controller;}
 	
+	public Options getOptions() {
+		return this.options;
+	}
+	
 	/**
 	 * Függvény a menüben található opciók kiírására
 	 */

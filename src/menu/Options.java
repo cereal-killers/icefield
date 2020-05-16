@@ -9,6 +9,7 @@ import field.Field;
  *
  */
 public class Options {
+	public static Object musicIsReadyToSet = new Object();
 	/**
 	 * A játékos neve amit a toplistában megjelenítünk
 	 */
@@ -74,6 +75,7 @@ public class Options {
 	{
 
 		System.out.println("Set the name of player.");
+		
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
@@ -113,6 +115,9 @@ public class Options {
 	{
 
 		System.out.println("Set the music of game. (on/off)");
+		synchronized(musicIsReadyToSet) {
+			musicIsReadyToSet.notifyAll();
+		}
 		try {
 		synchronized(Main.lock) {
 			try {
