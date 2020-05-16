@@ -21,18 +21,21 @@ import javax.swing.JButton;
 import field.Field;
 import icefield.Controller;
 import menu.Main;
+import menu.Menu;
 
 public class GameListener implements ActionListener, KeyListener, MouseListener {
 
 	private Container container;
 	private Controller controller;
+	private Menu menu;
 	private PrintStream stdout;
 	private InputStream stdin;
 	private String currentPanel;
 	
-	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException, InterruptedException {
+	public GameListener(Container _container, Menu _menu) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
-		this.controller = _controller;
+		this.menu = _menu;
+		this.controller = menu.getController();
 		stdout = System.out;
 		stdin = System.in;
 		String cmd = "";
