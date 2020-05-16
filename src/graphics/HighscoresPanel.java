@@ -13,10 +13,11 @@ public class HighscoresPanel extends JPanel
     private BufferedImage backGround;
     private ArrayList<JLabel> namelabels = new ArrayList<JLabel>();
     private Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
+    private JPanel valami;
 
     public HighscoresPanel()
     {
-    	this.setLayout(null);
+    	this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		this.setBounds(0,0, 1200, 720);
         try
         {
@@ -27,17 +28,20 @@ public class HighscoresPanel extends JPanel
             e.printStackTrace();
         }
         //namelabelek hozzaadasa
-        for (int i= 0; i<5;i++)     //később: File-on végigmenni
+        /*for (int i= 0; i<5;i++)     //később: File-on végigmenni
         {
             JLabel player = new JLabel();
-           // player.setFont(AmaticSc);
+            player.setFont(AmaticSc);
             player.setForeground(Color.WHITE);      //ToDo: szin = (198, 205, 229)
-            player.setText("János " + readFile(i) + " kört bírt");
+            player.setText("János" + readFile(i) + " kört bírt");
             player.setBounds(460, 250+i*54, 375, 50);
+            //player.setSize(375,50);
+            //player.setLocation(460, 250+i*54);
             player.setVisible(true);
+            //player.setOpaque(false);
             namelabels.add(player);
             this.add(player);
-        }
+        }*/
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
@@ -45,7 +49,13 @@ public class HighscoresPanel extends JPanel
     @Override
     public void paint(Graphics g)
     {
+        
         g.drawImage(backGround, 0,0, this);
+        g.setFont(AmaticSc);
+        g.setColor(Color.WHITE);
+        for (int i= 0; i<5;i++){
+            g.drawString("Jánoska "  + readFile(i) + " kört bírt", 410, 290+i*54);
+        }
     }
 
     //filebeolvaso fuggveny
