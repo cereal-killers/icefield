@@ -66,8 +66,8 @@ public class HighscoresPanel extends JPanel
         g.setFont(AmaticSc);
         g.setColor(new Color(198, 205, 229));
         for (int i= 0; i< highscores.size() && i < 5;i++){
-            int n = highscores.get(i).getName().length() + 2;
-            g.drawString(highscores.get(i).getName() + " " + highscores.get(i).getScore(), (int)(410+133-((n*(2.3f+(n-10)*0.17f)))) , 290+i*68);
+            int n = highscores.get(i).getName().length() + 5;
+            g.drawString(highscores.get(i).getName() + " - " + highscores.get(i).getScore() + " turns", (int)(410+133-((n*(2.3f+(n-10)*0.17f)))) , 290+i*68);
         }
     }
 
