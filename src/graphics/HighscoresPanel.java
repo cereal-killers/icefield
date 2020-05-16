@@ -58,7 +58,6 @@ public class HighscoresPanel extends JPanel
     @Override
     public void paint(Graphics g)
     {
-        
         g.drawImage(backGround, 0,0, this);
         g.setFont(AmaticSc);
         g.setColor(new Color(198, 205, 229));
