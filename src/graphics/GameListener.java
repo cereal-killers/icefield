@@ -148,7 +148,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				container.navigate("teszt");
 				currentPanel = "teszt";
 			}break;
-			case "use": {
+			case "item": {
 				String item = cmd_from_view[1];
 				cmd_to_model = "use "+ item;
 			}break;
