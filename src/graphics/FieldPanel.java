@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import field.Field;
 import item.Item;
 import player.Player;
+import sun.font.FontScaler;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -157,13 +158,19 @@ public class FieldPanel{
     	 if (field.GetIsInspected()==true)
     	 {
     		 try {
-				g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f));
+				//g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f));
+ 				g.setFont(new Font("Arial", Font.BOLD, 72));
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		 g.setColor(Color.white);
-    		 g.drawString(String.valueOf(field.getMaxWeight()), posX + width /2,posY +height/2);
+    		 String w = String.valueOf(field.getMaxWeight());
+    		 if (field.getMaxWeight()==10)
+    			 w = String.valueOf('∞');
+    			 
+    		 g.drawString(w, posX + width /2,posY +height/2);
     	 }
 
     }

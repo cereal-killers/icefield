@@ -38,4 +38,12 @@ public class Spade extends Shovel implements java.io.Serializable {
 	public String getName() {
 		return "spade";
 	}
+	/**
+	 * Health gettere
+	 * @return value
+	 */
+	public int getHealth()
+	{
+		return health;
+	}
 }

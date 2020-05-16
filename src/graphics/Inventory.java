@@ -16,6 +16,8 @@ import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import item.Spade;
+
 public class Inventory {
     private Player currentPlayer;
     private BufferedImage backGround;
@@ -65,6 +67,15 @@ public class Inventory {
                 itemImages.add(temp);
                 itemButtons.get(i).setActionCommand("item " + currentPlayer.getItems().get(i).getName());
                 g.drawImage(temp, 417 + i*80, 651, p);
+
+                if (currentPlayer.getItems().get(i).getName().equals("spade"))
+                {
+          			g.setFont(new Font("Arial", Font.BOLD, 12));
+             		 g.setColor(Color.white);
+             		 Spade s = (Spade)(currentPlayer.getItems().get(i));
+             		 String w = String.valueOf(s.getHealth());
+             		 g.drawString(w, 417 + i*80 + 5, 651+55);
+                }
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
