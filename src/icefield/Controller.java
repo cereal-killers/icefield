@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import field.Field;
-import item.Item;
 import menu.Main;
 import player.Player;
 import player.PolarBear;

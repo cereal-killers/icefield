@@ -178,7 +178,7 @@
                                           <object class="java.util.ArrayList"/>
                                          </void>
                                          <void property="name">
-                                          <string>Scientist</string>
+                                          <string>scientist</string>
                                          </void>
                                         </object>
                                        </void>
@@ -190,38 +190,38 @@
                                     </void>
                                     <void method="add">
                                      <object class="field.Field" id="Field13">
+                                      <void property="items">
+                                       <void method="add">
+                                        <object class="item.Gun"/>
+                                       </void>
+                                      </void>
+                                      <void property="maxWeight">
+                                       <int>2</int>
+                                      </void>
                                       <void property="neighbors">
                                        <void method="add">
-                                        <object idref="Field10"/>
+                                        <object idref="Field11"/>
                                        </void>
                                        <void method="add">
                                         <object class="field.Field" id="Field14">
                                          <void property="neighbors">
                                           <void method="add">
+                                           <object idref="Field13"/>
+                                          </void>
+                                          <void method="add">
                                            <object class="field.Field" id="Field15">
-                                            <void property="items">
-                                             <void method="add">
-                                              <object class="item.Gun"/>
-                                             </void>
-                                            </void>
-                                            <void property="maxWeight">
-                                             <int>2</int>
-                                            </void>
                                             <void property="neighbors">
                                              <void method="add">
-                                              <object idref="Field11"/>
+                                              <object idref="Field10"/>
                                              </void>
                                              <void method="add">
                                               <object idref="Field14"/>
                                              </void>
                                             </void>
                                             <void property="snow">
-                                             <int>3</int>
+                                             <int>1</int>
                                             </void>
                                            </object>
-                                          </void>
-                                          <void method="add">
-                                           <object idref="Field13"/>
                                           </void>
                                           <void method="add">
                                            <object class="field.Field" id="Field16">
@@ -370,7 +370,7 @@
                                                       <object class="java.util.ArrayList"/>
                                                      </void>
                                                      <void property="name">
-                                                      <string>Scientist</string>
+                                                      <string>scientist</string>
                                                      </void>
                                                     </object>
                                                    </void>
@@ -412,7 +412,7 @@
                                                 <object class="java.util.ArrayList"/>
                                                </void>
                                                <void property="name">
-                                                <string>Eskimo</string>
+                                                <string>eskimo</string>
                                                </void>
                                               </object>
                                              </void>
@@ -427,7 +427,7 @@
                                        </void>
                                       </void>
                                       <void property="snow">
-                                       <int>1</int>
+                                       <int>3</int>
                                       </void>
                                      </object>
                                     </void>
@@ -444,7 +444,7 @@
                                   <object idref="Field9"/>
                                  </void>
                                  <void method="add">
-                                  <object idref="Field13"/>
+                                  <object idref="Field15"/>
                                  </void>
                                 </void>
                                 <void property="snow">
@@ -566,7 +566,7 @@
                <object class="java.util.ArrayList"/>
               </void>
               <void property="name">
-               <string>Eskimo</string>
+               <string>eskimo</string>
               </void>
              </object>
             </void>
@@ -634,7 +634,7 @@
     <object idref="Field6"/>
    </void>
    <void method="add">
-    <object idref="Field15"/>
+    <object idref="Field13"/>
    </void>
    <void method="add">
     <object idref="Field8"/>
@@ -664,7 +664,7 @@
     <object idref="Field20"/>
    </void>
    <void method="add">
-    <object idref="Field13"/>
+    <object idref="Field15"/>
    </void>
   </void>
   <void property="players">
