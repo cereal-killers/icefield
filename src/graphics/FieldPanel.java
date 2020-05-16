@@ -109,7 +109,7 @@ public class FieldPanel{
              else if(field.getHasIgloo())
                  thingImage = ImageIO.read(new File("src\\images\\igloo.png"));
              else if(field.getHasTent())
-                 thingImage = ImageIO.read(new File("src\\images\\tend.png"));
+                 thingImage = ImageIO.read(new File("src\\images\\tent.png"));
          }catch(IOException e)
          {
              e.printStackTrace();
