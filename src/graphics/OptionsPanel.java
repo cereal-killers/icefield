@@ -69,7 +69,6 @@ public class OptionsPanel extends JPanel
         this.add(music);
 	    this.setVisible(true);
 	    this.setFocusable(true);
-
     }
 
     @Override
