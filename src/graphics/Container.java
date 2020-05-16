@@ -17,11 +17,11 @@ public class Container extends JFrame {
 	private GameListener gamelistener;
 	private Controller controller;
 	
-	public Container(Controller c)
+	public Container(Menu m)
 	{
-		controller = c;
+		controller = m.getController();
 		try {
-			gamelistener = new GameListener(this, c);
+			gamelistener = new GameListener(this, m);
 		} catch (UnsupportedEncodingException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

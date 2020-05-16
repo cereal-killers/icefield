@@ -19,7 +19,7 @@ public class Main {
  */
 	public static void main(String[] args) {
 		Menu m = new Menu();
-		Container c= new Container(m.getController());
+		Container c= new Container(m);
 		boolean game = true;
 		while (game)
 		{
