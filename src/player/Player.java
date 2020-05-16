@@ -125,6 +125,7 @@ public class Player extends Moveable implements java.io.Serializable{
 					//Ha a Field-en, amire lépett PolarBear van, akkor meghívja a Finish-t
 					if (currentField.getPolarBear() != null){
 						System.out.println("You became polarbear's dinner!");
+						//controller.setLose(true);
 						controller.Finish();
 					}
 				}
@@ -278,6 +279,7 @@ public class Player extends Moveable implements java.io.Serializable{
 			System.out.println("health: " + health);
 		}
 		if (health == 0) { //ha a health 0, akkor vége a játéknak
+			//controller.setLose(true);
 			controller.Finish(); 
 		}
 	}

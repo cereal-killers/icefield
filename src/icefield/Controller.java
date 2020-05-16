@@ -22,7 +22,12 @@ import test.TestFunctions;
  */
 public class Controller implements java.io.Serializable{
 
+	private boolean lose = false;
+	
+	private boolean won = false;
+	
 	public static Object mapLoaded = new Object();
+	public static Object gameEnded = new Object();
     /** 
     * A pályán levő Field-ek tárolója
     */
@@ -55,7 +60,40 @@ public class Controller implements java.io.Serializable{
     */
     private TestFunctions test = new TestFunctions(this);
 
+    public boolean getLose() {
+    	return lose;
+    }
     
+    public boolean getWon() {
+    	return won;
+    }
+    
+    public boolean checkIfGameLost() {
+    	if(players.indexOf(currentPlayer) == players.size() - 1) {
+    	   for (Field field : fields) {
+	            if (field.getIsUpsideDown()) { //ha felfordult, akkor megnézzük, hogy minden játékoson van-e búvárruha
+	                ArrayList<Player> playersFell = field.getPlayers(); 
+	            	for(int j = 0; j < playersFell.size() && !ended; ++j) {
+	            		if(!playersFell.get(j).getWears_suit()) { //ha nincs, akkor játék vége
+	            			System.out.println("lose1");
+	            			return true;
+	            			
+	            		}
+	            	}
+	            }
+               
+    	   }
+    	}
+ 
+        if(lose) {
+        	System.out.println("lose2");
+        	return true;
+        }
+        
+        return false;
+    }
+    
+
     /** 
      * fields gettere
      * @param value
@@ -146,6 +184,7 @@ public class Controller implements java.io.Serializable{
      */
     public void setEnded(boolean thing) { ended = thing; }
     
+    public void setLose(boolean value) { lose = value;}
     /** 
      * testMode settere
      * @param value
@@ -259,6 +298,16 @@ public class Controller implements java.io.Serializable{
         }
         return false;
     }
+    
+    public boolean TryFireWithoutWaiting() {
+        //A játékosok és a rakétaalkatrészek mind egy mezőn vannak
+        if(ArePartsTogether() && ArePlayersTogether()) {
+            won = true;
+            ended = true;
+            return true;
+        }
+        return false;
+    }
 
     
     /** 
@@ -270,6 +319,10 @@ public class Controller implements java.io.Serializable{
         //A játékosok és a rakétaalkatrészek mind egy mezőn vannak
         if(ArePartsTogether() && ArePlayersTogether()) {
             System.out.println("You Won!");
+            won = true;
+    		synchronized(gameEnded) {
+    			gameEnded.notifyAll();
+    		}
     		//késleltetés
     		synchronized(Main.lock) {
     			try {
@@ -293,7 +346,12 @@ public class Controller implements java.io.Serializable{
     public void Finish()
     {
         System.out.println("You Lose!");
+        lose = true;
+		synchronized(gameEnded) {
+			gameEnded.notifyAll();
+		}
 		//késleltetés
+		//if(this.won || this.lose) {
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
@@ -304,7 +362,14 @@ public class Controller implements java.io.Serializable{
 		}
 		Scanner in = new Scanner(System.in); 
 		in.next();
+		//}
+
         ended =true;
+    }
+    
+    public void FinishWithoutWaiting() {
+    	lose = true;
+    	ended =true;
     }
 
     
@@ -314,6 +379,8 @@ public class Controller implements java.io.Serializable{
      */
     private int GameLoop() 
     {
+    	lose= false;
+    	won = false;
         int numOfTurns = 0;
         String input_test;
 

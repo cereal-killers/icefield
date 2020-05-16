@@ -76,7 +76,7 @@ public class Scientist extends Player{
 					break;
 				case "pick up item": PickItemUp(); //felveszi a legelső tárgyat a mezőről
 					break;
-				case "menu": controller.Finish(); endturn = true; //kilép a menube
+				case "menu": controller.FinishWithoutWaiting(); endturn = true; //kilép a menube
 					break;
 				case "neighbors": System.out.println(currentField.getNeighbors().size()); //megnézi hány szomszédja van a currentFieldnek
 					break;

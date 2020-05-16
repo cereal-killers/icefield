@@ -79,7 +79,7 @@ public class Eskimo extends Player {
 					break;
 				case "igloo": BuildIgloo(); //igloo-t épít
 					break;
-				case "menu": controller.Finish(); endturn = true; //kilép a menube
+				case "menu": controller.FinishWithoutWaiting(); endturn = true; //kilép a menube
 					break;
 				case "neighbors": System.out.println(currentField.getNeighbors().size()); //megnézi hány szomszédja van a currentFieldnek
 					break;

@@ -28,6 +28,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	private Controller controller;
 	private PrintStream stdout;
 	private InputStream stdin;
+	private String currentPanel;
 	
 	public GameListener(Container _container, Controller _controller) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
@@ -35,6 +36,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		stdout = System.out;
 		stdin = System.in;
 		String cmd = "";
+		currentPanel = "menu";
 		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
 	}
 	
@@ -42,23 +44,22 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	public void actionPerformed(ActionEvent e) { 
 		String[] cmd_from_view = e.getActionCommand().split("\\s+");
 		String cmd_to_model = "";
-		System.out.println(e.getActionCommand());
-		for(int i=0;i<cmd_from_view.length;++i) {
-			System.out.print(cmd_from_view[i]+ " ");
-		}
-		System.out.println();
+
 		switch(cmd_from_view[0]) {
 			case "newgame":{
 				cmd_to_model = "1";
 				container.navigate("choosemap");
+				currentPanel = "choosemap";
 			} break;
 			case "options":{
 				cmd_to_model = "2";
 				container.navigate("options");
+				currentPanel = "options";
 			} break;
 			case "highscores":{
 				cmd_to_model = "3";
 				container.navigate("highscores");
+				currentPanel = "highscores";
 			} break;
 			case "exit":{
 				cmd_to_model = "4"; //talán az ablakkal is külön kell majd valamit kezdeni?
@@ -123,6 +124,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			case "inspect": {
 				cmd_to_model = "tesztpalya";
 				container.navigate("teszt");
+				currentPanel = "teszt";
 			}break;
 			case "use": {
 				String item = cmd_from_view[1];
@@ -132,20 +134,11 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				
 			} break;
 		}
+		
 		try {
-			/*switch(cmd_from_view[0]) {
-			case "nagy":{
-				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
-			} break;
-			case "foci":{
-				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
-			} break;
-			case "teszt":{
-				cmd_to_model = cmd_to_model + System.lineSeparator() + "N";
-			} break;
-			default:break;
-		}*/
+
 			sendCommandToModel(cmd_to_model);
+			
 			switch(cmd_from_view[0]) {
 				case "nagy":{
 					synchronized(Controller.mapLoaded) {
@@ -158,6 +151,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					}
 					sendCommandToModel("N");
 					container.navigate("nagy");
+					currentPanel = "nagy";
 					//sendCommandToModel("N");
 				} break;
 				case "foci":{
@@ -171,7 +165,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					}
 					sendCommandToModel("N");
 					container.navigate("foci");
-					
+					currentPanel = "foci";
 				} break;
 				case "teszt":{
 					synchronized(Controller.mapLoaded) {
@@ -184,7 +178,31 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					}
 					sendCommandToModel("N");
 					container.navigate("teszt");
-					//
+					currentPanel = "teszt";
+				} break;
+				case "endturn":{
+					if(controller.TryFireWithoutWaiting() || controller.checkIfGameLost()) {
+						/*synchronized(Controller.gameEnded) {
+							try {
+								Controller.gameEnded.wait();
+								System.out.println("megkaptam1");
+							} catch (InterruptedException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+						}*/
+						//System.out.println("megkaptam2");
+						if(controller.getWon()) {
+							System.out.println("megkaptam3");
+							container.navigate("win");
+							currentPanel = "win";
+						} else if(controller.checkIfGameLost()) {
+							System.out.println("megkaptam4");
+							container.navigate("lose");
+							currentPanel = "lose";
+						}
+					}
+
 				} break;
 				default:break;
 			}
@@ -205,8 +223,46 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		int key = e.getKeyCode();
 		String cmd_to_model = "";
 		if(key == KeyEvent.VK_ESCAPE) {
-			cmd_to_model = "3";
-			container.navigate("menu");
+			switch(currentPanel) {
+			case "menu": break;
+			case "choosemap": break;
+			case "win": {
+				cmd_to_model = "1";
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "lose":{
+				cmd_to_model = "1";
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "options":{
+				cmd_to_model = "3";
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "highscores": {
+				cmd_to_model = "1";
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "teszt": {
+				cmd_to_model = "menu"+System.lineSeparator();
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "foci": {
+				cmd_to_model = "menu"+System.lineSeparator();
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			case "nagy": {
+				cmd_to_model = "menu"+System.lineSeparator();
+				container.navigate("menu");
+				currentPanel = "menu";
+			} break;
+			default: break;
+			}
 		}
 		try {
 			sendCommandToModel(cmd_to_model);

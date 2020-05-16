@@ -45,6 +45,7 @@ public class PolarBear extends Moveable implements java.io.Serializable
 		//ha a fielden van játékos és nincs rajta igloo, akkor Finish-t hív
 		if (currentField.getPlayers().size() != 0 && !currentField.getHasIgloo()){
 			System.out.println("You became polarbear's dinner!");
+			//controller.setLose(true);
 			controller.Finish();
 		}
 	}

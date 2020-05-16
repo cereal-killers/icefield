@@ -156,14 +156,14 @@ public class Menu {
 				e.printStackTrace();
 			}
 		}
-		synchronized(Main.lock) {
+		/*synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 		Scanner in = new Scanner(System.in); 
 		in.next();
 	}
