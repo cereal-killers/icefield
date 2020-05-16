@@ -72,7 +72,11 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				container.dispose();
 			} break;
 			case "submit":{
-				String newName = cmd_from_view[1];
+				
+				String newName = "";
+				for(int i = 1;i < cmd_from_view.length; ++i) {
+					newName += cmd_from_view[i] + " ";
+				}
 				cmd_to_model = "1";
 				try {
 					sendCommandToModel(cmd_to_model);
