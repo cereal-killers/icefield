@@ -5,6 +5,7 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ import icefield.Controller;
 /**
  * A menüt megvalósító osztály
  */
-public class Menu {
+public class Menu implements Serializable {
 	/**
 	 *  a toplistát tároló tömb
 	 */
@@ -37,7 +38,7 @@ public class Menu {
 	 */
 	public Menu(){
 		this.controller = new Controller();
-		highscores = new Vector<>();
+		highscores = new Vector<ScoreData>();
 		options = new Options();
 		audioPlayer = new AudioPlayer();
 		audioPlayer.Start(true);

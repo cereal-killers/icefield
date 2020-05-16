@@ -16,13 +16,13 @@ public class ScoreData implements java.io.Serializable {
 	/**
 	 * Konstruktor
 	 */
-	ScoreData(){}
+	public ScoreData(){}
 	/**
 	 * Konstruktor
 	 * @param n név
 	 * @param s pontszám
 	 */
-	ScoreData(String n, int s)
+	public ScoreData(String n, int s)
 	{
 		name = n;
 		score = s;
