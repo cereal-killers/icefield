@@ -204,7 +204,7 @@ public class Controller implements java.io.Serializable{
     private void SnowStorm()                                            
     {
     		System.out.print("Snowstorm on fields: ");
-    		for (int i=1;i<(fields.size())/5;i++)
+    		for (int i=1;i<(fields.size())/2;i++)
             {
                 //mezo kivalasztasa
                 int fieldIndex = random.nextInt(fields.size());
@@ -468,6 +468,17 @@ public class Controller implements java.io.Serializable{
                 if (i == players.size()) //ha elér az utolsó játékosig, akkor vissza megy a players vektor elejére
                     i = 0;
             }
+            
+            if(!testMode) { //ha nem vagyunk testMode-ban, akkor hívodík a SnowStorm 
+            	SnowStorm();
+            	if(polarBear != null) { //és ha van jegesmedve, akkor mozgatjuk véletlenszerű irányba
+                	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
+                	int bearDir = random.nextInt(maxBearDir);
+                	polarBear.Move(bearDir);
+            	}
+
+            }
+            
             //végignézzük a mezőket, hogy van-e közöttük, ami fel van fordulva
             for (Field field : fields) {
                 if (field.getIsUpsideDown()) { //ha felfordult, akkor megnézzük, hogy minden játékoson van-e búvárruha
@@ -484,15 +495,7 @@ public class Controller implements java.io.Serializable{
                 }
                    
             }
-            if(!testMode) { //ha nem vagyunk testMode-ban, akkor hívodík a SnowStorm 
-            	SnowStorm();
-            	if(polarBear != null) { //és ha van jegesmedve, akkor mozgatjuk véletlenszerű irányba
-                	int maxBearDir = polarBear.getCurrentField().getNeighbors().size();
-                	int bearDir = random.nextInt(maxBearDir);
-                	polarBear.Move(bearDir);
-            	}
-
-            }
+            
             
         }
         return -1;
