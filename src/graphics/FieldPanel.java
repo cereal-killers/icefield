@@ -114,7 +114,6 @@ public class FieldPanel{
          {
              e.printStackTrace();
          }
-
          //sator/iglu
          if (thingImage!=null && field.getIsUpsideDown()==false)
         	 g.drawImage(thingImage, posX + width - 72, posY+height/2 -36, p);
