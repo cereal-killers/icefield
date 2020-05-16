@@ -204,7 +204,7 @@ public class Controller implements java.io.Serializable{
     private void SnowStorm()                                            
     {
     		System.out.print("Snowstorm on fields: ");
-    		for (int i=1;i<(fields.size())/2;i++)
+    		for (int i=1;i<(fields.size())/5;i++)
             {
                 //mezo kivalasztasa
                 int fieldIndex = random.nextInt(fields.size());
