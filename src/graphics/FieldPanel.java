@@ -14,11 +14,9 @@ import javax.swing.JPanel;
 import field.Field;
 import item.Item;
 import player.Player;
-import sun.font.FontScaler;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 
 public class FieldPanel{
@@ -157,14 +155,8 @@ public class FieldPanel{
     	 //teherbiras
     	 if (field.GetIsInspected()==true)
     	 {
-    		 try {
-				//g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f));
- 				g.setFont(new Font("Arial", Font.BOLD, 72));
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f));
+ 			g.setFont(new Font("Arial", Font.BOLD, 72));
     		 g.setColor(Color.white);
     		 String w = String.valueOf(field.getMaxWeight());
     		 if (field.getMaxWeight()==10)
