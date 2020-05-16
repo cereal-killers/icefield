@@ -15,11 +15,11 @@ public class Container extends JFrame {
 
 	private JPanel currentpanel = null;
 	private GameListener gamelistener;
-	private Controller controller;
+	private Menu menu;
 	
 	public Container(Menu m)
 	{
-		controller = m.getController();
+		menu = m;
 		try {
 			gamelistener = new GameListener(this, m);
 		} catch (UnsupportedEncodingException | InterruptedException e) {
@@ -28,6 +28,7 @@ public class Container extends JFrame {
 		}
 		this.setTitle("Ice Field");
 		this.setBounds(0,0,1217,767);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(gamelistener);
 	    this.setVisible(true);
@@ -43,13 +44,13 @@ public class Container extends JFrame {
 		switch(where)
 		{
 		case "foci":
-			game = new GamePanel("foci", controller);
+			game = new GamePanel("foci", menu.getController());
 			break;
 		case "nagy":
-			game = new GamePanel("nagy", controller);
+			game = new GamePanel("nagy", menu.getController());
 			break;
 		case "teszt":
-			game = new GamePanel("teszt", controller);
+			game = new GamePanel("teszt", menu.getController());
 			break;
 		case "menu":
 			MenuPanel m = new MenuPanel();
@@ -71,7 +72,7 @@ public class Container extends JFrame {
 			this.add(o);
 			break;
 		case "highscores":
-			HighscoresPanel h = new HighscoresPanel();
+			HighscoresPanel h = new HighscoresPanel(menu.getHighscores());
 			h.addKeyListener(gamelistener);
 			currentpanel = h;
 			this.add(h);

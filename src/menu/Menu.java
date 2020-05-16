@@ -50,6 +50,11 @@ public class Menu implements Serializable {
 	 */
 	public Controller getController() {return controller;}
 	
+	/**
+	 * Highscores gettere
+	 */
+	public Vector<ScoreData> getHighscores() {return highscores;}
+	
 	public Options getOptions() {
 		return this.options;
 	}
