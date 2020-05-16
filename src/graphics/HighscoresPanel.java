@@ -2,23 +2,27 @@ package graphics;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import menu.ScoreData;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class HighscoresPanel extends JPanel
 {
     private BufferedImage backGround;
-    private ArrayList<JLabel> namelabels = new ArrayList<JLabel>();
     private Font AmaticSc;
-    private JPanel valami;
+    private Vector<ScoreData> highscores;
 
-    public HighscoresPanel()
+    public HighscoresPanel(Vector<ScoreData> _highscores)
     {
     	this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		this.setBounds(0,0, 1200, 720);
+        this.setBounds(0,0, 1200, 720);
+        highscores = _highscores;
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\highscores.png"));
@@ -61,11 +65,9 @@ public class HighscoresPanel extends JPanel
         g.drawImage(backGround, 0,0, this);
         g.setFont(AmaticSc);
         g.setColor(new Color(198, 205, 229));
-        for (int i= 0; i<5;i++){
-        	{
-        		String s ="10karakter "  + readFile(i) + " kört bírt";
-            g.drawString(s, (int)(410+133-(s.length()*(2.3f+(s.length()-10)*0.17f))) , 290+i*68);
-        	}
+        for (int i= 0; i< highscores.size() && i < 5;i++){
+            int n = highscores.get(i).getName().length() + 2;
+            g.drawString(highscores.get(i).getName() + " " + highscores.get(i).getScore(), (int)(410+133-((n*(2.3f+(n-10)*0.17f)))) , 290+i*68);
         }
     }
 
@@ -82,14 +84,6 @@ public class HighscoresPanel extends JPanel
 
     public void setBackGround(BufferedImage backGround) {
         this.backGround = backGround;
-    }
-
-    public ArrayList<JLabel> getNamelabels() {
-        return namelabels;
-    }
-
-    public void setNamelabels(ArrayList<JLabel> namelabels) {
-        this.namelabels = namelabels;
     }
 
     public Font getAmaticSc() {

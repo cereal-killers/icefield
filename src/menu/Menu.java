@@ -5,7 +5,6 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -15,12 +14,20 @@ import icefield.Controller;
 /**
  * A menüt megvalósító osztály
  */
-public class Menu implements Serializable {
+public class Menu {
 	/**
 	 *  a toplistát tároló tömb
 	 */
     private Vector<ScoreData> highscores; 
-    /**
+	
+	public Vector<ScoreData> getHighscores(){
+		return highscores;
+	}
+	public void setHighscores(Vector<ScoreData> value){
+		highscores = value;
+	}
+	
+	/**
      * a beállítások osztálya
      */
 	private Options options; 
@@ -38,21 +45,17 @@ public class Menu implements Serializable {
 	 */
 	public Menu(){
 		this.controller = new Controller();
-		highscores = new Vector<ScoreData>();
+		highscores = new Vector<>();
 		options = new Options();
 		audioPlayer = new AudioPlayer();
 		audioPlayer.Start(true);
 		ReadHighscores();
 	}
+	
 	/**
 	 * Controller gettere
 	 */
 	public Controller getController() {return controller;}
-	
-	/**
-	 * Highscores gettere
-	 */
-	public Vector<ScoreData> getHighscores() {return highscores;}
 	
 	public Options getOptions() {
 		return this.options;
@@ -103,9 +106,9 @@ public class Menu implements Serializable {
 			audioPlayer.Start(false);
 		
 		int turns = controller.Start();
-		if (turns>0)
+		if (turns>0){
 			AddHighscore(turns);
-		
+		}
 		audioPlayer.Stop();
 		if(options.GetMusic())
 			audioPlayer.Start(true);
