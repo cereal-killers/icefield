@@ -51,8 +51,6 @@ public class Inventory {
     }
 
     public void paint(Graphics g, JPanel p){
-    	if (currentPlayer ==null)
-    		return;
         g.setColor(Color.red);
         g.fillRect(189, 525 + 
         (currentPlayer.getMaxHealth()-currentPlayer.getHealth())*(195/currentPlayer.getMaxHealth()), 185,
