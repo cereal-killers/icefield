@@ -2,6 +2,8 @@ package graphics;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,7 +18,6 @@ public class OptionsPanel extends JPanel
 
     public OptionsPanel()
     {
-        Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 48);
         this.setLayout(null);
 		this.setBounds(0,0, 1200, 720);
         try
@@ -27,13 +28,25 @@ public class OptionsPanel extends JPanel
         {
             e.printStackTrace();
         }
-
-
+        Font AmaticSc = new Font("Amatic sc", Font.PLAIN, 72);
+        try {
+			AmaticSc = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(72f);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         //Nametextfield beallitasa
         nameTextField = new JTextField();
-        nameTextField.setBounds(255,365,265,60);
+        nameTextField.setBounds(270,360,240,60);
         nameTextField.setVisible(true);
-      //  nameTextField.setFont(AmaticSc);
+        nameTextField.setFont(AmaticSc);
+        nameTextField.setForeground(new Color(198, 205, 229));
+        nameTextField.setText("Player");
+        nameTextField.setBackground(new Color(26, 39, 79));
+        nameTextField.setBorder(new LineBorder(new Color(26, 39, 79),1));
         this.add(nameTextField);
 
 
@@ -48,13 +61,15 @@ public class OptionsPanel extends JPanel
 
         //Music CheckBox felparameterezese
         music = new JCheckBox();
-        music.setBounds(701, 504, 100, 100);
-        music.setIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\buttonon.png"));
-        music.setSelectedIcon(new ImageIcon(System.getProperty("user.dir")+"src\\images\\buttonoff.png"));
+        music.setBounds(695, 500, 104, 100);
+        music.setBackground(new Color(26, 39, 79));
+        music.setIcon(new ImageIcon("src\\images\\buttonon.png"));
+        music.setSelectedIcon(new ImageIcon("src\\images\\buttonoff.png"));
         music.setActionCommand("togglemusic");
         music.setVisible(true);
         this.add(music);
 	    this.setVisible(true);
+	    
 	    this.setFocusable(true);
 
     }
@@ -64,6 +79,9 @@ public class OptionsPanel extends JPanel
     {
     	super.paint(g);
         g.drawImage(backGround, 0,0, this);
+        nameTextField.repaint();
+        music.repaint();
+
     }
 
     //getterek & setterek
