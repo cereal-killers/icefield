@@ -372,16 +372,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		if(e.getButton() == MouseEvent.BUTTON3) {
 			String[] cmd_from_view = j.getActionCommand().split("\\s+"); // az meg lesz oldva hogy ha rossz helyre kattintasz akkor invalid command jön? mondjuk ""
 			String cmd_to_model = "";
-			
-			switch(controller.getCurrentPlayer().getName()) {
-				case "Scientist":{
+			//System.out.println("["+controller.getCurrentPlayer().getName()+"]");
+			switch(controller.getCurrentPlayer().getName().toUpperCase()) {
+				case "SCIENTIST":{
 					int globalIndex = Integer.parseInt(cmd_from_view[1]);
 					Field toInspect = controller.getFields().get(globalIndex);
 					int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(toInspect);
 					int dirToModel = direction + 1;
 					cmd_to_model = "inspect " + dirToModel;
 				} break;
-				case "Eskimo":{
+				case "ESKIMO":{
 					cmd_to_model = "igloo";
 				} break;
 				default: break;
@@ -439,7 +439,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		synchronized(Main.lock) {
 			Main.lock.notifyAll();
 		}
-		stdout.print(cmd); //debug célból
+		stdout.println("command to model: ["+cmd+"]"); //debug célból
 
 	}
 	
