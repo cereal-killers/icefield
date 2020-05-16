@@ -148,7 +148,7 @@ public class FieldPanel{
         //eszkoz
     	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false && field.GetIsInspected()==false)
         g.drawImage(itemImages.peek(), posX, posY, p);
-    	 else if (itemImages.size()>0 && field.GetIsInspected()==true)
+    	 else if (itemImages.size()>0 &&  snowImage ==null &&field.GetIsInspected()==true)
     	 {            
     		 for(int i=0;i<itemImages.size();i++)
     			 g.drawImage(itemImages.get(i) , posX +80*i , posY, p);
