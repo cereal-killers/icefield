@@ -73,7 +73,23 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			} break;
 			case "submit":{
 				String newName = cmd_from_view[1];
-				cmd_to_model = "1" + System.lineSeparator() + newName;
+				cmd_to_model = "1";
+				try {
+					sendCommandToModel(cmd_to_model);
+				} catch (UnsupportedEncodingException | InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				synchronized(Options.nameIsReadyToSet) {
+					try {
+						Options.nameIsReadyToSet.wait();
+						//System.out.println("megkaptam1");
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				}
+				cmd_to_model = newName;
 			} break;
 			case "togglemusic":{
 				boolean music = menu.getOptions().GetMusic();
@@ -203,11 +219,6 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					cmd_to_model = "move " + dirToModel; 
 				}
 
-			}break;
-			case "inspect": {
-				cmd_to_model = "tesztpalya";
-				container.navigate("teszt");
-				currentPanel = "teszt";
 			}break;
 			case "item": {
 				String item = cmd_from_view[1];
