@@ -143,8 +143,14 @@ public class FieldPanel{
         	g.drawImage(polarbearImage, posX+width/2-54, posY+height/2-112, p);
         
         //eszkoz
-    	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false)
+    	 if (itemImages.size()>0 && snowImage ==null && field.getIsUpsideDown()==false && field.GetIsInspected()==false)
         g.drawImage(itemImages.peek(), posX, posY, p);
+    	 else if (itemImages.size()>0 && field.GetIsInspected()==true)
+    	 {            
+    		 for(int i=0;i<itemImages.size();i++)
+    			 g.drawImage(itemImages.get(i) , posX +80*i , posY, p);
+    	       
+    	 }
 
     }
 
