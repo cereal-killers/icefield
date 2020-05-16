@@ -527,6 +527,7 @@ public class Controller implements java.io.Serializable{
   		  	this.ended = copy.getEnded();
   		  	this.players = copy.getPlayers();
   		  	this.fields = copy.getFields();
+  		  	won = lose = testMode = false;
   		  	for(Player p : players)
   		  		p.setController(this);
   		  	this.polarBear = copy.getPolarBear();
