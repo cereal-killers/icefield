@@ -92,6 +92,27 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			}break;
 			case "endturn": {
 				cmd_to_model = "end turn";
+				if(controller.TryFireWithoutWaiting() || controller.checkIfGameLost()) {
+					/*synchronized(Controller.gameEnded) {
+						try {
+							Controller.gameEnded.wait();
+							System.out.println("megkaptam1");
+						} catch (InterruptedException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+					}*/
+					//System.out.println("megkaptam2");
+					if(controller.getWon()) {
+						System.out.println("megkaptam3");
+						container.navigate("win");
+						currentPanel = "win";
+					} else if(controller.checkIfGameLost()) {
+						System.out.println("megkaptam4");
+						container.navigate("lose");
+						currentPanel = "lose";
+					}
+				}
 			}break;
 			case "nagy": {
 				cmd_to_model = "nagypalya";
@@ -181,27 +202,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					currentPanel = "teszt";
 				} break;
 				case "endturn":{
-					if(controller.TryFireWithoutWaiting() || controller.checkIfGameLost()) {
-						/*synchronized(Controller.gameEnded) {
-							try {
-								Controller.gameEnded.wait();
-								System.out.println("megkaptam1");
-							} catch (InterruptedException e2) {
-								// TODO Auto-generated catch block
-								e2.printStackTrace();
-							}
-						}*/
-						//System.out.println("megkaptam2");
-						if(controller.getWon()) {
-							System.out.println("megkaptam3");
-							container.navigate("win");
-							currentPanel = "win";
-						} else if(controller.checkIfGameLost()) {
-							System.out.println("megkaptam4");
-							container.navigate("lose");
-							currentPanel = "lose";
-						}
-					}
+					
 
 				} break;
 				default:break;
@@ -222,11 +223,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		String cmd_to_model = "";
+		if(currentPanel.contentEquals("win") || currentPanel.contentEquals("lose")) {
+			cmd_to_model = "x";
+			container.navigate("menu");
+			currentPanel = "menu";
+		}
 		if(key == KeyEvent.VK_ESCAPE) {
 			switch(currentPanel) {
 			case "menu": break;
 			case "choosemap": break;
-			case "win": {
+			/*case "win": {
 				cmd_to_model = "1";
 				container.navigate("menu");
 				currentPanel = "menu";
@@ -235,7 +241,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				cmd_to_model = "1";
 				container.navigate("menu");
 				currentPanel = "menu";
-			} break;
+			} break;*/
 			case "options":{
 				cmd_to_model = "3";
 				container.navigate("menu");
@@ -288,14 +294,14 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			String cmd_to_model = "";
 			
 			switch(controller.getCurrentPlayer().getName()) {
-				case "Eskimo":{
+				case "Scientist":{
 					int globalIndex = Integer.parseInt(cmd_from_view[1]);
 					Field toInspect = controller.getFields().get(globalIndex);
 					int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(toInspect);
 					int dirToModel = direction + 1;
 					cmd_to_model = "inspect " + dirToModel;
 				} break;
-				case "Scientist":{
+				case "Eskimo":{
 					cmd_to_model = "igloo";
 				} break;
 				default: break;

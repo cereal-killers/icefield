@@ -347,6 +347,7 @@ public class Controller implements java.io.Serializable{
     {
         System.out.println("You Lose!");
         lose = true;
+       
 		synchronized(gameEnded) {
 			gameEnded.notifyAll();
 		}
@@ -364,7 +365,7 @@ public class Controller implements java.io.Serializable{
 		in.next();
 		//}
 
-        ended =true;
+		ended =true;
     }
     
     public void FinishWithoutWaiting() {
