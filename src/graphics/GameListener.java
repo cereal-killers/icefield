@@ -203,7 +203,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 								Controller.readyForTestCommand.wait();
 							}
 							JFrame noPlayers = new JFrame("No players on map");
-							String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player:");
+							String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player:", "s");
 							sendCommandToModel(cmd_from_testframe);
 							synchronized(Controller.commandDone) {
 								Controller.commandDone.wait();
@@ -234,7 +234,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							}
 							container.repaint();
 							JFrame testCommands = new JFrame("Test commands");
-							input_test = JOptionPane.showInputDialog(testCommands, "Type test commands and start the game with \"start\":");
+							input_test = JOptionPane.showInputDialog(testCommands, "Type test commands and start the game with \"start\".\nGame will automatically start in TEST mode.");
 							System.out.println("command from window: ["+input_test+"]");
 							sendCommandToModel(input_test);
 						} catch(Exception e3) {
