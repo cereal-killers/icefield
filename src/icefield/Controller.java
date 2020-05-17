@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
-
 import field.Field;
 import menu.Main;
 import player.Player;
@@ -20,19 +19,41 @@ import test.TestFunctions;
  * A játékvezérlőnek az implementálása
  */
 public class Controller implements java.io.Serializable{
-
+	/**
+	 * Azt jelzi, hogy a játékot elvesztettük-e
+	 */
 	private boolean lose = false;
 	
+	/**
+	 * Azt jelzi, hogy a játékot megnyertük-e
+	 */
 	private boolean won = false;
 	
+	/**
+	 * A pálya betöltését jelző szinkronizációs objektum
+	 */
 	public static Object mapLoaded = new Object();
+	
+	/**
+	 * A játék végét jelző szinkronizációs objektum
+	 */
 	public static Object gameEnded = new Object();
+	
+	/**
+	 * A tesztparancs fogadására kész állapot jelzésére szolgáló szinkronizációs objektum
+	 */
 	public static Object readyForTestCommand = new Object();
+	
+	/**
+	 * A parancs végrehajtásának és hatásainak befejeződésének jelzésére használt szinkronizációs objektum
+	 */
     public static Object commandDone = new Object();
+    
 	/** 
     * A pályán levő Field-ek tárolója
     */
     private Vector<Field> fields = new Vector<>();
+    
     /** 
     * A pályán levő Playerek-ek tárolója
     */
@@ -42,33 +63,52 @@ public class Controller implements java.io.Serializable{
      * A jelenlegi játékos
      */
     private Player currentPlayer= null;
+    
     /** 
     * A jegesmedve
     */
     private PolarBear polarBear = null;
+    
     /** 
     * A játék végét jelző változó
     */
     private boolean ended = false;
-
+    
+    /**
+     * Véletlen számok generálására használt objektum
+     */
     private transient Random random = new Random();
+    
     /** 
     * Teszt módot jelző változó
     */
     private boolean testMode = false;
+    
     /** 
     * Objektum, ami tartalmazza teszt funkciókat.
     */
     private TestFunctions test = new TestFunctions(this);
 
+    /**
+     * lose tagváltozó gettere
+     * @return lose (igaz, ha vesztettünk)
+     */
     public boolean getLose() {
     	return lose;
     }
     
+    /**
+     * won tagváltozó gettere
+     * @return won (igaz, ha nyertünk)
+     */
     public boolean getWon() {
     	return won;
     }
     
+    /**
+     * Azt adja vissza, hogy elvesztettük-e már a játékot, azaz megevett-e a jegesmedve, vagy vízbe estünk, vagy az életpontunk 0-e
+     * @return true, ha elvesztettük a játékot
+     */
     public boolean checkIfGameLost() {
     	if(players.indexOf(currentPlayer) == players.size() - 1) {
     	   for (Field field : fields) {
@@ -76,9 +116,7 @@ public class Controller implements java.io.Serializable{
 	                ArrayList<Player> playersFell = field.getPlayers(); 
 	            	for(int j = 0; j < playersFell.size() && !ended; ++j) {
 	            		if(!playersFell.get(j).getWears_suit()) { //ha nincs, akkor játék vége
-	            			System.out.println("lose1");
 	            			return true;
-	            			
 	            		}
 	            	}
 	            }
@@ -86,11 +124,9 @@ public class Controller implements java.io.Serializable{
     	   }
     	}
  
-        if(lose) {
-        	System.out.println("lose2");
+        if(lose) { // egyéb okokból történő vesztés, amiket más függvények állítanak
         	return true;
         }
-        
         return false;
     }
     
@@ -100,7 +136,6 @@ public class Controller implements java.io.Serializable{
      * @param value
      * @return Vector<Field>
      */
-    //getterek
     public Vector<Field> getFields() { return fields;}
     
     
@@ -153,12 +188,10 @@ public class Controller implements java.io.Serializable{
      */
     public TestFunctions getTestFunctions() {return test;}
 
-    
     /** 
      * fields settere
      * @param value
      */
-    //setterek
     public void setFields(Vector<Field> thing) {fields = thing; }
     
     /** 
@@ -185,6 +218,10 @@ public class Controller implements java.io.Serializable{
      */
     public void setEnded(boolean thing) { ended = thing; }
     
+    /**
+     * lose settere
+     * @param value
+     */
     public void setLose(boolean value) { lose = value;}
     /** 
      * testMode settere
@@ -234,7 +271,6 @@ public class Controller implements java.io.Serializable{
     public int Start()
     { 
 
-    	 
     	boolean felt = true;
     	String filename = "";
     	while(felt) //ki lehet választani a milyen pályán szeretnénk játszani
@@ -245,7 +281,6 @@ public class Controller implements java.io.Serializable{
 	    			try {
 	    				Main.lock.wait();
 	    			} catch (InterruptedException e) {
-	    				// TODO Auto-generated catch block
 	    				e.printStackTrace();
 	    			}
 	    		}
@@ -254,22 +289,15 @@ public class Controller implements java.io.Serializable{
 	    	if (filename.contentEquals("tesztpalya")||filename.contentEquals("focilabda")||filename.contentEquals("nagypalya"))
 	    		felt = false;
 	    	}
-	    	catch(Exception ex)
-	    	{}
+	    	catch(Exception ex){}
     	}
     	ReadController(filename);// beolvassuk az xml filebol a mappat
-        System.out.println(filename+" beolvasva.");
-        /*synchronized(mapLoaded) {
-			mapLoaded.notifyAll();
-        }*/
-        
+        System.out.println(filename+" beolvasva.");     
         int i = GameLoop();
         this.players.clear();
         this.polarBear = null;
         return i;
     }
-
-
     
     /** 
      * Visszatér, hogy a játékosok egy mezőn vannak-e
@@ -304,6 +332,10 @@ public class Controller implements java.io.Serializable{
         return false;
     }
     
+    /**
+     * A játék megnyerését leellenőrző függvény
+     * @return true, ha el tudjuk sütni a rakétát
+     */
     public boolean TryFireWithoutWaiting() {
         //A játékosok és a rakétaalkatrészek mind egy mezőn vannak
         if(ArePartsTogether() && ArePlayersTogether()) {
@@ -314,7 +346,6 @@ public class Controller implements java.io.Serializable{
         return false;
     }
 
-    
     /** 
      * Megpróbálja elsütni a rakétát
      * @return boolean
@@ -333,7 +364,6 @@ public class Controller implements java.io.Serializable{
     			try {
     				Main.lock.wait();
     			} catch (InterruptedException e) {
-    				// TODO Auto-generated catch block
     				e.printStackTrace();
     			}
     		}
@@ -356,23 +386,24 @@ public class Controller implements java.io.Serializable{
 		synchronized(gameEnded) {
 			gameEnded.notifyAll();
 		}
+		
 		//késleltetés
-		//if(this.won || this.lose) {
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		Scanner in = new Scanner(System.in); 
 		in.next();
-		//}
 
-		ended =true;
+		ended = true;
     }
     
+    /**
+     * Várakozás nélkül fejezi be a játékot, azaz nem vár a felhasználótól nyugtázásra
+     */
     public void FinishWithoutWaiting() {
     	lose = true;
     	ended =true;
@@ -390,7 +421,6 @@ public class Controller implements java.io.Serializable{
         int numOfTurns = 0;
         String input_test;
 
-		
 		/* Ha olyan palyat toltottunk be amin nincs alapbol szereplo, akkor kotelezoen le kell rakni egyet,
 		 * kulonben nem mukodik a jatek, mert nincs kinek parancsot adni. */
         while(players.size() == 0) { 
@@ -402,7 +432,6 @@ public class Controller implements java.io.Serializable{
 				try {
 					Main.lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -419,14 +448,10 @@ public class Controller implements java.io.Serializable{
         synchronized(mapLoaded) {
 			mapLoaded.notifyAll();
         }
-        /*synchronized(readyForTestCommand) {
-			readyForTestCommand.notifyAll();
-        }*/
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -444,26 +469,18 @@ public class Controller implements java.io.Serializable{
 	        }
 			/* A kezdeti tesztparancsok utan "start"-ra indul a jatek */
 			while(!input_test.contentEquals("start")) {
-				System.out.println("varom a tesztparancsot");
 				synchronized(readyForTestCommand) {
 					readyForTestCommand.notifyAll();
 		        }
-				
-				//System.out.println("["+scan.next()+"]");
-				//Scanner scan1 = new Scanner(System.in);
-				System.out.println("tenyleg varja");
 				synchronized(Main.lock) {
 					try {
 						Main.lock.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				System.out.println("most fogja olvasni");
 				Scanner scan1 = new Scanner(System.in);
 				input_test = scan1.nextLine();
-				System.out.println("controller got: ["+input_test+"]");
 				test.testCommand(input_test);
 			}
 			
@@ -474,7 +491,6 @@ public class Controller implements java.io.Serializable{
 		} else {
 			System.out.println("Invalid command, testmode off");
 		}
-		
         
         while (!ended) {
             for (int i = 0; i < players.size() && !ended; i++) { //egymás után jönnek a játékosok
@@ -482,7 +498,7 @@ public class Controller implements java.io.Serializable{
                 System.out.println("Player type: " + players.get(i).getName()); //kiírjuk a játékos típusát
                 System.out.println("health: " + players.get(i).getHealth()); //és a health-jét
                 currentPlayer = players.get(i);
-                //talán majd ide egy if hogy van-e player
+                
                 synchronized(mapLoaded) {
         			mapLoaded.notifyAll();
                 }
@@ -524,9 +540,7 @@ public class Controller implements java.io.Serializable{
                 	System.out.println("Tent removed from field " + (fields.indexOf(field)+1));
                 }
                    
-            }
-            
-            
+            }   
         }
         return -1;
     }
