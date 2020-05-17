@@ -203,7 +203,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 								Controller.readyForTestCommand.wait();
 							}
 							JFrame noPlayers = new JFrame("No players on map");
-							String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player:", "s");
+							String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player:");
 							sendCommandToModel(cmd_from_testframe);
 							synchronized(Controller.commandDone) {
 								Controller.commandDone.wait();
