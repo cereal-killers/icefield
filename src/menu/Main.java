@@ -41,6 +41,7 @@ public class Main {
 				game = m.ChooseMenuItem(n);
 			}
 			catch(Exception ex){
+				ex.printStackTrace();
 				System.out.println("Invalid input.");
 			}
 		}

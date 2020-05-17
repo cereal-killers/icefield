@@ -198,21 +198,54 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 					sendCommandToModel("tesztpalya");
 					System.out.println("playersnumber= " + controller.getPlayers().size());
 					while(controller.getPlayers().size() == 0) {
-						synchronized(Controller.readyForTestCommand) {
-							Controller.readyForTestCommand.wait();
+						try {
+							synchronized(Controller.readyForTestCommand) {
+								Controller.readyForTestCommand.wait();
+							}
+							JFrame noPlayers = new JFrame("No players on map");
+							String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player:");
+							sendCommandToModel(cmd_from_testframe);
+							synchronized(Controller.commandDone) {
+								Controller.commandDone.wait();
+							}
+						} catch (Exception e3) {
+							
 						}
-						JFrame noPlayers = new JFrame("No players on map");
-						String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player.");
-						sendCommandToModel(cmd_from_testframe);
+						
 					}
 					
 					synchronized(Controller.mapLoaded) {
+						sendCommandToModel("Y");
 						Controller.mapLoaded.wait();
 					}
-					sendCommandToModel("Y");
-					synchronized(Controller.mapLoaded) {
+					System.out.println("itt");
+					String input_test = "";
+					int count = 0;
+					do {
+						try {
+							if(count != 0) {
+								synchronized(Controller.readyForTestCommand) {
+									Controller.readyForTestCommand.wait();
+						        }
+								count = 1;
+							}
+							
+							JFrame testCommands = new JFrame("Test commands");
+							input_test = JOptionPane.showInputDialog(testCommands, "Type test commands and start the game with \"start\":");
+							System.out.println("command from window: ["+input_test+"]");
+							sendCommandToModel(input_test);
+						} catch(Exception e3) {
+							
+						}
+						
+					} while (!input_test.contentEquals("start"));
+					/*synchronized(Controller.readyForTestCommand) {
+						Controller.readyForTestCommand.wait();
+					}*/
+					//sendCommandToModel("Y");
+					/*synchronized(Controller.mapLoaded) {
 						Controller.mapLoaded.wait();
-					}
+					}*/
 					
 				} catch (Exception e1) {}
 				container.navigate("teszt");

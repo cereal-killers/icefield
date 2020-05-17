@@ -28,7 +28,8 @@ public class Controller implements java.io.Serializable{
 	public static Object mapLoaded = new Object();
 	public static Object gameEnded = new Object();
 	public static Object readyForTestCommand = new Object();
-    /** 
+    public static Object commandDone = new Object();
+	/** 
     * A pályán levő Field-ek tárolója
     */
     private Vector<Field> fields = new Vector<>();
@@ -408,6 +409,9 @@ public class Controller implements java.io.Serializable{
 			Scanner scan = new Scanner(System.in);
 			input_test = scan.nextLine();
 			test.testCommand(input_test);
+			synchronized(commandDone) {
+				commandDone.notifyAll();
+	        }
 		}
         
         /* Miutan mar van jatekos a palyan, donthetunk, hogy teszt modban kezdjuk-e a jatekot. */
@@ -415,6 +419,9 @@ public class Controller implements java.io.Serializable{
         synchronized(mapLoaded) {
 			mapLoaded.notifyAll();
         }
+        /*synchronized(readyForTestCommand) {
+			readyForTestCommand.notifyAll();
+        }*/
 		synchronized(Main.lock) {
 			try {
 				Main.lock.wait();
@@ -432,8 +439,17 @@ public class Controller implements java.io.Serializable{
 			 * igy barmit letehetunk barhova (eszkozoket, jatekosokat, iglut, satrat), mozgathatjuk a jegesmedvet,
 			 * hoviharokkal beallithatjuk a homennyisegeket az egyes mezokon */
 			System.out.println("Type test commands and start the game with \"start\"");
+			synchronized(mapLoaded) {
+				mapLoaded.notifyAll();
+	        }
 			/* A kezdeti tesztparancsok utan "start"-ra indul a jatek */
 			while(!input_test.contentEquals("start")) {
+				System.out.println("varom a tesztparancsot");
+				synchronized(readyForTestCommand) {
+					readyForTestCommand.notifyAll();
+		        }
+				System.out.println("["+scan.next()+"]");
+				System.out.println("tenyleg varja");
 				synchronized(Main.lock) {
 					try {
 						Main.lock.wait();
@@ -442,7 +458,10 @@ public class Controller implements java.io.Serializable{
 						e.printStackTrace();
 					}
 				}
+				System.out.println("most fogja olvasni");
+				
 				input_test = scan.nextLine();
+				System.out.println("controller got: ["+input_test+"]");
 				test.testCommand(input_test);
 			}
 			
