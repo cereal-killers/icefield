@@ -115,7 +115,7 @@ public class OptionsPanel extends JPanel
         music.setSelectedIcon(new ImageIcon("src\\images\\buttonoff.png"));
         music.setActionCommand("togglemusic");
         music.setVisible(true);
-        music.setSelected(m);
+        music.setSelected(!m);
         this.add(music);
 	    this.setVisible(true);
 	    this.setFocusable(true);
