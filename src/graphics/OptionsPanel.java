@@ -33,10 +33,12 @@ public class OptionsPanel extends JPanel
      */
     private JButton submitButton;
 
+
     /**
-     * Konstruktor
+     * Konstuktor
+     * @param music igaz ha van zene optionsbe lépéskor
      */
-    public OptionsPanel()
+    public OptionsPanel(boolean m)
     {
         this.setLayout(null);
 		this.setBounds(0,0, 1200, 720);
@@ -113,6 +115,7 @@ public class OptionsPanel extends JPanel
         music.setSelectedIcon(new ImageIcon("src\\images\\buttonoff.png"));
         music.setActionCommand("togglemusic");
         music.setVisible(true);
+        music.setSelected(m);
         this.add(music);
 	    this.setVisible(true);
 	    this.setFocusable(true);

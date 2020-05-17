@@ -94,7 +94,7 @@ public class Container extends JFrame {
 			this.add(m);
 			break;
 		case "options":
-			OptionsPanel o = new OptionsPanel();
+			OptionsPanel o = new OptionsPanel(menu.getOptions().GetMusic());
 			o.addKeyListener(gamelistener);
 			o.getMusic().addActionListener(gamelistener);
 			o.getMusic().addKeyListener(gamelistener);
