@@ -218,6 +218,9 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 						sendCommandToModel("Y");
 						Controller.mapLoaded.wait();
 					}
+					//container.navigate("teszt");/////////
+					//currentPanel = "teszt";
+					//container.repaint(); ///////
 					System.out.println("itt");
 					String input_test = "";
 					int count = 0;
@@ -229,7 +232,7 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 						        }
 								count = 1;
 							}
-							
+							container.repaint();
 							JFrame testCommands = new JFrame("Test commands");
 							input_test = JOptionPane.showInputDialog(testCommands, "Type test commands and start the game with \"start\":");
 							System.out.println("command from window: ["+input_test+"]");
@@ -366,7 +369,19 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			cmd_to_model = "x";
 			container.navigate("menu");
 			currentPanel = "menu";
+		} else if (key == KeyEvent.VK_T) {
+			//try {
+			//sendCommandToModel("test on");
+			JFrame noPlayers = new JFrame("Test command");
+			cmd_to_model = JOptionPane.showInputDialog(noPlayers, "Type test command:");
+			
+			//sendCommandToModel(cmd_from_testframe);
+			//} catch (UnsupportedEncodingException | InterruptedException e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace();
+			//}
 		}
+		
 		if(key == KeyEvent.VK_ESCAPE) {
 			switch(currentPanel) {
 			case "menu": break;
