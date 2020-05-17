@@ -99,14 +99,7 @@ public class Player extends Moveable implements java.io.Serializable{
 		}
 		return -1; //ha nem találta meg akkor -1-et térít vissza
 	}
-	/** 
-	 * A kör végén visszaállítja a szereplő energiáját 4-re
-	 */
-	public void EndTurn() {
-		energy = 4;
-	}
-	
-	
+
 	/** 
 	 * A játékos lép egyet a paraméternek megadott dir irányban lévő szomszédos mezőre. 
 	 * @param dir szomszédos Field indexe, amerre lép 

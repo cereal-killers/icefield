@@ -56,6 +56,7 @@ public class Eskimo extends Player {
 	public void Turn() {
 		String input;
 		
+		energy = 4;
 		boolean endturn = false;
 		while(!endturn) { //addig van ciklusban, ameddig a játékos "end turn"-t nem ír, tehát a kör végéig
 			synchronized(Main.lock) {
@@ -69,7 +70,7 @@ public class Eskimo extends Player {
 			Scanner scanner = new Scanner(System.in); //olvassa a standard inputot
 			input = scanner.nextLine();
 			switch (input) {
-				case "end turn": EndTurn(); endturn = true;//kör vége
+				case "end turn": endturn = true;//kör vége
 					break;
 				case "list inventory": ListItems(); //a felhasználó kilistázza a játékos eszköztárában 
 					break;							//található item-eket
