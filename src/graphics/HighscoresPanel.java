@@ -9,20 +9,36 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * A Toplista panel megvalósítása
+ */
 public class HighscoresPanel extends JPanel
 {
+    /**
+	 * A panel háttere
+ 	 */
     private BufferedImage backGround;
+    /**
+	 * A panel betűtípusa
+ 	 */
     private Font AmaticSc;
+    /**
+	 * A toplista adatai
+ 	 */
     private Vector<ScoreData> highscores;
 
+    /** 
+     * A HighscoresPanel konstruktora 
+     * @param _highscores vector aminek ScoreData elemei vannak, ezek lesznek kirajzolva
+     */
     public HighscoresPanel(Vector<ScoreData> _highscores)
     {
-    	this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+    	this.setLayout(null);
         this.setBounds(0,0, 1200, 720);
         highscores = _highscores;
+        //megpróbáljuk beolvasni a panel hátterét
         try
         {
             backGround = ImageIO.read(new File(System.getProperty("user.dir")+"\\src\\images\\highscores.png"));
@@ -31,65 +47,66 @@ public class HighscoresPanel extends JPanel
         {
             e.printStackTrace();
         }
-        //namelabelek hozzaadasa
-        /*for (int i= 0; i<5;i++)     //később: File-on végigmenni
-        {
-            JLabel player = new JLabel();
-            player.setFont(AmaticSc);
-            player.setForeground(Color.WHITE);      //ToDo: szin = (198, 205, 229)
-            player.setText("János" + readFile(i) + " kört bírt");
-            player.setBounds(460, 250+i*54, 375, 50);
-            //player.setSize(375,50);
-            //player.setLocation(460, 250+i*54);
-            player.setVisible(true);
-            //player.setOpaque(false);
-            namelabels.add(player);
-            this.add(player);
-        }*/
+        //megpróbáljuk beolvasni a betűtípust
         try {
 			AmaticSc = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir")+"\\src\\images\\amaticsc.ttf")).deriveFont(48f);
 		} catch (FontFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    this.setVisible(true);
-	    this.setFocusable(true);
+	    this.setVisible(true); //láthatóvá tesszük
+	    this.setFocusable(true); //fókuszáljuk
     }
 
+    
+    /** 
+     * A HighscoresPanel paint függvénye, felülírja az alap JPanel függvényét
+     * @param g Graphics
+     */
     @Override
     public void paint(Graphics g)
     {
-        g.drawImage(backGround, 0,0, this);
-        g.setFont(AmaticSc);
-        g.setColor(new Color(198, 205, 229));
-        for (int i= 0; i<highscores.size() && i < 5;i++){
-            int n =highscores.get(i).getName().length() + 7;
-            g.drawString(highscores.get(i).getName()+ " - " + highscores.get(i).getScore()+ " turns", (int)(410+133-((n*(3.0f+(n-10)*0.3f)))) , 290+i*68);
+        g.drawImage(backGround, 0,0, this); //kirajzolja a panel hátterét
+        g.setFont(AmaticSc); //beállítjuk a betűtípust
+        g.setColor(new Color(198, 205, 229)); //beállítjuk a rajzolás színét
+        for (int i= 0; i<highscores.size() && i < 5;i++){ //maximum a top 5 eredményt írjuk ki
+            int n = highscores.get(i).getName().length() + 7; //formázáshoz kell
+            /* kirajzoljuk a highscores i-edik elemének a name változó értékét (játékos neve) és
+               és score score változó értékét (körök száma ami alatt nyert)
+            */
+            g.drawString(highscores.get(i).getName()+ " - " + highscores.get(i).getScore() + 
+            " turns", (int)(410+133-((n*(3.0f+(n-10)*0.3f)))) , 290+i*68);
+            
         }
     }
 
-    //filebeolvaso fuggveny
-    public int readFile(int line)                       //ToDo
-    {
-        return line;
-    }
-
-    //getterek & setterek
+    /** 
+     * @return BufferedImage
+     */
     public BufferedImage getBackGround() {
         return backGround;
     }
 
+    
+    /** 
+     * @param backGround
+     */
     public void setBackGround(BufferedImage backGround) {
         this.backGround = backGround;
     }
 
+    
+    /** 
+     * @return Font
+     */
     public Font getAmaticSc() {
         return AmaticSc;
     }
-
+    
+    /** 
+     * @param amaticSc
+     */
     public void setAmaticSc(Font amaticSc) {
         AmaticSc = amaticSc;
     }
