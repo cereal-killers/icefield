@@ -261,6 +261,7 @@ public class Controller implements java.io.Serializable{
         /*synchronized(mapLoaded) {
 			mapLoaded.notifyAll();
         }*/
+        
         int i = GameLoop();
         this.players.clear();
         this.polarBear = null;
