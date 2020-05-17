@@ -448,7 +448,9 @@ public class Controller implements java.io.Serializable{
 				synchronized(readyForTestCommand) {
 					readyForTestCommand.notifyAll();
 		        }
-				System.out.println("["+scan.next()+"]");
+				
+				//System.out.println("["+scan.next()+"]");
+				//Scanner scan1 = new Scanner(System.in);
 				System.out.println("tenyleg varja");
 				synchronized(Main.lock) {
 					try {
@@ -459,8 +461,8 @@ public class Controller implements java.io.Serializable{
 					}
 				}
 				System.out.println("most fogja olvasni");
-				
-				input_test = scan.nextLine();
+				Scanner scan1 = new Scanner(System.in);
+				input_test = scan1.nextLine();
 				System.out.println("controller got: ["+input_test+"]");
 				test.testCommand(input_test);
 			}
