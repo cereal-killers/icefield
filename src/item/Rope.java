@@ -29,8 +29,9 @@ public class Rope extends Item implements java.io.Serializable{
 
 				saveFrom = f; //ha igen, akkor innen mentunk jatekosokat
 				ArrayList<Player> playersToSave = saveFrom.getPlayers();
-				for(int i = 0; i< playersToSave.size();++i) { //sorban kimentjuk az osszeset
-					Player p = playersToSave.get(i);
+				int n = playersToSave.size();
+				for(int i = 0; i< n;++i) { //sorban kimentjuk az osszeset
+					Player p = playersToSave.get(0);
 					int dirToSafety = saveFrom.getNeighbors().indexOf(current);
 					saveFrom.Pass(dirToSafety,p);
 					savedplayers++;
