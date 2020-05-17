@@ -45,6 +45,7 @@ public class Container extends JFrame {
 		this.setTitle("Ice Field");
 		this.setBounds(0,0,1205,755);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addKeyListener(gamelistener);
 	    this.setVisible(true);
