@@ -17,6 +17,8 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import field.Field;
 import icefield.Controller;
@@ -194,14 +196,24 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			case "teszt": {
 				try {
 					sendCommandToModel("tesztpalya");
-					synchronized(Controller.mapLoaded) {
-						Controller.mapLoaded.wait();
+					System.out.println("playersnumber= " + controller.getPlayers().size());
+					while(controller.getPlayers().size() == 0) {
+						synchronized(Controller.readyForTestCommand) {
+							Controller.readyForTestCommand.wait();
+						}
+						JFrame noPlayers = new JFrame("No players on map");
+						String cmd_from_testframe = JOptionPane.showInputDialog(noPlayers, "Please put down a player.");
+						sendCommandToModel(cmd_from_testframe);
 					}
-					sendCommandToModel("N");
 					
 					synchronized(Controller.mapLoaded) {
 						Controller.mapLoaded.wait();
 					}
+					sendCommandToModel("Y");
+					synchronized(Controller.mapLoaded) {
+						Controller.mapLoaded.wait();
+					}
+					
 				} catch (Exception e1) {}
 				container.navigate("teszt");
 				currentPanel = "teszt";

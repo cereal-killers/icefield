@@ -27,6 +27,7 @@ public class Controller implements java.io.Serializable{
 	
 	public static Object mapLoaded = new Object();
 	public static Object gameEnded = new Object();
+	public static Object readyForTestCommand = new Object();
     /** 
     * A pályán levő Field-ek tárolója
     */
@@ -389,6 +390,9 @@ public class Controller implements java.io.Serializable{
 		 * kulonben nem mukodik a jatek, mert nincs kinek parancsot adni. */
         while(players.size() == 0) { 
 			System.out.println("No players on map, please put down a player:");
+			synchronized(readyForTestCommand) {
+				readyForTestCommand.notifyAll();
+	        }
 			synchronized(Main.lock) {
 				try {
 					Main.lock.wait();
@@ -401,6 +405,7 @@ public class Controller implements java.io.Serializable{
 			input_test = scan.nextLine();
 			test.testCommand(input_test);
 		}
+        
         /* Miutan mar van jatekos a palyan, donthetunk, hogy teszt modban kezdjuk-e a jatekot. */
         System.out.println("TEST MODE? (You can switch later) (Y/N)");
         synchronized(mapLoaded) {
