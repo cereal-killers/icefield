@@ -40,7 +40,7 @@ public class Controller implements java.io.Serializable{
     /**
      * A jelenlegi játékos
      */
-    private Player currentPlayer;
+    private Player currentPlayer= null;
     /** 
     * A jegesmedve
     */
@@ -261,7 +261,10 @@ public class Controller implements java.io.Serializable{
         /*synchronized(mapLoaded) {
 			mapLoaded.notifyAll();
         }*/
-        return GameLoop();
+        int i = GameLoop();
+        this.players.clear();
+        this.polarBear = null;
+        return i;
     }
 
 
