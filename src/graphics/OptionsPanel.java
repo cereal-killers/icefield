@@ -10,14 +10,32 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * A beállításokat megvalósító panel
+ *
+ */
 public class OptionsPanel extends JPanel
 {
+	/**
+	 * A háttérkép
+	 */
     private BufferedImage backGround;
+    /**
+     * A játékos nevét tartalmazó textfield
+     */
     private JTextField nameTextField;
+    /**
+     * A zene állapotát beálltó checkbox
+     */
     private JCheckBox music;
+    /**
+     * Az új név mentésére szolgáló gomb
+     */
     private JButton submitButton;
 
+    /**
+     * Konstruktor
+     */
     public OptionsPanel()
     {
         this.setLayout(null);
@@ -99,7 +117,9 @@ public class OptionsPanel extends JPanel
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
-
+    /**
+     * Kirajzolja a panelt
+     */
     @Override
     public void paint(Graphics g)
     {
@@ -110,35 +130,59 @@ public class OptionsPanel extends JPanel
 
     }
 
-    //getterek & setterek
+    /**
+     * A háttér gettere
+     * @return a háttérkép
+     */
     public BufferedImage getBackGround() {
         return backGround;
     }
-
+    /**
+     * A háttér settere
+     * @param backGround a háttérkép
+     */
     public void setBackGround(BufferedImage backGround) {
         this.backGround = backGround;
     }
-
+    /**
+     * A textfield gettere
+     * @return textfield
+     */
     public JTextField getNameTextField() {
         return nameTextField;
     }
-
+    /**
+     * A textfield settere
+     * @param nameTextField textfield
+     */
     public void setNameTextField(JTextField nameTextField) {
         this.nameTextField = nameTextField;
     }
-
+    /**
+     * A checkbox gettere
+     * @return checkbox
+     */
     public JCheckBox getMusic() {
         return music;
     }
-
+    /**
+     * A checkbox settere
+     * @param music checkbox
+     */
     public void setMusic(JCheckBox music) {
         this.music = music;
     }
-
+    /**
+     * Az küldés gomb gettere
+     * @return a küldés gomb
+     */
     public JButton getSubmitButton() {
         return submitButton;
     }
-
+    /**
+     * A küldés gomb settere
+     * @param submitButton a küldésgomb
+     */
     public void setSubmitButton(JButton submitButton) {
         this.submitButton = submitButton;
     }

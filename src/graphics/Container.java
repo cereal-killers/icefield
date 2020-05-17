@@ -11,12 +11,28 @@ import javax.swing.JPanel;
 import icefield.Controller;
 import menu.Menu;
 
+/**
+ * A framet megvalósító paneleket összefogó osztály
+ *
+ */
 public class Container extends JFrame {
 
+	/**
+	 * A jelenleg megjelenített panel
+	 */
 	private JPanel currentpanel = null;
+	/**
+	 * A felhasználó inputait kezelő listener
+	 */
 	private GameListener gamelistener;
+	/**
+	 * A játék menuje
+	 */
 	private Menu menu;
-	
+	/**
+	 * Konstuktor
+	 * @param m menu
+	 */
 	public Container(Menu m)
 	{
 		menu = m;
@@ -36,6 +52,10 @@ public class Container extends JFrame {
 		navigate("menu");
 
 	}
+	/**
+	 * Navigálás egy másik panelre
+	 * @param where a másik panel neve
+	 */
 	public void navigate(String where)
 	{
 		if (currentpanel!=null)
@@ -126,7 +146,9 @@ public class Container extends JFrame {
 		//refresh
 		repaint();
 	}
-	
+	/**
+	 * Kirajzolja a framet
+	 */
     @Override
     public void paint(Graphics g)
     {

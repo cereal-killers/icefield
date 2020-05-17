@@ -8,11 +8,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * A menüt megvalósító panel
+ *
+ */
 public class MenuPanel extends JPanel {
+	/**
+	 * A panel háttere
+	 */
     private BufferedImage backGround = new BufferedImage(1200, 720, BufferedImage.TYPE_INT_RGB);
+    /**
+     * A menügombok
+     */
     private ArrayList<JButton> menuButtons = new ArrayList<JButton>();
-
+    /**
+     * A konstruktor
+     */
     public MenuPanel() {
     	this.setLayout(null);
 		this.setBounds(0,0, 1200, 720);
@@ -81,26 +92,40 @@ public class MenuPanel extends JPanel {
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
-
+    /**
+     * Kirajzolja a panelt
+     */
     @Override
     public void paint(Graphics g)
     {
         g.drawImage(backGround, 0,0, this);
     }
 
-    //getterek & setterek
+   /**
+    * A háttér gettere
+    * @return háttérkép
+    */
     public BufferedImage getBackGround() {
         return backGround;
     }
-
+    /**
+     * A háttér settere
+     * @param backGround háttérkép
+     */
     public void setBackGround(BufferedImage backGround) {
         this.backGround = backGround;
     }
-
+    /**
+     * A menügombok gettere
+     * @return menügombok
+     */
     public ArrayList<JButton> getMenuButtons() {
         return menuButtons;
     }
-
+    /**
+     * A menügombok settere
+     * @param menuButtons menügombok
+     */
     public void setMenuButtons(ArrayList<JButton> menuButtons) {
         this.menuButtons = menuButtons;
     }

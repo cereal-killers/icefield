@@ -11,14 +11,36 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import icefield.Controller;
-
+/**
+ * A játékpanelt megvalósító osztály
+ *
+ */
 public class GamePanel extends JPanel{
+	/**
+	 * A panel háttere
+	 */
     private BufferedImage backGround;
+    /**
+     * A pálya háttere
+     */
     private BufferedImage map;
+    /**
+     * Az eszköztár
+     */
     private Inventory inventory = null;
+    /**
+     * A fieldek képei
+     */
     private ArrayList<FieldPanel> fields = new ArrayList<FieldPanel>();
+    /**
+     * A controller példánya
+     */
     private Controller controller;
-
+    /**
+     * Konstruktor
+     * @param palya jelenlegi pálya
+     * @param c controller
+     */
     public GamePanel(String palya, Controller c)
     {
 		this.setLayout(null);
@@ -41,7 +63,9 @@ public class GamePanel extends JPanel{
 	    this.setVisible(true);
 	    this.setFocusable(true);
     }
-    
+    /**
+     * Kirajzolja a panelt
+     */
     @Override
     public void paint(Graphics g)
     {
@@ -58,16 +82,26 @@ public class GamePanel extends JPanel{
         inventory.paint(g, this);
 
     }
+    /**
+     * Inventory gettere
+     * @return
+     */
     public Inventory getInventory()
     {
     	refreshInventory();
     	return inventory;
     }
+    /**
+     * Frissíti az inventoryt
+     */
     public void refreshInventory()
     {
     	inventory.setCurrentPlayer(controller.getCurrentPlayer());
     }
-    
+    /**
+     * Létrehozza a fieldeket a kiválasztott pálya alapján
+     * @param palya a kiválasztott pálya neve
+     */
     public void createFields(String palya)
     {
     	fields.clear();
@@ -134,6 +168,9 @@ public class GamePanel extends JPanel{
     	for(FieldPanel f: fields)
     		this.add(f.getButton());
     }
-    
+    /**
+     * A feildek gettere
+     * @return
+     */
     public ArrayList<FieldPanel> getFields(){return fields;}
 }

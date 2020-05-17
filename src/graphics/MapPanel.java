@@ -9,12 +9,22 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
+/**
+ * A játék pályáját kiválasztó panel 
+ *
+ */
 public class MapPanel extends JPanel{
-	
+	/**
+	 * A panel háttere
+	 */
     private BufferedImage backGround;
+    /**
+     * A pályák gombjai
+     */
     private ArrayList<JButton> mapButtons = new ArrayList<JButton>();
-    
+    /**
+     * Konstruktor
+     */
     public MapPanel()
     {
     	this.setLayout(null);
@@ -62,14 +72,19 @@ public class MapPanel extends JPanel{
 	    this.setFocusable(true);
 
     }
-    
+    /**
+     * Kirajzolja a panelt
+     */
     @Override
     public void paint(Graphics g)
     {
         g.drawImage(backGround, 0,0, this);
     }
 
-    // getter - setterek
+    /**
+     * A gombok gettere
+     * @return
+     */
     public ArrayList<JButton> getMapButtons() {
         return mapButtons;
     }

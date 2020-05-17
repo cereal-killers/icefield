@@ -18,41 +18,136 @@ import player.Player;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-
+/**
+ * A fieldeket megvalósító panel
+ *
+ */
 public class FieldPanel{
+	/**
+	 * A playerek képei
+	 */
     private ArrayList<BufferedImage> playerImages;
+    /**
+     * Az eszközök képei
+     */
     private Stack<BufferedImage> itemImages;
+    /**
+     * A jegesmedve képe
+     */
     private BufferedImage polarbearImage;
+    /**
+     * A sátor, iglu vagy lyuk képe
+     */
     private BufferedImage thingImage;
+    /** 
+     * A hó képe
+     */
     private BufferedImage snowImage;
+    /**
+     * A fieldgomb
+     */
     private JButton button;
+    /**
+     * A modellbeli field
+     */
     private Field field;
+    /**
+     * A feild x koordinátája a képernyőn
+     */
     private int posX;
+    /**
+     * A feild y koordinátája a képernyőn
+     */
     private int posY;
+    /**
+     * A feild szélessége a képernyőn
+     */
     private int width;
+    /**
+     * A feild magassága a képernyőn
+     */
     private int height;
-
+    /**
+     * A player képeinek gettere
+     * @return player képei
+     */
     public ArrayList<BufferedImage> getPlayerImages(){ return playerImages; }
+    /**
+     * A player képeinek settere
+     * @param value a player képei
+     */
     public void setPlayerImages(ArrayList<BufferedImage> value) { playerImages=value;}   
-    
+    /**
+     * Az eszközök képeinek gettere
+     * @return az eszközök képei
+     */
     public Stack<BufferedImage> getItemImages() { return itemImages;}
+    /**
+     * Az eszközök képeinek settere
+     * @param value az eszközök képei
+     */
     public void setItemImages(Stack<BufferedImage> value) { itemImages = value;}
-
+    /**
+     * A jegesmedve képének gettere
+     * @return a jegesmedve képe
+     */
     public BufferedImage getPolarbearImage () { return polarbearImage;}
+    /**
+     * A jegesmedve képének settere
+     * @param value a jegesmedve képe
+     */
     public void setPolarbearImage( BufferedImage value) { polarbearImage = value;}
-
+    /**
+     * A sátor / iglu/ lyuk képének gettere
+     * @return A sátor / iglu/ lyuk képe
+     */
     public BufferedImage getThingImage() { return thingImage;}
+    /**
+     * A sátor / iglu/ lyuk képének settere
+     * @param value  A sátor / iglu/ lyuk képe
+     */
     public void setThingImage( BufferedImage value) { thingImage=value; }
-
+    
+    /**
+     *  A hó képének gettere
+     * @return a hó képe
+     */
     public BufferedImage getSnowImage() {return snowImage;}
+    /**
+     * A hó képének settere
+     * @param value a hó képe
+     */
     public void setSnowImage( BufferedImage value ) {snowImage = value;} 
-
+    /**
+     *	A fieldgomb gettere
+     * @return fieldgomb
+     */
     public JButton getButton() {return button; }
+    /**
+     * A fieldgomb settere
+     * @param value a fieldgomb
+     */
     public void setButton( JButton value) { button = value;}
-
+    
+    /**
+     * A field gettere
+     * @return a field
+     */
     public Field getField () {return field;}
+    /**
+     * A field settere
+     * @param value a field
+     */
     public void setField (Field value) { field = value; }
-
+    /**
+     * Konstruktor
+     * @param _field afield
+     * @param x a field x koordinátája
+     * @param y a field y koordinátája
+     * @param _width a field szélessége
+     * @param _height a field magassága
+     * @param num a field száma a kontrollerben
+     */
     public FieldPanel (Field _field, int x, int y, int _width, int _height, int num)
     {
         posX=x;
@@ -69,7 +164,12 @@ public class FieldPanel{
         playerImages = new ArrayList<BufferedImage>();
         itemImages = new Stack<BufferedImage>();
     }
-
+    /**
+     * Kirajzolja a fieldet
+     * @param g grafikus osztály példánya
+     * @param p a panel amire rajzolunk
+     * @param currentPlayer a jelenlegi játékos
+     */
     public void paint(Graphics g, JPanel p, Player currentPlayer)
     {
     	itemImages.clear();

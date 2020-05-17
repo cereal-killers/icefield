@@ -81,31 +81,31 @@ public class HighscoresPanel extends JPanel
         }
     }
 
-    /** 
-     * @return BufferedImage
+    /** A háttér gettere
+     * @return BufferedImage háttérkép
      */
     public BufferedImage getBackGround() {
         return backGround;
     }
 
     
-    /** 
-     * @param backGround
+    /** A háttér settere
+     * @param backGround háttérkép
      */
     public void setBackGround(BufferedImage backGround) {
         this.backGround = backGround;
     }
 
     
-    /** 
-     * @return Font
+    /** A kirajzoláshoz szükgéses font gettere
+     * @return Font font
      */
     public Font getAmaticSc() {
         return AmaticSc;
     }
     
-    /** 
-     * @param amaticSc
+    /** A kirajzoláshoz szükséges font settere
+     * @param amaticSc font
      */
     public void setAmaticSc(Font amaticSc) {
         AmaticSc = amaticSc;
