@@ -1,12 +1,15 @@
 package graphics;
 
 import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import java.awt.image.BufferedImage;
 
 import icefield.Controller;
 import menu.Menu;
@@ -33,16 +36,22 @@ public class Container extends JFrame {
 	 * Konstuktor
 	 * @param m menu
 	 */
+	private BufferedImage icon;
 	public Container(Menu m)
 	{
 		menu = m;
 		try {
 			gamelistener = new GameListener(this, m);
 		} catch (UnsupportedEncodingException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.setTitle("Ice Field");
+		this.setTitle("Cereal Killers - IceField");
+		try {
+			icon = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\images\\icon.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.setIconImage(icon);
 		this.setBounds(0,0,1205,755);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
