@@ -1,9 +1,4 @@
-////
-///    ITT MÉG MINDEN VÁLTOZHAT 
-////
-
 package graphics;
-
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +10,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import field.Field;
 import icefield.Controller;
 import menu.Main;
@@ -27,15 +20,49 @@ import menu.Menu;
 import menu.Options;
 
 public class GameListener implements ActionListener, KeyListener, MouseListener {
-
+	
+	/**
+	 * A játékprogram főablaka, ezt kell mindig újrarajzolni a modell módosítása után
+	 */
 	private Container container;
+	
+	/**
+	 * A modell eléréséhez szükséges, hogy tudjunk rajta módosításokat végrehajtani
+	 */
 	private Controller controller;
+	
+	/**
+	 * A modellhez tartozó menü, hogy a beállításokat állíthassuk
+	 */
 	private Menu menu;
+	
+	/**
+	 * A standard kimenet
+	 */
 	private PrintStream stdout;
+	
+	/**
+	 * A standard bemenet
+	 */
 	private InputStream stdin;
+	
+	/**
+	 * A játék aktuális paneljét (menü, pályaválasztás, beállítások, játék, stb..) azonosító szöveg
+	 */
 	private String currentPanel;
+	
+	/**
+	 * Van olyan view-től érkező üzenet, amikor a modellnek nem kell parancsot küldeni, ezzel tudjuk ezt jelezni
+	 */
 	private boolean sendCommand = true;
 	
+	/**
+	 * Konstruktor, elmenti a standard be- és kimenetet, mivel át fogjuk állítani
+	 * @param _container A játék főablaka, ezt kell mindig újrarajzolni a modell módosítása után
+	 * @param _menu A modellhez tartozó menü, hogy a beállításokat állíthassuk
+	 * @throws UnsupportedEncodingException Akkor dobódik, ha a ByteArrayInputStream nem jó kódolás-azonosító stringet kap
+	 * @throws InterruptedException
+	 */
 	public GameListener(Container _container, Menu _menu) throws UnsupportedEncodingException, InterruptedException {
 		this.container = _container;
 		this.menu = _menu;
@@ -47,12 +74,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		System.setIn(new ByteArrayInputStream(cmd.getBytes()));
 	}
 	
+	/**
+	 * A View-től érkező, gombokra és panelekre történő bal kattintásokat lekezelő függvény
+	 * @param e Az érkezett esemény
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) { 
 		String[] cmd_from_view = e.getActionCommand().split("\\s+");
-		System.out.println("command from view: ["+e.getActionCommand()+"]"); //Leónak
+		//System.out.println("command from view: ["+e.getActionCommand()+"]"); //debug célból
 		String cmd_to_model = "";
-
+		
 		switch(cmd_from_view[0]) {
 			case "newgame":{
 				cmd_to_model = "1";
@@ -70,11 +101,11 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				currentPanel = "highscores";
 			} break;
 			case "exit":{
-				cmd_to_model = "4"; //talán az ablakkal is külön kell majd valamit kezdeni?
+				cmd_to_model = "4";
 				container.dispose();
 			} break;
 			case "submit":{
-				
+
 				String newName = "";
 				for(int i = 1;i < cmd_from_view.length; ++i) {
 					newName += cmd_from_view[i] + " ";
@@ -83,19 +114,17 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				try {
 					sendCommandToModel(cmd_to_model);
 				} catch (UnsupportedEncodingException | InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				synchronized(Options.nameIsReadyToSet) {
 					try {
 						Options.nameIsReadyToSet.wait();
-						//System.out.println("megkaptam1");
 					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 				}
 				cmd_to_model = newName;
+				
 			} break;
 			case "togglemusic":{
 				boolean music = menu.getOptions().GetMusic();
@@ -103,15 +132,12 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				try {
 					sendCommandToModel(cmd_to_model);
 				} catch (UnsupportedEncodingException | InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				synchronized(Options.musicIsReadyToSet) {
 					try {
 						Options.musicIsReadyToSet.wait();
-						//System.out.println("megkaptam1");
 					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 				}
@@ -120,7 +146,6 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				}else {
 					cmd_to_model = "on";
 				}
-				//container.toggleMusic();
 			} break;
 			case "remove_snow":{
 				cmd_to_model = "remove snow";
@@ -137,29 +162,16 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			case "endturn": {
 				cmd_to_model = "end turn";
 				if(controller.TryFireWithoutWaiting() || controller.checkIfGameLost()) {
-					/*synchronized(Controller.gameEnded) {
-						try {
-							Controller.gameEnded.wait();
-							System.out.println("megkaptam1");
-						} catch (InterruptedException e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						}
-					}*/
-					//System.out.println("megkaptam2");
 					if(controller.checkIfGameLost()) {
-						//System.out.println("megkaptam4");
 						container.navigate("lose");
 						currentPanel = "lose";
-					}else if(controller.getWon()) {
-						//System.out.println("megkaptam3");
+					} else if(controller.getWon()) {
 						container.navigate("win");
 						currentPanel = "win";
 					} 
 				}
 			}break;
 			case "nagy": {
-				
 				try {
 					sendCommandToModel("nagypalya");
 					synchronized(Controller.mapLoaded) {
@@ -174,7 +186,6 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				container.navigate("nagy");
 				currentPanel = "nagy";
 				sendCommand = false;
-				//cmd_to_model = "nagypalya"; // összesen ez az egy sor volt itt
 			}break;
 			case "foci": {
 				try {
@@ -191,12 +202,10 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 				container.navigate("foci");
 				currentPanel = "foci";
 				sendCommand = false;
-				//container.navigate("foci");
 			}break;
 			case "teszt": {
 				try {
 					sendCommandToModel("tesztpalya");
-					System.out.println("playersnumber= " + controller.getPlayers().size());
 					while(controller.getPlayers().size() == 0) {
 						try {
 							synchronized(Controller.readyForTestCommand) {
@@ -208,20 +217,13 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							synchronized(Controller.commandDone) {
 								Controller.commandDone.wait();
 							}
-						} catch (Exception e3) {
-							
-						}
-						
+						} catch (Exception e3) {}			
 					}
-					
 					synchronized(Controller.mapLoaded) {
 						sendCommandToModel("Y");
 						Controller.mapLoaded.wait();
 					}
-					//container.navigate("teszt");/////////
-					//currentPanel = "teszt";
-					//container.repaint(); ///////
-					System.out.println("itt");
+					
 					String input_test = "";
 					int count = 0;
 					do {
@@ -237,165 +239,75 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 							input_test = JOptionPane.showInputDialog(testCommands, "Type test commands and start the game with \"start\".\nGame will automatically start in TEST mode.");
 							System.out.println("command from window: ["+input_test+"]");
 							sendCommandToModel(input_test);
-						} catch(Exception e3) {
-							
-						}
+						} catch(Exception e3) {}
 						
 					} while (!input_test.contentEquals("start"));
-					/*synchronized(Controller.readyForTestCommand) {
-						Controller.readyForTestCommand.wait();
-					}*/
-					//sendCommandToModel("Y");
-					/*synchronized(Controller.mapLoaded) {
-						Controller.mapLoaded.wait();
-					}*/
 					
 				} catch (Exception e1) {}
 				container.navigate("teszt");
 				currentPanel = "teszt";
 				sendCommand = false;
-				//container.navigate("teszt");
-			}break;
+			} break;
 			case "field": {
-				int globalIndex = Integer.parseInt(cmd_from_view[1]); // 0-tól indul
+				int globalIndex = Integer.parseInt(cmd_from_view[1]);
 				if(globalIndex == controller.getFields().indexOf(controller.getCurrentPlayer().getCurrentField())) {
+					
 					if(controller.getFields().get(globalIndex).getSnow() == 0) {
 						cmd_to_model = "pick up item";
 					} else {
 						cmd_to_model = "remove snow";
 					}
 				} else {
-					Field moveTo = controller.getFields().get(globalIndex); //0-tól indul
-					int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(moveTo); // 0-tól indul
-					int dirToModel = direction + 1; // a move parancsot 1-től kell indexelni
+					Field moveTo = controller.getFields().get(globalIndex);
+					int direction = controller.getCurrentPlayer().getCurrentField().getNeighbors().indexOf(moveTo);
+					int dirToModel = direction + 1;
 					cmd_to_model = "move " + dirToModel; 
 				}
-
-			}break;
+			} break;
 			case "item": {
 				String item = cmd_from_view[1];
 				cmd_to_model = "use "+ item;
 			}break;
-			default: {
-				
-			} break;
+			default: {} break;
 		}
 		
 		try {
-
 			if(sendCommand) {
 				sendCommandToModel(cmd_to_model);
 			} else {
 				sendCommand = true;
-			}
-			
-			
-			/*switch(cmd_from_view[0]) {
-				case "nagy":{
-					synchronized(Controller.mapLoaded) {
-						try {
-							Controller.mapLoaded.wait();
-							
-						} catch (InterruptedException ex) {
-							// TODO Auto-generated catch block
-							ex.printStackTrace();
-						}
-					}
-					sendCommandToModel("N");
-					synchronized(Controller.mapLoaded) {
-						Controller.mapLoaded.wait();
-					}
-					container.navigate("nagy");
-					currentPanel = "nagy";
-					//sendCommandToModel("N");
-				} break;
-				case "foci":{
-					synchronized(Controller.mapLoaded) {
-						try {
-							Controller.mapLoaded.wait();
-							
-						} catch (InterruptedException ex) {
-							// TODO Auto-generated catch block
-							ex.printStackTrace();
-						}
-					}
-					sendCommandToModel("N");
-					synchronized(Controller.mapLoaded) {
-						Controller.mapLoaded.wait();
-					}
-					container.navigate("foci");
-					currentPanel = "foci";
-				} break;
-				case "teszt":{
-					synchronized(Controller.mapLoaded) {
-						try {
-							Controller.mapLoaded.wait();
-						} catch (InterruptedException ex) {
-							// TODO Auto-generated catch block
-							ex.printStackTrace();
-						}
-					}
-					sendCommandToModel("N");
-					synchronized(Controller.mapLoaded) {
-						Controller.mapLoaded.wait();
-					}
-					container.navigate("teszt");
-					currentPanel = "teszt";
-				} break;
-				case "endturn":{
-					
-
-				} break;
-				default:break;
-			}*/
-			
+			}	
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		container.repaint(); //biztos ez kell? nem implementáltad, magától meg nem kérdezi le a modellt
+		container.repaint();
 	}
 	
+	/**
+	 * A View-től érkező, billentyűlenyomásokra reagáló függvény
+	 * @param e A billentyűlenyomás eseménye
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		//System.out.println(e.toString()); //Leónak
 		String cmd_to_model = "";
 		if(currentPanel.contentEquals("win") || currentPanel.contentEquals("lose")) {
 			cmd_to_model = "x";
 			container.navigate("menu");
 			currentPanel = "menu";
 		} else if (key == KeyEvent.VK_T) {
-			//try {
-			//sendCommandToModel("test on");
 			JFrame noPlayers = new JFrame("Test command");
 			cmd_to_model = JOptionPane.showInputDialog(noPlayers, "Type test command:");
-			
-			//sendCommandToModel(cmd_from_testframe);
-			//} catch (UnsupportedEncodingException | InterruptedException e1) {
-				// TODO Auto-generated catch block
-				//e1.printStackTrace();
-			//}
 		}
 		
 		if(key == KeyEvent.VK_ESCAPE) {
 			switch(currentPanel) {
 			case "menu": break;
 			case "choosemap": break;
-			/*case "win": {
-				cmd_to_model = "1";
-				container.navigate("menu");
-				currentPanel = "menu";
-			} break;
-			case "lose":{
-				cmd_to_model = "1";
-				container.navigate("menu");
-				currentPanel = "menu";
-			} break;*/
+			
 			case "options":{
 				cmd_to_model = "3";
 				container.navigate("menu");
@@ -427,27 +339,28 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 		try {
 			sendCommandToModel(cmd_to_model);
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		container.repaint();
 	}
 	
+	/**
+	 * A View-től érkező, gombokra és panelekre történő jobb kattintásokat lekezelő függvény
+	 * @param e Az érkezett esemény
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		//System.out.println(e.toString()); //Leónak
 		JButton j = new JButton();
 		try {
 			j = (JButton) e.getComponent();
 		} catch(Exception ex) {}
 		
 		if(e.getButton() == MouseEvent.BUTTON3) {
-			String[] cmd_from_view = j.getActionCommand().split("\\s+"); // az meg lesz oldva hogy ha rossz helyre kattintasz akkor invalid command jön? mondjuk ""
+			String[] cmd_from_view = j.getActionCommand().split("\\s+");
 			String cmd_to_model = "";
-			//System.out.println("["+controller.getCurrentPlayer().getName()+"]");
+			
 			switch(controller.getCurrentPlayer().getName().toUpperCase()) {
 				case "SCIENTIST":{
 					int globalIndex = Integer.parseInt(cmd_from_view[1]);
@@ -464,66 +377,68 @@ public class GameListener implements ActionListener, KeyListener, MouseListener 
 			try {
 				sendCommandToModel(cmd_to_model);
 			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			container.repaint();
-		}
-		
+		}	
 	}
 	
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 	
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 	
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
+	@Override
+	public void keyReleased(KeyEvent e) {}
+	
+	/**
+	 * Interfész delegálásához szükséges
+	 * @param e Az érkezett esemény
+	 */
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+	
+	/**
+	 * A modellnek a parancsokat küldő függvény, amelyek a háttérben futó játéklogikát vezérlik
+	 * @param cmd A küldött parancs
+	 * @throws UnsupportedEncodingException
+	 * @throws InterruptedException
+	 */
 	private void sendCommandToModel(String cmd) throws UnsupportedEncodingException, InterruptedException {
 		cmd = cmd + System.lineSeparator();
 		System.setIn(new ByteArrayInputStream(cmd.getBytes("UTF-8")));
 		synchronized(Main.lock) {
 			Main.lock.notifyAll();
 		}
-		stdout.println("command to model: ["+cmd+"]"); //debug célból
-
+		//stdout.println("command to model: ["+cmd+"]"); //debug célból
 	}
-	
-	/*private String getOutputFromModel() {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream(); //olvas
-		PrintStream ps = new PrintStream(baos); //olvas
-		PrintStream stdout = System.out; //olvas
-		System.setOut(ps); //olvas
-		re
-	}*/
-
 }
